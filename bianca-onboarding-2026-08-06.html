@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bianca — GTM Field &amp; Outreach Coordinator · Onboarding</title>
+<script>try{document.documentElement.classList.toggle('light',localStorage.getItem('hermes-theme')==='light')}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --t-1:rgba(255,255,255,.92); --t-2:rgba(255,255,255,.60);
+    --t-3:rgba(255,255,255,.40); --t-4:rgba(255,255,255,.26);
+    --edge:rgba(255,255,255,.12); --edge-soft:rgba(255,255,255,.07); --hi:rgba(255,255,255,.16);
+    --glass:rgba(26,27,31,.42); --glass-2:rgba(40,42,48,.34); --glass-3:rgba(16,17,20,.50);
+    --accent:rgba(255,255,255,.92); --accent-soft:rgba(255,255,255,.13); --accent-ink:#0c0c0e;
+    --green:#9cc47f; --green-bg:rgba(134,176,107,.16); --green-bd:rgba(134,176,107,.34);
+    --amber:#e3b06f; --amber-bg:rgba(224,164,88,.15);  --amber-bd:rgba(224,164,88,.34);
+    --red:#df8088;   --red-bg:rgba(211,95,107,.15);    --red-bd:rgba(211,95,107,.34);
+    --font:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    --mono:'SF Mono','Fira Code',ui-monospace,Menlo,monospace;
+    --r-shell:28px; --r-card:18px; --r-tile:12px;
+    --blur:saturate(1.4) blur(30px); --blur-card:saturate(1.3) blur(20px);
+    --shadow-card:0 10px 40px rgba(0,0,0,.34); --shadow-shell:0 40px 120px rgba(0,0,0,.55);
+    --shadow-hover:0 18px 52px rgba(0,0,0,.46);
+    --ease:cubic-bezier(.22,.61,.36,1);
+  }
+  html.light{
+    --t-1:rgba(20,21,24,.92); --t-2:rgba(20,21,24,.60); --t-3:rgba(20,21,24,.42); --t-4:rgba(20,21,24,.28);
+    --edge:rgba(20,21,24,.12); --edge-soft:rgba(20,21,24,.07); --hi:rgba(255,255,255,.75);
+    --glass:rgba(255,255,255,.62); --glass-2:rgba(255,255,255,.55); --glass-3:rgba(255,255,255,.80);
+    --accent:rgba(20,21,24,.92); --accent-soft:rgba(20,21,24,.07); --accent-ink:#f7f7f5;
+    --green:#3f7d35; --green-bg:rgba(63,125,53,.12); --green-bd:rgba(63,125,53,.30);
+    --amber:#a4651a; --amber-bg:rgba(164,101,26,.12); --amber-bd:rgba(164,101,26,.30);
+    --red:#b3454f;   --red-bg:rgba(179,69,79,.10);    --red-bd:rgba(179,69,79,.30);
+    --shadow-card:0 10px 30px rgba(40,40,55,.12); --shadow-shell:0 40px 120px rgba(40,40,55,.16);
+    --shadow-hover:0 16px 40px rgba(40,40,55,.18);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{background:#0a0a0c}
+  html.light{background:#e9e7e1}
+  body{
+    font-family:var(--font); color:var(--t-1);
+    font-size:13.5px; line-height:1.6; min-height:100vh;
+    padding:34px 22px 64px; position:relative; z-index:1;
+    -webkit-font-smoothing:antialiased;
+  }
+  body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+    background:
+      radial-gradient(1200px 700px at 82% 2%,  rgba(188,202,216,.10), transparent 60%),
+      radial-gradient(1000px 620px at 6% 100%, rgba(206,200,192,.06), transparent 58%),
+      linear-gradient(180deg, rgba(8,8,10,.40) 0%, rgba(8,8,10,.62) 50%, rgba(8,8,10,.80) 100%);}
+  html.light body::before{
+    background:
+      radial-gradient(1200px 700px at 82% 2%,  rgba(120,140,170,.12), transparent 60%),
+      radial-gradient(1000px 620px at 6% 100%, rgba(180,165,140,.10), transparent 58%),
+      linear-gradient(180deg, rgba(245,243,238,.28) 0%, rgba(238,235,228,.18) 60%, rgba(232,228,220,.34) 100%);}
+
+  .wrap{
+    position:relative; z-index:1; max-width:1060px; margin:0 auto;
+    background:var(--glass); backdrop-filter:var(--blur); -webkit-backdrop-filter:var(--blur);
+    border:1px solid var(--edge); border-radius:var(--r-shell);
+    box-shadow:var(--shadow-shell), inset 0 1px 0 var(--hi);
+    padding:40px 44px 46px;
+    animation:rise .55s var(--ease) both;
+  }
+  @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+  .header{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:18px;
+    padding-bottom:24px;margin-bottom:26px;border-bottom:1px solid var(--edge-soft);}
+  .wordmark{font-size:10.5px;font-weight:600;letter-spacing:.34em;text-transform:uppercase;color:var(--t-3);margin-bottom:14px;}
+  h1{font-weight:300;font-size:31px;letter-spacing:-.01em;line-height:1.1;color:var(--t-1);}
+  h1 b{font-weight:700;}
+  .header-left .sub{font-size:12px;color:var(--t-2);margin-top:9px;letter-spacing:.02em;}
+  .header-right{display:flex;flex-direction:column;align-items:flex-end;gap:9px;}
+  .meta-line{font-size:10.5px;color:var(--t-3);letter-spacing:.06em;text-transform:uppercase;}
+  .theme-toggle{
+    font-family:var(--font);font-size:10.5px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--t-2);background:var(--glass-3);border:1px solid var(--edge);border-radius:999px;
+    padding:5px 13px;cursor:pointer;transition:all .25s var(--ease);}
+  .theme-toggle:hover{color:var(--t-1);border-color:var(--hi);transform:translateY(-1px);}
+
+  .pill{display:inline-flex;align-items:center;gap:7px;font-size:10px;font-weight:600;letter-spacing:.08em;
+    text-transform:uppercase;padding:4px 11px;border-radius:999px;border:1px solid var(--edge);
+    background:var(--glass-3);color:var(--t-3);white-space:nowrap;}
+  .pill.ok{color:var(--green);background:var(--green-bg);border-color:var(--green-bd);}
+  .pill.amber{color:var(--amber);background:var(--amber-bg);border-color:var(--amber-bd);}
+  .dot{width:6px;height:6px;border-radius:50%;display:inline-block;}
+  .dot.g{background:var(--green);} .dot.a{background:var(--amber);}
+  .dot.live{background:var(--green);animation:blink 2.4s infinite;}
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:.35}}
+
+  .lead{font-weight:300;font-size:18px;line-height:1.55;color:var(--t-2);
+    border-left:2px solid var(--edge);padding-left:18px;margin-bottom:14px;}
+  .lead b{color:var(--t-1);font-weight:600;}
+  .lead-foot{font-size:13px;color:var(--t-2);margin-bottom:30px;padding-left:20px;}
+  .lead-foot b{color:var(--t-1);font-weight:600;}
+
+  section{margin-bottom:28px;}
+  .s-title{display:flex;align-items:baseline;gap:13px;margin-bottom:15px;padding-bottom:9px;
+    border-bottom:1px solid var(--edge-soft);}
+  .s-title .num{font-family:var(--mono);font-size:11px;color:var(--t-3);letter-spacing:.05em;}
+  .s-title h2{font-size:14px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--t-1);}
+  .s-title .meta{margin-left:auto;font-size:11.5px;color:var(--t-3);font-weight:400;letter-spacing:.02em;text-transform:none;}
+
+  .card{background:var(--glass-2);backdrop-filter:var(--blur-card);-webkit-backdrop-filter:var(--blur-card);
+    border:1px solid var(--edge);border-radius:var(--r-card);
+    box-shadow:var(--shadow-card), inset 0 1px 0 var(--hi);
+    padding:18px 22px;margin-bottom:14px;}
+  .card p{font-size:13.5px;color:var(--t-2);margin-bottom:10px;}
+  .card p:last-child{margin-bottom:0;}
+  .card b{color:var(--t-1);font-weight:600;}
+  code{font-family:var(--mono);font-size:11.5px;color:var(--t-1);
+    background:var(--glass-3);border:1px solid var(--edge-soft);border-radius:5px;padding:1px 6px;}
+
+  .strip{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px;}
+  .stat{background:var(--glass-3);border:1px solid var(--edge);border-radius:var(--r-tile);
+    box-shadow:inset 0 1px 0 var(--hi);padding:18px 14px;text-align:center;}
+  .stat .n{font-size:28px;font-weight:300;color:var(--t-1);line-height:1;display:block;letter-spacing:-.02em;}
+  .stat .n b{font-weight:700;}
+  .stat .lbl{font-size:9.5px;color:var(--t-3);margin-top:9px;letter-spacing:.1em;text-transform:uppercase;line-height:1.4;}
+
+  /* LOOP STEPS */
+  .loop{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:4px;}
+  .step{flex:1 1 118px;background:var(--glass-3);border:1px solid var(--edge);border-radius:var(--r-tile);
+    box-shadow:inset 0 1px 0 var(--hi);padding:12px 13px;position:relative;}
+  .step .k{font-family:var(--mono);font-size:9.5px;color:var(--t-3);letter-spacing:.08em;}
+  .step .v{font-size:12px;color:var(--t-1);font-weight:600;margin-top:4px;line-height:1.35;}
+  .arrow{align-self:center;color:var(--t-4);font-size:14px;padding:0 1px;}
+
+  .lanes{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .lane{background:var(--glass-2);backdrop-filter:var(--blur-card);-webkit-backdrop-filter:var(--blur-card);
+    border:1px solid var(--edge);border-radius:var(--r-card);box-shadow:var(--shadow-card),inset 0 1px 0 var(--hi);
+    padding:18px 20px;transition:transform .25s var(--ease),border-color .25s var(--ease);}
+  .lane:hover{transform:translateY(-2px);border-color:var(--hi);box-shadow:var(--shadow-hover),inset 0 1px 0 var(--hi);}
+  .lane h3{font-size:13px;font-weight:600;letter-spacing:.04em;color:var(--t-1);margin-bottom:4px;}
+  .lane .skill{font-family:var(--mono);font-size:11px;color:var(--t-3);margin-bottom:11px;}
+  .lane p{font-size:12.5px;color:var(--t-2);margin-bottom:9px;}
+  .lane p b{color:var(--t-1);font-weight:600;}
+  .lane ul{margin:0 0 0 0;padding-left:16px;}
+  .lane li{font-size:12.5px;color:var(--t-2);margin-bottom:5px;}
+  .lane li b{color:var(--t-1);font-weight:600;}
+
+  .rules{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .rule{background:var(--glass-2);border:1px solid var(--edge);border-left:2px solid var(--edge);
+    border-radius:var(--r-tile);box-shadow:inset 0 1px 0 var(--hi);padding:14px 16px;}
+  .rule.hot{border-left-color:var(--amber-bd);}
+  .card.hot{border-left:2px solid var(--amber-bd);}
+  .rule h4{font-size:12px;font-weight:600;color:var(--t-1);margin-bottom:5px;letter-spacing:.01em;}
+  .rule p{font-size:12.5px;color:var(--t-2);}
+
+  .tbl{width:100%;border-collapse:collapse;font-size:13px;}
+  .tbl th{text-align:left;font-family:var(--mono);font-weight:400;font-size:9.5px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--t-3);padding:9px 12px;border-bottom:1px solid var(--edge);}
+  .tbl td{padding:11px 12px;border-bottom:1px solid var(--edge-soft);color:var(--t-2);vertical-align:top;}
+  .tbl tr:last-child td{border-bottom:none;}
+  .tbl td b,.tbl td strong{color:var(--t-1);font-weight:600;}
+  .tbl .who{white-space:nowrap;font-weight:600;color:var(--t-1);}
+  .tbl-wrap{background:var(--glass-2);backdrop-filter:var(--blur-card);-webkit-backdrop-filter:var(--blur-card);
+    border:1px solid var(--edge);border-radius:var(--r-card);box-shadow:var(--shadow-card),inset 0 1px 0 var(--hi);
+    padding:6px 16px;}
+  .scroll{overflow-x:auto;}
+
+  .footer{margin-top:34px;padding-top:18px;border-top:1px solid var(--edge-soft);
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;
+    font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--t-3);}
+  .footer code{background:none;border:none;padding:0;color:var(--t-3);text-transform:none;letter-spacing:0;}
+
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
+  @media(max-width:720px){
+    body{padding:20px 12px 48px;}
+    .wrap{padding:26px 20px 32px;border-radius:22px;}
+    h1{font-size:25px;}
+    .strip{grid-template-columns:repeat(2,1fr);}
+    .lanes,.rules{grid-template-columns:1fr;}
+    .s-title .meta{display:none;}
+    .loop{flex-direction:column;}
+    .arrow{display:none;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-left">
+      <div class="wordmark">La Chamana · Both Ventures</div>
+      <h1>Bianca — Outreach <b>&amp; Channel Lead</b></h1>
+      <div class="sub">Your role in the GTM machine · title provisional, to close with Gastón</div>
+    </div>
+    <div class="header-right">
+      <button class="theme-toggle" onclick="(function(){var l=document.documentElement.classList.toggle('light');try{localStorage.setItem('hermes-theme',l?'light':'dark')}catch(e){}})()">Theme</button>
+      <span class="pill ok"><span class="dot live"></span>V1.2 · Social &amp; content added</span>
+      <div class="meta-line">2026-08-11</div>
+      <div class="meta-line">Machine owner · Boris</div>
+    </div>
+  </div>
+
+  <!-- LEAD -->
+  <p class="lead">
+    You're the bridge between <b>the house in Tulum</b>, La Chamana's aesthetic language, the outreach
+    <b>send identity</b>, and the Synergy GTM Toolkit running behind it all.
+  </p>
+  <p class="lead-foot">
+    You're <b>not</b> expected to operate the full Toolkit. You own one focused, human loop: spotting the right
+    people, curating what goes out, approving it before it sends, and making sure no good reply gets lost.
+  </p>
+
+  <!-- WHAT CHANGED IN V1.2 -->
+  <section>
+    <div class="s-title"><span class="num">Δ</span><h2>What changed in V1.2</h2><span class="meta">added 2026-08-11 · Boris</span></div>
+    <div class="card">
+      <p>Two things you're already good at got written into <b>§02</b>: <b>social monitoring</b> across our channels, and <b>content curation</b> — what goes out, in what order.</p>
+      <p>Curation means choosing, not writing: the voice stays René's, the byline stays La Chamana's. Tell me where this is off.</p>
+    </div>
+  </section>
+
+  <!-- WHAT CHANGED IN V1.1 -->
+  <section>
+    <div class="s-title"><span class="num">Δ</span><h2>What changed in V1.1</h2><span class="meta">your 2026-08-10 feedback, answered</span></div>
+    <div class="card">
+      <p><b>1 · Job title.</b> Taken. Working title is <b>Outreach &amp; Channel Lead</b>, built from your keywords — outreach / marketing &amp; channel. Provisional until Gastón signs it off; it blocks nothing.</p>
+      <p><b>2 · "Lara should be Bianca."</b> Agreed on the substance: if you're the one who answers, you should be the one who signs. What that costs and how we do it is <b>§06</b> — it's a real migration, not a find-and-replace, and it's the first decision on Tuesday.</p>
+      <p><b>3 · "Why escalate that to Boris — isn't it Iru?"</b> You were right and V1.0 was wrong. Commercial goes to Iru, not to me. <b>§04</b> is rewritten as a routing table.</p>
+      <p><b>4 · "Quiero de a poco ir tocando la machine."</b> Yes — and faster than V1.0 implied. "Narrow on purpose" was a floor, not a ceiling. <b>Read access to everything from week 1</b>; what opens gradually is only what <i>writes</i> outward. See <b>§03</b>.</p>
+      <p><b>5 · Direct text editing / a suggestions box.</b> The most useful thing you flagged. It doesn't exist today — the review screen has no edit field at all, and every message is a text file only I can touch. That's a gap in the product, not a policy. <b>§07</b> has the two options and which one you get first.</p>
+    </div>
+  </section>
+
+  <!-- 00 · AT A GLANCE -->
+  <section>
+    <div class="s-title"><span class="num">00</span><h2>At a glance</h2></div>
+    <div class="strip">
+      <div class="stat"><span class="n"><b>1</b></span><div class="lbl">Human loop<br>you own end-to-end</div></div>
+      <div class="stat"><span class="n"><b>6</b></span><div class="lbl">Main activities<br>CRM · batches · inbox · social · content · field notes</div></div>
+      <div class="stat"><span class="n"><b>4</b></span><div class="lbl">Open decisions<br>closing Tuesday</div></div>
+      <div class="stat"><span class="n"><b>4</b> wks</span><div class="lbl">Ramp plan<br>learn → review → own → improve</div></div>
+    </div>
+    <div class="card">
+      <p><b>Why this role exists.</b> You're physically at La Chamana — that's a vantage point the Toolkit cannot replace. Your value is taste, judgment, and presence: knowing who's a good fit, whether a message sounds like us, and which replies actually matter.</p>
+      <p><b>What this role is not.</b> You're not a technical admin. You don't configure the Toolkit, touch credentials, run paid media, or edit campaign files. That stays with Boris and the team.</p>
+      <p><b>What it's also not: fixed.</b> V1.0 got two things wrong and you caught both. This document is meant to be argued with — §04 and §03 exist in their current form because you pushed back.</p>
+    </div>
+  </section>
+
+  <!-- 01 · THE LOOP -->
+  <section>
+    <div class="s-title"><span class="num">01</span><h2>The loop you own</h2><span class="meta">observe → escalate → feed back</span></div>
+    <div class="loop">
+      <div class="step"><div class="k">01</div><div class="v">Observe the house</div></div>
+      <div class="arrow">→</div>
+      <div class="step"><div class="k">02</div><div class="v">Spot good-fit prospects</div></div>
+      <div class="arrow">→</div>
+      <div class="step"><div class="k">03</div><div class="v">Curate outreach batches</div></div>
+      <div class="arrow">→</div>
+      <div class="step"><div class="k">04</div><div class="v">Edit, approve, send</div></div>
+      <div class="arrow">→</div>
+      <div class="step"><div class="k">05</div><div class="v">Monitor replies &amp; DMs</div></div>
+      <div class="arrow">→</div>
+      <div class="step"><div class="k">06</div><div class="v">Escalate opportunities</div></div>
+      <div class="arrow">→</div>
+      <div class="step"><div class="k">07</div><div class="v">Feed insight back</div></div>
+    </div>
+  </section>
+
+  <!-- 02 · WHAT YOU'LL DO -->
+  <section>
+    <div class="s-title"><span class="num">02</span><h2>What you'll actually do</h2></div>
+    <div class="lanes">
+      <div class="lane">
+        <h3>Prospect &amp; CRM support</h3>
+        <div class="skill">targets · segments · fit</div>
+        <p>Build and maintain high-quality target lists — retreat facilitators, architects, wellness operators, luxury curators, creative directors, boutique agencies.</p>
+        <ul>
+          <li>Review, add, or correct prospects</li>
+          <li>Tag by segment, geography, aesthetic fit</li>
+          <li>Remove bad-fit or low-quality contacts</li>
+        </ul>
+      </div>
+      <div class="lane">
+        <h3>Outreach batch review</h3>
+        <div class="skill">before anything sends</div>
+        <p>Before any email goes out, you check it — not write it from scratch. Your value is curation and taste. <b>Nothing sends that you haven't been able to change</b> (§07).</p>
+        <ul>
+          <li>Good fit? Tone aligned, not salesy?</li>
+          <li>Anything factually wrong?</li>
+          <li>Skip, rewrite, personalize, or approve?</li>
+        </ul>
+      </div>
+      <div class="lane">
+        <h3>Outreach inbox management</h3>
+        <div class="skill">no good reply gets lost</div>
+        <p>You manage the outreach inbox day to day — under whichever signature §06 lands on.</p>
+        <ul>
+          <li>Check + classify incoming replies</li>
+          <li>Flag warm leads and important opportunities</li>
+          <li>Mark irrelevant / negative, suggest next step</li>
+        </ul>
+      </div>
+      <div class="lane">
+        <h3>Field intelligence from the house</h3>
+        <div class="skill">what the Toolkit can't see</div>
+        <p>Because you're on-site, you ground the whole GTM process in what's actually true.</p>
+        <ul>
+          <li>Observations, guest reactions, photos/video</li>
+          <li>Campaign ideas from what's happening on site</li>
+          <li>What feels true or false in the messaging</li>
+        </ul>
+      </div>
+      <div class="lane">
+        <h3>Social monitoring</h3>
+        <div class="skill">every channel · the 24-hour clock</div>
+        <p>People find us in public long before they reach an inbox. You watch the channels and decide what's worth pulling out.</p>
+        <ul>
+          <li><b>@chamana.live</b> — comments, mentions, tags, story replies, and the <b>DM requests folder</b>, where good people get filtered and never seen</li>
+          <li><b>lachamana.com</b> — blog comments, forms, newsletter signups</li>
+          <li>New channels join by default. TikTok and YouTube are ad platforms today, not accounts we post on</li>
+          <li>Good-fit accounts into the CRM · which posts pull the right people</li>
+        </ul>
+        <p style="margin-top:11px">One timing thing: once someone DMs us, Instagram gives <b>24 hours</b> to reply on the official path. The rest of the week can wait — that can't.</p>
+        <p>Routing is the same as §04: a booking or a press mention goes to Iru, tone goes to René.</p>
+      </div>
+      <div class="lane">
+        <h3>Content curation</h3>
+        <div class="skill">choosing, not writing</div>
+        <p>You help decide <b>what goes out, in what order, and whether it's good enough</b>.</p>
+        <ul>
+          <li>Review the publish-ready packs — caption, hero image, suggested date — before they go anywhere</li>
+          <li>Curate the asset library in Drive (<code>02_Content/Assets/</code>): what's approved, what's tired, what's missing</li>
+          <li>Sequence the calendar across channels, including what shouldn't go out</li>
+          <li>Tell us what the house can supply: <i>"we need photos of X"</i></li>
+        </ul>
+        <p style="margin-top:11px">Voice and aesthetic sign-off stay with <b>René</b>, and articles publish as <b>La Chamana</b>, never a person. The machine stops at a finished draft — someone posts it by hand, today Iru.</p>
+      </div>
+    </div>
+    <div class="card hot" style="margin-top:14px">
+      <p><b>Worth knowing before you open Instagram:</b> get into @chamana.live from the phone app only.</p>
+      <p>A desktop login, a new IP or a VPN has locked that account before, and it now has live ad spend behind it. So no instagram.com in a browser, and nothing third-party asking for the password.</p>
+      <p>Posting and scheduling go through Meta Business Suite, which is fine — just a different door. Anything beyond the phone, ping me and we sort it in five minutes.</p>
+    </div>
+  </section>
+
+  <!-- 03 · TOOLS -->
+  <section>
+    <div class="s-title"><span class="num">03</span><h2>Your tools</h2><span class="meta">read everything · write gradually</span></div>
+    <div class="card">
+      <p><b>Revised in V1.1.</b> V1.0 said "narrow on purpose." That was a floor, not a ceiling, and you were right to push. The line isn't <i>simple vs. complex</i> — it's <b>reading vs. writing outward</b>. Looking at any screen breaks nothing, so from week 1 you can look at all of them. What opens gradually is only what puts something in front of a real contact or spends money.</p>
+    </div>
+    <div class="lanes">
+      <div class="lane">
+        <h3>Yours from week 1</h3>
+        <div class="skill">read — nothing here can break</div>
+        <ul>
+          <li>Synergy GTM Toolkit — <b>every</b> screen, read access</li>
+          <li>Campaign board, run history, dashboards</li>
+          <li>Outreach inbox</li>
+          <li>Instagram — <b>@chamana.live</b>, from the phone app only (§02)</li>
+          <li>lachamana.com — the blog, forms and newsletter signups</li>
+          <li>Content asset library in Drive — <b>write</b> (curate, tag, retire)</li>
+          <li>CRM / prospect list — <b>write</b> (add, tag, correct, remove)</li>
+          <li>Shared notes / docs · WhatsApp with the team</li>
+        </ul>
+      </div>
+      <div class="lane">
+        <h3>Opens as we go</h3>
+        <div class="skill">writes outward — gated on purpose</div>
+        <ul>
+          <li>Approving and releasing a batch on your own</li>
+          <li>Editing message bodies directly (§07)</li>
+          <li>Replying to inbound DMs yourself, rather than routing them</li>
+          <li>Sending prepared Instagram DMs — ceiling 15/day, whole venture</li>
+          <li>Posting and scheduling (Meta Business Suite) — Iru's today</li>
+          <li>Segment definition, reporting</li>
+          <li>Never: credentials, paid media spend, deploys</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 · DECIDE / ESCALATE -->
+  <section>
+    <div class="s-title"><span class="num">04</span><h2>What you decide vs. where it goes</h2><span class="meta">rewritten in V1.1 — you were right</span></div>
+    <div class="card">
+      <p><b>Your question:</b> <i>"La parte que sería a escalar to Boris no la termino de entender — ¿por qué a vos esas cosas? ¿No sería Iru?"</i></p>
+      <p><b>Correct, and V1.0 was wrong.</b> It routed everything to me. There are two separate axes here, and only one of them is mine: <b>the business</b> is not my call — it belongs to the people who own it. <b>The machine</b> is. Route by which one it is.</p>
+    </div>
+    <div class="tbl-wrap scroll">
+      <table class="tbl">
+        <thead><tr><th>What lands in front of you</th><th>Goes to</th><th>Why</th></tr></thead>
+        <tbody>
+          <tr><td>Commercial opportunity, booking, partner conversation, press</td><td class="who">Iru</td><td>Day-to-day commercial and all external sends are hers</td></tr>
+          <tr><td>Pricing, contracts, budgets, ops sign-off</td><td class="who">Daiana</td><td>Pricing and finance authority — reach her through Iru</td></tr>
+          <tr><td>Agency channel, commercial structure, channel strategy</td><td class="who">Gastón</td><td>Owns the corporate/agency track — and your job title</td></tr>
+          <tr><td>Tone, copy, brand, "does this sound like us"</td><td class="who">René</td><td>Aesthetic sign-off on anything that goes out</td></tr>
+          <tr><td>Something's broken, access, a send that didn't send, the tool is lying, something's missing in the workflow</td><td class="who">Boris</td><td>The machine — that's the part that's actually mine</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="rules" style="margin-top:14px">
+      <div class="rule">
+        <h4>You decide</h4>
+        <p>Whether a prospect is relevant · whether a message sounds aligned enough to send · whether a contact should be paused, skipped, or corrected · which house notes are worth capturing.</p>
+      </div>
+      <div class="rule hot">
+        <h4>Don't answer alone</h4>
+        <p>Anything commercial, sensitive, or negative — hand it to the row above rather than replying yourself. Not because you can't judge it, but because a wrong first answer is expensive to walk back.</p>
+      </div>
+      <div class="rule">
+        <h4>Stays with the team</h4>
+        <p>Full Toolkit config, credentials, automation settings, campaign YAML/files, paid media accounts, ad publishing, budgets, deploys, full GTM strategy.</p>
+      </div>
+      <div class="rule">
+        <h4>How you're measured</h4>
+        <p>Quality over volume — prospects reviewed, bad-fit contacts caught before sending, replies classified, warm opportunities routed to the right person, and good notes from the house.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 · FIRST 30 DAYS -->
+  <section>
+    <div class="s-title"><span class="num">05</span><h2>First 30 days</h2></div>
+    <div class="tbl-wrap scroll">
+      <table class="tbl">
+        <thead><tr><th>Week</th><th>Focus</th></tr></thead>
+        <tbody>
+          <tr><td class="who">1 · Learn</td><td>The outreach voice and tone · good vs. bad outreach examples · the CRM/prospect list · read every screen of the Toolkit · shadow approvals and replies · <b>watch the channels daily</b> · <b>no new cold sends until §06 is decided</b></td></tr>
+          <tr><td class="who">2 · Review</td><td>Review small prospect batches · approve or reject suggested contacts · rewrite drafts before they send · start classifying replies</td></tr>
+          <tr><td class="who">3 · Own a lane</td><td>Take one segment (e.g. retreat facilitators) · review targets, approve small batches, monitor replies, route warm conversations · own the social inbox end to end</td></tr>
+          <tr><td class="who">4 · Improve</td><td>Suggest better segments · add field notes from the house · help sharpen the outreach voice · <b>curate a month of content forward with René</b> · flag what's confusing or missing in the workflow</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 06 · SEND IDENTITY -->
+  <section>
+    <div class="s-title"><span class="num">06</span><h2>The send identity</h2><span class="meta">new in V1.1 · open decision</span></div>
+    <div class="card">
+      <p><b>Your note:</b> <i>"Lara should be Bianca para no pasear a los contactados."</i></p>
+      <p><b>Agreed on the substance.</b> If you're the person who answers, you should be the person who signs. That's not a softer position than the current one — it's a stricter one, and it matches a rule the system already has: nothing we send may imply a human wrote it personally when none did. Signing with a real name that a real person stands behind removes the problem instead of managing it.</p>
+      <p><b>Why it isn't done tonight.</b> "Lara" isn't a name in a document — it's a live mailbox with its own sending reputation, its SMTP setup, the sequence tooling, the DM channel, and, since 02-08, the byline on long-form content. Swapping it is a migration.</p>
+    </div>
+    <div class="rules">
+      <div class="rule">
+        <h4>1 · A new mailbox has no reputation</h4>
+        <p>Your address starts from zero and needs a slow first week. The existing ≤20 sends/day ceiling already puts us at that pace, so this costs days, not weeks.</p>
+      </div>
+      <div class="rule">
+        <h4>2 · Contacts already touched</h4>
+        <p>Some people already got something signed Lara — the reply desk is holding live threads. Those don't restart from zero; they get one honest handover line. Exact count comes Tuesday.</p>
+      </div>
+      <div class="rule">
+        <h4>3 · Outreach vs. byline</h4>
+        <p>Two decisions, not one. Proposal: <b>outreach signs Bianca</b>; the content byline stays as-is until René weighs in. Don't couple them.</p>
+      </div>
+      <div class="rule hot">
+        <h4>4 · It's your name</h4>
+        <p>A real name on cold outreach is your public face in that channel. That's yours to say yes to, not something to inherit from a document.</p>
+      </div>
+    </div>
+    <div class="card" style="margin-top:14px">
+      <p><b>Until this is decided on Tuesday: no new cold sends go out.</b> This week is curation, not launching. Replies to existing threads continue as normal.</p>
+    </div>
+  </section>
+
+  <!-- 07 · EDITING THE TEXTS -->
+  <section>
+    <div class="s-title"><span class="num">07</span><h2>Editing the texts</h2><span class="meta">new in V1.1 · a real gap</span></div>
+    <div class="card">
+      <p><b>Your note:</b> <i>"Habilitaría una opción de edición directa de todos los textos en general o en su defecto una box de sugerencias."</i></p>
+      <p><b>This is the most useful thing you flagged</b>, and the honest answer is that it doesn't exist. The review screen has no edit field at all. Every message body is a text file, one per prospect, and today only I can touch them. That's a hole in the product, not a decision about how much you're trusted.</p>
+      <p>Two ways to close it — and yes, they're the two you named:</p>
+    </div>
+    <div class="lanes">
+      <div class="lane">
+        <h3>A · Edit in place</h3>
+        <div class="skill">what you type is what sends</div>
+        <p>An edit box on every row of the review screen. You rewrite the line, hit approve, and that exact text goes out. No round trip, no interpretation.</p>
+        <p><b>The right answer.</b> More to build.</p>
+      </div>
+      <div class="lane">
+        <h3>B · Suggestion box</h3>
+        <div class="skill">you write the change, I apply it</div>
+        <p>A free-text note per message — tone, a fact to fix, a rewrite. It reaches me, I apply it before the batch releases.</p>
+        <p><b>The faster answer.</b> Weaker, because it keeps a human in the middle.</p>
+      </div>
+    </div>
+    <div class="card" style="margin-top:14px">
+      <p><b>Tuesday decides which one gets built first.</b> Meanwhile the rule holds regardless: every batch reaches you in a form you can change, and nothing sends that you haven't had the chance to rewrite.</p>
+    </div>
+  </section>
+
+  <!-- 08 · THIS WEEK -->
+  <section>
+    <div class="s-title"><span class="num">08</span><h2>This week · and Tuesday</h2><span class="meta">new in V1.1</span></div>
+    <div class="tbl-wrap scroll">
+      <table class="tbl">
+        <thead><tr><th>Who</th><th>Before Tuesday</th></tr></thead>
+        <tbody>
+          <tr><td class="who">Boris</td><td>Your mailbox live + delegated access to the outreach inbox · this document at V1.1 (done) · the exact count of contacts already touched under the old signature · your read access to the cockpit</td></tr>
+          <tr><td class="who">Bianca</td><td>Go through the CRM and mark <b>10 contacts you'd cut</b>, one line each on why · read <b>5 messages already sent</b> and tell me which you'd rewrite and how. Neither needs a tool you don't have yet, and both are better signal on your judgement than anything I could test for.</td></tr>
+          <tr><td class="who">Frozen</td><td>New cold sends, until the signature question closes.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card" style="margin-top:14px">
+      <p><b>Tuesday — four decisions, about 45 minutes.</b></p>
+      <p>1 · Send identity: Bianca yes/no, and what happens to the content byline.<br>
+         2 · Job title, with Gastón.<br>
+         3 · Edit-in-place vs. suggestion box — which gets built first.<br>
+         4 · What part of the machine opens in week 2.</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div>La Chamana · Outreach &amp; Channel Lead</div>
+    <div>V1.2 · 2026-08-11 · social monitoring + content curation added to §02</div>
+    <div>Machine → Boris · Commercial → Iru</div>
+  </div>
+
+</div>
+</body>
+</html>
