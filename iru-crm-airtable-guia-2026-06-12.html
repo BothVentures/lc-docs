@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Chamana · Tu CRM en Airtable · Guía de Iru</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bone:#EDEDE5; --petrol:#1C2934; --coral:#F5D5D1; --red-oxide:#632403;
+    --orange:#994100; --bari-dark:#444D51; --bari-light:#ABB9BC; --olive:#808266;
+    --mint:#D7E2B5; --peach:#F4CBA6;
+    --surface:#1A2830; --surface2:#131D25;
+    --border:rgba(171,185,188,0.16); --border-warm:rgba(153,65,0,0.30);
+    --text:var(--bone); --text2:var(--bari-light); --muted:rgba(171,185,188,0.55);
+    --font:'SF Mono','Fira Code','Fira Mono',monospace;
+    --serif:'Cormorant Garamond',Georgia,serif;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  html,body { min-height:100vh; }
+  body {
+    background-color:#111C24;
+    background-image:
+      radial-gradient(ellipse at 15% 0%, rgba(153,65,0,0.12) 0%, transparent 55%),
+      radial-gradient(ellipse at 85% 100%, rgba(68,77,81,0.18) 0%, transparent 50%);
+    background-attachment:fixed;
+    color:var(--text); font-family:var(--font); font-size:12.5px; line-height:1.6;
+  }
+  .page { padding:30px 36px 48px; max-width:1080px; margin:0 auto; }
+
+  /* HEADER */
+  .header {
+    border-bottom:1px solid var(--border-warm); padding-bottom:18px; margin-bottom:22px;
+    display:flex; justify-content:space-between; align-items:flex-end; gap:24px;
+  }
+  .header-wordmark {
+    font-family:var(--serif); font-weight:300; font-size:10px; letter-spacing:0.36em;
+    text-transform:uppercase; color:var(--bari-light); margin-bottom:6px;
+  }
+  .header h1 {
+    font-family:var(--serif); font-size:30px; font-weight:300; letter-spacing:0.10em;
+    text-transform:uppercase; color:var(--bone); line-height:1;
+  }
+  .header h1 em { font-style:italic; color:var(--bari-light); font-size:22px; letter-spacing:0.06em; }
+  .header .sub { font-size:10px; color:var(--muted); margin-top:7px; letter-spacing:0.18em; text-transform:uppercase; }
+  .header-right { text-align:right; font-size:10px; color:var(--text2); }
+  .header-right .live {
+    display:inline-block; width:6px; height:6px; background:var(--mint); border-radius:50%;
+    margin-right:6px; animation:pulse 2.4s infinite;
+  }
+  .header-right .ref { margin-top:4px; color:var(--muted); font-size:9px; letter-spacing:0.10em; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.35} }
+
+  /* LEDE */
+  .lede { font-family:var(--serif); font-style:italic; font-size:17px; line-height:1.5; color:var(--text2); max-width:920px; margin-bottom:22px; }
+  .lede b { color:var(--bone); font-style:normal; font-weight:400; }
+
+  /* STAT ROW */
+  .stat-row { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-bottom:26px; }
+  .stat { background:var(--surface); border:1px solid var(--border); border-radius:4px; padding:16px 14px; text-align:center; }
+  .stat-val { font-family:var(--serif); font-size:32px; font-weight:300; color:var(--bone); line-height:1; display:block; }
+  .stat-val.good { color:var(--mint); } .stat-val.warn { color:var(--peach); } .stat-val.hot { color:var(--orange); }
+  .stat-label { font-size:9px; color:var(--muted); margin-top:10px; text-transform:uppercase; letter-spacing:0.18em; }
+  .stat-sub { font-size:10px; color:var(--text2); margin-top:4px; font-family:var(--serif); font-style:italic; }
+
+  /* SECTION */
+  section { margin-bottom:30px; }
+  .section-title {
+    font-family:var(--serif); font-size:13px; font-weight:400; letter-spacing:0.30em;
+    text-transform:uppercase; color:var(--bone); margin-bottom:12px; padding-bottom:8px;
+    border-bottom:1px solid var(--border); display:flex; align-items:baseline; gap:14px;
+  }
+  .section-title .num { color:var(--orange); font-family:var(--font); font-size:11px; letter-spacing:0.10em; }
+  .section-title .meta { margin-left:auto; font-family:var(--font); font-size:9px; color:var(--muted); letter-spacing:0.12em; text-transform:uppercase; }
+  .lede-sm { font-family:var(--serif); font-style:italic; font-size:14px; color:var(--text2); line-height:1.5; margin-bottom:14px; max-width:920px; }
+  .lede-sm b { color:var(--bone); font-style:normal; font-weight:500; }
+
+  /* TWO-COL COMPARE */
+  .compare { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  .compare .col { background:var(--surface); border:1px solid var(--border); border-radius:4px; padding:16px 18px; }
+  .compare .col.old { border-left:3px solid var(--coral); }
+  .compare .col.new { border-left:3px solid var(--mint); }
+  .compare .col h4 { font-family:var(--serif); font-size:15px; font-weight:500; margin-bottom:10px; }
+  .compare .col.old h4 { color:var(--coral); } .compare .col.new h4 { color:var(--mint); }
+  .compare ul { list-style:none; }
+  .compare li { font-size:11px; color:var(--text2); padding:5px 0 5px 16px; position:relative; line-height:1.45; }
+  .compare li::before { content:"—"; position:absolute; left:0; color:var(--muted); }
+
+  /* STAGE FLOW */
+  .flow { display:flex; align-items:stretch; gap:0; flex-wrap:wrap; background:var(--surface2); border:1px solid var(--border); border-radius:4px; padding:20px 16px; }
+  .flow-node { flex:1; min-width:120px; text-align:center; padding:12px 8px; border-radius:4px; position:relative; }
+  .flow-node .lbl { font-family:var(--serif); font-size:18px; color:var(--bone); line-height:1; }
+  .flow-node .desc { font-size:10px; color:var(--text2); margin-top:7px; font-family:var(--serif); font-style:italic; line-height:1.35; }
+  .flow-node .tag { font-family:var(--font); font-size:8px; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted); display:block; margin-top:6px; }
+  .flow-arrow { display:flex; align-items:center; color:var(--orange); font-size:18px; padding:0 2px; }
+  .flow-node.cold .lbl { color:var(--bari-light); }
+  .flow-node.warm .lbl { color:var(--peach); }
+  .flow-node.hot  .lbl { color:var(--orange); }
+  .flow-node.won  .lbl { color:var(--mint); }
+  .flow-terminal { display:flex; flex-direction:column; gap:8px; justify-content:center; min-width:110px; border-left:1px dotted var(--border); padding-left:14px; margin-left:6px; }
+  .flow-terminal .lbl { font-family:var(--serif); font-size:15px; }
+  .flow-terminal .won-l { color:var(--mint); } .flow-terminal .lost-l { color:var(--coral); }
+  .flow-caption { font-family:var(--serif); font-style:italic; color:var(--muted); font-size:11px; margin-top:10px; text-align:center; }
+
+  /* STEPS */
+  .steps { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+  .step { background:var(--surface); border:1px solid var(--border); border-radius:4px; padding:16px 18px; border-top:3px solid var(--orange); }
+  .step .n { font-family:var(--font); font-size:9px; letter-spacing:0.20em; text-transform:uppercase; color:var(--orange); margin-bottom:6px; }
+  .step h3 { font-family:var(--serif); font-size:16px; font-weight:400; color:var(--bone); margin-bottom:8px; line-height:1.15; }
+  .step p { font-size:11px; color:var(--text2); line-height:1.5; }
+  .step p code, .field-tbl code, .where-tbl code, .lede-sm code { color:var(--peach); background:rgba(244,203,166,0.06); padding:1px 5px; border-radius:2px; font-size:10px; }
+
+  /* TABLES */
+  .tbl { width:100%; border-collapse:collapse; font-size:11.5px; }
+  .tbl thead th { text-align:left; padding:8px 12px; font-family:var(--font); font-size:9px; letter-spacing:0.16em; text-transform:uppercase; color:var(--muted); border-bottom:1px solid var(--border-warm); }
+  .tbl tbody tr { border-bottom:1px solid var(--border); }
+  .tbl tbody tr:last-child { border-bottom:none; }
+  .tbl td { padding:9px 12px; vertical-align:top; color:var(--text2); line-height:1.45; }
+  .tbl td.k { font-family:var(--serif); font-size:14px; color:var(--bone); width:200px; }
+  .tbl td.k code { font-family:var(--font); font-size:11px; }
+
+  /* STATUS GRID */
+  .status-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+  .status-cell { background:var(--surface); border:1px solid var(--border); border-radius:4px; padding:14px 16px; display:flex; align-items:flex-start; gap:12px; }
+  .status-cell .dot { width:10px; height:10px; border-radius:50%; margin-top:5px; flex-shrink:0; }
+  .status-cell.live    .dot { background:var(--mint); box-shadow:0 0 8px rgba(215,226,181,0.5); }
+  .status-cell.manual  .dot { background:var(--orange); box-shadow:0 0 8px rgba(153,65,0,0.5); }
+  .status-cell.planned .dot { background:var(--bari-light); }
+  .status-cell.gone    .dot { background:var(--coral); }
+  .status-cell .name { font-family:var(--serif); font-size:14px; font-weight:400; color:var(--bone); line-height:1.15; }
+  .status-cell .state { font-family:var(--font); font-size:8.5px; letter-spacing:0.16em; text-transform:uppercase; margin-top:3px; }
+  .status-cell.live    .state { color:var(--mint); }
+  .status-cell.manual  .state { color:var(--orange); }
+  .status-cell.planned .state { color:var(--bari-light); }
+  .status-cell.gone    .state { color:var(--coral); }
+  .status-cell .note { font-size:10.5px; color:var(--text2); margin-top:6px; font-family:var(--serif); font-style:italic; }
+
+  /* PHASE TRACK */
+  .track { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+  .phase { background:var(--surface); border:1px solid var(--border); border-radius:4px; padding:16px 18px; border-top:3px solid var(--bari-light); }
+  .phase.now { border-top-color:var(--orange); } .phase.next { border-top-color:var(--peach); } .phase.later { border-top-color:var(--mint); }
+  .phase .when { font-family:var(--font); font-size:9px; letter-spacing:0.20em; text-transform:uppercase; margin-bottom:6px; }
+  .phase.now .when { color:var(--orange); } .phase.next .when { color:var(--peach); } .phase.later .when { color:var(--mint); }
+  .phase h3 { font-family:var(--serif); font-size:16px; font-weight:400; color:var(--bone); margin-bottom:8px; line-height:1.15; }
+  .phase p { font-size:11px; color:var(--text2); line-height:1.5; }
+
+  /* CALLOUT */
+  .callout { background:var(--surface); border:1px solid var(--border); border-left:3px solid var(--mint); border-radius:4px; padding:16px 20px; }
+  .callout h3 { font-family:var(--serif); font-size:16px; font-weight:500; color:var(--mint); margin-bottom:10px; }
+  .callout ol { margin:0; padding-left:20px; }
+  .callout li { margin-bottom:9px; color:var(--text); font-size:11.5px; line-height:1.5; }
+  .callout li:last-child { margin-bottom:0; }
+  .callout li b { color:var(--bone); font-weight:600; }
+
+  /* FOOTER */
+  .footer { margin-top:36px; padding-top:18px; border-top:1px solid var(--border); display:flex; justify-content:space-between; align-items:baseline; font-size:9.5px; color:var(--muted); letter-spacing:0.10em; }
+  .footer .cierre { font-family:var(--serif); font-style:italic; font-size:13px; color:var(--text2); letter-spacing:0; }
+
+  @media (max-width:760px) {
+    .stat-row, .steps, .status-grid, .track, .compare { grid-template-columns:1fr; }
+    .flow { flex-direction:column; } .flow-arrow { transform:rotate(90deg); justify-content:center; padding:4px 0; }
+    .flow-terminal { border-left:none; border-top:1px dotted var(--border); padding-left:0; padding-top:14px; margin-left:0; flex-direction:row; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div>
+      <div class="header-wordmark">La Chamana · BOTH Ventures</div>
+      <h1>Tu CRM <em>en Airtable</em></h1>
+      <div class="sub">Guía de Iru · cómo correr el pipeline comercial</div>
+    </div>
+    <div class="header-right">
+      <div><span class="live"></span>Listo para usar</div>
+      <div class="ref">12 jun 2026 · v1.0</div>
+      <div class="ref">base LC_CRM · tabla Pipeline</div>
+    </div>
+  </div>
+
+  <!-- LEDE -->
+  <p class="lede">
+    Tu pipeline deja Asana y pasa a <b>Airtable</b>, donde ya viven los contactos y las reservas.
+    Una sola pantalla para todo lo comercial. No hay nada nuevo que aprender de cero:
+    <b>es arrastrar tarjetas entre columnas</b> y anotar qué sigue.
+  </p>
+
+  <!-- STATS -->
+  <div class="stat-row">
+    <div class="stat"><span class="stat-val good">Creator</span><div class="stat-label">Tu acceso</div><div class="stat-sub">activo desde 21 may</div></div>
+    <div class="stat"><span class="stat-val">2</span><div class="stat-label">Vistas listas</div><div class="stat-sub">Kanban + Para hoy</div></div>
+    <div class="stat"><span class="stat-val hot">1</span><div class="stat-label">Hábito que importa</div><div class="stat-sub">próxima acción + fecha</div></div>
+    <div class="stat"><span class="stat-val good">$0</span><div class="stat-label">Costo</div><div class="stat-sub">plan gratuito</div></div>
+  </div>
+
+  <!-- 1 · QUÉ CAMBIA -->
+  <section>
+    <div class="section-title"><span class="num">01</span> Qué cambia</div>
+    <p class="lede-sm">El problema nunca fue la herramienta — era que Asana no está hecha para ventas. Airtable ya estaba armada; solo faltaba dejarte una vista limpia.</p>
+    <div class="compare">
+      <div class="col old">
+        <h4>Antes — Asana</h4>
+        <ul>
+          <li>Hecha para tareas, no para ventas</li>
+          <li>Sin etapas de venta ni vista de pipeline</li>
+          <li>Sin recordatorios de seguimiento</li>
+          <li>Desconectada de los contactos y reservas</li>
+        </ul>
+      </div>
+      <div class="col new">
+        <h4>Ahora — Airtable</h4>
+        <ul>
+          <li>Tablero por etapas: arrastrás el lead y avanza</li>
+          <li>Lista <b>“Para hoy”</b> con lo que toca hacer</li>
+          <li>Misma base que contactos y reservas</li>
+          <li>Funciona en la app del celular igual</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 · LAS ETAPAS -->
+  <section>
+    <div class="section-title"><span class="num">02</span> Las etapas del lead <span class="meta">campo Stage</span></div>
+    <p class="lede-sm">Cada lead vive en una etapa. Lo movés arrastrando la tarjeta de una columna a otra. Eso es todo lo que hace falta para que avance.</p>
+    <div class="flow">
+      <div class="flow-node cold"><div class="lbl">Cold</div><div class="desc">Contacto inicial, sin respuesta todavía</div><span class="tag">entra acá</span></div>
+      <div class="flow-arrow">&rarr;</div>
+      <div class="flow-node warm"><div class="lbl">Warm</div><div class="desc">Respondió con interés real</div><span class="tag">El Chaman avisa</span></div>
+      <div class="flow-arrow">&rarr;</div>
+      <div class="flow-node hot"><div class="lbl">Hot</div><div class="desc">Propuesta enviada · negociando fechas</div><span class="tag">pricing = Daiana</span></div>
+      <div class="flow-arrow">&rarr;</div>
+      <div class="flow-terminal">
+        <div class="lbl won-l">Won &mdash; reserva</div>
+        <div class="lbl lost-l">Lost &mdash; cerrado</div>
+      </div>
+    </div>
+    <p class="flow-caption">Arrastrás la tarjeta hacia la derecha a medida que el lead avanza. Si no avanza, queda donde está.</p>
+  </section>
+
+  <!-- 3 · TU DÍA A DÍA -->
+  <section>
+    <div class="section-title"><span class="num">03</span> Tu día a día <span class="meta">3 movimientos</span></div>
+    <div class="steps">
+      <div class="step">
+        <div class="n">Movimiento 1</div>
+        <h3>Entra un lead nuevo</h3>
+        <p>En <b>Pipeline (Kanban)</b>, click en <code>+</code> dentro de la columna (Cold / Warm / Hot). Completás nombre, tamaño del grupo, fechas pedidas y por qué canal llegó. Escribís la <b>Próxima acción</b> y su <b>Fecha</b>.</p>
+      </div>
+      <div class="step">
+        <div class="n">Movimiento 2</div>
+        <h3>El lead avanza</h3>
+        <p><b>Arrastrás la tarjeta</b> de una columna a otra: Cold &rarr; Warm &rarr; Hot &rarr; Won (o Lost). No hay que actualizar nada más para mover la etapa.</p>
+      </div>
+      <div class="step">
+        <div class="n">Movimiento 3</div>
+        <h3>Tu rutina de la mañana</h3>
+        <p>Abrís la vista <b>Para hoy</b>. Te muestra solo los leads con <b>fecha de próxima acción de hoy o vencida</b>, ordenados por urgencia. Trabajás esa lista de arriba hacia abajo.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 · TUS DOS VISTAS -->
+  <section>
+    <div class="section-title"><span class="num">04</span> Tus dos vistas <span class="meta">ya creadas</span></div>
+    <table class="tbl where-tbl">
+      <thead><tr><th>Vista</th><th>Para qué</th><th>Qué muestra</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="k">Pipeline (Kanban)</td>
+          <td>Tu tablero principal — la foto completa por etapa</td>
+          <td>Tarjetas agrupadas por <code>Stage</code>. Cada tarjeta muestra grupo, fechas, próxima acción y valor estimado.</td>
+        </tr>
+        <tr>
+          <td class="k">Para hoy</td>
+          <td>Tu lista de la mañana — qué tocar primero</td>
+          <td>Solo leads con <code>Próxima acción</code> de hoy o vencida, ordenados del más urgente al menos.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 5 · LOS CAMPOS -->
+  <section>
+    <div class="section-title"><span class="num">05</span> Los campos que cargás <span class="meta">tabla Pipeline</span></div>
+    <table class="tbl field-tbl">
+      <thead><tr><th>Campo</th><th>Qué poner</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Lead_Name</td><td>Nombre del lead o del grupo</td></tr>
+        <tr><td class="k">Stage</td><td>Etapa actual — la movés arrastrando la tarjeta</td></tr>
+        <tr><td class="k">Group_Size</td><td>Cantidad de personas del grupo</td></tr>
+        <tr><td class="k">Dates_Requested</td><td>Fechas o ventana de viaje que pidió</td></tr>
+        <tr><td class="k">Inquiry_Channel</td><td>Por dónde llegó: WhatsApp · Email · IG DM · Typeform · Referido</td></tr>
+        <tr><td class="k">Next_Action</td><td><b>Qué sigue</b> — la acción concreta (ej: “mandar propuesta”)</td></tr>
+        <tr><td class="k">Next_Action_Date</td><td><b>Cuándo</b> — esta fecha es la que arma la vista “Para hoy”</td></tr>
+        <tr><td class="k">Source_Contact</td><td>Link al contacto de outreach del que salió (si aplica)</td></tr>
+        <tr><td class="k">Revenue_Potential_USD</td><td>Valor estimado de la reserva</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 6 · DÓNDE ESTÁ CADA COSA -->
+  <section>
+    <div class="section-title"><span class="num">06</span> Dónde está cada cosa</div>
+    <table class="tbl where-tbl">
+      <thead><tr><th>Quiero ver…</th><th>Voy a…</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Todos mis leads por etapa</td><td>Vista <b>Pipeline (Kanban)</b></td></tr>
+        <tr><td class="k">Qué tengo que hacer hoy</td><td>Vista <b>Para hoy</b></td></tr>
+        <tr><td class="k">Reservas confirmadas</td><td>Tabla <b>Bookings</b> — se actualizan solas desde CloudBeds</td></tr>
+        <tr><td class="k">Contactos de outreach (IG / agencias)</td><td>Tabla <b>Contacts</b> — las maneja el equipo, vos las consultás</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 7 · REGLAS SIMPLES -->
+  <section>
+    <div class="section-title"><span class="num">07</span> Reglas simples</div>
+    <div class="callout">
+      <ol>
+        <li><b>Cada lead tiene una próxima acción con fecha.</b> Si no la tiene, no aparece en “Para hoy” y se te puede perder. Es el único hábito que importa.</li>
+        <li><b>Las reservas confirmadas no las cargás a mano</b> — entran solas desde CloudBeds. Si ves algo raro, avisás.</li>
+        <li><b>El pricing sigue pasando por Daiana</b>, y todo lo que sale al cliente lo mandás vos — igual que siempre.</li>
+        <li><b>Asana queda solo para tareas del equipo</b>, no para leads.</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 8 · ESTADO DEL CRM -->
+  <section>
+    <div class="section-title"><span class="num">08</span> El estado del CRM hoy <span class="meta">qué es automático y qué no</span></div>
+    <p class="lede-sm">Para que sepas qué trabaja solo y qué hacés vos a mano por ahora:</p>
+    <div class="status-grid">
+      <div class="status-cell live"><div class="dot"></div><div><div class="name">Pipeline en Airtable</div><div class="state">Vivo</div><div class="note">Vos lo editás. Es la fuente única de leads.</div></div></div>
+      <div class="status-cell live"><div class="dot"></div><div><div class="name">Vistas Kanban + Para hoy</div><div class="state">Vivo</div><div class="note">Recién armadas, listas para tu día a día.</div></div></div>
+      <div class="status-cell live"><div class="dot"></div><div><div class="name">Reservas desde CloudBeds</div><div class="state">Vivo (lectura)</div><div class="note">Se reflejan en el conteo de reservas a diario.</div></div></div>
+      <div class="status-cell manual"><div class="dot"></div><div><div class="name">Lead entrante &rarr; Pipeline</div><div class="state">A mano · Fase 2</div><div class="note">Hoy lo cargás vos cuando entra una consulta.</div></div></div>
+      <div class="status-cell planned"><div class="dot"></div><div><div class="name">Recordatorios de follow-up</div><div class="state">Fase 2</div><div class="note">Aviso automático de “Para hoy” por Slack — más adelante.</div></div></div>
+      <div class="status-cell gone"><div class="dot"></div><div><div class="name">Asana como CRM</div><div class="state">Retirado</div><div class="note">Queda solo para tareas del equipo.</div></div></div>
+    </div>
+  </section>
+
+  <!-- 9 · QUÉ SIGUE -->
+  <section>
+    <div class="section-title"><span class="num">09</span> Qué sigue</div>
+    <div class="track">
+      <div class="phase now">
+        <div class="when">Ahora</div>
+        <h3>Vos vivís en Airtable</h3>
+        <p>Vistas listas. Hacemos 30 min juntos: cargás un lead real de punta a punta y lo movés por las etapas. Si falta un campo o algo se siente manual, lo anotás.</p>
+      </div>
+      <div class="phase next">
+        <div class="when">Próximo</div>
+        <h3>Daiana y migración</h3>
+        <p>Daiana acepta su invitación (ya enviada). Si tenés leads vivos anotados en Asana, los pasamos a Pipeline.</p>
+      </div>
+      <div class="phase later">
+        <div class="when">Después · Fase 2</div>
+        <h3>Que trabaje solo</h3>
+        <p>Solo si hace falta: lead entrante que se carga solo, reservas que escriben en Bookings, y recordatorios diarios. Construimos lo que vos pidas, no antes.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="cierre">La idea es que el sistema trabaje para vos, no al revés.</div>
+    <div>EL CHAMAN · LC_CRM · v1.0 · 12 jun 2026</div>
+  </div>
+
+</div>
+</body>
+</html>
