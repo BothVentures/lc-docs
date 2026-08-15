@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Chamana — Guest Experience Survey</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --gold: #B89C6E; --gold-light: #F0EAD6; --gold-pale: #FAF6EE;
+    --dark: #2C2C2C; --sage: #8B9E7E; --sand: #F5F0E8; --white: #FFFFFF;
+    --border: #E0D5C0; --gray: #999;
+  }
+  body { font-family: 'Inter', sans-serif; background: var(--sand); color: var(--dark); font-size: 14px; line-height: 1.6; min-height: 100vh; }
+  .page { max-width: 700px; margin: 0 auto; background: var(--white); padding: 0 0 60px; }
+
+  /* HERO */
+  .hero { background: var(--dark); padding: 52px 52px 44px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(184,156,110,0.12) 0%, transparent 60%); pointer-events: none; }
+  .hero-ornament { color: var(--gold); font-size: 18px; letter-spacing: 0.3em; margin-bottom: 18px; opacity: 0.7; }
+  .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: 42px; font-weight: 700; color: var(--gold); letter-spacing: 0.12em; line-height: 1; margin-bottom: 12px; }
+  .hero-divider { width: 48px; height: 1px; background: var(--gold); margin: 16px auto; opacity: 0.5; }
+  .hero-claim { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 19px; color: rgba(255,255,255,0.6); letter-spacing: 0.04em; margin-bottom: 8px; }
+  .hero-sub { font-size: 10.5px; color: rgba(255,255,255,0.3); letter-spacing: 0.18em; text-transform: uppercase; }
+
+  /* FORM BODY */
+  .form-body { padding: 0 52px; }
+  .intro { padding: 30px 0 10px; border-bottom: 1px solid var(--border); margin-bottom: 32px; }
+  .intro p { font-size: 13.5px; color: #666; line-height: 1.75; }
+
+  /* SECTION */
+  .form-section { margin-bottom: 38px; }
+  .section-label { font-size: 10px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--sage); margin-bottom: 18px; padding-bottom: 7px; border-bottom: 1px solid var(--gold-light); display: flex; align-items: center; gap: 8px; }
+  .section-label::before { content: ''; display: inline-block; width: 3px; height: 12px; background: var(--gold); border-radius: 2px; }
+
+  /* STAR ROWS */
+  .star-item { display: flex; align-items: center; justify-content: space-between; padding: 11px 0; border-bottom: 1px solid #F5F0E8; gap: 16px; }
+  .star-item:last-child { border-bottom: none; }
+  .star-label { font-size: 13px; color: var(--dark); flex: 1; }
+  .star-label span { display: block; font-size: 11px; color: var(--gray); margin-top: 2px; }
+  .stars { display: flex; flex-direction: row-reverse; gap: 3px; flex-shrink: 0; }
+  .stars input { display: none; }
+  .stars label { font-size: 24px; color: #E0D5C0; cursor: pointer; transition: color 0.12s, transform 0.1s; line-height: 1; }
+  .stars input:checked ~ label { color: var(--gold); }
+  .stars label:hover,
+  .stars label:hover ~ label { color: var(--gold) !important; }
+  .stars input:checked + label { transform: scale(1.15); }
+
+  /* PILL RADIO */
+  .pill-group { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+  .pill-group input { display: none; }
+  .pill-group label { padding: 7px 16px; border: 1px solid var(--border); border-radius: 24px; font-size: 12.5px; color: #666; cursor: pointer; transition: all 0.15s; background: var(--white); }
+  .pill-group input:checked + label { background: var(--gold); border-color: var(--gold); color: white; }
+  .pill-group label:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* CHECKBOX GRID */
+  .check-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; margin-top: 10px; }
+  .check-item { display: flex; align-items: center; gap: 9px; cursor: pointer; }
+  .check-item input { display: none; }
+  .check-box-custom { width: 17px; height: 17px; border: 1.5px solid var(--border); border-radius: 3px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: all 0.15s; background: white; }
+  .check-item input:checked + .check-box-custom { background: var(--gold); border-color: var(--gold); }
+  .check-item input:checked + .check-box-custom::after { content: '✓'; color: white; font-size: 10px; font-weight: 700; }
+  .check-item-label { font-size: 13px; color: var(--dark); }
+
+  /* NPS */
+  .nps-row { display: flex; gap: 5px; margin-top: 10px; }
+  .nps-row input { display: none; }
+  .nps-row label { flex: 1; text-align: center; padding: 9px 0; border: 1px solid var(--border); border-radius: 4px; font-size: 12px; font-weight: 500; cursor: pointer; transition: all 0.15s; background: white; color: #888; }
+  .nps-row input:checked + label { background: var(--gold); border-color: var(--gold); color: white; }
+  .nps-row label:hover { border-color: var(--gold); color: var(--gold); }
+  .nps-hints { display: flex; justify-content: space-between; margin-top: 5px; font-size: 10.5px; color: var(--gray); }
+
+  /* INPUTS */
+  .field-label { font-size: 13px; font-weight: 500; color: var(--dark); margin-top: 16px; display: block; }
+  .field-label:first-child { margin-top: 0; }
+  textarea, input[type="text"], input[type="email"] { width: 100%; border: 1px solid var(--border); border-radius: 4px; padding: 11px 14px; font-family: 'Inter', sans-serif; font-size: 13px; color: var(--dark); background: var(--gold-pale); margin-top: 7px; outline: none; transition: border 0.2s, background 0.2s; }
+  textarea { resize: vertical; min-height: 80px; }
+  textarea:focus, input[type="text"]:focus, input[type="email"]:focus { border-color: var(--gold); background: white; }
+  ::placeholder { color: #C8BEA8; }
+
+  /* SUBMIT */
+  .submit-area { padding: 32px 52px 0; text-align: center; }
+  button[type="submit"] { background: var(--gold); color: white; border: none; padding: 15px 52px; font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 600; letter-spacing: 0.08em; cursor: pointer; border-radius: 2px; transition: background 0.2s, transform 0.1s; }
+  button[type="submit"]:hover { background: #A08858; transform: translateY(-1px); }
+  button[type="submit"]:disabled { opacity: 0.6; cursor: default; transform: none; }
+  .submit-note { font-size: 11px; color: var(--gray); margin-top: 10px; }
+
+  /* THANK YOU */
+  #gracias { display: none; padding: 70px 52px; text-align: center; }
+  .ty-ornament { color: var(--gold); font-size: 28px; margin-bottom: 20px; letter-spacing: 0.2em; }
+  #gracias h2 { font-family: 'Cormorant Garamond', serif; font-size: 30px; color: var(--dark); margin-bottom: 12px; }
+  #gracias .ty-claim { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 18px; color: var(--gold); margin-bottom: 16px; }
+  #gracias p { font-size: 13.5px; color: #666; line-height: 1.8; }
+  #ty-review { margin-top: 8px; }
+  .ty-review-divider { color: var(--gold); font-size: 18px; letter-spacing: 0.2em; margin: 28px 0 16px; }
+  .ty-review-lead { font-family: 'Cormorant Garamond', serif; font-size: 17px; color: var(--dark); margin-bottom: 20px; }
+  .ty-review-btn {
+    display: inline-block; background: var(--gold); color: white; text-decoration: none;
+    padding: 13px 40px; font-family: 'Cormorant Garamond', serif; font-size: 17px;
+    font-weight: 600; letter-spacing: 0.08em; border-radius: 2px; transition: background 0.2s, transform 0.1s;
+  }
+  .ty-review-btn:hover { background: #A08858; transform: translateY(-1px); }
+
+  /* FOOTER */
+  .doc-footer { border-top: 1px solid var(--gold-light); text-align: center; padding: 20px 52px 0; margin-top: 40px; font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--sage); font-size: 13px; }
+
+  @media (max-width: 600px) {
+    .form-body, .submit-area, .doc-footer, #gracias { padding-left: 24px; padding-right: 24px; }
+    .hero { padding: 40px 24px 34px; }
+    .check-grid { grid-template-columns: 1fr; }
+    .star-item { flex-direction: column; align-items: flex-start; gap: 8px; }
+    .nps-row label { font-size: 11px; padding: 7px 0; }
+    .hero h1 { font-size: 34px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="hero">
+    <div class="hero-ornament">✦ &nbsp; ✦ &nbsp; ✦</div>
+    <h1>LA CHAMANA</h1>
+    <div class="hero-divider"></div>
+    <div class="hero-claim">One key. Infinite spaces.</div>
+    <div class="hero-divider"></div>
+    <div class="hero-sub">Guest Experience Survey &nbsp;·&nbsp; Tulum</div>
+  </div>
+
+  <form id="form" action="#" method="POST">
+  <div class="form-body">
+
+    <div class="intro">
+      <p>Your experience at La Chamana matters deeply to us. This short survey helps us continue crafting stays that feel truly exceptional. It takes less than 3 minutes.</p>
+    </div>
+
+    <!-- SECTION 1 -->
+    <div class="form-section">
+      <div class="section-label">Overall Experience</div>
+
+      <div class="star-item">
+        <div class="star-label">Overall stay at La Chamana<span>Your general impression</span></div>
+        <div class="stars">
+          <input type="radio" name="overall" id="ov5" value="5"><label for="ov5">★</label>
+          <input type="radio" name="overall" id="ov4" value="4"><label for="ov4">★</label>
+          <input type="radio" name="overall" id="ov3" value="3"><label for="ov3">★</label>
+          <input type="radio" name="overall" id="ov2" value="2"><label for="ov2">★</label>
+          <input type="radio" name="overall" id="ov1" value="1"><label for="ov1">★</label>
+        </div>
+      </div>
+      <div class="star-item">
+        <div class="star-label">Welcome &amp; arrival<span>First impression upon arriving</span></div>
+        <div class="stars">
+          <input type="radio" name="arrival" id="ar5" value="5"><label for="ar5">★</label>
+          <input type="radio" name="arrival" id="ar4" value="4"><label for="ar4">★</label>
+          <input type="radio" name="arrival" id="ar3" value="3"><label for="ar3">★</label>
+          <input type="radio" name="arrival" id="ar2" value="2"><label for="ar2">★</label>
+          <input type="radio" name="arrival" id="ar1" value="1"><label for="ar1">★</label>
+        </div>
+      </div>
+      <div class="star-item">
+        <div class="star-label">Team &amp; hospitality<span>Attentiveness, warmth and professionalism</span></div>
+        <div class="stars">
+          <input type="radio" name="team" id="tm5" value="5"><label for="tm5">★</label>
+          <input type="radio" name="team" id="tm4" value="4"><label for="tm4">★</label>
+          <input type="radio" name="team" id="tm3" value="3"><label for="tm3">★</label>
+          <input type="radio" name="team" id="tm2" value="2"><label for="tm2">★</label>
+          <input type="radio" name="team" id="tm1" value="1"><label for="tm1">★</label>
+        </div>
+      </div>
+      <div class="star-item">
+        <div class="star-label">Pre-arrival communication<span>WhatsApp, Guest Genie, coordination</span></div>
+        <div class="stars">
+          <input type="radio" name="comms" id="cm5" value="5"><label for="cm5">★</label>
+          <input type="radio" name="comms" id="cm4" value="4"><label for="cm4">★</label>
+          <input type="radio" name="comms" id="cm3" value="3"><label for="cm3">★</label>
+          <input type="radio" name="comms" id="cm2" value="2"><label for="cm2">★</label>
+          <input type="radio" name="comms" id="cm1" value="1"><label for="cm1">★</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 2 -->
+    <div class="form-section">
+      <div class="section-label">The Villa</div>
+
+      <div class="star-item">
+        <div class="star-label">Cleanliness<span>Suites and common areas</span></div>
+        <div class="stars">
+          <input type="radio" name="clean" id="cl5" value="5"><label for="cl5">★</label>
+          <input type="radio" name="clean" id="cl4" value="4"><label for="cl4">★</label>
+          <input type="radio" name="clean" id="cl3" value="3"><label for="cl3">★</label>
+          <input type="radio" name="clean" id="cl2" value="2"><label for="cl2">★</label>
+          <input type="radio" name="clean" id="cl1" value="1"><label for="cl1">★</label>
+        </div>
+      </div>
+      <div class="star-item">
+        <div class="star-label">Suite comfort<span>Bed, temperature, amenities</span></div>
+        <div class="stars">
+          <input type="radio" name="comfort" id="co5" value="5"><label for="co5">★</label>
+          <input type="radio" name="comfort" id="co4" value="4"><label for="co4">★</label>
+          <input type="radio" name="comfort" id="co3" value="3"><label for="co3">★</label>
+          <input type="radio" name="comfort" id="co2" value="2"><label for="co2">★</label>
+          <input type="radio" name="comfort" id="co1" value="1"><label for="co1">★</label>
+        </div>
+      </div>
+      <div class="star-item">
+        <div class="star-label">Common areas &amp; gardens<span>Pools, terraces, outdoor spaces</span></div>
+        <div class="stars">
+          <input type="radio" name="spaces" id="sp5" value="5"><label for="sp5">★</label>
+          <input type="radio" name="spaces" id="sp4" value="4"><label for="sp4">★</label>
+          <input type="radio" name="spaces" id="sp3" value="3"><label for="sp3">★</label>
+          <input type="radio" name="spaces" id="sp2" value="2"><label for="sp2">★</label>
+          <input type="radio" name="spaces" id="sp1" value="1"><label for="sp1">★</label>
+        </div>
+      </div>
+      <div class="star-item">
+        <div class="star-label">Equipment &amp; technology<span>AC, WiFi, TV, safes</span></div>
+        <div class="stars">
+          <input type="radio" name="tech" id="te5" value="5"><label for="te5">★</label>
+          <input type="radio" name="tech" id="te4" value="4"><label for="te4">★</label>
+          <input type="radio" name="tech" id="te3" value="3"><label for="te3">★</label>
+          <input type="radio" name="tech" id="te2" value="2"><label for="te2">★</label>
+          <input type="radio" name="tech" id="te1" value="1"><label for="te1">★</label>
+        </div>
+      </div>
+      <div class="star-item">
+        <div class="star-label">Value for money<span>Did the experience feel worth the investment?</span></div>
+        <div class="stars">
+          <input type="radio" name="value" id="va5" value="5"><label for="va5">★</label>
+          <input type="radio" name="value" id="va4" value="4"><label for="va4">★</label>
+          <input type="radio" name="value" id="va3" value="3"><label for="va3">★</label>
+          <input type="radio" name="value" id="va2" value="2"><label for="va2">★</label>
+          <input type="radio" name="value" id="va1" value="1"><label for="va1">★</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 3 -->
+    <div class="form-section">
+      <div class="section-label">Experiences &amp; Add-ons</div>
+
+      <label class="field-label">Which additional services did you use during your stay?</label>
+      <div class="check-grid">
+        <label class="check-item"><input type="checkbox" name="services" value="chef"><div class="check-box-custom"></div><span class="check-item-label">Private chef</span></label>
+        <label class="check-item"><input type="checkbox" name="services" value="spa"><div class="check-box-custom"></div><span class="check-item-label">Massages &amp; spa</span></label>
+        <label class="check-item"><input type="checkbox" name="services" value="yoga"><div class="check-box-custom"></div><span class="check-item-label">Yoga &amp; meditation</span></label>
+        <label class="check-item"><input type="checkbox" name="services" value="cenote"><div class="check-box-custom"></div><span class="check-item-label">Cenote tour</span></label>
+        <label class="check-item"><input type="checkbox" name="services" value="transfer"><div class="check-box-custom"></div><span class="check-item-label">Transfers</span></label>
+        <label class="check-item"><input type="checkbox" name="services" value="none"><div class="check-box-custom"></div><span class="check-item-label">None</span></label>
+      </div>
+
+      <div class="star-item" style="margin-top:18px;">
+        <div class="star-label">Quality of additional services<span>Skip if you didn't use any</span></div>
+        <div class="stars">
+          <input type="radio" name="services_rating" id="sr5" value="5"><label for="sr5">★</label>
+          <input type="radio" name="services_rating" id="sr4" value="4"><label for="sr4">★</label>
+          <input type="radio" name="services_rating" id="sr3" value="3"><label for="sr3">★</label>
+          <input type="radio" name="services_rating" id="sr2" value="2"><label for="sr2">★</label>
+          <input type="radio" name="services_rating" id="sr1" value="1"><label for="sr1">★</label>
+        </div>
+      </div>
+
+      <label class="field-label" style="margin-top:18px;">Is there an experience you wished we offered but didn't?</label>
+      <textarea name="missing_experience" placeholder="e.g. cooking class, lagoon tour, cacao ceremony…"></textarea>
+    </div>
+
+    <!-- SECTION 4 -->
+    <div class="form-section">
+      <div class="section-label">Recommendation</div>
+
+      <label class="field-label">How likely are you to recommend La Chamana?</label>
+      <div class="nps-row">
+        <input type="radio" name="nps" id="n1" value="1"><label for="n1">1</label>
+        <input type="radio" name="nps" id="n2" value="2"><label for="n2">2</label>
+        <input type="radio" name="nps" id="n3" value="3"><label for="n3">3</label>
+        <input type="radio" name="nps" id="n4" value="4"><label for="n4">4</label>
+        <input type="radio" name="nps" id="n5" value="5"><label for="n5">5</label>
+        <input type="radio" name="nps" id="n6" value="6"><label for="n6">6</label>
+        <input type="radio" name="nps" id="n7" value="7"><label for="n7">7</label>
+        <input type="radio" name="nps" id="n8" value="8"><label for="n8">8</label>
+        <input type="radio" name="nps" id="n9" value="9"><label for="n9">9</label>
+        <input type="radio" name="nps" id="n10" value="10"><label for="n10">10</label>
+      </div>
+      <div class="nps-hints"><span>Not likely</span><span>Absolutely</span></div>
+
+      <label class="field-label" style="margin-top:20px;">Would you stay at La Chamana again?</label>
+      <div class="pill-group">
+        <input type="radio" name="return" id="r1" value="definitely"><label for="r1">Definitely yes</label>
+        <input type="radio" name="return" id="r2" value="probably"><label for="r2">Probably yes</label>
+        <input type="radio" name="return" id="r3" value="notsure"><label for="r3">Not sure yet</label>
+        <input type="radio" name="return" id="r4" value="no"><label for="r4">Probably not</label>
+      </div>
+
+      <label class="field-label" style="margin-top:20px;">What did your group enjoy the most?</label>
+      <textarea name="highlight" placeholder="The space, the energy, the team, a specific moment…"></textarea>
+    </div>
+
+    <!-- SECTION 5 -->
+    <div class="form-section">
+      <div class="section-label">Areas for Improvement</div>
+
+      <label class="field-label">Was there anything that didn't meet your expectations?</label>
+      <textarea name="unmet" placeholder="Be as specific as you'd like. Your feedback helps us improve."></textarea>
+
+      <label class="field-label">Anything you'd change or add to the villa?</label>
+      <textarea name="changes" placeholder="Facilities, services, policies…"></textarea>
+    </div>
+
+    <!-- SECTION 6 -->
+    <div class="form-section">
+      <div class="section-label">Optional</div>
+
+      <label class="field-label">Your name</label>
+      <input type="text" name="name" placeholder="Optional">
+
+      <label class="field-label">Your email</label>
+      <input type="email" name="email" placeholder="For updates on future stays">
+
+      <label class="field-label">How did you find La Chamana?</label>
+      <div class="pill-group" style="margin-top:8px;">
+        <input type="radio" name="source" id="s1" value="airbnb"><label for="s1">Airbnb</label>
+        <input type="radio" name="source" id="s2" value="booking"><label for="s2">Booking.com</label>
+        <input type="radio" name="source" id="s3" value="instagram"><label for="s3">Instagram</label>
+        <input type="radio" name="source" id="s4" value="wordofmouth"><label for="s4">Word of mouth</label>
+        <input type="radio" name="source" id="s5" value="agent"><label for="s5">Travel agent</label>
+        <input type="radio" name="source" id="s6" value="other"><label for="s6">Other</label>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="submit-area">
+    <button type="submit">Submit Survey</button>
+    <p class="submit-note">Your responses are confidential and used only to improve your next stay.</p>
+  </div>
+
+  </form>
+
+  <!-- THANK YOU -->
+  <div id="gracias">
+    <div class="ty-ornament">✦ &nbsp; ✦ &nbsp; ✦</div>
+    <h2>Thank you.</h2>
+    <div class="ty-claim">One key. Infinite spaces.</div>
+    <p>Your experience inspires everything we do.<br>We hope to welcome you back to La Chamana soon.</p>
+
+    <div id="ty-review" style="display:none;">
+      <div class="ty-review-divider">✦</div>
+      <p class="ty-review-lead"><em>If La Chamana stayed with you, a few words on Google help the next group find theirs.</em></p>
+      <a id="ty-review-link" class="ty-review-btn" href="#" target="_blank" rel="noopener">Leave a note on Google</a>
+    </div>
+  </div>
+
+  <div class="doc-footer">La Chamana Tulum &nbsp;·&nbsp; lachamana.com</div>
+
+</div>
+
+<script>
+  // La Chamana — Guest Experience Survey
+  // Responses are sent to a Google Apps Script web app that appends each one to a Google Sheet.
+  //
+  // SETUP (one-time, Boris): paste the deployment /exec URL between the quotes below.
+  // While it still reads "PASTE_..." the form runs in preview mode — it shows the
+  // thank-you screen but does NOT record anything.
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx2hDTRiRVlOga__ktyfd0dfedyYSj_RLHIoCDNE2d1sIKjmdnNaqx3FCX1ydwBmFGvmg/exec';
+
+  // Google review link, shown only to high scorers (NPS 8–10). LIVE: derived from
+  // La Chamana's verified Google Business Profile (Place ID ChIJ5SwVaADXT48R3wEmFdoI9Dg,
+  // CID 4103914893192069599). See context/plans/google-review-link-setup.md.
+  const REVIEW_URL = 'https://search.google.com/local/writereview?placeid=ChIJ5SwVaADXT48R3wEmFdoI9Dg';
+
+  const form = document.getElementById('form');
+  const gracias = document.getElementById('gracias');
+
+  function showThankYou(nps) {
+    form.style.display = 'none';
+    gracias.style.display = 'block';
+    // High scorers (NPS 8–10) get the Google review invite — but only once a real link is set.
+    if (REVIEW_URL.indexOf('PASTE_') === -1 && nps >= 8) {
+      document.getElementById('ty-review-link').href = REVIEW_URL;
+      document.getElementById('ty-review').style.display = 'block';
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    // Capture the NPS score before the form is hidden.
+    const npsEl = form.querySelector('input[name="nps"]:checked');
+    const nps = npsEl ? parseInt(npsEl.value, 10) : 0;
+
+    // Preview mode: URL not configured yet.
+    if (SCRIPT_URL.indexOf('PASTE_') !== -1) {
+      showThankYou(nps);
+      return;
+    }
+
+    const btn = form.querySelector('button[type="submit"]');
+    if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+
+    // Apps Script web apps don't return CORS headers to fetch, so we POST in
+    // 'no-cors' mode: the row still lands in the Sheet, but the response is
+    // opaque (we can't read res.ok). We therefore confirm optimistically.
+    fetch(SCRIPT_URL, { method: 'POST', body: new FormData(form), mode: 'no-cors' })
+      .then(function() { showThankYou(nps); })
+      .catch(function() { showThankYou(nps); });
+  });
+</script>
+
+</body>
+</html>
