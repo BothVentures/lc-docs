@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Chamana · Encuesta de Experiencia · Guía del equipo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bone:#EDEDE5; --petrol:#1C2934; --coral:#F5D5D1; --red-oxide:#632403;
+    --orange:#994100; --bari-dark:#444D51; --bari-light:#ABB9BC; --olive:#808266;
+    --mint:#D7E2B5; --peach:#F4CBA6;
+    --surface:#1A2830; --surface2:#131D25;
+    --border:rgba(171,185,188,0.16); --border-warm:rgba(153,65,0,0.30);
+    --text:var(--bone); --text2:var(--bari-light); --muted:rgba(171,185,188,0.55);
+    --font:'SF Mono','Fira Code','Fira Mono',monospace;
+    --serif:'Cormorant Garamond',Georgia,serif;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  html,body { min-height:100vh; }
+  body {
+    background-color:#111C24;
+    background-image:
+      radial-gradient(ellipse at 15% 0%, rgba(153,65,0,0.12) 0%, transparent 55%),
+      radial-gradient(ellipse at 85% 100%, rgba(68,77,81,0.18) 0%, transparent 50%);
+    background-attachment:fixed;
+    color:var(--text); font-family:var(--font); font-size:12.5px; line-height:1.6;
+  }
+  .page { padding:30px 36px 48px; max-width:1080px; margin:0 auto; }
+  a { color:var(--peach); text-decoration:none; border-bottom:1px solid rgba(244,203,166,0.3); }
+  a:hover { color:var(--bone); }
+
+  .header { border-bottom:1px solid var(--border-warm); padding-bottom:18px; margin-bottom:22px; display:flex; justify-content:space-between; align-items:flex-end; gap:24px; }
+  .header-wordmark { font-family:var(--serif); font-weight:300; font-size:10px; letter-spacing:0.36em; text-transform:uppercase; color:var(--bari-light); margin-bottom:6px; }
+  .header h1 { font-family:var(--serif); font-size:30px; font-weight:300; letter-spacing:0.10em; text-transform:uppercase; color:var(--bone); line-height:1; }
+  .header h1 em { font-style:italic; color:var(--bari-light); font-size:22px; letter-spacing:0.06em; }
+  .header .sub { font-size:10px; color:var(--muted); margin-top:7px; letter-spacing:0.18em; text-transform:uppercase; }
+  .header-right { text-align:right; font-size:10px; color:var(--text2); }
+  .header-right .live { display:inline-block; width:6px; height:6px; background:var(--mint); border-radius:50%; margin-right:6px; animation:pulse 2.4s infinite; }
+  .header-right .ref { margin-top:4px; color:var(--muted); font-size:9px; letter-spacing:0.10em; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.35} }
+
+  .lede { font-family:var(--serif); font-style:italic; font-size:17px; line-height:1.5; color:var(--text2); max-width:920px; margin-bottom:26px; }
+  .lede b { color:var(--bone); font-style:normal; font-weight:400; }
+
+  section { margin-bottom:30px; }
+  .section-title { font-family:var(--serif); font-size:13px; font-weight:400; letter-spacing:0.30em; text-transform:uppercase; color:var(--bone); margin-bottom:12px; padding-bottom:8px; border-bottom:1px solid var(--border); display:flex; align-items:baseline; gap:14px; }
+  .section-title .num { color:var(--orange); font-family:var(--font); font-size:11px; letter-spacing:0.10em; }
+  .section-title .meta { margin-left:auto; font-family:var(--font); font-size:9px; color:var(--muted); letter-spacing:0.12em; text-transform:uppercase; }
+  .lede-sm { font-family:var(--serif); font-style:italic; font-size:14px; color:var(--text2); line-height:1.5; margin-bottom:14px; max-width:920px; }
+  .lede-sm b { color:var(--bone); font-style:normal; font-weight:500; }
+
+  /* FLOW */
+  .flow { display:flex; align-items:stretch; gap:0; flex-wrap:wrap; background:var(--surface2); border:1px solid var(--border); border-radius:4px; padding:20px 16px; }
+  .flow-node { flex:1; min-width:120px; text-align:center; padding:12px 8px; border-radius:4px; }
+  .flow-node .lbl { font-family:var(--serif); font-size:18px; color:var(--bone); line-height:1.1; }
+  .flow-node .desc { font-size:10px; color:var(--text2); margin-top:7px; font-family:var(--serif); font-style:italic; line-height:1.35; }
+  .flow-node .tag { font-family:var(--font); font-size:8px; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted); display:block; margin-top:6px; }
+  .flow-node.air .lbl { color:var(--mint); } .flow-node.sheet .lbl { color:var(--peach); }
+  .flow-arrow { display:flex; align-items:center; color:var(--orange); font-size:18px; padding:0 2px; }
+  .flow-split { display:flex; flex-direction:column; gap:8px; justify-content:center; min-width:150px; border-left:1px dotted var(--border); padding-left:14px; margin-left:6px; }
+
+  /* STEPS */
+  .steps { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+  .step { background:var(--surface); border:1px solid var(--border); border-radius:4px; padding:16px 18px; border-top:3px solid var(--orange); }
+  .step .n { font-family:var(--font); font-size:9px; letter-spacing:0.20em; text-transform:uppercase; color:var(--orange); margin-bottom:6px; }
+  .step h3 { font-family:var(--serif); font-size:16px; font-weight:400; color:var(--bone); margin-bottom:8px; line-height:1.15; }
+  .step p { font-size:11px; color:var(--text2); line-height:1.5; }
+  .step p code { color:var(--peach); background:rgba(244,203,166,0.06); padding:1px 5px; border-radius:2px; font-size:10px; }
+
+  /* COMPARE (dónde ver) */
+  .compare { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  .compare .col { background:var(--surface); border:1px solid var(--border); border-radius:4px; padding:16px 18px; }
+  .compare .col.primary { border-left:3px solid var(--mint); }
+  .compare .col.backup { border-left:3px solid var(--peach); }
+  .compare .col h4 { font-family:var(--serif); font-size:16px; font-weight:500; margin-bottom:4px; }
+  .compare .col.primary h4 { color:var(--mint); } .compare .col.backup h4 { color:var(--peach); }
+  .compare .col .role { font-family:var(--font); font-size:8.5px; letter-spacing:0.16em; text-transform:uppercase; color:var(--muted); margin-bottom:10px; }
+  .compare ul { list-style:none; }
+  .compare li { font-size:11px; color:var(--text2); padding:5px 0 5px 16px; position:relative; line-height:1.45; }
+  .compare li::before { content:"—"; position:absolute; left:0; color:var(--muted); }
+  .compare a { font-size:11px; }
+
+  /* TABLE */
+  .tbl { width:100%; border-collapse:collapse; font-size:11.5px; }
+  .tbl thead th { text-align:left; padding:8px 12px; font-family:var(--font); font-size:9px; letter-spacing:0.16em; text-transform:uppercase; color:var(--muted); border-bottom:1px solid var(--border-warm); }
+  .tbl tbody tr { border-bottom:1px solid var(--border); }
+  .tbl tbody tr:last-child { border-bottom:none; }
+  .tbl td { padding:9px 12px; vertical-align:top; color:var(--text2); line-height:1.45; }
+  .tbl td.k { font-family:var(--serif); font-size:14px; color:var(--bone); width:230px; }
+
+  /* CALLOUT */
+  .callout { background:var(--surface); border:1px solid var(--border); border-left:3px solid var(--mint); border-radius:4px; padding:16px 20px; }
+  .callout h3 { font-family:var(--serif); font-size:16px; font-weight:500; color:var(--mint); margin-bottom:10px; }
+  .callout ul { margin:0; padding-left:18px; }
+  .callout li { margin-bottom:9px; color:var(--text); font-size:11.5px; line-height:1.5; }
+  .callout li:last-child { margin-bottom:0; }
+  .callout li b { color:var(--bone); font-weight:600; }
+
+  .footer { margin-top:36px; padding-top:18px; border-top:1px solid var(--border); display:flex; justify-content:space-between; align-items:baseline; font-size:9.5px; color:var(--muted); letter-spacing:0.10em; }
+  .footer .cierre { font-family:var(--serif); font-style:italic; font-size:13px; color:var(--text2); letter-spacing:0; }
+
+  @media (max-width:760px) {
+    .steps, .compare { grid-template-columns:1fr; }
+    .flow { flex-direction:column; } .flow-arrow { transform:rotate(90deg); justify-content:center; padding:4px 0; }
+    .flow-split { border-left:none; border-top:1px dotted var(--border); padding-left:0; padding-top:14px; margin-left:0; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="header">
+    <div>
+      <div class="header-wordmark">La Chamana · Tulum</div>
+      <h1>Encuesta de <em>Experiencia</em></h1>
+      <div class="sub">Guía del equipo · qué es · dónde viven las respuestas · cómo usarla</div>
+    </div>
+    <div class="header-right">
+      <div><span class="live"></span>En vivo</div>
+      <div class="ref">v1.0 · 13 jun 2026</div>
+    </div>
+  </div>
+
+  <p class="lede">
+    Al final de cada estadía le mandamos al huésped una encuesta corta. Lo que responde —cuánto nos recomienda,
+    si volvería, qué le faltó, por qué canal llegó— es <b>oro comercial</b>: nos dice qué upsell funcionó, de dónde
+    vienen las reservas y quién nos dejaría un testimonio. Cada respuesta entra <b>sola</b> a Airtable y a una planilla de respaldo.
+  </p>
+
+  <!-- FLOW -->
+  <section>
+    <div class="section-title"><span class="num">01</span> Cómo funciona <span class="meta">automático · sin cargar nada a mano</span></div>
+    <div class="flow">
+      <div class="flow-node">
+        <div class="lbl">El huésped</div>
+        <div class="desc">recibe el link al hacer check-out y responde en 3 minutos</div>
+        <span class="tag">WhatsApp</span>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node">
+        <div class="lbl">La encuesta</div>
+        <div class="desc">página web con la marca de La Chamana</div>
+        <span class="tag">lachamana · web</span>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-split">
+        <div class="flow-node air" style="padding:8px 0;">
+          <div class="lbl">Airtable</div>
+          <div class="desc">tabla “Guest Feedback” en LC_CRM — donde trabajás vos</div>
+          <span class="tag">principal</span>
+        </div>
+        <div class="flow-node sheet" style="padding:8px 0;">
+          <div class="lbl">Google Sheet</div>
+          <div class="desc">copia de respaldo cruda</div>
+          <span class="tag">backup</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EL LINK -->
+  <section>
+    <div class="section-title"><span class="num">02</span> El link de la encuesta</div>
+    <p class="lede-sm">
+      Es siempre el mismo, no se vence. Guardalo en tus notas / WhatsApp rápido y reusalo con cada grupo:<br>
+      <!-- 2026-08-15: la dirección cambió. El sitio /lc-chaman/ murió el 2026-08-10
+           cuando el repo pasó a privado (GitHub Pages desde un repo privado necesita
+           plan pago) y devuelve 404 en la raíz. Esta es la dirección viva, en lc-docs. -->
+      <a href="https://bothventures.github.io/lc-docs/guest-survey.html">bothventures.github.io/lc-docs/guest-survey.html</a>
+    </p>
+  </section>
+
+  <!-- CÓMO USARLA -->
+  <section>
+    <div class="section-title"><span class="num">03</span> Cómo usarla</div>
+    <div class="steps">
+      <div class="step">
+        <div class="n">Paso 1 · Mandar</div>
+        <h3>El día del check-out</h3>
+        <p>Por WhatsApp, con una línea cálida y corta. Un solo mensaje, sin insistir.<br><br>
+        <i>“Fue un honor recibirlos en La Chamana. Si tienen 3 minutos, nos encantaría conocer su experiencia: [link]”</i></p>
+      </div>
+      <div class="step">
+        <div class="n">Paso 2 · Leer</div>
+        <h3>En Airtable</h3>
+        <p>Abrís la tabla <b>Guest Feedback</b> (al lado de Pipeline y Bookings). Una fila por encuesta, con estrellas, NPS, servicios usados y comentarios. La planilla queda como respaldo.</p>
+      </div>
+      <div class="step">
+        <div class="n">Paso 3 · Actuar</div>
+        <h3>Convertir en acción</h3>
+        <p>Testimonio lindo o NPS alto → a René/marketing. Queja → avisás a Daiana. Pidieron una experiencia que no ofrecemos → la anotás para pensar add-ons.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- DÓNDE VER -->
+  <section>
+    <div class="section-title"><span class="num">04</span> Dónde viven las respuestas</div>
+    <p class="lede-sm">El <b>mismo dato</b> entra en los dos lugares al instante. Usá Airtable para el día a día; la planilla es la copia de seguridad.</p>
+    <div class="compare">
+      <div class="col primary">
+        <h4>Airtable · Guest Feedback</h4>
+        <div class="role">Principal · tu día a día</div>
+        <ul>
+          <li>Vive en tu base <b>LC_CRM</b>, junto a Pipeline y Bookings</li>
+          <li>Una fila por encuesta: estrellas, NPS, servicios, comentarios</li>
+          <li>La filtrás y ordenás como cualquier otra tabla</li>
+          <!-- Sin link directo a propósito: esta página es pública (lc-docs) y el link
+               llevaba el id de la base y de la tabla. Quien trabaja el CRM ya entra a
+               la base; quien no, no debería recibir la dirección exacta desde acá.
+               No lo repongas al editar. -->
+          <li>Entrá por Airtable → base <b>LC_CRM</b> → tabla <b>Guest Feedback</b></li>
+        </ul>
+      </div>
+      <div class="col backup">
+        <h4>Google Sheet</h4>
+        <div class="role">Respaldo · copia cruda</div>
+        <ul>
+          <li>Pestaña <b>Responses</b>: todas las respuestas, con fecha y hora</li>
+          <li>Pestaña <b>Dashboard</b>: resumen de un vistazo (cantidad, promedio de estrellas, NPS, cuántos volverían)</li>
+          <li>Sirve si alguna vez Airtable falla — nunca se pierde una respuesta</li>
+          <!-- Igual que arriba: el link llevaba el id de la planilla. Página pública. -->
+          <li>Entrá por Drive → la planilla de la encuesta (pestañas <b>Responses</b> y <b>Dashboard</b>)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUÉ MIRAR -->
+  <section>
+    <div class="section-title"><span class="num">05</span> Qué mira cada quién</div>
+    <table class="tbl">
+      <thead><tr><th>Señal</th><th>Qué significa / qué hacemos</th></tr></thead>
+      <tbody>
+        <tr><td class="k">NPS (1–10)</td><td>Cuánto nos recomienda. 9–10 = promotor (pedir testimonio); ≤6 = atención, avisar a Dai.</td></tr>
+        <tr><td class="k">“¿Volverías?”</td><td>Intención de repetir. Señal directa de fidelidad y de a quién re-contactar.</td></tr>
+        <tr><td class="k">“¿Cómo nos encontraste?”</td><td>De dónde vienen las reservas — alimenta la estrategia de canales.</td></tr>
+        <tr><td class="k">Servicios usados + calidad</td><td>Qué upsell funcionó (chef, spa, cenote…). Insumo para afinar la oferta.</td></tr>
+        <tr><td class="k">Comentarios abiertos</td><td>Testimonios para marketing · quejas para resolver · ideas de nuevas experiencias.</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- REGLAS -->
+  <section>
+    <div class="callout">
+      <h3>Reglas simples</h3>
+      <ul>
+        <li><b>El link es siempre el mismo</b> — no se vence ni se regenera.</li>
+        <li><b>No cargás respuestas a mano</b> — entran solas a Airtable y a la planilla.</li>
+        <li><b>Lo que sale al huésped lo manda Iru</b>, con tono de anfitriona, no de formulario.</li>
+        <li>Una reserva confirmada que respondió → anotá una línea (NPS + testimonio) en su ficha en <b>Bookings</b>.</li>
+        <li>Si algo se ve raro o el link deja de funcionar, avisás.</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="footer">
+    <div>LA CHAMANA · ENCUESTA DE EXPERIENCIA · GUÍA DEL EQUIPO</div>
+    <div class="cierre">One key. Infinite spaces.</div>
+    <div>v1.0 · 2026-06-13</div>
+  </div>
+
+</div>
+</body>
+</html>
