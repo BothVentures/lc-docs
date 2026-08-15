@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Chamana · Retreats Dossier · V1.0</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=EB+Garamond:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1d1d1b; --ink-soft:#3a3a36; --paper:#f5f3ec; --paper2:#efece2;
+    --line:rgba(29,29,27,0.16); --accent:#994100; --accent-soft:#b8632a;
+    --display:'Cormorant Garamond',Georgia,serif; --body:'EB Garamond',Georgia,serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--paper); color:var(--ink); font-family:var(--body); font-size:18px; line-height:1.7;}
+  .doc{max-width:720px; margin:0 auto; padding:64px 32px 80px;}
+
+  /* MASTHEAD */
+  .wordmark{font-family:var(--display); text-transform:uppercase; letter-spacing:0.4em; font-size:0.82rem; opacity:0.7; padding-left:0.4em; margin-bottom:34px;}
+  h1{font-family:var(--display); font-weight:300; font-size:clamp(2.6rem,7vw,4rem); font-style:italic; line-height:1.02; margin-bottom:10px;}
+  .subtitle{font-family:var(--display); font-size:1.05rem; letter-spacing:0.04em; color:var(--ink-soft); margin-bottom:26px;}
+  .langnav{font-family:var(--display); font-size:0.95rem; letter-spacing:0.14em; text-transform:uppercase; border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:12px 0; margin-bottom:48px; display:flex; gap:22px;}
+  .langnav a{color:var(--accent); text-decoration:none;}
+  .langnav a:hover{color:var(--ink);}
+
+  /* LEAD */
+  .lead{font-family:var(--display); font-style:italic; font-weight:300; font-size:1.55rem; line-height:1.4; color:var(--ink); margin-bottom:44px;}
+
+  /* SECTIONS */
+  h2{font-family:var(--display); font-weight:400; text-transform:uppercase; letter-spacing:0.2em; font-size:0.92rem; color:var(--accent); margin:44px 0 16px; padding-bottom:9px; border-bottom:1px solid var(--line);}
+  p{margin-bottom:16px;}
+  .region{padding-top:8px;}
+  .region + .region{margin-top:26px; padding-top:44px; border-top:1px solid var(--line);}
+
+  ul.spaces, ul.flow{list-style:none; margin:0 0 16px;}
+  ul.spaces li, ul.flow li{padding:8px 0 8px 0; border-bottom:1px dotted var(--line);}
+  ul.spaces li:last-child, ul.flow li:last-child{border-bottom:none;}
+  ul.spaces b, ul.flow b{font-weight:600;}
+  ul.plain{list-style:none; margin:0 0 16px;}
+  ul.plain li{padding-left:1.1rem; position:relative; margin-bottom:6px;}
+  ul.plain li::before{content:"—"; position:absolute; left:0; color:var(--accent-soft);}
+
+  /* ECONOMICS */
+  .figures{display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:3px; overflow:hidden; margin:20px 0;}
+  .fig{background:var(--paper2); padding:18px 16px; text-align:center;}
+  .fig .v{font-family:var(--display); font-size:1.7rem; line-height:1; display:block; margin-bottom:6px;}
+  .fig .l{font-size:0.82rem; letter-spacing:0.03em; color:var(--ink-soft);}
+  .pull{font-family:var(--display); font-style:italic; font-size:1.5rem; line-height:1.35; color:var(--accent); border-left:2px solid var(--accent); padding:6px 0 6px 20px; margin:24px 0;}
+
+  /* RESERVE */
+  .reserve{margin-top:44px; padding:28px 26px; background:var(--paper2); border:1px solid var(--line); border-radius:3px;}
+  .reserve h2{margin-top:0; border-bottom:none; padding-bottom:0;}
+  .contact{font-family:var(--display); font-style:italic; font-size:1.1rem; color:var(--ink-soft); margin-top:6px;}
+
+  .version{margin-top:36px; padding-top:16px; border-top:1px solid var(--line); font-family:var(--display); letter-spacing:0.08em; text-transform:uppercase; font-size:0.72rem; color:var(--ink-soft);}
+  .divider-lang{margin:72px 0 0; text-align:center; font-family:var(--display); letter-spacing:0.34em; text-transform:uppercase; font-size:0.72rem; color:var(--accent); }
+
+  @media (max-width:560px){ .doc{padding:44px 20px 60px;} .figures{grid-template-columns:1fr 1fr;} .lead{font-size:1.35rem;} }
+  @media print{ body{background:#fff;} .langnav{display:none;} .doc{max-width:none; padding:0;} }
+</style>
+</head>
+<body>
+<div class="doc">
+
+  <div class="wordmark">La Chamana · Tulum</div>
+  <h1>Retreats</h1>
+  <div class="subtitle">For the leaders of retreats · Para quienes guían retiros</div>
+  <nav class="langnav"><a href="#en">English</a><a href="#es">Español</a></nav>
+
+  <!-- ================= EN ================= -->
+  <div id="en">
+    <p class="lead">There are no guests here, only seekers. La Chamana is a private architectural sanctuary in La Veleta, Tulum — a contemporary temple where the wild and the sacred keep the same hours. For the length of your retreat the whole house is yours: eight suites, eleven spaces, closed to everyone else. The architecture does not decorate the work. It is the work.</p>
+
+    <div class="region">
+      <h2>The House</h2>
+      <p>Eight suites across a single private estate. Up to sixteen seekers. A three-night minimum, longer arcs welcome. La Veleta, Tulum — a quiet edge of the town, a world away from its noise. Rented in full, never shared. One group at a time.</p>
+    </div>
+
+    <div class="region">
+      <h2>The Spaces, as Curriculum</h2>
+      <p>The house holds eleven spaces. A retreat does not fill them — it moves through them.</p>
+      <ul class="spaces">
+        <li><b>Temazcal</b> — the fire ritual; the oldest room in the house.</li>
+        <li><b>Mirror Temple</b> — introspection, the long silence, the ego set down.</li>
+        <li><b>Wellness Spa</b> — rest for the body, and for what the body carries.</li>
+        <li><b>Equilibrium Room</b> — where everything returns to center. Even you.</li>
+        <li><b>Library</b> — the question the agenda forgot.</li>
+        <li><b>Dining Room</b> — eating, slowed until it becomes ceremony.</li>
+        <li><b>Pools</b> — stillness, held in water at dusk.</li>
+      </ul>
+      <p>Also: the Pensatorium, the Theatre and Tea Room, the Tonic Station, the Gymnasium — eleven in all.</p>
+    </div>
+
+    <div class="region">
+      <h2>A Sample Flow</h2>
+      <p><em>Illustrative, not prescriptive — your program sets the hours; the house keeps them.</em></p>
+      <ul class="flow">
+        <li><b>Arrival.</b> The house opens. A tonic prepared from intention. The first fire.</li>
+        <li><b>Day one.</b> Movement at dawn. The Mirror Temple by afternoon. Dinner as a threshold, not an interruption.</li>
+        <li><b>Day two.</b> Temazcal. Integration at the spa. The pools at dusk.</li>
+        <li><b>Departure.</b> A closing circle. The long quiet. The return, carried home.</li>
+      </ul>
+    </div>
+
+    <div class="region">
+      <h2>Capacity &amp; Dates</h2>
+      <ul class="plain">
+        <li>Up to sixteen seekers · eight suites · three-night minimum.</li>
+        <li>The whole house, for your group alone.</li>
+        <li>Windows currently open: <em>[Iru inserts live windows at send].</em></li>
+      </ul>
+    </div>
+
+    <div class="region">
+      <h2>For the Leader — the Economics</h2>
+      <p>You are not renting a room. You are holding a container for a program you already lead and fill.</p>
+      <div class="figures">
+        <div class="fig"><span class="v">$4,500</span><span class="l">per night · full house</span></div>
+        <div class="fig"><span class="v">$13,500</span><span class="l">three nights · tax included</span></div>
+        <div class="fig"><span class="v">16</span><span class="l">seekers · eight suites</span></div>
+        <div class="fig"><span class="v">~5</span><span class="l">seats hold the house</span></div>
+      </div>
+      <p class="pull">The house is held by your first five seats. The rest is yours.</p>
+      <p>Illustration: a circle of fourteen at $3,000 a seat is $42,000 — the house is roughly a third; the program is the rest. Chef, ceremony, concierge, and wellness are arranged after you reserve, so your margin stays yours to shape.</p>
+    </div>
+
+    <div class="reserve">
+      <h2>How to Reserve</h2>
+      <p>Tell Iru when you are thinking and how many you will bring. She will hold your dates while you decide, and walk you through the hold and the next step. When you are ready, Connect.</p>
+      <p class="contact">Iru · iru@chamana.live · La Chamana, La Veleta, Tulum</p>
+    </div>
+  </div>
+
+  <div class="divider-lang">· Español ·</div>
+
+  <!-- ================= ES ================= -->
+  <div id="es">
+    <p class="lead" style="margin-top:34px;">Aquí no hay huéspedes, solo buscadores. La Chamana es un santuario arquitectónico privado en La Veleta, Tulum — un templo contemporáneo donde lo salvaje y lo sagrado guardan el mismo horario. Durante tu retiro, la casa entera es tuya: ocho suites, once espacios, cerrada a todos los demás. La arquitectura no decora el trabajo. Es el trabajo.</p>
+
+    <div class="region">
+      <h2>La Casa</h2>
+      <p>Ocho suites en una sola propiedad privada. Hasta dieciséis buscadores. Mínimo tres noches, con gusto recibimos estancias más largas. La Veleta, Tulum — un borde tranquilo del pueblo, lejos de su ruido. Alquilada por completo, nunca compartida. Un solo grupo a la vez.</p>
+    </div>
+
+    <div class="region">
+      <h2>Los Espacios, como Recorrido</h2>
+      <p>La casa guarda once espacios. Un retiro no los llena — los atraviesa.</p>
+      <ul class="spaces">
+        <li><b>Temazcal</b> — el ritual de fuego; el cuarto más antiguo de la casa.</li>
+        <li><b>Templo de Espejos</b> — introspección, el silencio largo, el ego que se deja.</li>
+        <li><b>Wellness Spa</b> — descanso para el cuerpo, y para lo que el cuerpo carga.</li>
+        <li><b>Sala del Equilibrio</b> — donde todo vuelve al centro. Vos también.</li>
+        <li><b>Biblioteca</b> — la pregunta que la agenda olvidó.</li>
+        <li><b>Comedor</b> — comer, hecho lento hasta volverse ceremonia.</li>
+        <li><b>Piscinas</b> — quietud, sostenida en agua al atardecer.</li>
+      </ul>
+      <p>También: el Pensatorium, el Teatro y la Sala de Té, la Estación de Tónicos, el Gimnasio — once en total.</p>
+    </div>
+
+    <div class="region">
+      <h2>Un Ritmo Posible</h2>
+      <p><em>Ilustrativo, no prescriptivo — tu programa marca las horas; la casa las guarda.</em></p>
+      <ul class="flow">
+        <li><b>Llegada.</b> La casa se abre. Un tónico preparado desde la intención. El primer fuego.</li>
+        <li><b>Día uno.</b> Movimiento al amanecer. El Templo de Espejos por la tarde. La cena como umbral, no como interrupción.</li>
+        <li><b>Día dos.</b> Temazcal. Integración en el spa. Las piscinas al atardecer.</li>
+        <li><b>Partida.</b> Un círculo de cierre. El silencio largo. El regreso, llevado a casa.</li>
+      </ul>
+    </div>
+
+    <div class="region">
+      <h2>Capacidad y Fechas</h2>
+      <ul class="plain">
+        <li>Hasta dieciséis buscadores · ocho suites · mínimo tres noches.</li>
+        <li>La casa entera, solo para tu grupo.</li>
+        <li>Ventanas de fechas abiertas hoy: <em>[Iru inserta las ventanas vivas al enviar].</em></li>
+      </ul>
+    </div>
+
+    <div class="region">
+      <h2>Para quien Guía — la Economía</h2>
+      <p>No estás alquilando un cuarto. Estás sosteniendo el contenedor de un programa que ya guías y llenás.</p>
+      <div class="figures">
+        <div class="fig"><span class="v">$4,500</span><span class="l">por noche · casa completa</span></div>
+        <div class="fig"><span class="v">$13,500</span><span class="l">tres noches · impuestos incl.</span></div>
+        <div class="fig"><span class="v">16</span><span class="l">buscadores · ocho suites</span></div>
+        <div class="fig"><span class="v">~5</span><span class="l">asientos sostienen la casa</span></div>
+      </div>
+      <p class="pull">La casa la sostienen tus primeros cinco asientos. El resto es tuyo.</p>
+      <p>Ilustración: un círculo de catorce a $3,000 el asiento son $42,000 — la casa es cerca de un tercio; el programa es el resto. Chef, ceremonia, concierge y bienestar se organizan después de reservar, para que tu margen quede tuyo.</p>
+    </div>
+
+    <div class="reserve">
+      <h2>Cómo Reservar</h2>
+      <p>Contale a Iru cuándo lo pensás y cuántos vendrían. Ella sostiene tus fechas mientras decidís, y te acompaña en la reserva y el siguiente paso. Cuando estés listo, Conectemos.</p>
+      <p class="contact">Iru · iru@chamana.live · La Chamana, La Veleta, Tulum</p>
+    </div>
+  </div>
+
+  <div class="version">Version V1.0 · 2026-07-01 · Brand gate: pending René review before sending · Source: vault/campaigns/retreats-a/retreats-dossier.md</div>
+
+</div>
+</body>
+</html>
