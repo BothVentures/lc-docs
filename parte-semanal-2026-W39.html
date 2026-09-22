@@ -1,0 +1,720 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="brand-register" content="oxide-desk">
+<meta name="robots" content="noindex,nofollow">
+<title>La Chamana · Parte semanal BOTH · 15–22 sep 2026</title>
+<script>try{var _t=localStorage.getItem('hermes-theme');if(_t){document.documentElement.classList.toggle('light',_t==='light');document.documentElement.setAttribute('data-theme',_t)}}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23111C24'/%3E%3Cpath d='M8 27V16a8 8 0 0 1 16 0v11z' fill='%23EDEDE5'/%3E%3C/svg%3E">
+<!--
+  LA CHAMANA · PARTE SEMANAL BOTH · 15 al 22 de septiembre de 2026.
+  El parte de la maquina comercial (El Chaman + Synergy GTM Toolkit). Se lee junto
+  con los partes de Iru y de Bianca; no los reemplaza.
+  TEMA: oxide-desk, hoja copiada entera de docs/estado-septiembre-2026-09-13.html
+  (el theme manda copiar, no compartir).
+  REGLA DE NUMEROS: cada cifra lleva chip de evidencia. obs = medido en disco o por
+  API el 22-sep. est = estimado. unk = sin medir, y NUNCA se dibuja como 0.
+  FUENTES: vault/campaigns/*/ (ledgers .sent.jsonl, results-log, campaign.yaml) ·
+  synergy-toolkit/data/synergy.db (reply_message, pipeline_row) ·
+  synergy-toolkit/reports/meta-performance/ y gads-performance/ ·
+  synergy-toolkit/reports/target-stock/2026-W39.md · git log de los dos repos.
+-->
+<style>
+/* ── La Chamana · Blue Earth palette (canonical, AG-005) sobre arquitectura Factory Glass ──
+   Paleta: bone · petrol · coral · red oxide · orange oxide · bari stone · olive · mint · peach.
+   Nunca blanco puro, nunca negro puro. Orange oxide = action numbers / hot accents, nada más. ── */
+:root{
+  --bone:#EDEDE5; --petrol:#1C2934; --coral:#F5D5D1; --red-oxide:#632403; --orange:#994100;
+  --bari-dark:#444D51; --bari-light:#ABB9BC; --olive:#808266; --mint:#D7E2B5; --peach:#F4CBA6;
+
+  --bg:#111C24;
+  --glass:rgba(26,40,48,.55); --glass-2:rgba(26,40,48,.42); --glass-3:rgba(19,29,37,.55);
+  --t-1:rgba(237,237,229,.94); --t-2:rgba(171,185,188,.86); --t-3:rgba(171,185,188,.58); --t-4:rgba(171,185,188,.69);
+  --edge:rgba(171,185,188,.16); --edge-soft:rgba(171,185,188,.09); --hi:rgba(237,237,229,.08);
+  --edge-warm:rgba(153,65,0,.30);
+  --accent:var(--orange); --accent-soft:rgba(171,185,188,.08);
+
+  --green:var(--mint);  --green-bg:rgba(128,130,102,.18); --green-bd:rgba(128,130,102,.32);
+  --amber:var(--peach); --amber-bg:rgba(244,203,166,.12); --amber-bd:rgba(244,203,166,.26);
+  --red:var(--coral);   --red-bg:rgba(99,36,3,.28);       --red-bd:rgba(153,65,0,.38);
+  --hot:var(--peach);   --hot-bg:rgba(153,65,0,.22);      --hot-bd:rgba(153,65,0,.42);
+  --hot-ink:var(--peach);
+
+  --serif:'Cormorant Garamond',Georgia,'Times New Roman',serif;
+  --font:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --mono:'SF Mono','Fira Code','Fira Mono',ui-monospace,Menlo,monospace;
+
+  --r-shell:26px; --r-card:16px; --r-tile:12px;
+  --blur:saturate(1.25) blur(30px); --blur-card:saturate(1.15) blur(18px);
+  --shadow-card:0 10px 34px rgba(9,16,22,.42); --shadow-shell:0 40px 120px rgba(9,16,22,.62);
+  --wash-a:rgba(153,65,0,.12); --wash-b:rgba(68,77,81,.18);
+}
+html.light, :root[data-theme="light"]{ color-scheme:light;
+  --bg:#EDEDE5;
+  --glass:rgba(253,252,248,.66); --glass-2:rgba(253,252,248,.54); --glass-3:rgba(247,246,240,.78);
+  --t-1:rgba(28,41,52,.94); --t-2:rgba(28,41,52,.72); --t-3:rgba(68,77,81,.66); --t-4:rgba(68,77,81,.78);
+  --edge:rgba(28,41,52,.14); --edge-soft:rgba(28,41,52,.08); --hi:rgba(255,255,255,.70);
+  --edge-warm:rgba(153,65,0,.32); --accent-soft:rgba(28,41,52,.06);
+  --green:#5f6149; --green-bg:rgba(128,130,102,.16); --green-bd:rgba(128,130,102,.34);
+  --amber:#8a5410; --amber-bg:rgba(153,65,0,.10); --amber-bd:rgba(153,65,0,.26);
+  --red:#7a2c0a;   --red-bg:rgba(99,36,3,.10);      --red-bd:rgba(99,36,3,.28);
+  --hot:#994100;   --hot-bg:rgba(153,65,0,.14);     --hot-bd:rgba(153,65,0,.34); --hot-ink:#7a3400;
+  --shadow-card:0 10px 28px rgba(68,77,81,.13); --shadow-shell:0 36px 110px rgba(68,77,81,.18);
+  --wash-a:rgba(153,65,0,.09); --wash-b:rgba(68,77,81,.10);
+}
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]){
+    --bg:#EDEDE5;
+    --glass:rgba(253,252,248,.66); --glass-2:rgba(253,252,248,.54); --glass-3:rgba(247,246,240,.78);
+    --t-1:rgba(28,41,52,.94); --t-2:rgba(28,41,52,.72); --t-3:rgba(68,77,81,.66); --t-4:rgba(68,77,81,.78);
+    --edge:rgba(28,41,52,.14); --edge-soft:rgba(28,41,52,.08); --hi:rgba(255,255,255,.70);
+    --edge-warm:rgba(153,65,0,.32); --accent-soft:rgba(28,41,52,.06);
+    --green:#5f6149; --green-bg:rgba(128,130,102,.16); --green-bd:rgba(128,130,102,.34);
+    --amber:#8a5410; --amber-bg:rgba(153,65,0,.10); --amber-bd:rgba(153,65,0,.26);
+    --red:#7a2c0a;   --red-bg:rgba(99,36,3,.10);      --red-bd:rgba(99,36,3,.28);
+    --hot:#994100;   --hot-bg:rgba(153,65,0,.14);     --hot-bd:rgba(153,65,0,.34); --hot-ink:#7a3400;
+    --shadow-card:0 10px 28px rgba(68,77,81,.13); --shadow-shell:0 36px 110px rgba(68,77,81,.18);
+    --wash-a:rgba(153,65,0,.09); --wash-b:rgba(68,77,81,.10);
+  }
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--bg);color-scheme:dark}
+body{font-family:var(--font);color:var(--t-1);background:var(--bg);line-height:1.55;
+  -webkit-font-smoothing:antialiased;padding:clamp(14px,3vw,36px);position:relative;min-height:100vh}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(ellipse 900px 600px at 15% 0%,var(--wash-a),transparent 55%),
+  radial-gradient(ellipse 900px 600px at 85% 100%,var(--wash-b),transparent 50%)}
+.wrap{position:relative;z-index:1;max-width:1140px;margin:0 auto;background:var(--glass);
+  backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);border:1px solid var(--edge);
+  border-radius:var(--r-shell);box-shadow:var(--shadow-shell),inset 0 1px 0 var(--hi);
+  padding:clamp(20px,4vw,52px)}
+h1{font-family:var(--serif);font-size:clamp(30px,5vw,46px);font-weight:300;letter-spacing:-.005em;text-wrap:balance;line-height:1.1}
+h1 b{font-weight:600}
+h2{font-family:var(--serif);font-size:clamp(22px,3vw,28px);font-weight:500;letter-spacing:0;margin-bottom:6px;text-wrap:balance;line-height:1.2}
+h3{font-family:var(--serif);font-size:17px;font-weight:600;margin-bottom:4px}
+p{color:var(--t-2);font-size:15px;max-width:78ch;margin-bottom:10px}
+p strong,li strong,td strong{color:var(--t-1);font-weight:600}
+small,.src{color:var(--t-4);font-size:11.5px}
+.eyebrow{font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--t-2);margin-bottom:10px;padding-top:14px;border-top:1px solid var(--edge-soft)}
+section{margin-top:clamp(38px,5.5vw,60px)}
+ul{margin:6px 0 10px 18px;color:var(--t-2);font-size:14px}
+ol{margin:6px 0 10px 20px;color:var(--t-2);font-size:14px}
+li{margin-bottom:7px;max-width:78ch}
+a{color:var(--t-1)}
+code{font-family:var(--mono);font-size:11.5px;background:var(--glass-3);border:1px solid var(--edge-soft);
+  border-radius:5px;padding:1px 5px}
+.card{background:var(--glass-2);backdrop-filter:var(--blur-card);-webkit-backdrop-filter:var(--blur-card);
+  border:1px solid var(--edge);border-radius:var(--r-card);box-shadow:var(--shadow-card),inset 0 1px 0 var(--hi);
+  padding:clamp(14px,2.4vw,22px)}
+.tile{background:var(--glass-3);border:1px solid var(--edge-soft);border-radius:var(--r-tile);padding:12px 14px}
+.badge{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:3px 11px;font-size:11px;
+  font-family:var(--mono);font-weight:500;letter-spacing:.02em;background:var(--glass-3);color:var(--t-3);border:1px solid var(--edge)}
+.badge.hot{background:var(--hot-bg);color:var(--hot);border-color:var(--hot-bd)}
+.badge.ok{background:var(--green-bg);color:var(--green);border-color:var(--green-bd)}
+.badge.warn{background:var(--amber-bg);color:var(--amber);border-color:var(--amber-bd)}
+.badge.crit{background:var(--red-bg);color:var(--red);border-color:var(--red-bd)}
+.chip{display:inline-block;border-radius:999px;padding:1px 8px;font-size:9.5px;font-weight:600;font-family:var(--mono);
+  letter-spacing:.08em;text-transform:uppercase;vertical-align:middle}
+.chip.chip.obs{background:var(--green-bg);color:var(--green);border:1px solid var(--green-bd)}
+.chip.chip.est{background:var(--amber-bg);color:var(--amber);border:1px solid var(--amber-bd)}
+.chip.chip.unk{background:var(--red-bg);color:var(--red);border:1px solid var(--red-bd)}
+.chip.chip.dec{background:var(--accent-soft);color:var(--t-1);border:1px solid var(--edge)}
+.chip.chip.none{background:transparent;color:var(--t-3);border:1px dashed var(--edge)}
+.tblwrap{overflow-x:auto;border:1px solid var(--edge-soft);border-radius:var(--r-tile);margin:10px 0}
+table{width:100%;border-collapse:collapse;font-size:13px;min-width:640px}
+th{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--t-4);
+  text-align:left;padding:10px 12px;border-bottom:1px solid var(--edge)}
+td{padding:9px 12px;border-bottom:1px solid var(--edge-soft);color:var(--t-2);vertical-align:top}
+tr:last-child td{border-bottom:none}
+td b{color:var(--t-1);font-weight:600}
+.ev{color:var(--t-3);font-size:12px}
+.btn{border:1px solid var(--edge);background:var(--glass-3);color:var(--t-2);border-radius:999px;
+  padding:6px 14px;font-size:11.5px;font-weight:500;font-family:var(--mono);cursor:pointer;transition:all .18s}
+.btn:hover{color:var(--t-1);border-color:var(--hi)}
+.btn:focus-visible,a:focus-visible,summary:focus-visible,.badge:focus-visible{outline:2px solid var(--t-2);outline-offset:2px}
+header{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-start;gap:14px;margin-bottom:8px}
+header>div:first-child{flex:1 1 420px;min-width:0}
+.badges{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}
+.theme-toggle{cursor:pointer;padding:5px 12px}
+footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--edge-soft);color:var(--t-4);font-size:11.5px;line-height:1.7}
+footer p{color:var(--t-4);font-size:11.5px;max-width:none;margin-bottom:8px}
+footer b{color:var(--t-3)}
+.rise{animation:rise .5s cubic-bezier(.22,.61,.36,1) both}
+@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+html{scroll-behavior:smooth}
+@media(prefers-reduced-motion:reduce){.rise{animation:none}html{scroll-behavior:auto}}
+.callout{border-left:2px solid var(--amber-bd);padding:10px 14px;background:var(--amber-bg);
+  border-radius:0 var(--r-tile) var(--r-tile) 0;margin:12px 0}
+.callout p{margin-bottom:0;color:var(--t-1);font-size:13.5px}
+.callout.g{border-left-color:var(--green-bd);background:var(--green-bg)}
+.callout.r{border-left-color:var(--red-bd);background:var(--red-bg)}
+.callout.n{border-left-color:var(--edge);background:var(--glass-3)}
+
+/* ── strip de números ── */
+.strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px;margin:16px 0}
+.strip .tile b{display:block;font-family:var(--mono);font-size:27px;font-weight:600;color:var(--t-1);letter-spacing:-.02em;line-height:1.15}
+.strip .tile span{color:var(--t-4);font-size:11.5px;line-height:1.45;display:block;margin-top:5px}
+.strip .tile span.chip{display:inline-block;width:auto;margin-top:7px;line-height:1.5;font-size:9.5px}
+.strip .tile{padding:16px 18px}
+.tile.hot{background:var(--hot-bg);border-color:var(--hot-bd)}
+.tile.hot b{color:var(--hot-ink)}
+.tile.hot span{color:var(--hot)}
+.tile.ok{background:var(--green-bg);border-color:var(--green-bd)}
+.tile.ok b,.tile.ok span{color:var(--green)}
+
+/* ── fases colapsables ── */
+.phase{border:1px solid var(--edge-soft);border-radius:var(--r-card);background:var(--glass-3);margin:10px 0;
+  overflow:hidden;scroll-margin-top:14px}
+.phase[open]{background:var(--glass-2);border-color:var(--edge);box-shadow:var(--shadow-card),inset 0 1px 0 var(--hi)}
+.phase>summary{list-style:none;cursor:pointer;padding:15px 18px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.phase>summary::-webkit-details-marker{display:none}
+.phase>summary:hover{background:var(--accent-soft)}
+.ph-idx{font-family:var(--mono);font-size:9.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--t-4);flex:0 0 auto}
+.ph-name{font-family:var(--serif);font-size:20px;font-weight:600;color:var(--t-1);letter-spacing:0;flex:1 1 260px;min-width:0;line-height:1.2}
+.ph-name span{display:block;font-family:var(--font);font-size:12px;font-weight:400;color:var(--t-3);letter-spacing:0;margin-top:3px}
+.ph-chev{color:var(--t-3);font-size:12px;transition:transform .2s;flex:0 0 auto;margin-left:auto}
+.phase[open] .ph-chev{transform:rotate(180deg)}
+.ph-body{padding:0 18px 18px;border-top:1px solid var(--edge-soft)}
+.ph-body>.objtitle:first-child{margin-top:14px}
+.objtitle{font-family:var(--mono);font-size:9.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--t-4);margin:18px 0 5px}
+.obj{border-left:2px solid var(--edge)}
+.obj td:first-child{color:var(--t-4);font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;white-space:nowrap;font-weight:700}
+.entry{color:var(--t-3);font-size:13px;margin:6px 0 10px;max-width:78ch}
+.legend{display:flex;gap:16px;flex-wrap:wrap;margin:12px 0;color:var(--t-3);font-size:12px;align-items:center}
+
+/* ══ patrones propios de este documento ══ */
+
+/* la tesis: una frase grande, una sola vez */
+.thesis{font-family:var(--serif);font-size:clamp(24px,3.6vw,38px);font-weight:300;line-height:1.2;
+  color:var(--t-1);max-width:24ch;margin:6px 0 4px;letter-spacing:-.01em}
+.thesis em{font-style:italic;color:var(--t-1)}
+.sub{color:var(--t-2);font-size:15px;max-width:74ch;margin:10px 0 0}
+.sub b{color:var(--t-1);font-weight:600}
+
+/* cuatro columnas del build */
+.quad{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr));gap:12px;margin:14px 0}
+.quad .col{background:var(--glass-3);border:1px solid var(--edge-soft);border-radius:var(--r-card);padding:15px 17px}
+.quad .col h3{font-family:var(--serif);font-size:18px;font-weight:600;color:var(--t-1);margin-bottom:2px}
+.quad .col .big{font-family:var(--mono);font-size:30px;font-weight:600;color:var(--t-1);letter-spacing:-.02em;line-height:1.1;margin:6px 0 2px}
+.quad .col .cap{font-family:var(--mono);font-size:9.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--t-4);margin-bottom:8px}
+.quad .col ul{margin:8px 0 0;padding-left:15px}
+.quad .col li{font-size:12.5px;color:var(--t-2);margin-bottom:5px;line-height:1.5;max-width:none}
+.quad .col li b{color:var(--t-1);font-weight:600}
+
+/* el embudo a escala real */
+.funnel{margin:16px 0 6px}
+.frow{display:grid;grid-template-columns:190px 1fr 84px;align-items:center;gap:12px;padding:6px 0}
+.fname{font-size:13px;color:var(--t-2);line-height:1.35;text-align:right}
+.fname b{display:block;color:var(--t-1);font-weight:600;font-size:13.5px}
+.fname span{font-size:10.5px;color:var(--t-4)}
+.ftrack{background:var(--glass-3);border-radius:6px;height:26px;position:relative;overflow:hidden;border:1px solid var(--edge-soft)}
+.fbar{height:100%;background:var(--bari-dark);border-radius:5px;min-width:3px;
+  display:flex;align-items:center;justify-content:flex-end;padding-right:9px}
+.fbar.b1,.fbar.b2,.fbar.b3,.fbar.b4,.fbar.b5{background:rgba(171,185,188,.42)}
+
+.fbar.b6{background:var(--orange)}
+.fval{font-family:var(--mono);font-size:16px;font-weight:600;color:var(--t-1);text-align:right;letter-spacing:-.01em}
+.fpct{font-family:var(--mono);font-size:10px;color:var(--t-4);display:block;font-weight:500}
+@media(max-width:640px){.frow{grid-template-columns:1fr;gap:3px}.fname{text-align:left}}
+
+/* barras comparativas de campaña */
+.cmp{margin:12px 0}
+.crow{display:grid;grid-template-columns:150px 1fr 62px;align-items:center;gap:10px;padding:4px 0}
+.clabel{font-size:12.5px;color:var(--t-2)}
+.ctrack{background:var(--glass-3);border-radius:5px;height:16px;overflow:hidden;border:1px solid var(--edge-soft)}
+.cbar{height:100%;background:rgba(171,185,188,.40);border-radius:4px;min-width:2px}
+.cbar.a{background:rgba(128,130,102,.62)} .cbar.b{background:rgba(171,185,188,.44)} .cbar.c{background:rgba(244,203,166,.50)}
+.cval{font-family:var(--mono);font-size:12.5px;font-weight:600;color:var(--t-1);text-align:right}
+
+/* el riel, como tarjeta */
+.rails{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(380px,100%),1fr));gap:12px;margin:14px 0}
+.rail{background:var(--glass-3);border:1px solid var(--edge-soft);border-radius:var(--r-card);
+  padding:16px 18px 14px;display:flex;flex-direction:column;box-shadow:inset 0 1px 0 var(--hi)}
+.rail .rname{font-family:var(--serif);font-size:21px;font-weight:600;color:var(--t-1);margin-bottom:1px}
+.rail .rwhat{font-size:12px;color:var(--t-3);margin-bottom:10px;line-height:1.45}
+.rail .rbig{font-family:var(--mono);font-size:34px;font-weight:600;letter-spacing:-.025em;color:var(--t-1);line-height:1}
+.rail .runit{font-family:var(--mono);font-size:9.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--t-4);margin:5px 0 11px}
+.rail dl{margin:0 0 10px;border-top:1px solid var(--edge-soft)}
+.rail dl>div{display:flex;justify-content:space-between;gap:10px;padding:6px 0;border-bottom:1px solid var(--edge-soft);font-size:12.5px}
+.rail dt{color:var(--t-3);min-width:0}
+.rail dd{margin:0;font-family:var(--mono);font-size:12.5px;font-weight:600;color:var(--t-1);white-space:nowrap}
+.rail .next{margin-top:auto;padding-top:9px;font-size:12px;color:var(--t-2);line-height:1.5}
+.rail .next b{color:var(--t-1);font-weight:600;display:block;font-family:var(--mono);font-size:9.5px;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--t-4);margin-bottom:3px}
+
+/* diagramas svg */
+.dia{background:var(--glass-3);border:none;border-radius:var(--r-card);
+  padding:16px 18px;margin:14px 0;overflow-x:auto}
+.dia svg{display:block;width:100%;min-width:660px;height:auto}
+.dia .dcap{font-size:12px;color:var(--t-3);margin-top:10px;max-width:78ch}
+.sv-box{fill:var(--glass-2);stroke:var(--edge);stroke-width:1}
+.sv-box.warm{stroke:var(--edge-warm)}
+.sv-t{fill:var(--t-1);font-family:'Inter',sans-serif;font-size:12.5px;font-weight:600}
+.sv-s{fill:var(--t-3);font-family:'Inter',sans-serif;font-size:10.5px}
+.sv-n{fill:var(--t-1);font-family:'SF Mono',ui-monospace,monospace;font-size:14px;font-weight:600}
+.sv-k{fill:var(--t-4);font-family:'SF Mono',ui-monospace,monospace;font-size:9px;font-weight:600;letter-spacing:.16em}
+.sv-l{stroke:rgba(171,185,188,.34);stroke-width:1.5;fill:none}
+.sv-l.dash{stroke-dasharray:4 5;stroke:rgba(171,185,188,.22)}
+.sv-l.hot{stroke:rgba(244,203,166,.55);stroke-width:1.8}
+
+/* capturas */
+.shot{margin:14px 0;border:1px solid var(--edge);border-radius:var(--r-card);overflow:hidden;background:var(--glass-3)}
+.shot img{display:block;width:100%;height:auto}
+.shot .scap{padding:11px 15px;font-size:12px;color:var(--t-3);border-top:1px solid var(--edge-soft);line-height:1.5}
+.shot .scap b{color:var(--t-2);font-weight:600}
+.shot.tall{max-height:520px;overflow-y:auto}
+
+/* dos columnas de texto */
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:10px 26px;margin:10px 0}
+.lead{font-size:15.5px;color:var(--t-2);max-width:74ch;line-height:1.6}
+.lead b{color:var(--t-1);font-weight:600}
+a{color:var(--t-2)}
+a:hover{color:var(--t-1)}
+.nav{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 4px}
+.nav a{font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--t-3);text-decoration:none;border:1px solid var(--edge-soft);border-radius:999px;padding:5px 12px}
+.nav a:hover{color:var(--t-1);border-color:var(--edge);background:var(--accent-soft)}
+@media(max-width:700px){
+  .nav{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;
+       scrollbar-width:none;padding-bottom:4px;margin:10px 0 2px}
+  .nav::-webkit-scrollbar{display:none}
+  .nav a{flex:0 0 auto}
+  header .badges{gap:6px}
+}
+
+/* ── additions for this document (chart + plain lists) ── */
+.ch-grid{stroke:var(--edge);stroke-width:1;stroke-dasharray:3 4}
+.ch-axis{stroke:var(--edge);stroke-width:1}
+.ch-today{stroke:var(--t-3);stroke-width:1;stroke-dasharray:2 4}
+.ch-obs{fill:var(--bari-light);fill-opacity:.55;rx:3}
+.ch-floor{fill:var(--olive);fill-opacity:.75;rx:3}
+.ch-ceil{fill:none;stroke:var(--t-3);stroke-width:1;stroke-dasharray:3 3;rx:3}
+.ch-val{font-size:14px}
+.ch-range{font-weight:600;fill:var(--t-2)}
+.ch-hot{fill:var(--hot)}
+html.light .ch-obs, :root[data-theme="light"] .ch-obs{fill:var(--bari-dark);fill-opacity:.5}
+ul.plain{list-style:none;padding:0;margin:8px 0 0}
+ul.plain li{font-size:13px;color:var(--t-2);line-height:1.5;margin-bottom:9px;padding-left:14px;position:relative;max-width:none}
+ul.plain li::before{content:'';position:absolute;left:0;top:9px;width:5px;height:5px;border-radius:50%;background:var(--t-3)}
+ul.plain li b{color:var(--t-1)}
+.two .card{padding:16px 18px}
+@media print{details.phase{open:true}details.phase>summary{display:none}details.phase>.ph-body{display:block}body{padding:0}.wrap{border:0;box-shadow:none;backdrop-filter:none}.nav,.theme-toggle{display:none}section{break-inside:avoid-page}}
+</style>
+</head>
+<body data-updated="2026-09-22">
+<div class="wrap">
+
+<header class="rise">
+  <div>
+    <div class="eyebrow">La Chamana · BOTH Ventures · Parte semanal de la máquina comercial</div>
+    <h1>15 → 22 de <b>septiembre</b></h1>
+    <p class="sub">Lo que hizo El Chamán y el Synergy GTM Toolkit esta semana: outreach,
+    pauta e infraestructura. Se lee junto con los partes de Iru y de Bianca.</p>
+    <div class="badges">
+      <span class="badge">v1.0 · 22-sep-2026</span>
+      <span class="badge ok">87 emails · 0 rebotes</span>
+      <span class="badge">8 organizaciones nuevas interesadas</span>
+      <span class="badge">El cockpit salió de la Mac</span>
+    </div>
+  </div>
+  <button class="badge theme-toggle" aria-label="Cambiar tema" onclick="(function(){var el=document.documentElement;var isLight=el.classList.contains('light')||el.getAttribute('data-theme')==='light'||(!el.getAttribute('data-theme')&&matchMedia('(prefers-color-scheme: light)').matches);var next=isLight?'dark':'light';el.classList.toggle('light',next==='light');el.setAttribute('data-theme',next);try{localStorage.setItem('hermes-theme',next)}catch(e){}})()"><span aria-hidden="true">◐</span> tema</button>
+</header>
+
+<main>
+<nav class="nav" aria-label="Secciones" tabindex="0">
+  <a href="#linea">01 · La semana</a>
+  <a href="#embudo">02 · El embudo</a>
+  <a href="#outreach">03 · Outreach</a>
+  <a href="#pauta">04 · Pauta</a>
+  <a href="#infra">05 · Infraestructura</a>
+  <a href="#sigue">06 · Esta semana</a>
+</nav>
+
+<!-- ═══════════ 01 ═══════════ -->
+<section id="linea">
+  <div class="eyebrow">01 · La semana</div>
+  <h2>Seis números</h2>
+  <p class="lead">La máquina dejó de depender de nosotros para funcionar.</p>
+
+  <div class="strip">
+    <div class="tile"><b>87</b><span>primeros contactos en frío, en 3 rieles<br><span class="chip obs">obs</span></span></div>
+    <div class="tile ok"><b>0</b><span>rebotes · 0 fallas de entrega<br><span class="chip obs">obs</span></span></div>
+    <div class="tile hot"><b>8</b><span>organizaciones nuevas interesadas<br><span class="chip obs">obs</span></span></div>
+    <div class="tile"><b>12</b><span>conversaciones abiertas por pauta (7 d)<br><span class="chip obs">obs</span></span></div>
+    <div class="tile"><b>USD 170</b><span>gasto de pauta en 7 días · un solo canal<br><span class="chip obs">obs</span></span></div>
+    <div class="tile"><b>71</b><span>mejoras entregadas al sistema en 8 días<br><span class="chip obs">obs</span></span></div>
+  </div>
+
+  <div class="quad">
+    <div class="col">
+      <div class="cap">Lo más importante</div>
+      <h3>El cockpit se mudó</h3>
+      <p style="font-size:12.5px;margin:6px 0 0">El 17-sep a las 22:05 UTC <code>gtm.meent.space</code> dejó
+      la computadora de Boris y pasó a un servidor propio. <b>La herramienta ya no depende de que
+      la máquina de nadie esté prendida.</b></p>
+    </div>
+    <div class="col">
+      <div class="cap">La decisión</div>
+      <h3>Concentrar la pauta</h3>
+      <p style="font-size:12.5px;margin:6px 0 0">Google quedó en cero campañas desde el 15-sep.
+      Gastó <b>USD 475 sin una sola conversión</b>. Todo el presupuesto pasó a Meta, el único
+      canal que produce contacto humano.</p>
+    </div>
+    <div class="col">
+      <div class="cap">Lo nuevo</div>
+      <h3>El sistema propone</h3>
+      <p style="font-size:12.5px;margin:6px 0 0">Antes había que acordarse de todo. Ahora el sistema
+      mide y pone adelante: cuántos destinatarios quedan, quién espera respuesta, qué decisión vence.</p>
+    </div>
+    <div class="col">
+      <div class="cap">La oportunidad</div>
+      <h3>318 tibios dormidos</h3>
+      <p style="font-size:12.5px;margin:6px 0 0">Contactos que ya conocen la casa y tienen el
+      seguimiento vencido. Reactivarlos cuesta <b>un tercio</b> de buscar nombres nuevos.</p>
+    </div>
+  </div>
+</section>
+<!-- ═══════════ 02 ═══════════ -->
+<section id="embudo">
+  <div class="eyebrow">02 · El embudo</div>
+  <h2>De 508 puertas golpeadas a 12 conversaciones vivas</h2>
+  <p class="lead">El acumulado del riel de email desde que arrancó. Cada barra es una medición,
+  no una estimación.</p>
+
+  <div class="funnel">
+    <div class="frow">
+      <div class="fname"><b>Organizaciones contactadas</b><span>651 emails · 508 destinatarios únicos</span></div>
+      <div class="ftrack"><div class="fbar b1" style="width:100%"></div></div>
+      <div class="fval">508<span class="fpct">100%</span></div>
+    </div>
+    <div class="frow">
+      <div class="fname"><b>Contestaron algo real</b><span>descartando rebotes y automáticos</span></div>
+      <div class="ftrack"><div class="fbar b2" style="width:11.8%"></div></div>
+      <div class="fval">60<span class="fpct">11,8%</span></div>
+    </div>
+    <div class="frow">
+      <div class="fname"><b>Se declararon interesadas</b><span>quieren hablar, publicar o cotizar</span></div>
+      <div class="ftrack"><div class="fbar b3" style="width:4.3%"></div></div>
+      <div class="fval">22<span class="fpct">4,3%</span></div>
+    </div>
+    <div class="frow">
+      <div class="fname"><b>Calientes hoy</b><span>conversación viva en el pipeline</span></div>
+      <div class="ftrack"><div class="fbar" style="width:2.4%;background:rgba(128,130,102,.72)"></div></div>
+      <div class="fval">12<span class="fpct">2,4%</span></div>
+    </div>
+  </div>
+
+  <div class="callout n">
+    <p><b>Cómo leerlo.</b> Una tasa de respuesta del 11,8% y de interés del 4,3% en outreach frío
+    es alta para el segmento. Las cuatro primeras barras son acumuladas desde que arrancó el riel;
+    la última es el estado de hoy. Aparte, el CRM lleva <b>16 negocios ganados</b> — que no salen
+    todos de este riel, porque también cuenta lo que entró por otras puertas.
+    <span class="chip obs">obs</span> medido el 22-sep.</p>
+  </div>
+
+  <div class="rails">
+    <div class="rail">
+      <div class="rname">Familias / takeovers</div>
+      <div class="rwhat">Grupos familiares que alquilan la casa entera</div>
+      <div class="rbig">46</div>
+      <div class="runit">emails esta semana</div>
+      <dl>
+        <div><dt>Stock listo para la próxima</dt><dd>4 de 30</dd></div>
+        <div><dt>En el pozo verificados</dt><dd>173</dd></div>
+        <div><dt>Seguimiento vencido</dt><dd>115</dd></div>
+      </dl>
+      <div class="next"><b>Lo que sigue</b>Es el riel más activo y el que peor abastecido está.
+      Necesita dos corridas de búsqueda esta semana.</div>
+    </div>
+    <div class="rail">
+      <div class="rname">Retiros</div>
+      <div class="rwhat">Operadores de retiros de yoga, wellness y liderazgo</div>
+      <div class="rbig">29</div>
+      <div class="runit">emails esta semana</div>
+      <dl>
+        <div><dt>Stock listo para la próxima</dt><dd>12 de 30</dd></div>
+        <div><dt>En el pozo verificados</dt><dd>195</dd></div>
+        <div><dt>Interesados nuevos</dt><dd>4</dd></div>
+      </dl>
+      <div class="next"><b>Lo que sigue</b>Apareció la primera objeción de precio explícita.
+      Confirma que el comprador es el grupo privado, no el retiro promedio.</div>
+    </div>
+    <div class="rail">
+      <div class="rname">Agencias y distribución</div>
+      <div class="rwhat">Agencias de lujo, receptivos y colecciones de villas</div>
+      <div class="rbig">12</div>
+      <div class="runit">emails esta semana</div>
+      <dl>
+        <div><dt>Stock listo para la próxima</dt><dd>13 de 30</dd></div>
+        <div><dt>En el pozo verificados</dt><dd>193</dd></div>
+        <div><dt>Interesados nuevos</dt><dd>4</dd></div>
+      </dl>
+      <div class="next"><b>Lo que sigue</b>Es el riel de mayor palanca: un acuerdo de distribución
+      vale más que un trimestre de prospección.</div>
+    </div>
+  </div>
+</section>
+<!-- ═══════════ 03 ═══════════ -->
+<section id="outreach">
+  <div class="eyebrow">03 · Outreach</div>
+  <h2>87 contactos, cero rebotes</h2>
+
+  <div class="tblwrap">
+  <table>
+    <thead><tr><th>Riel</th><th>Enviados</th><th>Rebotes</th><th>Interesados nuevos</th><th>Stock para la próxima</th><th>Pozo verificado</th></tr></thead>
+    <tbody>
+      <tr><td><b>Familias</b></td><td>46</td><td>0</td><td>—</td><td>4 de 30</td><td>173</td></tr>
+      <tr><td><b>Retiros</b></td><td>29</td><td>0</td><td>4</td><td>12 de 30</td><td>195</td></tr>
+      <tr><td><b>Agencias</b></td><td>12</td><td>0</td><td>4</td><td>13 de 30</td><td>193</td></tr>
+      <tr><td><b>Total</b></td><td><b>87</b></td><td><b>0</b></td><td><b>8</b></td><td><b>29 de 90</b></td><td><b>561</b></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="src"><span class="chip obs">obs</span> Ledgers de envío + base del Toolkit, 22-sep. De por vida:
+  651 envíos reales, 4 fallas técnicas — 99,4% de entrega.</p>
+
+  <!-- ░░ BLOQUE SENSIBLE · respuestas textuales de terceros ░░ -->
+  <h3 style="margin-top:26px">Quién contestó</h3>
+  <p class="lead">Ocho organizaciones nuevas esta semana. 22 acumuladas.</p>
+  <div class="two">
+    <div class="card">
+      <div class="cap" style="font-family:var(--mono);font-size:9.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--t-4);margin-bottom:8px">Quieren distribuir la casa</div>
+      <ul class="plain">
+        <li><b>Voyager Club</b> — «Estamos interesados en sumar La Chamana a nuestra colección»</li>
+        <li><b>Boutique Homes</b> — cuenta de anfitrión ya abierta para publicar la casa</li>
+        <li><b>Personal Villas</b> — preguntando si las tarifas incluyen comisión</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="cap" style="font-family:var(--mono);font-size:9.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--t-4);margin-bottom:8px">Quieren hablar o reservar</div>
+      <ul class="plain">
+        <li><b>Key Caribe</b> — «¿Tenés tiempo para una llamada mañana o el jueves?»</li>
+        <li><b>Sol Seed Retreats</b> — 6 noches para enero, febrero o marzo de 2028</li>
+        <li><b>Samson Waters</b>, <b>Osa Property</b>, <b>Concierge Adventure</b> — piden llamada, dirección o términos</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout">
+    <p><b>Un dato de precio, de frente.</b> Un operador de retiros contestó que le encantaría pero
+    que no está seguro de que su clientela pueda pagar la tarifa. Es la primera objeción de precio
+    explícita del riel, y <b>confirma la tesis en vez de contradecirla</b>: el comprador es el grupo
+    privado y la agencia de lujo, no el retiro de yoga promedio.</p>
+  </div>
+  <!-- ░░ FIN BLOQUE SENSIBLE ░░ -->
+
+  <h3 style="margin-top:26px">Lo que ahora sabemos que cuesta</h3>
+  <p class="lead">Primera medición de la economía del riel, sobre 30 días.</p>
+  <div class="strip">
+    <div class="tile"><b>USD 2,31</b><span>un primer contacto a un nombre nuevo<br><span class="chip obs">obs</span></span></div>
+    <div class="tile ok"><b>USD 0,68</b><span>un seguimiento a alguien ya contactado<br><span class="chip obs">obs</span></span></div>
+    <div class="tile"><b>50%</b><span>del gasto de outreach se va en buscar nombres<br><span class="chip obs">obs</span></span></div>
+  </div>
+
+  <div class="callout g">
+    <p><b>La palanca está a la vista.</b> Hay <b>318 contactos tibios con seguimiento vencido</b>
+    — 137 agencias, 115 familias, 66 retiros. Nada los bloquea. Son gente que ya vio la casa una
+    vez y cuesta un tercio volver a tocarlos. Es el movimiento más barato disponible.</p>
+  </div>
+</section>
+<!-- ═══════════ 04 ═══════════ -->
+<section id="pauta">
+  <div class="eyebrow">04 · Pauta</div>
+  <h2>Un solo canal, y el que funciona</h2>
+
+  <div class="two">
+    <div class="card">
+      <div class="cap" style="font-family:var(--mono);font-size:9.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--t-4);margin-bottom:6px">Google · apagado desde el 15-sep</div>
+      <div style="font-family:var(--mono);font-size:30px;font-weight:600;color:var(--red);line-height:1.1">USD 475</div>
+      <p style="font-size:12.5px;margin:6px 0 0">gastados de por vida, <b>cero conversiones</b>.
+      Apagarlo no fue un recorte: fue dejar de pagar por silencio. <span class="chip obs">obs</span></p>
+    </div>
+    <div class="card">
+      <div class="cap" style="font-family:var(--mono);font-size:9.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--t-4);margin-bottom:6px">Meta · el único que produce contacto</div>
+      <div style="font-family:var(--mono);font-size:30px;font-weight:600;color:var(--green);line-height:1.1">15 conversaciones</div>
+      <p style="font-size:12.5px;margin:6px 0 0">por USD 153 de por vida. Todo el presupuesto pasó
+      acá. <span class="chip obs">obs</span></p>
+    </div>
+  </div>
+
+  <h3 style="margin-top:26px">Meta · los 7 días (15 al 21 de septiembre)</h3>
+  <div class="tblwrap">
+  <table>
+    <thead><tr><th>Métrica</th><th>7 días</th><th>Lectura</th></tr></thead>
+    <tbody>
+      <tr><td>Gasto</td><td><b>ARS 256.661 ≈ USD 170</b></td><td>Una sola campaña</td></tr>
+      <tr><td>Personas alcanzadas</td><td>1.835</td><td>Metros afluentes de EE.UU.</td></tr>
+      <tr><td>Clics</td><td>104</td><td><b>CTR 4,1%</b> — alto para público frío</td></tr>
+      <tr><td>Conversaciones abiertas</td><td><b>12</b></td><td>DM de Instagram</td></tr>
+      <tr><td>Costo por conversación</td><td>ARS 21.388 ≈ <b>USD 14</b></td><td>USD 8,49 de por vida</td></tr>
+      <tr><td>Frecuencia</td><td>1,38</td><td>Umbral de fatiga 2,5 — <b>sobra público</b></td></tr>
+      <tr><td>Conversaciones calificadas</td><td><span class="chip unk">sin medir</span></td><td>Nadie las clasificó todavía. No es cero, es desconocido</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3 style="margin-top:22px">Las tres creatividades</h3>
+  <div class="cmp">
+    <div class="crow"><div class="clabel">V2 «one-group»</div><div class="ctrack"><div class="cbar a" style="width:100%"></div></div><div class="cval">6</div></div>
+    <div class="crow"><div class="clabel">V3 «occasion»</div><div class="ctrack"><div class="cbar b" style="width:50%"></div></div><div class="cval">3</div></div>
+    <div class="crow"><div class="clabel">V1 «yours-alone»</div><div class="ctrack"><div class="cbar c" style="width:50%"></div></div><div class="cval">3</div></div>
+  </div>
+  <p class="src">Conversaciones por creatividad, 7 días. Costo: V3 ARS 18.367 · V2 ARS 20.236 ·
+  V1 ARS 26.716. <span class="chip obs">obs</span></p>
+  <div class="callout g">
+    <p><b>Una lección que ya habíamos pagado.</b> Hace dos semanas V1 era la ganadora clara y V2
+    parecía muerta. Se decidió no podarla — y hoy V2 trae la mitad de las conversaciones. Con estos
+    volúmenes, matar una creatividad temprano es matar ruido, no un perdedor.</p>
+  </div>
+
+  <h3 style="margin-top:26px">Lo que se decidió el 19-sep</h3>
+  <ul class="plain">
+    <li><b>Presupuesto diario:</b> ARS 30.000 → <b>45.000</b> (+50%, USD 29,80/día).</li>
+    <li><b>Tope recalculado</b> a lo ya gastado + 7 días exactos: <b>la campaña se frena sola
+    alrededor del 26-sep</b> sin que nadie tenga que acordarse.</li>
+    <li><b>El hallazgo que reencuadró el pedido:</b> la campaña tenía un tope a punto de agotarse
+    y le quedaban 2,8 días. Subir el diario sin tocar el tope <b>la habría matado antes, no después</b>.
+    La palanca era el tope.</li>
+    <li><b>Se cerró una discrepancia vieja:</b> los «~USD 450 de Meta» de la llamada del 14 eran de
+    <b>Google</b>. Meta llevaba USD 153. Se habían confundido las dos cuentas.</li>
+  </ul>
+
+  <div class="callout">
+    <p><b>Lo único que falta para decidir el 30 con los ojos abiertos.</b> Las 15 conversaciones
+    necesitan un veredicto humano: cuáles sirven y cuáles no. Hoy hay cero registradas, y eso es un
+    hueco de medición, no un veredicto. Por eso la semana se compró con tope: si al 26-sep el libro
+    no existe, la campaña se frena sola.</p>
+  </div>
+</section>
+<!-- ═══════════ 05 ═══════════ -->
+<section id="infra">
+  <div class="eyebrow">05 · Infraestructura</div>
+  <h2>El cockpit dejó de vivir en una laptop</h2>
+  <p class="lead">Es el cambio de infraestructura más importante del trimestre y en la práctica
+  significa una sola cosa: <b>la herramienta ya no depende de que la computadora de nadie esté
+  prendida.</b></p>
+
+  <div class="dia">
+    <svg viewBox="0 0 700 150" role="img" aria-label="Antes el cockpit se servía desde la Mac de Boris; desde el 17 de septiembre se sirve desde un servidor propio">
+      <text class="sv-k" x="0" y="14">ANTES · HASTA EL 17-SEP</text>
+      <rect class="sv-box" x="0" y="26" width="150" height="46" rx="8"/>
+      <text class="sv-t" x="14" y="46">Mac de Boris</text>
+      <text class="sv-s" x="14" y="62">prendida, o no hay cockpit</text>
+      <path class="sv-l dash" d="M150 49 H 250"/>
+      <rect class="sv-box" x="250" y="26" width="150" height="46" rx="8"/>
+      <text class="sv-t" x="264" y="46">gtm.meent.space</text>
+      <text class="sv-s" x="264" y="62">túnel a la laptop</text>
+      <path class="sv-l dash" d="M400 49 H 500"/>
+      <rect class="sv-box" x="500" y="26" width="150" height="46" rx="8"/>
+      <text class="sv-t" x="514" y="46">Bianca</text>
+      <text class="sv-s" x="514" y="62">depende de la laptop</text>
+
+      <text class="sv-k" x="0" y="100">AHORA · DESDE EL 17-SEP 22:05 UTC</text>
+      <rect class="sv-box warm" x="0" y="112" width="150" height="34" rx="8"/>
+      <text class="sv-t" x="14" y="133">Servidor propio</text>
+      <path class="sv-l hot" d="M150 129 H 250"/>
+      <rect class="sv-box warm" x="250" y="112" width="150" height="34" rx="8"/>
+      <text class="sv-t" x="264" y="133">gtm.meent.space</text>
+      <path class="sv-l hot" d="M400 129 H 500"/>
+      <rect class="sv-box warm" x="500" y="112" width="150" height="34" rx="8"/>
+      <text class="sv-t" x="514" y="133">Bianca · 24/7</text>
+    </svg>
+    <div class="dcap">Verificado con el servicio de la Mac apagado: el sitio siguió en pie. La Mac
+    ya no puede ser el origen aunque se quiera.</div>
+  </div>
+
+  <div class="quad">
+    <div class="col">
+      <div class="cap">1 · Despliegue</div>
+      <h3>Automático y reversible</h3>
+      <p style="font-size:12.5px;margin:6px 0 0">Si algo falla al instalar una mejora —descarga,
+      compilación, salud— <b>vuelve solo a la versión anterior</b> y avisa por Slack. Antes el
+      servidor podía quedarse 69 versiones atrasado sin que nada lo dijera.</p>
+    </div>
+    <div class="col">
+      <div class="cap">2 · Credencial</div>
+      <h3>Propia del servidor</h3>
+      <p style="font-size:12.5px;margin:6px 0 0">El motor corre sin depender de la sesión de nadie,
+      con un token de un año atado a la suscripción en vez de una cuenta facturada aparte.</p>
+    </div>
+    <div class="col">
+      <div class="cap">3 · Pantallas viejas</div>
+      <h3>Causa raíz arreglada</h3>
+      <p style="font-size:12.5px;margin:6px 0 0">El cockpit no mandaba instrucciones de caché: una
+      pestaña podía quedarse con una versión muerta <b>incluso recargando</b>. Apareció dos veces en
+      una hora. Ya está cerrado.</p>
+    </div>
+    <div class="col">
+      <div class="cap">4 · Control de calidad</div>
+      <h3>De 4 a 6 chequeos</h3>
+      <p style="font-size:12.5px;margin:6px 0 0">El chequeo automático de salud ganó dos preguntas y
+      una guarda que se pone en ámbar cuando un informe queda viejo, en vez de ponerse verde con un
+      archivo que documenta su propio fracaso.</p>
+    </div>
+  </div>
+
+  <h3 style="margin-top:26px">Lo que se construyó en El Chamán y el Toolkit</h3>
+  <p class="lead">71 mejoras en ocho días — 28 en el cerebro, 43 en el cockpit. Las cinco que cambian
+  el día a día:</p>
+  <div class="tblwrap">
+  <table>
+    <thead><tr><th>Qué</th><th>Qué cambia</th><th>Desde</th></tr></thead>
+    <tbody>
+      <tr><td><b>Modo mandato</b></td><td>Boris escribe una orden en el chat y la cadena entera corre sola: buscar, escribir, preparar, enviar, sellar. <b>Nunca</b> puede publicar en Instagram/Meta ni gastar plata — eso sigue siendo prensa humana.</td><td>17-sep</td></tr>
+      <tr><td><b>Stock semanal</b></td><td>Cada martes el sistema mide cuántos destinatarios faltan por campaña, cuánto cuesta llenarlos, y avisa por Slack. Un botón abastece la semana.</td><td>18-sep</td></tr>
+      <tr><td><b>Cola de respuestas</b></td><td>El escritorio dejó de ser una lista de mails y pasa a decir <b>a quién le toca contestar</b>.</td><td>17-sep</td></tr>
+      <tr><td><b>Parte semanal</b></td><td>Lo que Iru y Bianca reportan queda como recibo y registro. <b>La ausencia de un parte también se registra</b>, con su consecuencia.</td><td>15-sep</td></tr>
+      <tr><td><b>Cola de autoría</b></td><td>Cada mañana dice qué hay que escribir o decidir hoy, ordenado por consecuencia.</td><td>16-sep</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="callout n">
+    <p><b>Una nota de método.</b> Todo lo que el sistema afirma, lo mide. Cuando no sabe algo escribe
+    <span class="chip unk">sin medir</span> con la causa — nunca cero. Eso es lo que permitió cerrar
+    esta semana la discrepancia del gasto de pauta.</p>
+  </div>
+</section>
+
+<!-- ═══════════ 06 ═══════════ -->
+<section id="sigue">
+  <div class="eyebrow">06 · Esta semana</div>
+  <h2>Tres movimientos, por retorno</h2>
+
+  <div class="tblwrap">
+  <table>
+    <thead><tr><th>#</th><th>Movimiento</th><th>Por qué ahora</th><th>Costo</th></tr></thead>
+    <tbody>
+      <tr><td><b>1</b></td><td><b>Reactivar los 318 tibios</b></td><td>Ya conocen la casa. El seguimiento está parado desde el 7-sep sin nada que lo bloquee.</td><td>USD 0,68 por toque</td></tr>
+      <tr><td><b>2</b></td><td><b>Clasificar las conversaciones de Meta</b></td><td>Sin eso, el 30-sep se decide a ciegas. Es la única pieza que falta para juzgar la pauta por noches y no por clics.</td><td>Tiempo humano</td></tr>
+      <tr><td><b>3</b></td><td><b>Abastecer la semana</b></td><td>El stock está en 29 destinatarios contra una meta de 90.</td><td>USD 30–157, un botón</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="callout">
+    <p><b>Y una decisión comercial que sigue esperando y vale plata:</b> qué incluye exactamente la
+    tarifa. Abierta desde abril, con dueño asignado. Cada respuesta interesada que pide términos la
+    vuelve a tocar.</p>
+  </div>
+</section>
+</main>
+
+<footer>
+  <p><b>Parte de la máquina comercial</b> — El Chamán (AG-000) + Boris, BOTH Ventures.
+  Se lee junto con los partes de Iru y de Bianca; no los reemplaza.</p>
+  <p>Todas las cifras salen de los registros del sistema, medidas el <b>22 de septiembre de 2026</b>:
+  ledgers de envío, base del Toolkit, pulls por API de las cuentas de pauta y el historial de los dos
+  repos. Lo que el sistema no sabe figura como <span class="chip unk">sin medir</span>, nunca como cero.</p>
+  <p><span class="chip obs">obs</span> medido &nbsp; <span class="chip est">est</span> estimado &nbsp;
+  <span class="chip unk">sin medir</span> desconocido</p>
+</footer>
+
+</div>
+</body>
+</html>
