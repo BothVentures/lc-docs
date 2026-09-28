@@ -52,16 +52,45 @@ b{font-weight:600}
 .ch{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:6px 16px}
 .ch .aside{font-size:13px;color:var(--ink-3)}
 
-/* temperatura */
-.temp{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden}
-.tc{padding:16px 16px 14px;display:grid;gap:6px;align-content:start;border-top:4px solid var(--s);min-width:0}
-.tc+.tc{border-left:1px solid var(--line)}
-.tc.r{--s:var(--crit)} .tc.a{--s:var(--warn)} .tc.g{--s:var(--good)}
-.tc .state{display:flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;color:var(--s)}
-.tc .v{font-size:34px;line-height:1}
-.tc .v small{font-size:17px;color:var(--ink-3)}
-.tc .tr{font-size:13px;color:var(--ink-2);line-height:1.35}
-.tc .tr .ar{font-weight:600;color:var(--ink)}
+/* temperatura — cinco cubetas, misma anatomía en todas */
+.tlegend{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:12.5px;color:var(--ink-3);padding:0 2px}
+.tlegend span{display:inline-flex;align-items:center;gap:6px}
+.tlegend .dot{width:8px;height:8px}
+.tlegend .r{color:var(--crit)} .tlegend .a{color:var(--warn)} .tlegend .g{color:var(--good)}
+.temp{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.tc{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 15px 13px;display:grid;grid-template-rows:auto auto auto 1fr;gap:8px;min-width:0}
+.tc.r{--s:var(--crit);--sbg:var(--crit-bg)} .tc.a{--s:var(--warn);--sbg:var(--warn-bg)} .tc.g{--s:var(--good);--sbg:var(--good-bg)}
+.tc .hd{display:flex;justify-content:space-between;align-items:center;gap:4px 6px;flex-wrap:wrap}
+.tc .state{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:600;color:var(--s);background:var(--sbg);padding:2px 8px;border-radius:99px;white-space:nowrap}
+.tc .state .dot{width:6px;height:6px}
+.tc .v{font-size:38px;line-height:1;display:flex;align-items:baseline;gap:5px}
+.tc .v small{font-size:15px;color:var(--ink-3);font-family:var(--ui)}
+.tc .u{font-size:13px;color:var(--ink-2);line-height:1.3;margin-top:-4px}
+.tc .cmp{font-size:12.5px;color:var(--ink-3);border-top:1px solid var(--line-2);padding-top:7px;align-self:end;display:flex;gap:6px;align-items:baseline;flex-wrap:wrap}
+.tc .cmp b{color:var(--ink);font-weight:600}
+.tc .cmp .ar{font-weight:700;color:var(--s)}
+
+/* embudos */
+.funnels{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.fn{border:1px solid var(--line-2);border-radius:10px;padding:14px 16px 12px;background:var(--card-2);display:grid;gap:10px;align-content:start;min-width:0}
+.fn .fh{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.fn .fh h3{font-size:20px}
+.fn .fh span{font-size:12px;color:var(--ink-3);white-space:nowrap}
+.frows{display:grid;gap:5px}
+.fr{display:grid;grid-template-columns:96px minmax(0,1fr) 92px;gap:8px;align-items:center;font-size:12.5px}
+.fr .fl{color:var(--ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fr .fb{height:22px;display:flex;justify-content:center}
+.fr .fb i{display:block;height:100%;background:var(--copper);border-radius:4px;min-width:6px}
+.fr.f1 .fb i{background:var(--copper)} .fr.f2 .fb i{background:color-mix(in oklab,var(--copper) 78%,var(--card))} .fr.f3 .fb i{background:color-mix(in oklab,var(--copper) 58%,var(--card))} .fr.f4 .fb i{background:color-mix(in oklab,var(--copper) 40%,var(--card))} .fr.f5 .fb i{background:color-mix(in oklab,var(--copper) 26%,var(--card))}
+.fr.unk .fb i{background:transparent;border:1.5px dashed var(--ink-3);min-width:40px}
+.fr .fv{text-align:right;display:flex;justify-content:flex-end;align-items:baseline;gap:5px;white-space:nowrap}
+.fr .fv .num{font-size:19px;color:var(--ink)}
+.fr .fv small{color:var(--ink-3);font-size:11.5px}
+.fr.lost{opacity:.75}
+.fr.lost .fb i{background:transparent;border:1px solid var(--line);}
+.fflow{font-size:12.5px;color:var(--ink-2);border-top:1px solid var(--line-2);padding-top:8px;display:flex;flex-wrap:wrap;gap:4px 12px}
+.fflow b{color:var(--ink);font-weight:600}
+.fflow .up{color:var(--good)} .fflow .dn{color:var(--crit)}
 
 .headline{padding:4px 2px 0;display:grid;gap:4px}
 .headline h2{font-size:clamp(28px,4vw,36px)}
@@ -171,9 +200,11 @@ footer code{font-size:12px}
 
 @media (max-width:760px){
   .temp{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .tc+.tc{border-left:0}
-  .tc:nth-child(even){border-left:1px solid var(--line)}
-  .tc:last-child{grid-column:1/-1;border-left:0}
+  .tc:last-child{grid-column:1/-1}
+  .tc .hd{flex-wrap:wrap}
+  .tc .v{font-size:32px}
+  .funnels{grid-template-columns:1fr}
+  .fr{grid-template-columns:84px minmax(0,1fr) 84px}
   .seq{grid-template-columns:repeat(2,minmax(0,1fr))}
   .sq:nth-child(3){border-left:0}
   .sq:nth-child(n+3){border-top:1px solid var(--line-2)}
@@ -202,36 +233,42 @@ footer code{font-size:12px}
   </div>
 </header>
 
-<section class="temp" aria-label="Temperatura por área">
+<div class="tlegend" aria-label="Cómo leer las cubetas">
+  <span><b>Cinco cubetas.</b> Arriba, qué mide y su estado. En el medio, el número de la semana. Abajo, contra la semana anterior.</span>
+  <span class="r"><span class="dot"></span>pide decisión</span>
+  <span class="a"><span class="dot"></span>vigilar</span>
+  <span class="g"><span class="dot"></span>en marcha</span>
+</div>
+<section class="temp" aria-label="Las cinco cubetas">
   <div class="tc r">
-    <div class="lbl">Caja</div>
-    <div class="state"><span class="dot"></span>Crítica</div>
-    <div class="v num">1,78 <small>meses</small></div>
-    <div class="tr">a fin de mes · hoy 2,13 <span class="ar">→</span> era 2,09 al 31-ago</div>
+    <div class="hd"><span class="lbl">Caja</span><span class="state"><span class="dot"></span>Crítica</span></div>
+    <div class="v num">1,78<small>meses</small></div>
+    <div class="u">de pista a fin de mes. Sin reservas nuevas, llega a cero ~23-nov.</div>
+    <div class="cmp">31-ago <b>2,09</b> <span class="ar">→</span> <b>1,78</b></div>
   </div>
   <div class="tc r">
-    <div class="lbl">Reservas</div>
-    <div class="state"><span class="dot"></span>Frenadas</div>
-    <div class="v num">0</div>
-    <div class="tr"><span class="ar">→</span> ninguna desde el 5-ago</div>
+    <div class="hd"><span class="lbl">Reservas</span><span class="state"><span class="dot"></span>Frenadas</span></div>
+    <div class="v num">0<small>nuevas</small></div>
+    <div class="u">esta semana. La última entró el 5-ago. 7 de 96 noches.</div>
+    <div class="cmp">sem. anterior <b>0</b> <span class="ar">→</span> <b>0</b></div>
   </div>
   <div class="tc a">
-    <div class="lbl">Pipeline</div>
-    <div class="state"><span class="dot"></span>Depurado</div>
-    <div class="v num">~80<small>K</small></div>
-    <div class="tr"><span class="ar">↓</span> ponderado · salieron 5</div>
+    <div class="hd"><span class="lbl">Pipeline</span><span class="state"><span class="dot"></span>Depurado</span></div>
+    <div class="v num">~80<small>K USD</small></div>
+    <div class="u">ponderado por probabilidad. 195K nominal en 8 leads.</div>
+    <div class="cmp">salieron <b>5</b> (167K) <span class="ar">·</span> entraron <b>3</b></div>
   </div>
   <div class="tc a">
-    <div class="lbl">Distribución</div>
-    <div class="state"><span class="dot"></span>Se mueve</div>
-    <div class="v num">+2</div>
-    <div class="tr"><span class="ar">↑</span> ganados · 12 activos</div>
+    <div class="hd"><span class="lbl">Distribución</span><span class="state"><span class="dot"></span>Se mueve</span></div>
+    <div class="v num">2<small>acuerdos</small></div>
+    <div class="u">ganados esta semana. 12 conversaciones activas; 9 firmados sin noches.</div>
+    <div class="cmp">sem. anterior <b>0</b> <span class="ar">→</span> <b>2</b></div>
   </div>
   <div class="tc g">
-    <div class="lbl">Máquina</div>
-    <div class="state"><span class="dot"></span>Produce</div>
-    <div class="v num">6</div>
-    <div class="tr"><span class="ar">↓</span> interesados · eran 8</div>
+    <div class="hd"><span class="lbl">Adquisición</span><span class="state"><span class="dot"></span>Produce</span></div>
+    <div class="v num">6<small>interesados</small></div>
+    <div class="u">organizaciones nuevas por email. 65 enviados, 7 rebotes; 6 conversaciones por pauta.</div>
+    <div class="cmp">sem. anterior <b>8</b> <span class="ar">→</span> <b>6</b></div>
   </div>
 </section>
 
@@ -257,6 +294,60 @@ footer code{font-size:12px}
   <details>
     <summary>Cómo se calcula</summary>
     <div class="dbody"><p>Parte del saldo informado el 27-sep, sin conciliar contra el banco (decisión D-0913-08 abierta). Quema USD 625 por día. El cobro de noviembre no tiene fecha: se dibuja a mitad de mes. No descuenta la deuda con Pato (USD 100.000). Cinco leads más tienen estadía entre marzo de 2027 y septiembre de 2028, fuera del gráfico.</p></div>
+  </details>
+</section>
+
+<section class="card" aria-label="Los embudos">
+  <div class="ch"><h2>Los embudos</h2><span class="aside">dónde está cada cosa hoy, y qué pasó esta semana</span></div>
+  <div class="funnels">
+    <div class="fn">
+      <div class="fh"><h3>Reservas</h3><span>CRM · hoy</span></div>
+      <div class="frows">
+        <div class="fr f1"><span class="fl">Consulta</span><div class="fb"><i style="width:100%"></i></div><span class="fv"><span class="num">6</span><small>13K</small></span></div>
+        <div class="fr f2"><span class="fl">Cotizado</span><div class="fb"><i style="width:83%"></i></div><span class="fv"><span class="num">5</span><small>112K</small></span></div>
+        <div class="fr f3"><span class="fl">En hold</span><div class="fb"><i style="width:83%"></i></div><span class="fv"><span class="num">5</span><small>69K</small></span></div>
+        <div class="fr f4"><span class="fl">Reservado</span><div class="fb"><i style="width:50%"></i></div><span class="fv"><span class="num">3</span><small>40K</small></span></div>
+        <div class="fr lost"><span class="fl">Perdidos</span><div class="fb"><i style="width:100%"></i></div><span class="fv"><span class="num">21</span><small>438K</small></span></div>
+      </div>
+      <div class="fflow">Esta semana: <span><b class="up">+5</b> entraron</span> <span><b>0</b> avanzaron</span> <span><b>0</b> reservados</span> <span><b class="dn">7</b> a perdidos</span></div>
+    </div>
+    <div class="fn">
+      <div class="fh"><h3>Distribución</h3><span>CRM · hoy</span></div>
+      <div class="frows">
+        <div class="fr f1"><span class="fl">Identificado</span><div class="fb"><i style="width:25%"></i></div><span class="fv"><span class="num">3</span></span></div>
+        <div class="fr f2"><span class="fl">Conversando</span><div class="fb"><i style="width:75%"></i></div><span class="fv"><span class="num">9</span></span></div>
+        <div class="fr f3"><span class="fl">Términos</span><div class="fb"><i style="width:67%"></i></div><span class="fv"><span class="num">8</span></span></div>
+        <div class="fr f4"><span class="fl">Acuerdo</span><div class="fb"><i style="width:100%"></i></div><span class="fv"><span class="num">12</span><small>0 noches</small></span></div>
+        <div class="fr lost"><span class="fl">Declinaron</span><div class="fb"><i style="width:83%"></i></div><span class="fv"><span class="num">10</span></span></div>
+      </div>
+      <div class="fflow">Esta semana: <span><b class="up">+7</b> entraron</span> <span><b class="up">2</b> avanzaron</span> <span><b class="up">1</b> acuerdo</span> <span><b class="dn">2</b> declinaron</span></div>
+    </div>
+    <div class="fn">
+      <div class="fh"><h3>Outreach por email</h3><span>de por vida · 3 rieles</span></div>
+      <div class="frows">
+        <div class="fr f1"><span class="fl">Contactados</span><div class="fb"><i style="width:100%"></i></div><span class="fv"><span class="num">577</span><small>orgs</small></span></div>
+        <div class="fr f2"><span class="fl">Respondieron</span><div class="fb"><i style="width:7%"></i></div><span class="fv"><span class="num">40</span><small>6,9%</small></span></div>
+        <div class="fr f3"><span class="fl">Interesados</span><div class="fb"><i style="width:4.9%"></i></div><span class="fv"><span class="num">28</span><small>4,9%</small></span></div>
+        <div class="fr f4"><span class="fl">En pipeline</span><div class="fb"><i style="width:2.8%"></i></div><span class="fv"><span class="num">16</span><small>2,8%</small></span></div>
+        <div class="fr f5"><span class="fl">Acuerdos</span><div class="fb"><i style="width:1%"></i></div><span class="fv"><span class="num">3</span><small>0,5%</small></span></div>
+      </div>
+      <div class="fflow">Esta semana: <span><b>65</b> enviados</span> <span><b>13</b> respondieron</span> <span><b class="up">6</b> interesados</span> <span><b class="dn">7</b> rebotes</span></div>
+    </div>
+    <div class="fn">
+      <div class="fh"><h3>Pauta en Meta</h3><span>20 → 26 sep · ~USD 204</span></div>
+      <div class="frows">
+        <div class="fr f1"><span class="fl">Alcanzados</span><div class="fb"><i style="width:100%"></i></div><span class="fv"><span class="num">3.251</span></span></div>
+        <div class="fr f2"><span class="fl">Clics</span><div class="fb"><i style="width:3.3%"></i></div><span class="fv"><span class="num">108</span><small>3,3%</small></span></div>
+        <div class="fr f3"><span class="fl">Conversaciones</span><div class="fb"><i style="width:1%"></i></div><span class="fv"><span class="num">6</span><small>USD 34 c/u</small></span></div>
+        <div class="fr unk"><span class="fl">Calificadas</span><div class="fb"><i></i></div><span class="fv"><small>sin medir</small></span></div>
+        <div class="fr f5"><span class="fl">Al pipeline</span><div class="fb"><i style="width:1%"></i></div><span class="fv"><span class="num">2</span><small>leads IG</small></span></div>
+      </div>
+      <div class="fflow">Google apagado desde el 15-sep: <span><b>USD 475</b> de por vida, 0 conversiones</span></div>
+    </div>
+  </div>
+  <details>
+    <summary>Cómo se leen</summary>
+    <div class="dbody"><p>Reservas y distribución son la foto del CRM hoy, con las etiquetas del cockpit (Inquiry · Quoted · Holding · Booked; Identified · In conversation · Terms drafted · Agreement signed). La fila «esta semana» es el flujo medido en los eventos de etapa del 22 al 28-sep. Los 7 perdidos de reservas incluyen a Three Birds (sin monto) y a MayaLuxe, que es el mismo grupo que Sotavento. El outreach cuenta organizaciones (dominios), no mensajes: 577 contactadas de por vida con 737 envíos reales. «En pipeline» son los deals del CRM cuya dueña es Lara. En Meta, «calificadas» no es cero: nadie las registró.</p></div>
   </details>
 </section>
 
@@ -324,7 +415,7 @@ footer code{font-size:12px}
   </section>
   <section class="card mini" aria-label="Lo que no cruza con el CRM">
     <div class="lbl">No cruza con el CRM</div>
-    <div class="big"><span class="num">6</span><span>diferencias para ver con Iru</span></div>
+    <div class="big"><span class="num">6</span><span>diferencias para ver con Iru · una se resolvió sola el 28-sep</span></div>
     <details>
       <summary>Ver las seis</summary>
       <div class="dbody"><ul class="recon">
@@ -333,31 +424,15 @@ footer code{font-size:12px}
         <li>Ritual Union no está en el CRM.</li>
         <li>Three Birds pasó a Lost en el CRM; el informe no lo nombra.</li>
         <li>Boutique Homes y Best Hotels Tulum, ganados en el CRM, no están en el informe.</li>
-        <li>MayaLuxe sigue abierto en el CRM: es el mismo grupo que Sotavento.</li>
+        <li>Arsene · Agencia Mahora entró en hold en el CRM el 28-sep; no está en el informe.</li>
       </ul></div>
     </details>
   </section>
 </div>
 
-<section class="card" aria-label="Distribución y partners">
-  <div class="ch"><h2>Distribución</h2><span class="aside">16 conversaciones · 5 vienen de Lara</span></div>
-  <div class="stages" aria-hidden="true">
-    <div class="stg s1" style="flex:4">4</div>
-    <div class="stg s2" style="flex:6">6</div>
-    <div class="stg s3" style="flex:2">2</div>
-    <div class="stg s4" style="flex:2">2</div>
-    <div class="stg s5" style="flex:2">2</div>
-  </div>
-  <div class="slegend">
-    <div><b>4</b>negociando</div>
-    <div><b>6</b>interés o reunión</div>
-    <div><b>2</b>esperan un grupo</div>
-    <div><b>2</b>ganados en el CRM</div>
-    <div><b>2</b>en pausa</div>
-  </div>
-  <details>
-    <summary>Quiénes</summary>
-    <div class="dbody"><div class="plist">
+<details class="card" style="padding-top:18px">
+  <summary>Partners de distribución · los 16, por etapa</summary>
+  <div class="dbody"><div class="plist">
       <div>Unique Villas Collection <span>· negocia términos</span></div>
       <div>Vacation in Tulum <span>· discrepancias de contrato</span></div>
       <div>Serandipians <span>· evaluación, EUR 4.000</span></div>
@@ -375,19 +450,12 @@ footer code{font-size:12px}
       <div>Luxury Villas Mexico <span>· en pausa</span></div>
       <div>Timbuktu Travel <span>· baja: sin México</span></div>
     </div>
-    <p>Los nueve acuerdos firmados antes de septiembre siguen sin noches. Arrancó una herramienta de recontacto con distribuidores (Iru, Marian, Pato).</p></div>
-  </details>
-</section>
+    <p>Los doce acuerdos del CRM siguen sin noches referidas. Arrancó una herramienta de recontacto con distribuidores (Iru, Marian, Pato).</p></div>
+  
+</details>
 
-<section class="card" aria-label="La máquina">
-  <div class="ch"><h2>La máquina</h2><span class="aside">22 → 27 sep</span></div>
-  <div class="mach">
-    <div class="mt"><div class="lbl">Envíos</div><div class="num">65</div><div class="d">0 fallas · eran 87</div></div>
-    <div class="mt"><div class="lbl">Rebotes duros</div><div class="num">7</div><div class="d">eran 0</div></div>
-    <div class="mt"><div class="lbl">Interesados</div><div class="num">6</div><div class="d">organizaciones · eran 8</div></div>
-    <div class="mt"><div class="lbl">Pauta Meta 7 d</div><div class="num">~204</div><div class="d">USD est. · 6 conversaciones · calificadas: sin medir</div></div>
-  </div>
-  <div class="lbl" style="margin-top:4px">De dónde vienen los 8 leads activos</div>
+<section class="card" aria-label="Origen de los leads activos">
+  <div class="ch"><h2>De dónde vienen los 8 leads activos</h2><span class="aside">USD nominal</span></div>
   <div class="origin" id="origin"></div>
 </section>
 
@@ -403,7 +471,7 @@ footer code{font-size:12px}
 </details>
 
 <footer>
-  <p><b>Cómo se armó.</b> Informe comercial de la semana (27-sep) · CRM y eventos de etapa en la base del toolkit · Cloudbeds · registros de envío · Meta del 20 al 26-sep · <code>.synergy/venture.yaml</code>. Todo leído sin escribir. Fichas, canales públicos y llamadas de la semana se suman al cierre del lunes.</p>
+  <p><b>Cómo se armó.</b> Informe comercial de la semana (27-sep) · CRM y eventos de etapa en la base del toolkit · Cloudbeds · registros de envío · Meta del 20 al 26-sep · <code>.synergy/venture.yaml</code>. Todo leído sin escribir. Fichas, canales públicos y llamadas de la semana se suman al cierre. CRM releído el 28-sep a la noche.</p>
   <p><b>Lo que no está.</b> La caja contra el banco · la fecha del cobro de noviembre · por qué se perdieron los cinco leads · cuántas conversaciones de la pauta estaban calificadas.</p>
   <p>Temperatura: propuesta de El Chamán a partir de los números de arriba. Flechas: contra la semana anterior o contra el último dato disponible.</p>
 </footer>
