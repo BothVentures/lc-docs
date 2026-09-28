@@ -59,8 +59,8 @@ b{font-weight:600}
 .note{font-size:13px;color:var(--ink-3);line-height:1.45}
 
 /* cubetas — misma anatomía en las cinco */
-.temp{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
-.tc{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 15px 12px;display:grid;grid-template-rows:auto auto auto 1fr;gap:8px;min-width:0}
+.temp{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));grid-template-rows:auto auto auto 1fr auto;gap:10px}
+.tc{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 15px 12px;display:grid;grid-template-rows:subgrid;grid-row:span 5;gap:8px;min-width:0}
 .tc.r{--s:var(--crit);--sbg:var(--crit-bg)} .tc.a{--s:var(--warn);--sbg:var(--warn-bg)} .tc.g{--s:var(--good);--sbg:var(--good-bg)}
 .tc .hd{display:flex;justify-content:space-between;align-items:center;gap:4px 6px;flex-wrap:wrap}
 .tc .state{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;color:var(--s);background:var(--sbg);padding:2px 8px;border-radius:99px;white-space:nowrap}
@@ -68,13 +68,10 @@ b{font-weight:600}
 .tc .v{font-size:40px;line-height:1;display:flex;align-items:baseline;gap:5px}
 .tc .v small{font-size:14px;color:var(--ink-3);font-family:var(--ui);font-weight:400}
 .tc .u{font-size:13px;color:var(--ink-2);line-height:1.35;margin-top:-4px}
-.tc .cmp{font-size:12.5px;color:var(--ink-3);border-top:1px solid var(--line-2);padding-top:7px;align-self:end;display:flex;gap:5px;align-items:baseline;flex-wrap:wrap}
+.tc .cmp{font-size:12.5px;color:var(--ink-3);border-top:1px solid var(--line-2);padding-top:7px;grid-row:5;align-self:stretch;display:flex;gap:5px;align-items:baseline;flex-wrap:wrap;align-content:start}
 .tc .cmp b{color:var(--ink);font-weight:600}
 .tc .cmp .ar{font-weight:700;color:var(--s)}
 
-.headline{padding:2px 2px 0;display:grid;gap:4px}
-.headline h2{font-size:clamp(28px,4vw,36px)}
-.headline p{color:var(--ink-2);font-size:15.5px}
 
 /* decisiones */
 .decs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
@@ -97,6 +94,10 @@ details summary:focus-visible{outline:2px solid var(--copper-ink);outline-offset
 .dbody{padding:4px 0 8px;font-size:14px;color:var(--ink-2);display:grid;gap:8px}
 .dc details .dbody{font-size:13px}
 details.card{padding-top:16px;padding-bottom:14px;gap:0}
+.dcard summary{gap:12px;min-height:40px}
+.dcard summary h2{flex:1;font-size:28px;color:var(--ink)}
+.dcard summary .aside{font-size:13px;color:var(--ink-3);font-weight:400}
+.dcard[open] summary{margin-bottom:12px}
 
 /* pista */
 .seq{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border:1px solid var(--line-2);border-radius:10px;overflow:hidden}
@@ -121,7 +122,7 @@ details.card{padding-top:16px;padding-bottom:14px;gap:0}
 .frows{display:grid;gap:5px}
 .fr{display:grid;grid-template-columns:100px minmax(0,1fr) 96px;gap:8px;align-items:center;font-size:12.5px}
 .fr .fl{color:var(--ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.fr .fb{height:22px;display:flex;justify-content:center}
+.fr .fb{height:22px;display:flex;justify-content:flex-start}
 .fr .fb i{display:block;height:100%;background:var(--copper);border-radius:4px;min-width:6px}
 .fr.f2 .fb i{opacity:.8} .fr.f3 .fb i{opacity:.62} .fr.f4 .fb i{opacity:.46} .fr.f5 .fb i{opacity:.34}
 .fr.unk .fb i{background:transparent;border:1.5px dashed var(--ink-3);min-width:40px}
@@ -162,12 +163,12 @@ details.card{padding-top:16px;padding-bottom:14px;gap:0}
 .keys{font-size:12.5px;color:var(--ink-3);display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center}
 
 /* entregas de la máquina */
-.ships{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.ships{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
 .ship{border:1px solid var(--line-2);border-radius:10px;overflow:hidden;display:grid;grid-template-rows:auto 1fr;min-width:0}
 .ship img{display:block;width:100%;height:auto;aspect-ratio:1100/640;object-fit:cover;object-position:top;border-bottom:1px solid var(--line-2);background:var(--line-2)}
-.ship .sb{padding:12px 14px 14px;display:grid;gap:6px;align-content:start}
-.ship h3{font-size:21px}
-.ship p{font-size:13.5px;color:var(--ink-2)}
+.ship .sb{padding:12px 13px 13px;display:grid;gap:6px;align-content:start}
+.ship h3{font-size:19px}
+.ship p{font-size:13px;color:var(--ink-2)}
 .ship .go{font-size:13.5px;font-weight:500;color:var(--copper-ink);text-decoration:none;display:inline-flex;align-items:center;gap:6px;min-height:32px}
 .ship .go:hover{text-decoration:underline}
 .ship .go:focus-visible{outline:2px solid var(--copper-ink);outline-offset:2px;border-radius:4px}
@@ -198,7 +199,7 @@ footer b{color:var(--ink-2)}
 #tip{position:fixed;pointer-events:none;z-index:10;background:var(--ink);color:var(--card);font-size:13px;line-height:1.4;padding:8px 11px;border-radius:7px;max-width:280px}
 
 @media (max-width:760px){
-  .temp{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .temp{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:none;grid-auto-rows:auto}
   .tc:first-child{grid-column:1/-1}
   .tc .v{font-size:34px}
   .seq{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -259,56 +260,7 @@ footer b{color:var(--ink-2)}
   </div>
 </section>
 
-<div class="headline">
-  <h2>La caja se mueve con señas, no con estadías.</h2>
-  <p>De USD 195K en pipeline, sólo USD 4K tiene estadía antes de que la caja llegue a cero. Lo único que alarga la pista antes de diciembre es cobrar una seña.</p>
-</div>
 
-<section class="card" aria-label="Decisiones para el martes">
-  <div class="ch"><h2>Para decidir el martes</h2><span class="aside">4 decisiones · A y B son las opciones</span></div>
-  <div class="decs">
-    <div class="dc">
-      <div class="k"><span class="lbl">Precio</span><span class="due">martes 29/09 · Evoke espera hasta ~4-oct</span></div>
-      <div class="q">Evoke pide ~45K por lo que cotizamos en 64K.</div>
-      <div class="ab">
-        <div><span class="ol">A</span><span>Sostener 64K. Seña ~32K = 1,7 meses de pista.</span></div>
-        <div><span class="ol">B</span><span>Ir a ~45K. Seña ~22K = 1,2 meses.</span></div>
-      </div>
-      <div class="who"><span><b>Decide</b> Daiana (precio) · Gastón (estrategia)</span><span><b>Iru propone</b> A, y espera una semana</span></div>
-      <details><summary>Contexto de Evoke</summary><div class="dbody"><p>20 personas del 3 al 11 de enero, con fiestas. Dice que el año pasado le ofrecieron la casa a ~45K. En paralelo la casa entra al 15% off de Thanksgiving de Maya Luxe, con OK de Pato.</p></div></details>
-    </div>
-    <div class="dc">
-      <div class="k"><span class="lbl">Canales pagos</span><span class="due">martes 29/09</span></div>
-      <div class="q">¿Pagar por entrar a redes con 1,8 meses de pista?</div>
-      <div class="ab">
-        <div><span class="ol">A</span><span>Canje y lo barato primero (Venue Retreat EUR 120).</span></div>
-        <div><span class="ol">B</span><span>Serandipians EUR 4.000 = ~0,25 meses.</span></div>
-      </div>
-      <div class="who"><span><b>Decide</b> Gastón, con Daiana</span><span><b>Iru propone</b> A: ya pidió canje a The Aficionados</span></div>
-      <details><summary>Contexto de los canales</summary><div class="dbody"><p>Serandipians: 824 agencias, 15% de comisión. The Aficionados: USD 5.820 el primer año. Venue Retreat: EUR 120–395. Potomac ofrece canje: 4 noches para 6 personas a cambio de editorial y redes.</p></div></details>
-    </div>
-    <div class="dc">
-      <div class="k"><span class="lbl">Posicionamiento</span><span class="due">martes 29/09</span></div>
-      <div class="q">¿Vender La Chamana también como casa de retiros?</div>
-      <div class="ab">
-        <div><span class="ol">A</span><span>Probarlo en discurso y materiales, sin tocar la web.</span></div>
-        <div><span class="ol">B</span><span>Villa privada; retiros como un segmento más.</span></div>
-      </div>
-      <div class="who"><span><b>Decide</b> Gastón · René (marca)</span><span><b>Iru propone</b> A</span></div>
-      <details><summary>A favor y en contra</summary><div class="dbody"><p>A favor: dos leads de retiro activos por USD 58K y cuatro de los doce partners venden retiros. En contra: One Yoga teme que la casa quede chica, el Templo recibe ~12 personas y ya llegó una objeción de precio de un operador de retiros.</p></div></details>
-    </div>
-    <div class="dc">
-      <div class="k"><span class="lbl">Pauta</span><span class="due">martes 29/09 · arranca el 1-oct</span></div>
-      <div class="q">¿Relanzar Meta el 1 de octubre con USD 600 en 15 días?</div>
-      <div class="ab">
-        <div><span class="ol">A</span><span>Sí: dos campañas (la de septiembre corregida + «quincena de festivales»). Si repite, ~USD 3.430 hasta el 9-dic.</span></div>
-        <div><span class="ol">B</span><span>Esperar a que Iru confirme las 4 consultas reales y que las 2 que faltan entren al CRM.</span></div>
-      </div>
-      <div class="who"><span><b>Decide</b> Boris (gasto) · Gastón y Pato (presupuesto)</span><span><b>Propone</b> el parte de pauta, A: septiembre cumplió la regla para escalar (4 consultas reales a ~USD 90, tope 150)</span></div>
-      <details><summary>Contexto de la pauta</summary><div class="dbody"><p>La campaña de septiembre se frenó el 27-sep por tope de gasto. Trajo 23 conversaciones por Instagram a ~USD 16 cada una; 4 de las 18 anotadas por Bianca son consultas reales de reserva. Lo aprendido: más plata sobre el mismo público no trajo más conversaciones (la semana del 18 gastó el triple y salieron las mismas 8), y Meta le dio la mitad del gasto al anuncio más caro. El detalle está en el parte de pauta, abajo.</p></div></details>
-    </div>
-  </div>
-</section>
 
 <section class="card" aria-label="La pista de caja">
   <div class="ch"><h2>La pista de caja</h2><span class="aside">USD · burn declarado 19.000 por mes</span></div>
@@ -385,14 +337,14 @@ footer b{color:var(--ink-2)}
 </section>
 
 <section class="card" aria-label="Lo que la máquina entregó esta semana">
-  <div class="ch"><h2>Lo que la máquina entregó</h2><span class="aside">dos piezas nuevas, con link</span></div>
+  <div class="ch"><h2>3 nuevas herramientas que se actualizarán semanalmente</h2><span class="aside">con link</span></div>
   <div class="ships">
     <div class="ship">
       <img src="parte-semanal-2026-W40-meta.jpg" alt="Vista previa del parte de pauta Meta: la campaña de Instagram al 28 de septiembre y la propuesta de octubre." width="1100" height="640">
       <div class="sb">
         <h3>Parte de pauta Meta · septiembre</h3>
         <p>La campaña de Instagram, cerrada y leída: 23 conversaciones a ~USD 16, 4 consultas reales a ~USD 90, qué anuncio funcionó y qué no. Y la propuesta de octubre: USD 600 en 15 días, en dos campañas, con tres escalones hasta el 9-dic si cada uno cumple.</p>
-        <a class="go" href="meta-campana-2026-09.html">Abrir el parte de pauta →</a>
+        <a class="go" href="https://bothventures.github.io/lc-docs/meta-campana-2026-09.html">Abrir el parte de pauta →</a>
         <span class="st">V1.2 · 28-sep · propone, no gasta</span>
       </div>
     </div>
@@ -403,6 +355,15 @@ footer b{color:var(--ink-2)}
         <p>Una página que le contesta a un lead «cuánto me cuesta, esas fechas, mi grupo» sin una persona en el medio: temporadas, suites, descuentos y add-ons, con el calendario tachando las noches que Cloudbeds ya tiene. Cierra con un aviso: la confirmación final es con alguien del equipo.</p>
         <a class="go" href="https://la-chamana-price-discovery.vercel.app/">Probar la herramienta →</a>
         <span class="st">v0.4.1 · publicada el 27-sep · espera D-0927-01: Daiana ratifica el tarifario</span>
+      </div>
+    </div>
+    <div class="ship">
+      <img src="parte-semanal-2026-W40-parte.jpg" alt="Vista previa de este parte semanal: las cinco cubetas y la pista de caja." width="1100" height="640">
+      <div class="sb">
+        <h3>Parte semanal · este tablero</h3>
+        <p>Caja, leads y decisiones en una página, cada lunes: el informe de Iru y el de Bianca cruzados con el CRM, Cloudbeds y los registros de la máquina. Cada número dice si es de la semana o acumulado, y de dónde sale.</p>
+        <a class="go" href="https://bothventures.github.io/lc-docs/parte-semanal-2026-W40.html">Abrir el parte →</a>
+        <span class="st">2026-W40 · primera edición · se publica los lunes</span>
       </div>
     </div>
   </div>
@@ -448,8 +409,7 @@ footer b{color:var(--ink-2)}
   </section>
   <section class="card mini" aria-label="Origen de los leads activos">
     <div class="lbl">De dónde vienen los 8 activos</div>
-    <div class="big"><span class="num">3 de 8</span><span>llegaron por el email de Lara · USD 122K</span></div>
-    <div class="lbars" id="origin"></div>
+        <div class="lbars" id="origin"></div>
   </section>
 </div>
 
@@ -485,6 +445,52 @@ footer b{color:var(--ink-2)}
     <div>Elevate Hospitality <span>· webinar de retiros 15/10</span></div>
     <div>The Rowe <span>· agencia de futbolistas, sin presión</span></div>
   </div></div>
+</details>
+
+<details class="card dcard" id="decisiones">
+  <summary><h2>Para decidir el martes</h2><span class="aside">4 decisiones · A y B son las opciones</span></summary>
+  <div class="decs">
+    <div class="dc">
+      <div class="k"><span class="lbl">Precio</span><span class="due">martes 29/09 · Evoke espera hasta ~4-oct</span></div>
+      <div class="q">Evoke pide ~45K por lo que cotizamos en 64K.</div>
+      <div class="ab">
+        <div><span class="ol">A</span><span>Sostener 64K. Seña ~32K = 1,7 meses de pista.</span></div>
+        <div><span class="ol">B</span><span>Ir a ~45K. Seña ~22K = 1,2 meses.</span></div>
+      </div>
+      <div class="who"><span><b>Decide</b> Daiana (precio) · Gastón (estrategia)</span><span><b>Iru propone</b> A, y espera una semana</span></div>
+      <details><summary>Contexto de Evoke</summary><div class="dbody"><p>20 personas del 3 al 11 de enero, con fiestas. Dice que el año pasado le ofrecieron la casa a ~45K. En paralelo la casa entra al 15% off de Thanksgiving de Maya Luxe, con OK de Pato.</p></div></details>
+    </div>
+    <div class="dc">
+      <div class="k"><span class="lbl">Canales pagos</span><span class="due">martes 29/09</span></div>
+      <div class="q">¿Pagar por entrar a redes con 1,8 meses de pista?</div>
+      <div class="ab">
+        <div><span class="ol">A</span><span>Canje y lo barato primero (Venue Retreat EUR 120).</span></div>
+        <div><span class="ol">B</span><span>Serandipians EUR 4.000 = ~0,25 meses.</span></div>
+      </div>
+      <div class="who"><span><b>Decide</b> Gastón, con Daiana</span><span><b>Iru propone</b> A: ya pidió canje a The Aficionados</span></div>
+      <details><summary>Contexto de los canales</summary><div class="dbody"><p>Serandipians: 824 agencias, 15% de comisión. The Aficionados: USD 5.820 el primer año. Venue Retreat: EUR 120–395. Potomac ofrece canje: 4 noches para 6 personas a cambio de editorial y redes.</p></div></details>
+    </div>
+    <div class="dc">
+      <div class="k"><span class="lbl">Posicionamiento</span><span class="due">martes 29/09</span></div>
+      <div class="q">¿Vender La Chamana también como casa de retiros?</div>
+      <div class="ab">
+        <div><span class="ol">A</span><span>Probarlo en discurso y materiales, sin tocar la web.</span></div>
+        <div><span class="ol">B</span><span>Villa privada; retiros como un segmento más.</span></div>
+      </div>
+      <div class="who"><span><b>Decide</b> Gastón · René (marca)</span><span><b>Iru propone</b> A</span></div>
+      <details><summary>A favor y en contra</summary><div class="dbody"><p>A favor: dos leads de retiro activos por USD 58K y cuatro de los doce partners venden retiros. En contra: One Yoga teme que la casa quede chica, el Templo recibe ~12 personas y ya llegó una objeción de precio de un operador de retiros.</p></div></details>
+    </div>
+    <div class="dc">
+      <div class="k"><span class="lbl">Pauta</span><span class="due">martes 29/09 · arranca el 1-oct</span></div>
+      <div class="q">¿Relanzar Meta el 1 de octubre con USD 600 en 15 días?</div>
+      <div class="ab">
+        <div><span class="ol">A</span><span>Sí: dos campañas (la de septiembre corregida + «quincena de festivales»). Si repite, ~USD 3.430 hasta el 9-dic.</span></div>
+        <div><span class="ol">B</span><span>Esperar a que Iru confirme las 4 consultas reales y que las 2 que faltan entren al CRM.</span></div>
+      </div>
+      <div class="who"><span><b>Decide</b> Boris (gasto) · Gastón y Pato (presupuesto)</span><span><b>Propone</b> el parte de pauta, A: septiembre cumplió la regla para escalar (4 consultas reales a ~USD 90, tope 150)</span></div>
+      <details><summary>Contexto de la pauta</summary><div class="dbody"><p>La campaña de septiembre se frenó el 27-sep por tope de gasto. Trajo 23 conversaciones por Instagram a ~USD 16 cada una; 4 de las 18 anotadas por Bianca son consultas reales de reserva. Lo aprendido: más plata sobre el mismo público no trajo más conversaciones (la semana del 18 gastó el triple y salieron las mismas 8), y Meta le dio la mitad del gasto al anuncio más caro. El detalle está en el parte de pauta, abajo.</p></div></details>
+    </div>
+  </div>
 </details>
 
 <footer>
