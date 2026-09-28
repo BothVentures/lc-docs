@@ -77,7 +77,7 @@ b{font-weight:600}
 .headline p{color:var(--ink-2);font-size:15.5px}
 
 /* decisiones */
-.decs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.decs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
 .dc{border:1px solid var(--line);border-radius:10px;padding:14px 15px;display:grid;gap:10px;align-content:start}
 .dc .k{display:flex;justify-content:space-between;gap:8px;font-size:12px}
 .dc .k .due{color:var(--ink-3)}
@@ -161,6 +161,18 @@ details.card{padding-top:16px;padding-bottom:14px;gap:0}
 .sum .num{font-size:26px;color:var(--ink);margin-right:4px}
 .keys{font-size:12.5px;color:var(--ink-3);display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center}
 
+/* entregas de la máquina */
+.ships{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.ship{border:1px solid var(--line-2);border-radius:10px;overflow:hidden;display:grid;grid-template-rows:auto 1fr;min-width:0}
+.ship img{display:block;width:100%;height:auto;aspect-ratio:1100/640;object-fit:cover;object-position:top;border-bottom:1px solid var(--line-2);background:var(--line-2)}
+.ship .sb{padding:12px 14px 14px;display:grid;gap:6px;align-content:start}
+.ship h3{font-size:21px}
+.ship p{font-size:13.5px;color:var(--ink-2)}
+.ship .go{font-size:13.5px;font-weight:500;color:var(--copper-ink);text-decoration:none;display:inline-flex;align-items:center;gap:6px;min-height:32px}
+.ship .go:hover{text-decoration:underline}
+.ship .go:focus-visible{outline:2px solid var(--copper-ink);outline-offset:2px;border-radius:4px}
+.ship .st{font-size:11.5px;color:var(--ink-3)}
+
 /* pareja */
 .pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
 .mini .big{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
@@ -192,7 +204,7 @@ footer b{color:var(--ink-2)}
   .seq{grid-template-columns:repeat(2,minmax(0,1fr))}
   .sq:nth-child(3){border-left:0}
   .sq:nth-child(n+3){border-top:1px solid var(--line-2)}
-  .decs,.pair,.plist,.funnels{grid-template-columns:1fr}
+  .decs,.pair,.plist,.funnels,.ships{grid-template-columns:1fr}
   .fr{grid-template-columns:88px minmax(0,1fr) 84px}
   .prow{grid-template-columns:minmax(0,1fr) 112px}
   .prow .track{grid-column:1/-1;grid-row:2}
@@ -253,7 +265,7 @@ footer b{color:var(--ink-2)}
 </div>
 
 <section class="card" aria-label="Decisiones para el martes">
-  <div class="ch"><h2>Para decidir el martes</h2><span class="aside">3 decisiones · A y B son las opciones</span></div>
+  <div class="ch"><h2>Para decidir el martes</h2><span class="aside">4 decisiones · A y B son las opciones</span></div>
   <div class="decs">
     <div class="dc">
       <div class="k"><span class="lbl">Precio</span><span class="due">martes 29/09 · Evoke espera hasta ~4-oct</span></div>
@@ -284,6 +296,16 @@ footer b{color:var(--ink-2)}
       </div>
       <div class="who"><span><b>Decide</b> Gastón · René (marca)</span><span><b>Iru propone</b> A</span></div>
       <details><summary>A favor y en contra</summary><div class="dbody"><p>A favor: dos leads de retiro activos por USD 58K y cuatro de los doce partners venden retiros. En contra: One Yoga teme que la casa quede chica, el Templo recibe ~12 personas y ya llegó una objeción de precio de un operador de retiros.</p></div></details>
+    </div>
+    <div class="dc">
+      <div class="k"><span class="lbl">Pauta</span><span class="due">martes 29/09 · arranca el 1-oct</span></div>
+      <div class="q">¿Relanzar Meta el 1 de octubre con USD 600 en 15 días?</div>
+      <div class="ab">
+        <div><span class="ol">A</span><span>Sí: dos campañas (la de septiembre corregida + «quincena de festivales»). Si repite, ~USD 3.430 hasta el 9-dic.</span></div>
+        <div><span class="ol">B</span><span>Esperar a que Iru confirme las 4 consultas reales y que las 2 que faltan entren al CRM.</span></div>
+      </div>
+      <div class="who"><span><b>Decide</b> Boris (gasto) · Gastón y Pato (presupuesto)</span><span><b>Propone</b> el parte de pauta, A: septiembre cumplió la regla para escalar (4 consultas reales a ~USD 90, tope 150)</span></div>
+      <details><summary>Contexto de la pauta</summary><div class="dbody"><p>La campaña de septiembre se frenó el 27-sep por tope de gasto. Trajo 23 conversaciones por Instagram a ~USD 16 cada una; 4 de las 18 anotadas por Bianca son consultas reales de reserva. Lo aprendido: más plata sobre el mismo público no trajo más conversaciones (la semana del 18 gastó el triple y salieron las mismas 8), y Meta le dio la mitad del gasto al anuncio más caro. El detalle está en el parte de pauta, abajo.</p></div></details>
     </div>
   </div>
 </section>
@@ -345,21 +367,45 @@ footer b{color:var(--ink-2)}
       <div class="fflow">Esta semana: <span><b>65</b> enviados</span> <span><b>13</b> respondieron</span> <span><b class="up">6</b> interesadas</span> <span><b class="dn">7</b> rebotes</span></div>
     </div>
     <div class="fn">
-      <div class="fh"><h3>Pauta en Meta</h3><span>último corte, 20 → 26 sep · ~USD 204</span></div>
+      <div class="fh"><h3>Pauta en Meta</h3><span>la campaña, 4 → 27 sep · ~USD 362</span></div>
       <div class="frows">
-        <div class="fr f1"><span class="fl">Alcanzados</span><div class="fb"><i style="width:100%"></i></div><span class="fv"><span class="num">3.251</span></span></div>
-        <div class="fr f2"><span class="fl">Clics</span><div class="fb"><i style="width:3.3%"></i></div><span class="fv"><span class="num">108</span><small>3,3%</small></span></div>
-        <div class="fr f3"><span class="fl">Conversaciones</span><div class="fb"><i style="width:1%"></i></div><span class="fv"><span class="num">6</span><small>USD 34 cada una</small></span></div>
-        <div class="fr unk"><span class="fl">Calificadas</span><div class="fb"><i></i></div><span class="fv"><small>sin medir · al menos 2</small></span></div>
-        <div class="fr f5"><span class="fl">Al CRM</span><div class="fb"><i style="width:1%"></i></div><span class="fv"><span class="num">2</span><small>leads</small></span></div>
+        <div class="fr f1"><span class="fl">Vieron</span><div class="fb"><i style="width:100%"></i></div><span class="fv"><span class="num">4.951</span></span></div>
+        <div class="fr f2"><span class="fl">Clics</span><div class="fb"><i style="width:4.5%"></i></div><span class="fv"><span class="num">221</span><small>4,5%</small></span></div>
+        <div class="fr f3"><span class="fl">Escribieron</span><div class="fb"><i style="width:1%"></i></div><span class="fv"><span class="num">23</span><small>~USD 16 c/u</small></span></div>
+        <div class="fr f4"><span class="fl">Con intención</span><div class="fb"><i style="width:1%"></i></div><span class="fv"><span class="num">4</span><small>de 18 anotadas (5 sin anotar) · ~USD 90</small></span></div>
+        <div class="fr f5"><span class="fl">Al CRM</span><div class="fb"><i style="width:1%"></i></div><span class="fv"><span class="num">2</span><small>leads · faltan 2</small></span></div>
       </div>
-      <div class="fflow">Google, apagado desde el 15-sep: <span><b>USD 475</b> gastados desde julio, 0 conversiones</span></div>
+      <div class="fflow"><span>Frenada el 27-sep por tope de gasto</span> <span>Google apagado desde el 15-sep: <b>USD 475</b> desde julio, 0 conversiones</span></div>
     </div>
   </div>
   <details>
     <summary>Cómo se leen los embudos</summary>
-    <div class="dbody"><p>Reservas y Distribución son la foto del CRM hoy, por etapa, con los nombres del cockpit; las barras son proporcionales a la cantidad, y la fila «perdidos» va en contorno. Iru trabaja 8 de los 16 abiertos de reservas: los otros 8 son consultas frías o cerradas. Los 6 perdidos de la semana son los 5 que Iru informa (USD 167K) más Three Birds, sin monto; el CRM tiene 7 filas porque MayaLuxe y Sotavento eran la misma consulta. Los 2 acuerdos de la semana son Boutique Homes y Best Hotels Tulum. El outreach cuenta organizaciones, no mensajes: 577 contactadas con 737 envíos reales desde agosto; «en el CRM» son los deals cuya dueña es Lara, el nombre con el que sale el email. En Meta, «calificadas» no se registró: no es cero.</p></div>
+    <div class="dbody"><p>Reservas y Distribución son la foto del CRM hoy, por etapa, con los nombres del cockpit; las barras son proporcionales a la cantidad, y la fila «perdidos» va en contorno. Iru trabaja 8 de los 16 abiertos de reservas: los otros 8 son consultas frías o cerradas. Los 6 perdidos de la semana son los 5 que Iru informa (USD 167K) más Three Birds, sin monto; el CRM tiene 7 filas porque MayaLuxe y Sotavento eran la misma consulta. Los 2 acuerdos de la semana son Boutique Homes y Best Hotels Tulum. El outreach cuenta organizaciones, no mensajes: 577 contactadas con 737 envíos reales desde agosto; «en el CRM» son los deals cuya dueña es Lara, el nombre con el que sale el email. En Meta, «con intención» sale de la planilla de Bianca (4 de 18 anotadas al 25-sep), pendiente de que Iru lo confirme; los dólares son a ARS 1.510.</p></div>
   </details>
+</section>
+
+<section class="card" aria-label="Lo que la máquina entregó esta semana">
+  <div class="ch"><h2>Lo que la máquina entregó</h2><span class="aside">dos piezas nuevas, con link</span></div>
+  <div class="ships">
+    <div class="ship">
+      <img src="parte-semanal-2026-W40-meta.jpg" alt="Vista previa del parte de pauta Meta: la campaña de Instagram al 28 de septiembre y la propuesta de octubre." width="1100" height="640">
+      <div class="sb">
+        <h3>Parte de pauta Meta · septiembre</h3>
+        <p>La campaña de Instagram, cerrada y leída: 23 conversaciones a ~USD 16, 4 consultas reales a ~USD 90, qué anuncio funcionó y qué no. Y la propuesta de octubre: USD 600 en 15 días, en dos campañas, con tres escalones hasta el 9-dic si cada uno cumple.</p>
+        <a class="go" href="meta-campana-2026-09.html">Abrir el parte de pauta →</a>
+        <span class="st">V1.2 · 28-sep · propone, no gasta</span>
+      </div>
+    </div>
+    <div class="ship">
+      <img src="parte-semanal-2026-W40-price.jpg" alt="Vista previa de la Price Discovery Tool: fechas, grupo y un número." width="1100" height="640">
+      <div class="sb">
+        <h3>Price Discovery Tool</h3>
+        <p>Una página que le contesta a un lead «cuánto me cuesta, esas fechas, mi grupo» sin una persona en el medio: temporadas, suites, descuentos y add-ons, con el calendario tachando las noches que Cloudbeds ya tiene. Cierra con un aviso: la confirmación final es con alguien del equipo.</p>
+        <a class="go" href="https://la-chamana-price-discovery.vercel.app/">Probar la herramienta →</a>
+        <span class="st">v0.4.1 · publicada el 27-sep · espera D-0927-01: Daiana ratifica el tarifario</span>
+      </div>
+    </div>
+  </div>
 </section>
 
 <section class="card" aria-label="Pipeline de reservas">
@@ -442,8 +488,8 @@ footer b{color:var(--ink-2)}
 </details>
 
 <footer>
-  <p><b>Cómo se armó.</b> Informe comercial de la semana (27-sep) · CRM y eventos de etapa en la base del toolkit, releídos el 28-sep · Cloudbeds · registros de envío · Meta del 20 al 26-sep · el norte de noches. Todo leído sin escribir. Fichas, canales públicos y llamadas de la semana se suman al cierre.</p>
-  <p><b>Lo que no está.</b> La caja contra el banco · la fecha del cobro de noviembre · por qué se perdieron los seis leads · cuántas conversaciones de la pauta estaban calificadas.</p>
+  <p><b>Cómo se armó.</b> Informe comercial de la semana (27-sep) · CRM y eventos de etapa en la base del toolkit, releídos el 28-sep · Cloudbeds · registros de envío · el parte de pauta Meta V1.2 (campaña del 4 al 27-sep) · el norte de noches. Todo leído sin escribir. Fichas, canales públicos y llamadas de la semana se suman al cierre.</p>
+  <p><b>Lo que no está.</b> La caja contra el banco · la fecha del cobro de noviembre · por qué se perdieron los seis leads · la confirmación de Iru de las 4 consultas reales de la pauta.</p>
   <p><b>El semáforo.</b> Rojo es crítico: la pista de caja a fin de mes bajó de 2 meses y no entran reservas. Ámbar es vigilar; verde, en marcha. Lo propone El Chamán y lo confirma Boris. «Sin medir» nunca se dibuja como cero.</p>
   <div class="wmark">Made by <a href="https://both.ventures">@bothventures</a></div>
 </footer>
