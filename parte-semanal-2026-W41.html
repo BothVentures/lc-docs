@@ -1,0 +1,701 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>La Chamana · Semana 41</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Jost:wght@300;400;500;600&display=swap">
+<style>
+/* Dos suelos y un acento (guía de marca 2026-08-19): White / Deep como suelo, Ink para tarjetas en oscuro,
+   hairlines para separar, cobre como único acento. Sin crema intermedia. */
+:root{
+  --ground:#FBFAF7; --card:#FBFAF7; --card-2:#FBFAF7; --ink:#1A1611; --ink-2:#4B4237; --ink-3:#675C4F;
+  --line:#D8CDBC; --line-2:#E9E2D6;
+  --copper:#C99A6D; --copper-soft:#EFE3D3; --copper-ink:#78573A;
+  --crit:#93482E; --crit-bg:#F4E1D8; --warn:#7F5518; --warn-bg:#F3E7D2; --good:#5B6038; --good-bg:#E5E7D3;
+  --dash:#7A6F61;
+  --display:"Cormorant Garamond",Georgia,"Times New Roman",serif;
+  --ui:"Jost","Avenir Next","Helvetica Neue",Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --ground:#0E0C0A; --card:#14110E; --card-2:#14110E; --ink:#EDE6DA; --ink-2:#C9BFB0; --ink-3:#9A8F80;
+    --line:#2F271F; --line-2:#251F19;
+    --copper:#C99A6D; --copper-soft:#3B2E21; --copper-ink:#DDB48C;
+    --crit:#E0906E; --crit-bg:#33201A; --warn:#DDAE6A; --warn-bg:#2C2215; --good:#B4B987; --good-bg:#23251B;
+    --dash:#B3A794;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --ground:#0E0C0A; --card:#14110E; --card-2:#14110E; --ink:#EDE6DA; --ink-2:#C9BFB0; --ink-3:#9A8F80;
+  --line:#2F271F; --line-2:#251F19;
+  --copper:#C99A6D; --copper-soft:#3B2E21; --copper-ink:#DDB48C;
+  --crit:#E0906E; --crit-bg:#33201A; --warn:#DDAE6A; --warn-bg:#2C2215; --good:#B4B987; --good-bg:#23251B;
+  --dash:#B3A794;
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:var(--ui);font-size:16px;line-height:1.5;padding:0 16px}
+.app{max-width:880px;margin:0 auto;padding-block:26px 40px;display:grid;gap:18px}
+.num{font-family:var(--display);font-weight:300;font-variant-numeric:lining-nums tabular-nums;letter-spacing:-.005em}
+.lbl{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);font-weight:500}
+h1,h2,h3{font-family:var(--display);font-weight:300;margin:0;line-height:1.12;text-wrap:balance}
+h2{font-size:28px}
+p{margin:0}
+b{font-weight:600}
+h2.lbl,h3.lbl{font-family:var(--ui);font-size:11px;line-height:1.5;margin:0}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+.top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:10px 20px}
+.top h1{font-size:clamp(32px,4.6vw,42px)}
+.eyebrow{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.vmark{font-size:10.5px;letter-spacing:.04em;color:var(--ink-3);border:1px solid var(--line);padding:3px 8px;white-space:nowrap}
+.pills{display:flex;gap:8px;flex-wrap:wrap}
+.pill{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:500;padding:5px 12px;border-radius:99px;border:1px solid var(--line);color:var(--ink-2);background:var(--card)}
+.pill.r{background:var(--crit-bg);color:var(--crit);border-color:transparent}
+.dot{width:8px;height:8px;border-radius:50%;background:currentColor;flex:none}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px 24px;display:grid;gap:16px;min-width:0}
+.ch{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:6px 16px}
+.ch .aside{font-size:13px;color:var(--ink-3)}
+.note{font-size:13px;color:var(--ink-3);line-height:1.45}
+
+/* cubetas — misma anatomía en las cinco */
+.temp{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));grid-template-rows:auto auto auto 1fr auto;gap:10px}
+.tc{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 15px 12px;display:grid;grid-template-rows:subgrid;grid-row:span 5;gap:8px;min-width:0}
+.tc.r{--s:var(--crit);--sbg:var(--crit-bg)} .tc.a{--s:var(--warn);--sbg:var(--warn-bg)} .tc.g{--s:var(--good);--sbg:var(--good-bg)}
+.tc .hd{display:flex;justify-content:space-between;align-items:center;gap:4px 6px;flex-wrap:wrap}
+.tc .state{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;color:var(--s);background:var(--sbg);padding:2px 8px;border-radius:99px;white-space:nowrap}
+.tc .state .dot{width:6px;height:6px}
+.tc .v{font-size:40px;line-height:1;display:flex;align-items:baseline;gap:5px}
+.tc .v small{font-size:14px;color:var(--ink-3);font-family:var(--ui);font-weight:400}
+.tc .u{font-size:13px;color:var(--ink-2);line-height:1.35;margin-top:-4px}
+.verdict{font-size:15.5px;color:var(--ink-2);max-width:62ch;margin-top:8px;line-height:1.45}
+.mini{align-content:start}
+.tc .cmp{font-size:12.5px;color:var(--ink-3);border-top:1px solid var(--line-2);padding-top:7px;grid-row:5;align-self:stretch;display:flex;gap:5px;align-items:baseline;flex-wrap:wrap;align-content:start}
+.tc .cmp b{color:var(--ink);font-weight:600}
+.tc .cmp .ar{font-weight:700;color:var(--s)}
+
+
+/* decisiones */
+.decs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.dc{border:1px solid var(--line);border-radius:10px;padding:14px 15px;display:grid;gap:10px;align-content:start}
+.dc .k{display:flex;justify-content:space-between;gap:8px;font-size:12px}
+.dc .k .due{color:var(--ink-3)}
+.dc .q{font-size:16px;font-weight:600;line-height:1.3}
+.ab{display:grid;gap:6px}
+.ab div{display:grid;grid-template-columns:24px 1fr;gap:6px;font-size:13.5px;color:var(--ink-2);line-height:1.35}
+.ab .ol{font-family:var(--display);font-weight:300;font-size:19px;line-height:1;color:var(--copper-ink);font-variant-numeric:lining-nums}
+.dc .who{font-size:12.5px;color:var(--ink-2);display:grid;gap:2px}
+.dc .who b{color:var(--ink)}
+
+details{border-top:1px solid var(--line-2);padding-top:4px}
+details summary{cursor:pointer;font-size:13.5px;font-weight:500;color:var(--copper-ink);list-style:none;display:flex;align-items:center;gap:8px;min-height:32px;padding-block:6px}
+details summary::-webkit-details-marker{display:none}
+details summary::before{content:"+";display:inline-grid;place-items:center;width:20px;height:20px;border:1px solid var(--copper);border-radius:4px;font-size:14px;line-height:1;flex:none}
+details[open] > summary::before{content:"−"}
+details summary:focus-visible{outline:2px solid var(--copper-ink);outline-offset:3px;border-radius:4px}
+.dbody{padding:4px 0 8px;font-size:14px;color:var(--ink-2);display:grid;gap:8px}
+.dc details .dbody{font-size:13px}
+details.card{padding-top:16px;padding-bottom:14px;gap:0}
+.dcard summary{gap:12px;min-height:40px}
+.dcard summary h2{flex:1;font-size:28px;color:var(--ink)}
+.dcard summary .aside{font-size:13px;color:var(--ink-3);font-weight:400}
+.dcard[open] summary{margin-bottom:12px}
+
+/* pista */
+.seq{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border:1px solid var(--line-2);border-radius:10px;overflow:hidden}
+.sq{padding:10px 14px;display:grid;gap:2px;min-width:0}
+.sq+.sq{border-left:1px solid var(--line-2)}
+.sq .num{font-size:27px;line-height:1.05}
+.sq span{font-size:12.5px;color:var(--ink-3)}
+.sq.bad .num{color:var(--crit)}
+#runway{width:100%;height:auto;display:block}
+#runway text{font-family:Jost,Arial,sans-serif}
+.legend{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:13px;color:var(--ink-2)}
+.legend i{display:inline-block;width:20px;border-top:2.5px solid var(--copper);vertical-align:middle;margin-right:6px}
+.legend i.dash{border-top:2px dashed var(--dash)}
+.legend i.bub{width:10px;height:10px;border:0;border-radius:50%;background:var(--copper-soft);box-shadow:inset 0 0 0 2px var(--copper-ink)}
+
+/* embudos */
+.funnels{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.fn{border:1px solid var(--line-2);border-radius:10px;padding:14px 16px 12px;display:grid;gap:10px;align-content:start;min-width:0}
+.fn .fh{display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap}
+.fn .fh h3{font-size:21px}
+.fn .fh span{font-size:12px;color:var(--ink-3)}
+.frows{display:grid;gap:5px 8px;grid-template-columns:100px minmax(0,1fr) max-content}
+.fr{display:grid;grid-column:1/-1;grid-template-columns:subgrid;align-items:center;font-size:12.5px}
+.fr .fl{color:var(--ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fr .fb{height:22px;display:flex;justify-content:flex-start}
+.fr .fb i{display:block;height:100%;background:var(--copper);border-radius:4px;min-width:6px}
+.fr.f2 .fb i{opacity:.85} .fr.f3 .fb i{opacity:.72} .fr.f4 .fb i{opacity:.62} .fr.f5 .fb i{opacity:.55}
+.fr.unk .fb i{opacity:1;background:repeating-linear-gradient(135deg,color-mix(in srgb,var(--copper) 40%,transparent) 0 3px,transparent 3px 6px);border:1.5px dashed var(--copper-ink);min-width:6px}
+.fr.lost .fb i{background:var(--ink-3);opacity:.28}
+.fr .fv{text-align:right;display:flex;justify-content:flex-end;align-items:baseline;gap:5px;white-space:nowrap}
+.fr .fv .num{font-size:20px;color:var(--ink)}
+.fr .fv small{color:var(--ink-3);font-size:11.5px}
+.fflow{font-size:12.5px;color:var(--ink-2);border-top:1px solid var(--line-2);padding-top:8px;display:flex;flex-wrap:wrap;gap:4px 12px}
+.fflow b{color:var(--ink);font-weight:600}
+.fflow .up{color:var(--good)} .fflow .dn{color:var(--crit)}
+
+/* pipeline */
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.seg button{font:500 13px var(--ui);padding:9px 14px;border:0;background:transparent;color:var(--ink-3);cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--copper-soft);color:var(--ink);font-weight:600;box-shadow:inset 0 -2px 0 var(--copper-ink)}
+.seg button:focus-visible{outline:2px solid var(--copper-ink);outline-offset:-2px}
+.pipe{display:grid;gap:4px}
+.prow{display:grid;grid-template-columns:minmax(0,210px) minmax(0,1fr) 128px;gap:14px;align-items:center;padding:6px 4px;border-radius:6px}
+.prow:hover,.prow:focus-visible{background:var(--copper-soft)}
+.prow:focus-visible{outline:2px solid var(--copper-ink);outline-offset:-2px}
+.prow:hover .w,.prow:hover .pv small,.prow:focus-visible .w,.prow:focus-visible .pv small{color:var(--ink-2)}
+.pn{min-width:0;display:grid;gap:1px}
+.pn b{font-weight:500;font-size:15px}
+.pn .tags{display:flex;gap:4px;flex-wrap:wrap}
+.pn span.w{font-size:12.5px;color:var(--ink-3)}
+.track{position:relative;height:16px;background:var(--line-2);border-radius:4px}
+.track .nom{position:absolute;inset:0 auto 0 0;background:var(--copper-soft);border:1px solid var(--copper);border-radius:4px}
+.track .w{position:absolute;inset:3px auto 3px 0;background:var(--copper);border-radius:3px}
+.pv{text-align:right;display:grid;justify-items:end;gap:0}
+.pv .num{font-size:23px;line-height:1.05}
+.pv small{font-size:11.5px;color:var(--ink-3)}
+.prob{font-size:11.5px;font-weight:600;padding:1px 6px;border-radius:4px;background:var(--line-2);color:var(--ink-2)}
+.tag{font-size:11px;font-weight:600;padding:0 6px;border-radius:3px;background:var(--copper-soft);color:var(--copper-ink);white-space:nowrap}
+.tag.in{background:var(--good-bg);color:var(--good)}
+.tag.plain{background:var(--line-2);color:var(--ink-2)}
+.sum{display:flex;flex-wrap:wrap;gap:6px 26px;font-size:13.5px;color:var(--ink-2);align-items:baseline}
+.sum .num{font-size:26px;color:var(--ink);margin-right:4px}
+.keys{font-size:12.5px;color:var(--ink-3);display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center}
+
+/* entregas de la máquina */
+.ships{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.ship{border:1px solid var(--line-2);border-radius:10px;overflow:hidden;display:grid;grid-template-rows:auto 1fr;min-width:0}
+.ship img{display:block;width:100%;height:auto;aspect-ratio:1100/640;object-fit:cover;object-position:top;border-bottom:1px solid var(--line-2);background:var(--line-2)}
+.ship .sb{padding:12px 13px 13px;display:grid;gap:6px;align-content:start}
+.ship h3{font-size:19px}
+.ship p{font-size:13px;color:var(--ink-2)}
+.ship .go{font-size:13.5px;font-weight:500;color:var(--copper-ink);text-decoration:none;display:inline-flex;align-items:center;gap:6px;min-height:32px}
+.ship .go:hover{text-decoration:underline}
+.ship .go:focus-visible{outline:2px solid var(--copper-ink);outline-offset:2px;border-radius:4px}
+.ship .st{font-size:11.5px;color:var(--ink-3)}
+
+/* pareja */
+.pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.mini .big{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.mini .big .num{font-size:44px;line-height:1}
+.mini .big span{font-size:14px;color:var(--ink-2)}
+.lbars{display:grid;gap:6px}
+.lb{display:grid;grid-template-columns:minmax(0,130px) minmax(0,1fr) 54px;gap:10px;align-items:center;font-size:13px;color:var(--ink-2)}
+.lb .t{height:9px;background:var(--line-2);border-radius:3px;position:relative}
+.lb .t i{position:absolute;inset:0 auto 0 0;background:var(--copper);border-radius:3px;opacity:.7}
+.lb .v{text-align:right;font-variant-numeric:tabular-nums}
+.recon{margin:0;padding:0;list-style:none;display:grid;gap:6px}
+.recon li{padding-left:16px;position:relative;font-size:13.5px}
+.recon li::before{content:"";position:absolute;left:0;top:8px;width:7px;height:7px;border-radius:50%;border:1.5px solid var(--warn)}
+.plist{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 20px}
+.plist div{font-size:13.5px;padding:4px 0;border-bottom:1px solid var(--line-2)}
+.plist div span{color:var(--ink-3)}
+
+footer{font-size:13px;color:var(--ink-3);display:grid;gap:8px}
+footer b{color:var(--ink-2)}
+.wmark{border-top:1px solid var(--line-2);margin-top:8px;padding-top:18px;text-align:center;font-size:12px;letter-spacing:.06em;color:var(--ink-3)}
+.wmark a{color:var(--copper-ink);text-decoration:none}
+
+/* victorias */
+.wins{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.win{border:1px solid var(--line-2);border-radius:10px;padding:13px 14px 12px;display:grid;gap:5px;align-content:start;min-width:0}
+.win .wv{font-family:var(--display);font-weight:300;font-size:36px;line-height:1;color:var(--copper-ink);font-variant-numeric:lining-nums}
+.win .wt{font-size:14px;font-weight:600;color:var(--ink);line-height:1.25}
+.win .wd{font-size:12.5px;color:var(--ink-3);line-height:1.35}
+.win a{color:var(--copper-ink)}
+
+/* antes → ahora */
+.shift{display:grid;border:1px solid var(--line-2);border-radius:10px;overflow:hidden}
+.sh{display:grid;grid-template-columns:96px minmax(0,1fr) 20px minmax(0,1.25fr);gap:10px;align-items:center;padding:9px 14px;font-size:13.5px}
+.sh+.sh{border-top:1px solid var(--line-2)}
+.sh .k{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);font-weight:500}
+.sh .was{color:var(--ink-3)}
+.sh .to{color:var(--copper-ink);font-weight:700;text-align:center}
+.sh .now{color:var(--ink);font-weight:500}
+
+/* segmentos */
+.segs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.sg{border:1px solid var(--line-2);border-radius:10px;padding:12px 14px;display:grid;gap:7px;align-content:start;min-width:0}
+.sg .sn{display:flex;gap:9px;align-items:baseline}
+.sg .sn .i{font-family:var(--display);font-size:24px;color:var(--copper-ink);line-height:1;font-variant-numeric:lining-nums}
+.sg .sn b{font-size:14.5px;line-height:1.25}
+.sg .clk{font-size:12px;color:var(--ink-3)}
+.chips{display:flex;flex-wrap:wrap;gap:4px}
+.chip{font-size:12px;font-weight:500;padding:2px 8px;border-radius:99px;background:transparent;border:1px solid var(--copper);color:var(--copper-ink);white-space:nowrap}
+.chip.live{background:var(--copper);border-color:var(--copper);color:#1A1611}
+.sg .now{font-size:12.5px;color:var(--ink-2);border-top:1px solid var(--line-2);padding-top:6px}
+.sg.off{border-style:dashed}
+.sg.off .sn .i,.sg.off .sn b{color:var(--ink-3)}
+.legend2{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12.5px;color:var(--ink-3);align-items:center}
+
+#tip{position:fixed;pointer-events:none;z-index:10;background:var(--ink);color:var(--card);font-size:13px;line-height:1.4;padding:8px 11px;border-radius:7px;max-width:280px}
+
+@media (max-width:760px){
+  .temp{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:none;grid-auto-rows:auto}
+  .tc:first-child{grid-column:1/-1}
+  .tc .v{font-size:34px}
+  .seq{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .sq:nth-child(3){border-left:0}
+  .sq:nth-child(n+3){border-top:1px solid var(--line-2)}
+  .decs,.pair,.plist,.funnels,.ships,.segs{grid-template-columns:1fr}
+  .wins{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .sh{grid-template-columns:minmax(0,1fr) 16px minmax(0,1fr);gap:4px 8px}
+  .sh .k{grid-column:1/-1}
+  .frows{grid-template-columns:84px minmax(0,1fr) max-content}
+  .dcard summary{flex-wrap:wrap}
+  .dcard summary .aside{flex-basis:100%;padding-left:32px}
+  .prow{grid-template-columns:minmax(0,1fr) 112px}
+  .prow .track{grid-column:1/-1;grid-row:2}
+  .card{padding:18px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+<meta name="theme-color" content="#FBFAF7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0E0C0A" media="(prefers-color-scheme: dark)">
+</head><body>
+
+<div class="app">
+
+<header class="top">
+  <div>
+    <div class="eyebrow"><span class="lbl">La Chamana · parte semanal · 2026-W41</span><span class="vmark">both.ventures · versión</span></div>
+    <h1>29 de septiembre → 5 de octubre</h1>
+    <p class="verdict">Mucho movimiento y una reserva chica: la máquina acelera, la caja todavía no. Sin ningún cobro llega a cero ~18-nov; fin de año ya está vendido y lo próximo nuevo del pipeline cae en enero.</p>
+  </div>
+  <div class="pills">
+    <span class="pill r" title="Rojo: la pista de caja después de pagos comprometidos bajó a 1,5 meses y la única reserva nueva vale USD 3.000. En cada cubeta: rojo es crítico, ámbar es vigilar, verde está en marcha. Lo propone El Chamán; lo confirma Boris."><span class="dot"></span>Salud · rojo</span>
+    <span class="pill r" title="Pista tras pagos comprometidos; sin cobros nuevos la caja llega a cero cerca del 18 de noviembre."><span class="dot"></span>Caja · 1,48 meses · cero ~18-nov</span>
+    <span class="pill">8 avances esta semana</span>
+    <span class="pill">Datos al 5-oct · caja al 5-oct</span>
+  </div>
+</header>
+
+<section class="card" aria-label="Lo que se ganó esta semana">
+  <div class="ch"><h2>Lo que se ganó esta semana</h2><span class="aside">29-sep → 5-oct</span></div>
+  <div class="wins">
+    <div class="win"><div class="wv">6</div><div class="wt">anuncios vivos en Meta</div><div class="wd">Desde el lunes 5, uno por tipo de decisor.</div></div>
+    <div class="win"><div class="wv">1ª</div><div class="wt">reserva nueva desde el 5-ago</div><div class="wd">Keith vuelve, del 12 al 15 de noviembre.</div></div>
+    <div class="win"><div class="wv">170</div><div class="wt">emails reales, la semana más alta</div><div class="wd">El máximo anterior era 135.</div></div>
+    <div class="win"><div class="wv">4</div><div class="wt">acuerdos de distribución</div><div class="wd">El doble; uno es Latam Retreats, al 10%.</div></div>
+    <div class="win"><div class="wv">2×</div><div class="wt">organizaciones interesadas</div><div class="wd">6 nuevas con interés; antes, 3.</div></div>
+    <div class="win"><div class="wv">21</div><div class="wt">contactos en el canal nuevo de talento</div><div class="wd">Representantes de artistas y deportistas. <a href="https://bothventures.github.io/lc-docs/informe-dos-canales-2026-09-30.html">Ver el canal →</a></div></div>
+    <div class="win"><div class="wv">2</div><div class="wt">mailings de Maya Luxe, acordados</div><div class="wd">Thanksgiving y oct–nov, más una visita con fotos.</div></div>
+    <div class="win"><div class="wv">+21K</div><div class="wt">pipeline ponderado</div><div class="wd">De ~80K a ~101K, con las cifras del informe.</div></div>
+  </div>
+</section>
+
+<section class="temp" aria-labelledby="h-cubetas"><h2 class="sr" id="h-cubetas">Las cinco cubetas</h2>
+  <div class="tc r">
+    <div class="hd"><h3 class="lbl">Caja</h3><span class="state"><span class="dot"></span>Crítico</span></div>
+    <div class="v num">1,48<small>meses</small></div>
+    <div class="u">de pista tras pagos comprometidos (sin conciliar con el banco). Sin cobros, cero ~18-nov; con los dos acordados, ~15-dic.</div>
+    <div class="cmp">27-sep <b>1,78</b> <span class="ar">→</span> <b>1,48</b></div>
+  </div>
+  <div class="tc r">
+    <div class="hd"><h3 class="lbl">Reservas</h3><span class="state"><span class="dot"></span>Crítico</span></div>
+    <div class="v num">1<small>nueva</small></div>
+    <div class="u">Keith, 12 → 15 nov, USD 3.000 en total: la primera en dos meses. Todavía no está en Cloudbeds: las noches siguen en 7 de 96.</div>
+    <div class="cmp">sem. anterior <b>0</b> <span class="ar">→</span> <b>1</b></div>
+  </div>
+  <div class="tc a">
+    <div class="hd"><h3 class="lbl">Pipeline</h3><span class="state"><span class="dot"></span>Vigilar</span></div>
+    <div class="v num">~101<small>K USD</small></div>
+    <div class="u">ponderado; 218K nominal en 7 leads con monto. Fuera de Keith, ninguna estadía cae antes de que se agote la caja.</div>
+    <div class="cmp">27-sep <b>~80K</b> <span class="ar">→</span> <b>~101K</b></div>
+  </div>
+  <div class="tc a">
+    <div class="hd"><h3 class="lbl">Distribución</h3><span class="state"><span class="dot"></span>Vigilar</span></div>
+    <div class="v num">4<small>acuerdos</small></div>
+    <div class="u">nuevos esta semana; 16 en el CRM. Meta: USD 60K vendidos por distribuidores a fin de octubre; van 0.</div>
+    <div class="cmp">sem. anterior <b>2</b> <span class="ar">→</span> <b>4</b></div>
+  </div>
+  <div class="tc a">
+    <div class="hd"><h3 class="lbl">Adquisición</h3><span class="state"><span class="dot"></span>Vigilar</span></div>
+    <div class="v num">6<small>interesados</small></div>
+    <div class="u">organizaciones con interés por primera vez, el doble. 170 emails, la semana más alta, con 6% de rebote en los nuevos (el freno es 3%).</div>
+    <div class="cmp">sem. anterior <b>3</b> <span class="ar">→</span> <b>6</b> (re-medido igual)</div>
+  </div>
+</section>
+
+
+
+<section class="card" aria-label="La estrategia, en un mapa">
+  <div class="ch"><h2>La estrategia, en un mapa</h2><span class="legend2"><span><span class="chip live">lleno</span> corriendo esta semana</span><span><span class="chip">contorno</span> armado o en negociación</span></span></div>
+  <div class="shift">
+    <div class="sh"><span class="k">A quién</span><span class="was">a quien viaja</span><span class="to">→</span><span class="now">a quien organiza el grupo, para sí o para otros</span></div>
+    <div class="sh"><span class="k">Dónde</span><span class="was">una villa en Tulum</span><span class="to">→</span><span class="now">una casa de Riviera Maya, también para retiros</span></div>
+    <div class="sh"><span class="k">Pauta</span><span class="was">un anuncio, un público</span><span class="to">→</span><span class="now">seis anuncios, uno por tipo de decisor</span></div>
+    <div class="sh"><span class="k">Outreach</span><span class="was">tres rieles de email</span><span class="to">→</span><span class="now">cuatro de email y uno nuevo de DM a creators</span></div>
+    <div class="sh"><span class="k">Partners</span><span class="was">todos igual</span><span class="to">→</span><span class="now">tres niveles: uno a uno · oferta por mailing · comunicación general</span></div>
+    <div class="sh"><span class="k">Esfuerzo</span><span class="was">todo a la vez</span><span class="to">→</span><span class="now">70% a caja corta · 30% a retiros, que tardan meses</span></div>
+  </div>
+  <div class="segs">
+    <div class="sg"><div class="sn"><span class="i">1</span><b>La organizadora y su grupo</b></div><span class="clk">estética y bienestar · decide en semanas a meses</span><div class="chips"><span class="chip live">anuncios A1 · A3 · A4</span><span class="chip">creators por DM</span></div><div class="now">Pauta viva; creators, oferta el 7-oct.</div></div>
+    <div class="sg"><div class="sn"><span class="i">2</span><b>Quien celebra un hito</b></div><span class="clk">40, 50, aniversario · decide en meses</span><div class="chips"><span class="chip live">anuncio A2</span><span class="chip">planners</span></div><div class="now">Dream Exotic, USD 28K, vino por la pauta.</div></div>
+    <div class="sg"><div class="sn"><span class="i">3</span><b>Líder de retiro</b></div><span class="clk">cohorte de 8 a 16 · decide en 2–7 meses</span><div class="chips"><span class="chip live">anuncio A5</span><span class="chip live">email retiros</span><span class="chip">Latam Retreats</span><span class="chip">Venue Retreat</span></div><div class="now">USD 86K en tres leads · webinar el 15-oct.</div></div>
+    <div class="sg"><div class="sn"><span class="i">4</span><b>Talento, vía su management</b></div><span class="clk">artistas y deportistas · decide en días o semanas</span><div class="chips"><span class="chip live">email a reps</span></div><div class="now">21 primeros contactos.</div></div>
+    <div class="sg"><div class="sn"><span class="i">5</span><b>Agencias, asesores y concierges</b></div><span class="clk">17 de 29 oportunidades llegaron así</span><div class="chips"><span class="chip live">anuncio A6</span><span class="chip live">email agencias y familias</span><span class="chip live">17 partners</span></div><div class="now">USD 104K en tres leads.</div></div>
+    <div class="sg"><div class="sn"><span class="i">6</span><b>Reloj corto: ya vienen a Tulum</b></div><span class="clk">reservan a 11 días, mediana</span><div class="chips"><span class="chip live">−15% oct–nov</span><span class="chip">fichas públicas</span></div><div class="now">Promo enviada a más de diez partners.</div></div>
+  </div>
+  <p class="note">Fuera del mapa, con datos: la quincena de festivales (compra cuartos, no casas) y los eventos con producción.</p>
+</section>
+
+<section class="card" aria-label="La pista de caja">
+  <div class="ch"><h2>La pista de caja</h2><span class="aside">USD · burn declarado 19.000 por mes</span></div>
+  <div class="seq">
+    <div class="sq"><span>Informe · 5-oct</span><div class="num">31.407</div><span>−9.090 desde el 27-sep</span></div>
+    <div class="sq"><span>Tras comprometidos</span><div class="num">28.032</div><span>−3.375 de pagos ya comprometidos</span></div>
+    <div class="sq"><span>Cobros comprometidos</span><div class="num">+16.500</div><span>Keith a mediados de oct · 13.500, el saldo de la reserva de diciembre (Loco Luxury), a inicios de nov</span></div>
+    <div class="sq bad"><span>Llega a cero</span><div class="num">~18-nov</div><span>~15-dic si entran los dos cobros</span></div>
+  </div>
+  <svg id="runway" viewBox="0 0 840 330" role="img" aria-label="Proyección de caja desde el saldo informado el 5 de octubre. Sin cobros nuevos llega a cero cerca del 18 de noviembre; con los dos cobros comprometidos, cerca del 15 de diciembre. En la fila de estadías: Keith en noviembre por 3.000 (confirmada), Loco Luxury en enero por 41.295 y Pei a fines de febrero por 28.000."></svg>
+  <div class="legend">
+    <span><i></i>Sin ningún cobro (escenario base)</span>
+    <span><i class="dash"></i>Con los dos cobros comprometidos</span>
+    <span><i class="bub"></i>Próximas estadías · tamaño = USD</span>
+  </div>
+  <details>
+    <summary>Cómo se calcula</summary>
+    <div class="dbody"><p>Parte del saldo informado el 5-oct, sin conciliar contra el banco (decisión D-0913-08, abierta), y le resta de entrada los USD 3.375 comprometidos. Quema USD 625 por día. Los cobros no tienen día: Keith se dibuja el 15-oct y el saldo de la reserva de diciembre (Loco Luxury) el 5-nov. Entre el 27-sep y el 5-oct la caja bajó USD 9.090; lo comprometido a esa fecha eran 6.686, así que 2.404 salieron sin detalle en el informe. El informe estima ~6K a fin de noviembre con los dos cobros contando octubre y noviembre enteros; contando la quema desde hoy quedan ~9,5K. En la fila de estadías van las que tienen fecha y monto antes de marzo; Villa Luxe no entra porque sus fechas están ocupadas y espera respuesta a las alternativas.</p></div>
+  </details>
+</section>
+
+<section class="card" aria-label="Los embudos">
+  <div class="ch"><h2>Los embudos</h2><span class="aside">arriba, dónde está cada cosa hoy · abajo, qué pasó esta semana</span></div>
+  <div class="funnels">
+    <div class="fn">
+      <div class="fh"><h3>Reservas</h3><span>CRM hoy · 16 abiertos, Iru trabaja 8 · montos, abajo</span></div>
+      <div class="frows">
+        <div class="fr f1"><span class="fl">Consulta</span><div class="fb"><i style="width:19%"></i></div><span class="fv"><span class="num">5</span><small>consultas frías</small></span></div>
+        <div class="fr f2"><span class="fl">Cotizado</span><div class="fb"><i style="width:27%"></i></div><span class="fv"><span class="num">7</span></span></div>
+        <div class="fr f3"><span class="fl">En hold</span><div class="fb"><i style="width:15%"></i></div><span class="fv"><span class="num">4</span></span></div>
+        <div class="fr f4"><span class="fl">Reservado</span><div class="fb"><i style="width:15%"></i></div><span class="fv"><span class="num">4</span><small>incl. Keith, nov</small></span></div>
+        <div class="fr lost"><span class="fl">Perdidos</span><div class="fb"><i style="width:100%"></i></div><span class="fv"><span class="num">26</span><small>desde julio</small></span></div>
+      </div>
+      <div class="fflow">Esta semana: <span><b class="up">+5</b> entraron</span> <span><b class="up">1</b> reservado</span> <span><b class="dn">5</b> se perdieron (USD 95K)</span></div>
+    </div>
+    <div class="fn">
+      <div class="fh"><h3>Distribución</h3><span>CRM · 24 abiertos · 16 acuerdos</span></div>
+      <div class="frows">
+        <div class="fr f1"><span class="fl">Identificado</span><div class="fb"><i style="width:31%"></i></div><span class="fv"><span class="num">5</span></span></div>
+        <div class="fr f2"><span class="fl">Conversando</span><div class="fb"><i style="width:75%"></i></div><span class="fv"><span class="num">12</span></span></div>
+        <div class="fr f3"><span class="fl">Términos</span><div class="fb"><i style="width:44%"></i></div><span class="fv"><span class="num">7</span></span></div>
+        <div class="fr f4"><span class="fl">Acuerdo</span><div class="fb"><i style="width:100%"></i></div><span class="fv"><span class="num">16</span><small>en el CRM</small></span></div>
+        <div class="fr lost"><span class="fl">Declinaron</span><div class="fb"><i style="width:63%"></i></div><span class="fv"><span class="num">10</span></span></div>
+      </div>
+      <div class="fflow">Esta semana: <span><b class="up">+9</b> entraron</span> <span><b class="up">4</b> acuerdos</span> <span><b>0</b> declinaron</span></div>
+    </div>
+    <div class="fn">
+      <div class="fh"><h3>Outreach por email</h3><span>desde ago-26 · 4 campañas · organizaciones</span></div>
+      <div class="frows">
+        <div class="fr f1"><span class="fl">Contactadas</span><div class="fb"><i style="width:100%"></i></div><span class="fv"><span class="num">722</span></span></div>
+        <div class="fr f2"><span class="fl">Respondieron</span><div class="fb"><i style="width:7.6%"></i></div><span class="fv"><span class="num">55</span><small>7,6%</small></span></div>
+        <div class="fr f3"><span class="fl">Interesadas</span><div class="fb"><i style="width:4.8%"></i></div><span class="fv"><span class="num">35</span><small>4,8%</small></span></div>
+        <div class="fr f4"><span class="fl">Deals</span><div class="fb"><i style="width:3.9%"></i></div><span class="fv"><span class="num">28</span><small>3,9%</small></span></div>
+        <div class="fr f5"><span class="fl">Acuerdos</span><div class="fb"><i style="width:1%"></i></div><span class="fv"><span class="num">5</span><small>de los 16</small></span></div>
+      </div>
+      <div class="fflow">Esta semana: <span><b>170</b> enviados</span> <span><b>16</b> respondieron</span> <span><b class="up">6</b> interesadas nuevas</span> <span><b class="dn">16</b> rebotes</span></div>
+    </div>
+    <div class="fn meta">
+      <div class="fh"><h3>Pauta en Meta</h3><span>«A amplia», viva desde el 5-oct · punteado = esperado</span></div>
+      <div class="frows">
+        <div class="fr f1 unk"><span class="fl">La ven</span><div class="fb"><i style="width:100%"></i></div><span class="fv"><span class="num">≈10.600</span><small>sep 4.951</small></span></div>
+        <div class="fr f2 unk"><span class="fl">Escriben</span><div class="fb"><i style="width:3%"></i></div><span class="fv"><span class="num">≈31</span><small>sep 23</small></span></div>
+        <div class="fr f3 unk"><span class="fl">Con intención</span><div class="fb"><i style="width:1%"></i></div><span class="fv"><span class="num">≈7</span><small>sep 4</small></span></div>
+        <div class="fr f4 unk"><span class="fl">Consultas</span><div class="fb"><i style="width:1%"></i></div><span class="fv"><span class="num">2–5</span><small>reales · el 20-oct</small></span></div>
+        <div class="fr f5 unk"><span class="fl">Reservas</span><div class="fb"><i style="width:1%"></i></div><span class="fv"><span class="num">0–1</span></span></div>
+      </div>
+      <div class="fflow"><span>USD 600 del 5 al 18-oct · gate el martes 20: <b>≥3 consultas reales</b> abre USD 1.600</span> <span>Esta semana: USD 0 (la de septiembre frenó el 27)</span></div>
+    </div>
+  </div>
+  <details>
+    <summary>Cómo se leen los embudos</summary>
+    <div class="dbody"><p>Reservas y Distribución son la foto del CRM hoy (5-oct, 19:02 UTC), por etapa, con los nombres del cockpit; las barras son proporcionales a la cantidad, y la fila «perdidos» va en contorno. Entraron a reservas Loco Luxury (enero), Villa Luxe (fin de año), Pei Mastermind (febrero), Gabby Silva y Oliver &amp; Tiggy, que entró y salió el mismo día. Los 5 perdidos son los 4 que informa Iru (Evoke, Arsene, Marco Salvatierra y Oliver &amp; Tiggy, USD 95K) más Cristina Eventos, que el CRM cierra y el informe pasa a contactos fríos. Mahora, la agencia de Arsene, sigue como partner. Los 4 acuerdos de la semana son Latam Retreats (1-oct), Maya Luxe, InResidence Villas y Concierge Adventure (los tres el 5-oct). «Conversando» incluye el TV Show de Loco Luxury, que en Airtable no tiene tipo (ver «Lo que no cruza»). El outreach cuenta organizaciones, no mensajes: 722 contactadas con 923 envíos reales desde agosto; esta semana 130 primeros contactos y 40 seguimientos, 21 de ellos al riel nuevo de representantes de talento. De los 16 rebotes registrados esta semana, 8 son de las olas de esta misma semana (~6% de los 130 primeros contactos; el freno de la máquina se activa al 3% por ola), 6 de olas anteriores y 2 sin ola identificada; 15 entraron juntos con el barrido del 2-oct. «Interesadas nuevas» son organizaciones que muestran interés por primera vez; con la misma cuenta, la semana pasada fueron 3. En Meta, las barras punteadas son lo que se espera de «A amplia» aplicando las tasas de septiembre a lo que gasta Meta (USD 488 de los 600; el resto es impuesto de la tarjeta): son estimados. Lo de septiembre va al lado, medido; sus 4 «con intención» siguen esperando la confirmación de Iru.</p></div>
+  </details>
+</section>
+
+<details class="card dcard" id="decisiones" open>
+  <summary><h2>Para decidir el martes</h2><span class="aside">3 decisiones · A y B son las opciones</span></summary>
+  <div class="decs">
+    <div class="dc">
+      <div class="k"><span class="lbl">Descuentos</span><span class="due">debía decidirse el 1-oct · el tarifario, el 7-oct</span></div>
+      <div class="q">El −15% de oct–nov ya está en la calle. ¿Se sostiene en todos los canales?</div>
+      <div class="ab">
+        <div><span class="ol">A</span><span>−15% en octubre y noviembre en todos los canales, Airbnb incluido, hasta el 30-nov. Se escribe en la oferta y la herramienta de precios lo muestra.</span></div>
+        <div><span class="ol">B</span><span>−15% sólo por distribuidores; Airbnb y la web a tarifa, y Thanksgiving a tarifa pico salvo por Maya Luxe.</span></div>
+      </div>
+      <div class="who"><span><b>Decide</b> Boris (precio) · Gastón y Pato (Airbnb)</span><span><b>Iru propone</b> A: un solo precio en todos los canales</span></div>
+      <details><summary>Contexto de los descuentos</summary><div class="dbody"><p>El −15% de octubre y noviembre ya salió a más de diez distribuidores, y Maya Luxe va a mandar un mailing de Thanksgiving. La Price Discovery Tool cotiza Thanksgiving como pico, +50%. Airbnb propone probar otro −15% para huéspedes con 4,8 o más en las fechas flojas. Nadie lo escribió en la oferta vigente (D-0930-03, D-1005-01). Iru calcula que hay que facturar ~USD 30.000 por mes (unas 9 noches; más que la quema, por comisiones e impuestos) para llegar a la temporada.</p></div></details>
+    </div>
+    <div class="dc">
+      <div class="k"><span class="lbl">Canales pagos</span><span class="due">martes 6-oct</span></div>
+      <div class="q">¿Pagamos algún canal ahora?</div>
+      <div class="ab">
+        <div><span class="ol">A</span><span>Sólo Venue Retreat, EUR 360–395 al año (≈ USD 460); Serandipians (EUR 4.000) se revisa más adelante.</span></div>
+        <div><span class="ol">B</span><span>Ningún canal pago hasta que entre una reserva más.</span></div>
+      </div>
+      <div class="who"><span><b>Decide</b> Gastón · Boris</span><span><b>Iru propone</b> A; Retreat Hub y Retreat Venues, tampoco por ahora</span></div>
+      <details><summary>Contexto de los canales</summary><div class="dbody"><p>Venue Retreat trabaja con empresas como Netflix, Airbnb, DHL y SAP y con organizadores de retiros. Tiene dos planes: uno con nuestra marca y sin comisión (EUR 395) y otro que además nos conecta oportunidades y cobra comisión (EUR 360); hay que confirmar por qué el más completo cuesta menos. Serandipians: ~900 agencias y 3 DMCs en México, pago anual sin salida anticipada; una referencia buena (Muse Villas, Francia) e Iru pide más, porque el retorno no es inmediato (D-0930-04).</p></div></details>
+    </div>
+    <div class="dc">
+      <div class="k"><span class="lbl">Estadías a cambio</span><span class="due">Bobbilee y Potomac esperan</span></div>
+      <div class="q">¿Damos noches a cambio de contenido o de red, con la casa vacía en octubre y noviembre?</div>
+      <div class="ab">
+        <div><span class="ol">A</span><span>Sí, con entregables por escrito y sólo en fechas libres: Potomac (4 noches) y The Aficionados por contenido; Bobbilee, a definir.</span></div>
+        <div><span class="ol">B</span><span>No hasta el primer trimestre de 2027, como se decidió el 12-sep.</span></div>
+      </div>
+      <div class="who"><span><b>Decide</b> Gastón · Boris</span><span><b>Iru</b> la deja abierta · <b>Recomendación del parte:</b> A, con tope de dos estadías entre las tres</span></div>
+      <details><summary>Contexto de los pedidos</summary><div class="dbody"><p>Bobbilee Hartman organiza experiencias para empresas tech desde 2015 y quiere recomendar la casa a su red; pide 2–3 noches y USD 700–900 de vuelos desde Seattle. Potomac Lifestyle pide 4 noches para un editorial. The Aficionados ofrece contenido a cambio de noches en lugar de una membresía paga. Con la casa vacía salvo Keith, el costo es operativo (limpieza, personal, actividades), no noches que se dejan de vender. Reabre la decisión «sin fam trips hasta el primer trimestre de 2027» (D-0912-07); registrada como D-1005-02.</p></div></details>
+    </div>
+    <div class="dc">
+      <div class="k"><span class="lbl">Lo que se decidió el martes pasado</span><span class="due">reunión del 29-sep</span></div>
+      <div class="q">De cuatro, tres se cerraron.</div>
+      <div class="ab">
+        <div><span class="ol">1</span><span>Evoke: perdida. Buscaban fiestas todas las noches, un formato que la casa no hace.</span></div>
+        <div><span class="ol">2</span><span>Retiros: 30% del esfuerzo; 70% a clientes directos y representantes de talento. La casa se vende como villa de Riviera Maya, no sólo de Tulum.</span></div>
+        <div><span class="ol">3</span><span>Pauta: sí, escalonada. «A amplia», USD 600 del 5 al 18-oct, prendida el lunes 5.</span></div>
+        <div><span class="ol">4</span><span>Serandipians: Iru recomienda no por ahora (arriba).</span></div>
+      </div>
+    </div>
+  </div>
+</details>
+
+<section class="card" aria-label="Pipeline de reservas">
+  <div class="ch">
+    <h2>Pipeline de reservas</h2>
+    <div class="seg" role="group" aria-label="Ordenar por">
+      <button type="button" id="sort-w" aria-pressed="true">Ponderado</button>
+      <button type="button" id="sort-n" aria-pressed="false">Nominal</button>
+    </div>
+  </div>
+  <div class="pipe" id="pipe"></div>
+  <div class="sum" id="sum"><span class="sr" aria-live="polite" id="sort-status"></span>
+    <span><span class="num">218K</span>nominal</span>
+    <span><span class="num">~101K</span>ponderado</span>
+    <span><span class="num">288K</span>aparte, el TV Show de Loco Luxury · 25% · fechas por definir</span>
+  </div>
+  <div class="keys"><span>Barra de contorno = nominal · barra llena = ponderado por la probabilidad de Iru</span><span><span class="tag">Lara</span> llegó por el email</span><span><span class="tag plain">IG</span> por la campaña de Instagram</span><span><span class="tag plain">nuevo</span> entró esta semana</span></div>
+  <details>
+    <summary>Notas por lead</summary>
+    <div class="dbody" id="notes"></div>
+  </details>
+  <details>
+    <summary>Lo que no cruza con el CRM (8, para Iru)</summary>
+    <div class="dbody"><ul class="recon">
+      <li>Keith está confirmada en el informe y en el CRM, pero Cloudbeds no tiene la reserva: las noches siguen en 7.</li>
+      <li>Pei: USD 28.000 en el informe, 20.000 en el CRM. One Yoga: ~30.000 en el informe, 26.099 en el CRM.</li>
+      <li>TV Show de Loco Luxury: el informe dice fechas por definir; el CRM dice abril y mayo, 60 días, y no tiene tipo de negocio (el espejo lo cuenta como distribución).</li>
+      <li>Be Mexico DMC figura en el CRM como reserva ganada de USD 13.500; el informe lo trata como distribuidor y no le asigna ninguna reserva. Es la fila a corregir (no tiene que ver con el saldo de Loco Luxury).</li>
+      <li>The Rowe está como reserva en hold en el CRM; el informe la pasa a B2B sin respuesta.</li>
+      <li>Ali Krupnik (boda de 70 personas, por Instagram) está en el CRM y no en el informe.</li>
+      <li>Iru cuenta 17 partners activos; el CRM, 16 acuerdos. Sólo en el CRM: Luke McCormick, Jade Lavoie, Mohamed Nabilu y Best Hotels Tulum. Sólo en el informe: Icon Private Collection, Mahora (en términos en el CRM), Be Mexico y la Fundación Niños en Alegría.</li>
+      <li>Sergio Berger (subasta, USD 2.500): 2 noches en el informe, 3 en el CRM.</li>
+    </ul><p>Se resolvió de la semana pasada: Villa Luxe (las fechas pedidas están ocupadas; se ofrecieron alternativas) y por qué se perdió Evoke.</p></div>
+  </details>
+</section>
+
+<div class="pair">
+  <section class="card mini" aria-label="Leads que salieron">
+    <h2 class="lbl">Se perdieron esta semana</h2>
+    <div class="big"><span class="num">5</span><span>USD 95K · todos con motivo</span></div>
+    <div class="lbars" id="lost"></div>
+    <p class="note">Por primera vez, todas con motivo. Arsene eligió otro lugar de Riviera Maya: lo mismo que ven Maya Luxe y Sotavento.</p>
+  </section>
+  <section class="card mini" aria-label="Origen de los leads activos">
+    <h2 class="lbl">De dónde vienen los 8 activos</h2>
+        <div class="lbars" id="origin"></div>
+  </section>
+</div>
+
+<details class="card">
+  <summary>Partners · 17 activos según Iru (16 acuerdos en el CRM) · otros 14 sin acuerdo todavía · 11 a comunicación general</summary>
+  <div class="dbody"><div class="plist">
+    <div>Maya Luxe <span>· mailing de Thanksgiving y de oct–nov; visita con fotos en octubre</span></div>
+    <div>Loco Luxury <span>· trajo la consulta de enero; web, mailing y reunión el jueves 8</span></div>
+    <div>LATAM Retreats <span>· 10%, sin otros costos; MVP de retiro propio para jun–jul 2027</span></div>
+    <div>Sotavento <span>· busca grupos para oct–nov; la casa como villa de Riviera Maya</span></div>
+    <div>Be Mexico DMC <span>· promo oct–nov, Navidad y enero</span></div>
+    <div>Boutique Homes <span>· promo; propuesta de mailing e Instagram</span></div>
+    <div>Casita MX <span>· promo y mailing; espera respuesta</span></div>
+    <div>Evoke Club <span>· promo oct–nov, Navidad y enero</span></div>
+    <div>RM Ocean Front <span>· Navidad y enero</span></div>
+    <div>Icon Private Collection <span>· follow-up de materiales</span></div>
+    <div>Personal Villas <span>· follow-up semanal</span></div>
+    <div>Elevate Hospitality <span>· webinar de retiros el 15-oct, confirmado</span></div>
+    <div>Exceptional Villas <span>· listada vía Maya Luxe</span></div>
+    <div>InResidence Villas <span>· curando el listing</span></div>
+    <div>Concierge Adventure <span>· Navidad y enero</span></div>
+    <div>Mahora <span>· promo oct–nov</span></div>
+    <div>Fundación Niños en Alegría <span>· subasta de USD 2.500 sin fecha</span></div>
+    <div>Sin acuerdo todavía (14) <span>· Vacation in Tulum, ILWYV (primero una reserva, después el contrato), Kosher Concierge, Wellness Booker, The Rowe, Journey Mexico, Luxury Travel MX, Wellbeing Travel Co., Unique Villas, Samson Waters, Key Caribe, Voyager Club (white label: baja si no cambia), Bucket List Villa, JAE Luxury Travel</span></div>
+    <div>A comunicación general (11) <span>· Elizabeth Sullivan, Bluemarble, Patty Brockley, Kristine Svets, Cristina, Mountain Yoga (refirió a International Yoga), Align with Bella, Chikara Kennedy, WH Luxury, Prestige Villa y Conexión Viajes (las dos, desde el 15-dic)</span></div>
+  </div>
+  <p>A casi todos los activos se les ofreció lo mismo esta semana: −15% en octubre y noviembre, Navidad y la primera quincena de enero. La herramienta de reactivación (Iru, Marian y Pato) separa a quién se le habla uno a uno, a quién por mailing y a quién sólo con comunicación general.</p></div>
+</details>
+
+<details class="card">
+  <summary>Distribución, fichas y canales públicos · pendiente</summary>
+  <div class="dbody"><div class="plist">
+    <div>Distribuidores nuevos, con nombre <span>· pendiente</span></div>
+    <div>Fichas tocadas: canal y tarifa <span>· pendiente</span></div>
+    <div>Reseñas en Google Business Profile <span>· pendiente</span></div>
+    <div>Horizontales en alta, de 22 <span>· pendiente</span></div>
+    <div>DMs de Instagram enviados y respondidos <span>· pendiente</span></div>
+    <div>Conversaciones de Meta calificadas <span>· pendiente</span></div>
+  </div>
+  <p>Lo que mide la máquina: tres colas de DM (retiros, celebraciones, familias) están aprobadas desde el 23-sep; los envíos son a mano y su registro llega con el informe de la semana.</p></div>
+</details>
+
+<details class="card">
+  <summary>Señales de la semana (7)</summary>
+  <div class="dbody"><div class="plist">
+    <div>El mercado <span>· Maya Luxe y Sotavento, por separado: pocas consultas para Tulum, muchas más para el resto de Riviera Maya</span></div>
+    <div>Loco Luxury · TV Show <span>· USD 288K al 25%, fechas por definir</span></div>
+    <div>Bobbilee Hartman <span>· arma offsites de empresas tech; pide 2–3 noches y vuelos (decisión abajo)</span></div>
+    <div>Potomac Lifestyle <span>· editorial; pide 4 noches (decisión abajo)</span></div>
+    <div>The Aficionados <span>· contenido a cambio de noches, en vez de la membresía paga</span></div>
+    <div>Retiro holístico, desde el 7-nov <span>· canje por fotos de retiro, no pago</span></div>
+    <div>Fundación Niños en Alegría <span>· sin gala este año; la próxima, primer semestre de 2027</span></div>
+  </div></div>
+</details>
+
+<footer>
+  <p><b>Cómo se armó.</b> El informe comercial de la semana (5-oct) · el CRM, leído el 5-oct · Cloudbeds · los envíos de email y los dos buzones · Meta y Google · la reunión del martes 29-sep. Todo leído, nada modificado.</p>
+  <p><b>Las llamadas de la semana.</b> Martes 29-sep, el GTM con todo el equipo: registrada y minada en both_os; de ahí salen los tres niveles de distribuidores, la meta de vender USD 60K por distribuidores antes de fin de octubre, el 30/70 de retiros y la pauta. Lunes 5-oct, la de finanzas: el registro guardó sólo el saludo; las cifras de caja salen del informe. Lunes 5-oct, un catch-up que etiqueta La Chamana sin tratarla en el texto.</p>
+  <p><b>Lo que no está.</b> La caja contra el banco y el detalle de USD 2.404 que salieron sin estar comprometidos · el día exacto de los dos cobros · lo de distribución, fichas, reseñas y DMs de la semana · la confirmación de las 4 conversaciones con intención de la pauta de septiembre.</p>
+  <p><b>El semáforo.</b> Rojo es crítico: la pista de caja tras pagos comprometidos bajó a 1,5 meses y la única reserva nueva vale USD 3.000. Ámbar es vigilar; verde, en marcha. Lo propone El Chamán y lo confirma Boris. «Sin medir» nunca se dibuja como cero.</p>
+  <div class="wmark">Made by <a href="https://both.ventures">@bothventures</a></div>
+</footer>
+
+</div>
+<div id="tip" hidden role="tooltip"></div>
+
+<script>
+(function(){
+  var tip=document.getElementById('tip');
+  function place(x,y){var w=tip.offsetWidth,h=tip.offsetHeight;if(x+w>innerWidth-8)x=Math.max(8,x-w-28);if(y+h>innerHeight-8)y=Math.max(8,y-h-28);tip.style.left=x+'px';tip.style.top=y+'px'}
+  function show(html,x,y){tip.innerHTML=html;tip.hidden=false;place(x,y)}
+  function hide(){tip.hidden=true}
+  function fmt(n){return Math.round(n).toLocaleString('es-AR')}
+  function bind(el,html){
+    el.addEventListener('mousemove',function(e){show(html,e.clientX+14,e.clientY+14)});
+    el.addEventListener('mouseleave',hide);
+    el.setAttribute('tabindex','0');
+    el.addEventListener('focus',function(){var r=el.getBoundingClientRect();show(html,r.left+12,r.bottom+8)});
+    el.addEventListener('blur',hide);
+  }
+  document.addEventListener('touchstart',function(e){if(!e.target.closest('[tabindex="0"]'))hide()},{passive:true});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')hide()});
+
+  /* la pista */
+  var DAY=864e5, burn=19000/30.4;
+  function d(y,m,dd){return new Date(y,m-1,dd)}
+  var start=d(2026,10,5), end=d(2027,3,4), oct15=d(2026,10,15), nov5=d(2026,11,5);
+  var c0=31407, cc=c0-3375;
+  var zeroA=new Date(start.getTime()+cc/burn*DAY);
+  var atK=cc-burn*Math.round((oct15-start)/DAY), afterK=atK+3000;
+  var atN=afterK-burn*Math.round((nov5-oct15)/DAY), afterN=atN+13500;
+  var zeroB=new Date(nov5.getTime()+afterN/burn*DAY);
+  function mos(z){return ((z-start)/DAY/30.4).toFixed(2).replace('.',',')}
+  var narrow=matchMedia('(max-width:760px)').matches;
+  var W=narrow?320:840,L=narrow?38:48,R=narrow?10:16,T=narrow?14:18,plotB=narrow?190:250,laneY=narrow?244:298,yMax=35000,FS=narrow?11.5:13;
+  document.getElementById('runway').setAttribute('viewBox','0 0 '+W+' '+(narrow?292:348));
+  function X(t){return L+(t-start)/(end-start)*(W-L-R)}
+  function Y(v){return T+(1-v/yMax)*(plotB-T)}
+  var svg=document.getElementById('runway'),ns='http://www.w3.org/2000/svg';
+  function el(n,a){var e=document.createElementNS(ns,n);for(var k in a)e.setAttribute(k,a[k]);svg.appendChild(e);return e}
+  function txt(x,y,s,a){var t=el('text',Object.assign({x:x,y:y,'font-size':FS,fill:'var(--ink-3)'},a||{}));t.textContent=s;return t}
+  (narrow?[0,15000,30000]:[0,10000,20000,30000]).forEach(function(v){
+    el('line',{x1:L,x2:W-R,y1:Y(v),y2:Y(v),stroke:'var(--line)','stroke-width':v?1:1.5});
+    txt(L-8,Y(v)+4,v?(v/1000)+'K':'0',{'text-anchor':'end'});
+  });
+  [[d(2026,11,1),'nov'],[d(2026,12,1),'dic'],[d(2027,1,1),'ene'],[d(2027,2,1),'feb']].forEach(function(m){
+    el('line',{x1:X(m[0]),x2:X(m[0]),y1:T,y2:laneY+14,stroke:'var(--line-2)','stroke-width':1});
+    txt(X(m[0])+(narrow?3:5),plotB+18,m[1],narrow?{'font-size':12}:{});
+  });
+  // con los dos cobros comprometidos (estimado): punteada
+  el('polyline',{points:[[X(start),Y(c0)],[X(start),Y(cc)],[X(oct15),Y(atK)],[X(oct15),Y(afterK)],[X(nov5),Y(atN)],[X(nov5),Y(afterN)],[X(zeroB),Y(0)]].join(' '),fill:'none',stroke:'var(--dash)','stroke-width':2,'stroke-dasharray':'6 5','stroke-linejoin':'round'});
+  // sin cobros nuevos (base): sólida
+  el('polyline',{points:[[X(start),Y(c0)],[X(start),Y(cc)],[X(zeroA),Y(0)]].join(' '),fill:'none',stroke:'var(--copper)','stroke-width':2.5,'stroke-linejoin':'round'});
+  [[start,c0,'Informe · 5-oct','USD 31.407, sin conciliar contra el banco'],[start,cc,'Tras pagos comprometidos','USD 28.032 tras USD 3.375 comprometidos'],[oct15,afterK,'Keith · mediados de octubre','+USD 3.000 de la reserva del 12 al 15-nov · día estimado'],[nov5,afterN,'Cobro de principios de noviembre','+USD 13.500 de la reserva de diciembre (Loco Luxury) · día estimado']].forEach(function(p){
+    el('circle',{cx:X(p[0]),cy:Y(p[1]),r:5,fill:'var(--card)',stroke:'var(--copper)','stroke-width':2.2});
+    if(narrow) return;
+    var h=el('circle',{cx:X(p[0]),cy:Y(p[1]),r:15,fill:'transparent',stroke:'none'});
+    var tt=document.createElementNS(ns,'title');tt.textContent=p[2]+': '+p[3];h.appendChild(tt);
+    bind(h,'<b>'+p[2]+'</b><br>'+p[3]);
+  });
+  if(!narrow){
+    txt(X(start)+9,Y((c0+cc)/2)+4,'−3.375 comprometidos',{'font-size':12});
+    txt(X(oct15)+9,Y(afterK)-9,'+3.000 Keith',{'font-size':12});
+    txt(X(nov5)+9,Y(afterN)-9,'+13.500 (saldo de la reserva de dic.)',{'font-size':12});
+  }
+  function short(t){return t.getDate()+'-'+['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'][t.getMonth()]}
+  [[zeroA,'start','Sin ningún cobro: '+mos(zeroA)+' meses desde hoy'],[zeroB,'start','Con los dos cobros comprometidos: '+mos(zeroB)+' meses']].forEach(function(z){
+    el('circle',{cx:X(z[0]),cy:Y(0),r:6,fill:'var(--crit)'});
+    txt(X(z[0])+(narrow?(z[1]==='end'?-8:8):8),Y(0)-(narrow?12:10),'~'+short(z[0]),{'text-anchor':narrow?z[1]:'start','font-size':narrow?12:14,'font-weight':600,fill:'var(--crit)',stroke:'var(--card)','stroke-width':5,'paint-order':'stroke','stroke-linejoin':'round'});
+    if(narrow) return;
+    var h=el('circle',{cx:X(z[0]),cy:Y(0),r:15,fill:'transparent',stroke:'none'});
+    var tt=document.createElementNS(ns,'title');tt.textContent='Caja en cero ~'+short(z[0])+'. '+z[2];h.appendChild(tt);
+    bind(h,'<b>Caja en cero ~'+short(z[0])+'</b><br>'+z[2]);
+  });
+  txt(L,laneY-9,'estadías nuevas · Keith reservada, el resto en pipeline',{'text-anchor':'start','font-size':narrow?11:12,'class':'lane'});
+  el('line',{x1:L,x2:W-R,y1:laneY,y2:laneY,stroke:'var(--line)','stroke-width':1});
+  [[d(2026,11,12),3000,'Keith','Keith Rinzler · 12–15 nov · USD 3.000 · confirmada; falta en Cloudbeds',0,0],[d(2027,1,15),41295,'Loco Luxury','Loco Luxury · 15–22 ene · 18 personas · USD 41.295 · 50%',0,0],[d(2027,2,24),28000,'Pei','Pei Mastermind · 24–28 feb · USD 28.000 · 50%',0,0]].forEach(function(s){
+    var r=Math.max(narrow?4:6,Math.sqrt(s[1])/(narrow?24:15)), cx=X(s[0])+s[4]*(r+(narrow?3:6));
+    el('circle',{cx:cx,cy:laneY,r:r,fill:'var(--copper-soft)',stroke:'var(--copper-ink)','stroke-width':1.5});
+    txt(cx,laneY+r+13+(s[5]?12:0),s[2],{'text-anchor':'middle','font-size':12});
+    if(narrow) return;
+    var h=el('circle',{cx:cx,cy:laneY,r:Math.max(r,14),fill:'transparent',stroke:'none'});
+    var tt=document.createElementNS(ns,'title');tt.textContent=s[3];h.appendChild(tt);
+    bind(h,'<b>'+s[2]+'</b><br>'+s[3]);
+  });
+
+  /* pipeline */
+  var leads=[
+    {n:'One Yoga House',w:'Anna · mar/abr-2027 · 5–6 noches',v:30000,lab:'~30K',p:.75,o:'Lara',note:'Duda de si los espacios alcanzan para su grupo. Viene como invitada a conocer la casa en la primera quincena de diciembre; el objetivo es que la visita termine en una decisión.'},
+    {n:'Loco Luxury',w:'grupo de 18 · 15–22 ene-2027',v:41295,lab:'41K',p:.5,o:'agencia',isnew:true,note:'Nueva esta semana, por la agencia. Etapa inicial: todavía no hay termómetro claro.'},
+    {n:'Solseed Retreats',w:'Deb Carvalho · ene–mar-2028',v:30000,lab:'30K',p:.5,o:'Lara',note:'Retiro de 6 noches, desde Portugal. Se ajusta la propuesta según el formato y los servicios que pida.'},
+    {n:'Dream Exotic Rentals',w:'50 años de una celebridad · 9–16 sep-2027',v:28000,lab:'28K+',p:.5,o:'IG',note:'Los 28K son sólo alojamiento; servicios, producción y experiencias pueden sumar bastante.'},
+    {n:'Pei Mastermind',w:'mujeres · 24–28 feb-2027',v:28000,lab:'28K',p:.5,o:'concierge',isnew:true,note:'Se cotiza con la cantidad de personas y los servicios que pida.'},
+    {n:'Villa Luxe',w:'Navidad o 1ª quincena de enero',v:35000,lab:'~35K',p:.25,o:'Lara',isnew:true,note:'Las fechas pedidas (26-dic → 2-ene) están ocupadas. Se ofrecieron Navidad y la primera quincena de enero; sin respuesta.'},
+    {n:'Ritual Union',w:'5 noches · sin fecha',v:26000,lab:'26K',p:.25,o:'Lara',note:'Un mes en seguimiento: interés sin avance.'},
+    {n:'Gabby Silva',w:'boda 2027 · visita en noviembre',v:0,lab:'—',p:null,o:'',isnew:true,note:'Quiere conocer la casa en noviembre como sede de su boda. Una boda es un evento: el vertical está cerrado y la celebración que sí entra sigue sin definir (D-0913-05).'}
+  ];
+  var pipe=document.getElementById('pipe'),mode='w',maxV=41295;
+  function wv(l){return l.p==null?0:l.v*l.p}
+  function render(){
+    var list=leads.slice().sort(function(a,b){return mode==='w'?(wv(b)-wv(a)||(b.p!=null)-(a.p!=null)):(b.v-a.v)});
+    pipe.innerHTML='';
+    list.forEach(function(l){
+      var r=document.createElement('div');r.className='prow';
+      var tags='';
+      if(l.o) tags+='<span class="tag'+(l.o==='Lara'?'':' plain')+'">'+l.o+'</span>';
+      if(l.inside) tags+='<span class="tag in">antes de cero</span>';
+      if(l.isnew) tags+='<span class="tag plain">nuevo</span>';
+      var big=mode==='w'?(l.p==null?'—':'~'+Math.round(wv(l)/1000)+'K'):l.lab;
+      var sub=l.p==null?(mode==='w'&&l.v?l.lab+' nominal · sin calificar':(l.v?'sin calificar':'sin monto')):(mode==='w'?l.lab+' nominal · '+Math.round(l.p*100)+'%':'~'+Math.round(wv(l)/1000)+'K ponderado · '+Math.round(l.p*100)+'%');
+      r.innerHTML='<div class="pn"><b>'+l.n+'</b><span class="w">'+l.w+'</span>'+(tags?'<span class="tags">'+tags+'</span>':'')+'</div><div class="track"><div class="nom" style="width:'+(l.v/maxV*100)+'%"></div><div class="w" style="width:'+(wv(l)/maxV*100)+'%"></div></div><div class="pv"><span class="num">'+big+'</span><small>'+sub+'</small></div>';
+      bind(r,'<b>'+l.n+'</b><br>'+l.note+'<br>Nominal '+(l.v?'USD '+fmt(l.v):'sin definir')+(l.p!=null?' · ponderado USD '+fmt(wv(l)):''));
+      pipe.appendChild(r);
+    });
+    document.getElementById('sort-status').textContent='Ordenado por '+(mode==='w'?'ponderado':'nominal');
+  }
+  function set(m){mode=m;document.getElementById('sort-w').setAttribute('aria-pressed',m==='w');document.getElementById('sort-n').setAttribute('aria-pressed',m==='n');render()}
+  document.getElementById('sort-w').onclick=function(){set('w')};
+  document.getElementById('sort-n').onclick=function(){set('n')};
+  render();
+  document.getElementById('notes').innerHTML=leads.map(function(l){return '<p><b>'+l.n+'.</b> '+l.note+'</p>'}).join('');
+
+  /* salieron */
+  var lost=[['Evoke (reserva) · fiestas',63584],['Marco · dejó de responder',17994],['Arsene · otro destino',13797],['Oliver & Tiggy · otra estética',0],['Cristina · infraestructura',0]];
+  document.getElementById('lost').innerHTML=lost.map(function(x){return '<div class="lb"><span>'+x[0]+'</span><div class="t"><i style="width:'+(x[1]/63584*100)+'%"></i></div><span class="v">'+(x[1]?(x[1]/1000).toFixed(1).replace('.',',')+'K':'—')+'</span></div>'}).join('');
+
+  /* origen */
+  var origin=[['Email de Lara · 4',121000],['Agencia · 1',41295],['Instagram · 1',28000],['Concierge · 1',28000],['Directo · 1',0]];
+  document.getElementById('origin').innerHTML=origin.map(function(o){return '<div class="lb"><span>'+o[0]+'</span><div class="t"><i style="width:'+(o[1]/121000*100)+'%"></i></div><span class="v">'+(o[1]?Math.round(o[1]/1000)+'K':'—')+'</span></div>'}).join('');
+})();
+</script>
+</body></html>
