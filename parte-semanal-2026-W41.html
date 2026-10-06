@@ -111,10 +111,10 @@ details.card{padding-top:16px;padding-bottom:14px;gap:0}
 .sq.bad .num{color:var(--crit)}
 #runway{width:100%;height:auto;display:block}
 #runway text{font-family:Jost,Arial,sans-serif}
-.legend{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:13px;color:var(--ink-2)}
-.legend i{display:inline-block;width:20px;border-top:2.5px solid var(--copper);vertical-align:middle;margin-right:6px}
+.legend{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:12.5px;color:var(--ink-3)}
+.legend i{display:inline-block;width:18px;height:8px;border-top:1.6px solid var(--copper);background:linear-gradient(color-mix(in srgb,var(--copper) 20%,transparent),transparent);vertical-align:middle;margin-right:7px}
 .legend i.dash{border-top:2px dashed var(--dash)}
-.legend i.bub{width:10px;height:10px;border:0;border-radius:50%;background:var(--copper-soft);box-shadow:inset 0 0 0 2px var(--copper-ink)}
+.legend i.bub{width:9px;height:9px;border:0;border-radius:50%;background:var(--copper-soft);box-shadow:inset 0 0 0 1px var(--copper-ink)}
 
 /* embudos */
 .funnels{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
@@ -576,65 +576,72 @@ footer b{color:var(--ink-2)}
   document.addEventListener('touchstart',function(e){if(!e.target.closest('[tabindex="0"]'))hide()},{passive:true});
   document.addEventListener('keydown',function(e){if(e.key==='Escape')hide()});
 
-  /* la pista */
+  /* la pista — trazo fino, área tenue, marcas sólo donde entra plata (rediseño 6-oct, Boris: «más sutil») */
   var DAY=864e5, burn=19000/30.4;
   function d(y,m,dd){return new Date(y,m-1,dd)}
-  var start=d(2026,10,5), end=d(2027,3,4), oct15=d(2026,10,15), nov5=d(2026,11,5);
+  var start=d(2026,10,5), end=d(2027,3,8), oct15=d(2026,10,15), nov5=d(2026,11,5);
   var c0=31407, cc=c0-3375;
-  var zeroA=new Date(start.getTime()+cc/burn*DAY);
   var atK=cc-burn*Math.round((oct15-start)/DAY), afterK=atK+3000;
   var atN=afterK-burn*Math.round((nov5-oct15)/DAY), afterN=atN+13500;
   var zeroB=new Date(nov5.getTime()+afterN/burn*DAY);
   function mos(z){return ((z-start)/DAY/30.4).toFixed(2).replace('.',',')}
+  function short(t){return t.getDate()+'-'+['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'][t.getMonth()]}
   var narrow=matchMedia('(max-width:760px)').matches;
-  var W=narrow?320:840,L=narrow?38:48,R=narrow?10:16,T=narrow?14:18,plotB=narrow?190:250,laneY=narrow?244:298,yMax=35000,FS=narrow?11.5:13;
-  document.getElementById('runway').setAttribute('viewBox','0 0 '+W+' '+(narrow?292:348));
+  var W=narrow?340:840, H=narrow?286:340, L=narrow?34:44, R=narrow?8:16, T=narrow?16:20, plotB=narrow?178:226, yMax=32000;
+  var laneY=narrow?238:288, rMax=narrow?8:11, FS=narrow?10.5:11.5;
+  var svg=document.getElementById('runway'),ns='http://www.w3.org/2000/svg';
+  svg.setAttribute('viewBox','0 0 '+W+' '+H);
   function X(t){return L+(t-start)/(end-start)*(W-L-R)}
   function Y(v){return T+(1-v/yMax)*(plotB-T)}
-  var svg=document.getElementById('runway'),ns='http://www.w3.org/2000/svg';
-  function el(n,a){var e=document.createElementNS(ns,n);for(var k in a)e.setAttribute(k,a[k]);svg.appendChild(e);return e}
+  function el(n,a,parent){var e=document.createElementNS(ns,n);for(var k in a)e.setAttribute(k,a[k]);(parent||svg).appendChild(e);return e}
   function txt(x,y,s,a){var t=el('text',Object.assign({x:x,y:y,'font-size':FS,fill:'var(--ink-3)'},a||{}));t.textContent=s;return t}
+  function hit(x,y,r,title,html){if(narrow)return;var h=el('circle',{cx:x,cy:y,r:r,fill:'transparent',stroke:'none'});var tt=document.createElementNS(ns,'title');tt.textContent=title;h.appendChild(tt);bind(h,html)}
+  // degradé del área: cobre que se apaga hacia el cero
+  var defs=el('defs',{}), g=el('linearGradient',{id:'rwFill',x1:0,y1:0,x2:0,y2:1},defs);
+  el('stop',{offset:'0%',style:'stop-color:var(--copper);stop-opacity:.20'},g);
+  el('stop',{offset:'100%',style:'stop-color:var(--copper);stop-opacity:0'},g);
+  // grilla: líneas de pelo, sólo horizontales
   (narrow?[0,15000,30000]:[0,10000,20000,30000]).forEach(function(v){
-    el('line',{x1:L,x2:W-R,y1:Y(v),y2:Y(v),stroke:'var(--line)','stroke-width':v?1:1.5});
-    txt(L-8,Y(v)+4,v?(v/1000)+'K':'0',{'text-anchor':'end'});
+    el('line',{x1:L,x2:W-R,y1:Y(v),y2:Y(v),stroke:v?'var(--line-2)':'var(--line)','stroke-width':1,'shape-rendering':'crispEdges'});
+    txt(L-8,Y(v)+3.5,v?(v/1000)+'K':'0',{'text-anchor':'end'});
   });
-  [[d(2026,11,1),'nov'],[d(2026,12,1),'dic'],[d(2027,1,1),'ene'],[d(2027,2,1),'feb']].forEach(function(m){
-    el('line',{x1:X(m[0]),x2:X(m[0]),y1:T,y2:laneY+14,stroke:'var(--line-2)','stroke-width':1});
-    txt(X(m[0])+(narrow?3:5),plotB+18,m[1],narrow?{'font-size':12}:{});
+  // meses: una marca chica sobre el cero, no columnas
+  [[d(2026,11,1),'nov'],[d(2026,12,1),'dic'],[d(2027,1,1),'ene'],[d(2027,2,1),'feb'],[d(2027,3,1),'mar']].forEach(function(m){
+    el('line',{x1:X(m[0]),x2:X(m[0]),y1:plotB,y2:plotB+4,stroke:'var(--line)','stroke-width':1});
+    txt(X(m[0]),plotB+17,m[1],{'text-anchor':'middle','letter-spacing':'.04em'});
   });
-  // con los dos cobros confirmados (Iru, 6-oct: son de reservas confirmadas): sólida
-  el('polyline',{points:[[X(start),Y(c0)],[X(start),Y(cc)],[X(oct15),Y(atK)],[X(oct15),Y(afterK)],[X(nov5),Y(atN)],[X(nov5),Y(afterN)],[X(zeroB),Y(0)]].join(' '),fill:'none',stroke:'var(--copper)','stroke-width':2.5,'stroke-linejoin':'round'});
-  [[start,c0,'Informe · 5-oct','USD 31.407, el saldo que informa Iru'],[start,cc,'Tras pagos comprometidos','USD 28.032 tras USD 3.375 comprometidos'],[oct15,afterK,'Keith · mediados de octubre','+USD 3.000 de la reserva del 12 al 15-nov · día estimado'],[nov5,afterN,'Cobro de principios de noviembre','+USD 13.500, la segunda mitad de la reserva de diciembre que trajo Loco Luxury · día estimado']].forEach(function(p){
-    el('circle',{cx:X(p[0]),cy:Y(p[1]),r:5,fill:'var(--card)',stroke:'var(--copper)','stroke-width':2.2});
-    if(narrow) return;
-    var h=el('circle',{cx:X(p[0]),cy:Y(p[1]),r:15,fill:'transparent',stroke:'none'});
-    var tt=document.createElementNS(ns,'title');tt.textContent=p[2]+': '+p[3];h.appendChild(tt);
-    bind(h,'<b>'+p[2]+'</b><br>'+p[3]);
+  var pts=[[start,cc],[oct15,atK],[oct15,afterK],[nov5,atN],[nov5,afterN],[zeroB,0]];
+  var line=pts.map(function(p){return X(p[0]).toFixed(1)+','+Y(p[1]).toFixed(1)}).join(' L');
+  el('path',{d:'M'+line+' L'+X(zeroB).toFixed(1)+','+Y(0)+' L'+X(start).toFixed(1)+','+Y(0)+' Z',fill:'url(#rwFill)',stroke:'none'});
+  // guía del cero: punteada, baja hasta la fila de estadías — lo que queda a la derecha cae después
+  el('line',{x1:X(zeroB),x2:X(zeroB),y1:Y(0),y2:laneY+rMax+2,stroke:'var(--crit)','stroke-width':1,'stroke-dasharray':'2 3',opacity:.55});
+  el('path',{d:'M'+line,fill:'none',stroke:'var(--copper)','stroke-width':1.6,'stroke-linejoin':'round','stroke-linecap':'round'});
+  // inicio
+  el('circle',{cx:X(start),cy:Y(cc),r:2.5,fill:'var(--copper)'});
+  hit(X(start),Y(cc),12,'5-oct: USD 28.032','<b>5-oct · USD 28.032</b><br>El saldo informado (31.407) menos 3.375 de pagos comprometidos');
+  // cobros: punto chico con aro del color de la tarjeta y una cifra corta
+  [[oct15,afterK,narrow?'+3K':'+3.000 · Keith','Keith · mediados de octubre','+USD 3.000 de la reserva del 12 al 15-nov · día estimado'],
+   [nov5,afterN,narrow?'+13,5K':'+13.500 · reserva de diciembre','Cobro de principios de noviembre','+USD 13.500, la segunda mitad de la reserva de diciembre que trajo Loco Luxury · día estimado']].forEach(function(p){
+    el('circle',{cx:X(p[0]),cy:Y(p[1]),r:3,fill:'var(--copper)',stroke:'var(--card)','stroke-width':2});
+    txt(X(p[0])+7,Y(p[1])-6,p[2],{fill:'var(--ink-2)'});
+    hit(X(p[0]),Y(p[1]),12,p[3]+': '+p[4],'<b>'+p[3]+'</b><br>'+p[4]);
   });
-  if(!narrow){
-    txt(X(start)+9,Y((c0+cc)/2)+4,'−3.375 comprometidos',{'font-size':12});
-    txt(X(oct15)+9,Y(afterK)-9,'+3.000 Keith',{'font-size':12});
-    txt(X(nov5)+9,Y(afterN)-9,'+13.500 (saldo de la reserva de dic.)',{'font-size':12});
-  }
-  function short(t){return t.getDate()+'-'+['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'][t.getMonth()]}
-  [[zeroB,'start','Con los dos cobros confirmados: '+mos(zeroB)+' meses desde el 5-oct']].forEach(function(z){
-    el('circle',{cx:X(z[0]),cy:Y(0),r:6,fill:'var(--crit)'});
-    txt(X(z[0])+(narrow?(z[1]==='end'?-8:8):8),Y(0)-(narrow?12:10),'~'+short(z[0]),{'text-anchor':narrow?z[1]:'start','font-size':narrow?12:14,'font-weight':600,fill:'var(--crit)',stroke:'var(--card)','stroke-width':5,'paint-order':'stroke','stroke-linejoin':'round'});
-    if(narrow) return;
-    var h=el('circle',{cx:X(z[0]),cy:Y(0),r:15,fill:'transparent',stroke:'none'});
-    var tt=document.createElementNS(ns,'title');tt.textContent='Caja en cero ~'+short(z[0])+'. '+z[2];h.appendChild(tt);
-    bind(h,'<b>Caja en cero ~'+short(z[0])+'</b><br>'+z[2]);
-  });
-  txt(L,laneY-9,'estadías nuevas · Keith reservada, el resto en pipeline',{'text-anchor':'start','font-size':narrow?11:12,'class':'lane'});
-  el('line',{x1:L,x2:W-R,y1:laneY,y2:laneY,stroke:'var(--line)','stroke-width':1});
-  [[d(2026,11,12),3000,'Keith','Keith Rinzler · 12–15 nov · USD 3.000 · en Cloudbeds desde el 29-sep; se confirma con el pago',0,0],[d(2027,1,15),41295,'Loco Luxury','Loco Luxury · 15–22 ene · 18 personas · USD 41.295 · 50%',0,0],[d(2027,2,24),20000,'Pei','Pei Mastermind · 24–28 feb · USD 20.000 · 50%',0,0]].forEach(function(s){
-    var r=Math.max(narrow?4:6,Math.sqrt(s[1])/(narrow?24:15)), cx=X(s[0])+s[4]*(r+(narrow?3:6));
-    el('circle',{cx:cx,cy:laneY,r:r,fill:'var(--copper-soft)',stroke:'var(--copper-ink)','stroke-width':1.5});
-    txt(cx,laneY+r+13+(s[5]?12:0),s[2],{'text-anchor':'middle','font-size':12});
-    if(narrow) return;
-    var h=el('circle',{cx:cx,cy:laneY,r:Math.max(r,14),fill:'transparent',stroke:'none'});
-    var tt=document.createElementNS(ns,'title');tt.textContent=s[3];h.appendChild(tt);
-    bind(h,'<b>'+s[2]+'</b><br>'+s[3]);
+  // el cero: punto con halo, cifra en peso medio
+  el('circle',{cx:X(zeroB),cy:Y(0),r:7,fill:'var(--crit)',opacity:.16});
+  el('circle',{cx:X(zeroB),cy:Y(0),r:3.2,fill:'var(--crit)'});
+  txt(X(zeroB)+8,Y(0)-8,'cero ~'+short(zeroB),{'font-size':narrow?11:12.5,'font-weight':500,fill:'var(--crit)',stroke:'var(--card)','stroke-width':4,'paint-order':'stroke','stroke-linejoin':'round'});
+  hit(X(zeroB),Y(0),14,'Caja en cero ~'+short(zeroB),'<b>Caja en cero ~'+short(zeroB)+'</b><br>Con los dos cobros confirmados: '+mos(zeroB)+' meses desde el 5-oct');
+  // fila de estadías: título en versalitas, burbujas finas, rótulos alineados en dos líneas
+  txt(L,laneY-rMax-9,'PRÓXIMAS ESTADÍAS',{'font-size':narrow?9.5:10,'letter-spacing':'.14em','font-weight':500});
+  el('line',{x1:L,x2:W-R,y1:laneY,y2:laneY,stroke:'var(--line-2)','stroke-width':1,'shape-rendering':'crispEdges'});
+  [[d(2026,11,12),3000,'Keith','3K · reservada','Keith Rinzler · 12–15 nov · USD 3.000 · en Cloudbeds desde el 29-sep; se confirma con el pago'],
+   [d(2027,1,15),41295,'Loco Luxury','41K · 50%','Loco Luxury · 15–22 ene · 18 personas · USD 41.295 · 50%'],
+   [d(2027,2,24),20000,'Pei','20K · 50%','Pei Mastermind · 24–28 feb · USD 20.000 · 50%']].forEach(function(s){
+    var r=Math.max(3,Math.sqrt(s[1]/41295)*rMax), cx=X(s[0]), near=cx>W-R-28, ax=near?'end':'middle', tx=near?cx+r:cx;
+    el('circle',{cx:cx,cy:laneY,r:r,fill:'var(--copper-soft)',stroke:'var(--copper-ink)','stroke-width':1});
+    txt(tx,laneY+rMax+14,s[2],{'text-anchor':ax,fill:'var(--ink-2)','font-weight':500});
+    txt(tx,laneY+rMax+27,s[3],{'text-anchor':ax});
+    hit(cx,laneY,Math.max(r,13),s[4],'<b>'+s[2]+'</b><br>'+s[4]);
   });
 
   /* pipeline */
