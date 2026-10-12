@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Villas que venden en Tulum</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Jost:wght@400;500&display=swap">
+<style>
+/* Layout: a single reading column; each section = a kicker on the left, one idea and one visual on the right. */
+:root{
+  --bg:#FBFAF7; --fg:#1A1611; --muted:#6E6253; --line:#D8CDBC; --panel:#F3EEE5;
+  --accent:#C99A6D; --accent-ink:#8A6A46; --bad:#9E6B4C; --good:#767A4E;
+  --display:"Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --body:"Jost", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0E0C0A; --fg:#E9E2D6; --muted:#A3968A; --line:#3A3027; --panel:#17130F;
+    --accent:#C99A6D; --accent-ink:#D2AA82; --bad:#D29473; --good:#A3A775; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0E0C0A; --fg:#E9E2D6; --muted:#A3968A; --line:#3A3027; --panel:#17130F;
+  --accent:#C99A6D; --accent-ink:#D2AA82; --bad:#D29473; --good:#A3A775; color-scheme:dark;
+}
+*{box-sizing:border-box} html,body{margin:0} img{max-width:100%}
+body{background:var(--bg); color:var(--fg); font-family:var(--body); font-size:15px; line-height:1.55}
+.page{max-width:1040px; margin:0 auto; padding-inline:24px; padding-block:48px 64px}
+.rail{font-size:10.5px; letter-spacing:.3em; text-transform:uppercase; color:var(--accent-ink)}
+h1{font-family:var(--display); font-weight:300; font-size:clamp(34px,5vw,56px); line-height:1.02; margin:10px 0 18px; text-wrap:balance; max-width:16ch}
+h2{font-family:var(--display); font-weight:400; font-size:clamp(24px,2.6vw,30px); line-height:1.12; margin:0 0 10px; text-wrap:balance}
+p{margin:0}
+.lede{font-family:var(--display); font-size:clamp(19px,2vw,23px); line-height:1.4; max-width:44ch}
+.take{max-width:58ch; color:var(--fg)}
+.note{font-size:12.5px; color:var(--muted); max-width:62ch}
+
+/* hero */
+.hero{display:grid; gap:28px; padding-bottom:40px; border-bottom:1px solid var(--line)}
+.duel{display:grid; gap:14px; max-width:760px}
+.duel .cap{font-size:12.5px; color:var(--muted)}
+.duel .row{display:grid; grid-template-columns:150px minmax(0,1fr); gap:16px; align-items:center}
+.duel .who{font-size:14px; line-height:1.3}
+.duel .who small{display:block; font-size:12px; color:var(--muted)}
+.duel .bar{height:38px; background:var(--line); border-radius:2px; display:flex; align-items:center; padding-inline:12px; font-family:var(--display); font-size:24px; font-variant-numeric:tabular-nums; white-space:nowrap}
+.duel .row.us .bar{background:var(--accent); color:#14110E}
+.duel .pp{font-size:12.5px; color:var(--muted); margin-left:2px}
+
+/* sections */
+section{display:grid; grid-template-columns:200px minmax(0,1fr); gap:32px; padding-block:48px; border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+.kick{display:flex; flex-direction:column; gap:8px; padding-top:6px}
+.kick .q{font-family:var(--display); font-size:17px; line-height:1.3; color:var(--muted)}
+.body{min-width:0; display:grid; gap:20px; align-content:start}
+
+/* charts */
+svg{display:block; width:100%; height:auto; overflow:visible}
+svg text{font-family:var(--body); font-size:11.5px; fill:var(--muted)}
+svg .lab{fill:var(--fg); font-size:12px}
+svg .lab.us{fill:var(--accent-ink); font-weight:500}
+.ax{stroke:var(--line); stroke-width:1}
+.gridl{stroke:var(--line); stroke-width:.7; stroke-dasharray:2 4}
+.pt{fill:var(--fg)} .pt.pub{fill:var(--bg); stroke:var(--fg); stroke-width:1.4}
+.pt.us{fill:var(--accent); stroke:var(--accent-ink); stroke-width:1}
+.legend{display:flex; gap:18px; flex-wrap:wrap; font-size:12px; color:var(--muted)}
+.legend i{display:inline-block; width:9px; height:9px; border-radius:50%; margin-right:6px; vertical-align:-1px}
+.legend .f{background:var(--fg)} .legend .h{border:1.4px solid var(--fg)} .legend .c{background:var(--accent)} .legend .b{border-radius:1px; background:var(--accent); opacity:.18}
+
+/* funnel */
+.funnel{display:grid; gap:10px}
+.fun{display:grid; grid-template-columns:minmax(0,1fr); gap:4px}
+.fun .track{height:30px; display:flex; align-items:center}
+.fun .fill{height:100%; background:var(--line); border-radius:2px; display:flex; align-items:center; padding-inline:10px; font-family:var(--display); font-size:21px; font-variant-numeric:tabular-nums}
+.fun.us .fill{background:var(--accent); color:#14110E}
+.fun .l{font-size:13px; color:var(--muted)}
+.fun .l b{color:var(--fg); font-weight:500}
+
+/* gates */
+.gates{display:grid; border-top:1px solid var(--fg)}
+.ghead,.gate{display:grid; grid-template-columns:190px minmax(0,1fr) minmax(0,1fr); gap:20px; padding-block:14px; border-bottom:1px solid var(--line)}
+.ghead{padding-block:8px; font-size:10.5px; letter-spacing:.22em; text-transform:uppercase; color:var(--accent-ink)}
+.gate .n{font-family:var(--display); font-size:20px; line-height:1.15}
+.gate .n small{display:block; font-family:var(--body); font-size:10.5px; letter-spacing:.22em; text-transform:uppercase; color:var(--muted); margin-bottom:2px}
+.gate .them,.gate .us{font-size:14px; line-height:1.45; min-width:0}
+.gate .us{color:var(--bad); padding-left:16px; position:relative}
+.gate .us:before{content:""; position:absolute; left:0; top:.55em; width:7px; height:7px; border-radius:50%; background:var(--bad)}
+.gate .mob{display:none}
+.callout{display:grid; grid-template-columns:auto minmax(0,1fr); gap:14px; align-items:start; background:var(--panel); border-radius:3px; padding:16px 18px}
+.callout .mark{font-family:var(--display); font-size:30px; line-height:.8; color:var(--accent)}
+.chips{display:flex; flex-wrap:wrap; gap:8px}
+.chip{border:1px solid var(--line); border-radius:999px; padding:4px 12px; font-size:12.5px; color:var(--muted)}
+.chip s{text-decoration-color:var(--bad); color:var(--fg)}
+
+/* moment */
+.stats{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:18px}
+.stats .n{font-family:var(--display); font-size:34px; line-height:1; font-variant-numeric:tabular-nums}
+.stats .l{font-size:12.5px; color:var(--muted); margin-top:4px}
+.seasons{display:grid; grid-template-columns:150px repeat(6,minmax(0,1fr)); gap:5px; align-items:center; font-size:12.5px; max-width:720px}
+.seasons .h{color:var(--muted); text-align:center; letter-spacing:.14em; text-transform:uppercase; font-size:10.5px}
+.s{border-radius:2px; text-align:center; padding:7px 0; font-size:12px}
+.s.b{border:1px solid var(--line); color:var(--muted)}
+.s.m{background:var(--line); color:var(--fg)}
+.s.a{background:var(--muted); color:var(--bg)}
+.s.hl{outline:2px solid var(--bad); outline-offset:2px}
+
+/* proposal */
+.prop{display:grid; grid-template-columns:minmax(0,1.2fr) minmax(0,1fr); gap:28px; align-items:start}
+.card{background:var(--panel); border-radius:3px; padding:22px 24px; display:grid; gap:14px}
+.card .big{font-family:var(--display); font-size:30px; line-height:1.1}
+.card dl{display:grid; grid-template-columns:96px minmax(0,1fr); gap:8px 14px; margin:0; font-size:14px}
+.card dt{color:var(--muted)} .card dd{margin:0}
+.nights{display:grid; gap:12px}
+.nights .row{display:grid; gap:4px}
+.nights .top{display:flex; justify-content:space-between; font-size:13px}
+.nights .top b{font-family:var(--display); font-size:22px; font-weight:400; font-variant-numeric:tabular-nums}
+.nights .trk{height:10px; border:1px solid var(--line); border-radius:2px; position:relative}
+.nights .fill{position:absolute; inset:0 auto 0 0; background:var(--muted); border-radius:1px}
+.nights .row.us .fill{background:var(--accent)}
+.nights .row.us .top b{color:var(--accent-ink)}
+
+/* actions */
+ol.acts{list-style:none; margin:0; padding:0; counter-reset:a; display:grid}
+ol.acts li{counter-increment:a; display:grid; grid-template-columns:34px minmax(0,1fr) auto; gap:14px; padding-block:12px; border-bottom:1px solid var(--line); align-items:baseline}
+ol.acts li:before{content:counter(a); font-family:var(--display); font-size:22px; color:var(--accent-ink); line-height:1}
+ol.acts .what{font-size:14.5px}
+ol.acts .what small{display:block; font-size:12px; color:var(--muted); margin-top:2px}
+ol.acts .who{font-size:12px; color:var(--muted); white-space:nowrap; text-align:right}
+ol.acts li.first .what{font-weight:500}
+
+.unknown{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px 28px}
+.unknown p{font-size:13.5px; color:var(--muted)}
+.unknown b{display:block; color:var(--fg); font-weight:500; margin-bottom:2px}
+footer{padding-top:24px; font-size:12px; color:var(--muted); display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap}
+
+@media (max-width:820px){
+  section{grid-template-columns:minmax(0,1fr); gap:16px; padding-block:36px}
+  .prop,.unknown{grid-template-columns:minmax(0,1fr)}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ghead{display:none}
+  .gate{grid-template-columns:minmax(0,1fr); gap:6px}
+  .gate .mob{display:inline; font-weight:500}
+  .duel .row{grid-template-columns:minmax(0,1fr)}
+  .seasons{grid-template-columns:90px repeat(6,minmax(0,1fr)); font-size:11px}
+  ol.acts li{grid-template-columns:28px minmax(0,1fr)}
+  ol.acts .who{grid-column:2; text-align:left}
+}
+@media (prefers-reduced-motion:no-preference){
+  .duel .bar,.fun .fill{transition:width .6s ease}
+}
+</style>
+</head>
+<body>
+
+<main class="page">
+  <header class="hero">
+    <div>
+      <div class="rail">La Chamana · estudio de villas comparables · Tulum · 12 oct 2026 · interno</div>
+      <h1>Las villas de 8 habitaciones que sí venden</h1>
+      <p class="lede">Las que llenan octubre y noviembre cobran lo que el mercado paga en baja, dicen qué incluye la noche y atienden a quien organiza el viaje.</p>
+    </div>
+    <div class="duel">
+      <div class="cap">Airbnb · 17 al 20 de noviembre · 16 personas · 3 noches con todos los cargos · mismo barrio, 8 suites, ambas Airbnb Luxe</div>
+      <div class="row"><div class="who">16Tulum<small>77% del calendario oct–nov bloqueado</small></div><div><div class="bar" style="width:28.9%">4.320</div><div class="pp">USD 90 por persona y noche</div></div></div>
+      <div class="row us"><div class="who">La Chamana<small>4% del calendario oct–nov bloqueado</small></div><div><div class="bar" style="width:100%">14.967 · tres veces y media más</div><div class="pp">USD 312 por persona y noche</div></div></div>
+    </div>
+  </header>
+
+  <section>
+    <div class="kick"><span class="rail">1 · El precio</span><span class="q">¿Qué separa a las que venden?</span></div>
+    <div class="body">
+      <h2>Todas las que venden cobran entre USD 925 y 3.100 la noche</h2>
+      <p class="take">Cada punto es una villa del relevamiento de Bianca. A la izquierda, más barato; arriba, más calendario ocupado. La Chamana es la única fuera de la banda, y la única casi vacía.</p>
+      <svg id="scatter" viewBox="0 0 640 300" role="img" aria-label="Precio por noche contra porcentaje del calendario bloqueado en octubre y noviembre"></svg>
+      <div class="legend"><span><i class="f"></i>precio cotizado en Airbnb</span><span><i class="h"></i>tarifa publicada «desde»</span><span><i class="c"></i>La Chamana</span><span><i class="b"></i>banda de las que venden</span></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="kick"><span class="rail">2 · Dónde caemos</span><span class="q">¿Con quién nos compara Airbnb?</span></div>
+    <div class="body">
+      <h2>A ese precio quedamos entre mansiones de playa que no venden</h2>
+      <div class="funnel">
+        <div class="fun"><div class="track"><div class="fill" style="width:100%">144</div></div><div class="l">casas en Airbnb para 16 personas, 7 o más habitaciones, 17–20 nov. Acá está <b>16Tulum</b>, a 4.320.</div></div>
+        <div class="fun"><div class="track"><div class="fill" style="width:60.4%">87</div></div><div class="l">cuestan USD 3.500 o más por la estadía.</div></div>
+        <div class="fun us"><div class="track"><div class="fill" style="width:16%">23</div></div><div class="l">cuestan USD 11.000 o más. Acá está <b>La Chamana</b>, a 14.967: la única villa de jungla, rodeada de casas frente al mar de 10 a 15 habitaciones, casi todas sin una reseña.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="kick"><span class="rail">3 · Las cuatro puertas</span><span class="q">¿Qué cruza quien organiza el viaje antes de reservar?</span></div>
+    <div class="body">
+      <h2>Las que venden pasan las cuatro. Nosotros, ninguna</h2>
+      <div class="gates">
+        <div class="ghead"><span>Puerta</span><span>Las que venden</span><span>La Chamana hoy</span></div>
+        <div class="gate"><div class="n"><small>Puerta 1</small>Precio en banda</div><div class="them"><span class="mob">Ellas: </span>925 a 3.100 por noche, y el descuento de noviembre tachado a la vista en la tarjeta de búsqueda.</div><div class="us"><span class="mob">Nosotros: </span>4.989 por noche. El −15% de oct–nov circula sólo por mail a partners.</div></div>
+        <div class="gate"><div class="n"><small>Puerta 2</small>Qué incluye, en el título</div><div class="them"><span class="mob">Ellas: </span>«Staffed», «Security &amp; Concierge», «Fully staffed: chef, butler, concierge &amp; daily cleaning included».</div><div class="us"><span class="mob">Nosotros: </span>«available upon request». Cuatro fichas, cuatro respuestas distintas.</div></div>
+        <div class="gate"><div class="n"><small>Puerta 3</small>Prueba social</div><div class="them"><span class="mob">Ellas: </span>de 8 a 164 reseñas, sello Guest Favorite.</div><div class="us"><span class="mob">Nosotros: </span>1 reseña en 10 meses.</div></div>
+        <div class="gate"><div class="n"><small>Puerta 4</small>Reservable ya</div><div class="them"><span class="mob">Ellas: </span>calendario y precio online, en 7 a 10 canales.</div><div class="us"><span class="mob">Nosotros: </span>por solicitud, respuesta en 24 h. Ausentes en 5 de 6 búsquedas genéricas.</div></div>
+      </div>
+      <div class="callout"><span class="mark">↺</span><p><b style="font-weight:500">Lo que alimenta la puerta 3 es la hospitalidad.</b> Las reseñas de las ganadoras son de despedidas y cumpleaños de 14 personas, y lo primero que elogian es la concierge que pasa cada día, la bienvenida preparada y la respuesta inmediata. Ambre et Epices: 80 menciones de hospitalidad, 26 de interiores.</p></div>
+      <div><p class="note" style="margin-bottom:8px">Lo que se descartó como causa:</p>
+        <div class="chips"><span class="chip"><s>La playa</s> · las cuatro que más venden son de jungla o de barrio</span><span class="chip"><s>El mínimo de noches</s> · pedimos de lo más bajo</span><span class="chip"><s>Las reseñas solas</s> · Talisman tiene 24 y vende 16%</span><span class="chip"><s>Las inclusiones solas</s> · Rae's incluye chef y vende 29%</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="kick"><span class="rail">4 · El momento</span><span class="q">¿En qué mercado estamos vendiendo?</span></div>
+    <div class="body">
+      <h2>Tulum perdió un tercio de su demanda, y octubre lo cobramos como media</h2>
+      <div class="stats">
+        <div><div class="n">−33,5%</div><div class="l">turistas ene–jul vs 2025</div></div>
+        <div><div class="n">−33%</div><div class="l">pasajeros del aeropuerto, primer semestre</div></div>
+        <div><div class="n">−23,6%</div><div class="l">tarifa media de alquileres, agosto a/a</div></div>
+        <div><div class="n">30 sep</div><div class="l">Aeroméxico deja de volar a Tulum</div></div>
+      </div>
+      <div class="seasons">
+        <span></span><span class="h">ago</span><span class="h">sep</span><span class="h">oct</span><span class="h">nov</span><span class="h">dic</span><span class="h">ene</span>
+        <span>Pares en Maya Luxe</span><span class="s b">baja</span><span class="s b">baja</span><span class="s b">baja</span><span class="s m">media</span><span class="s m">media</span><span class="s a">alta</span>
+        <span>La Chamana</span><span class="s b">baja</span><span class="s b">baja</span><span class="s m hl">media</span><span class="s m">media</span><span class="s m">media</span><span class="s a">alta</span>
+      </div>
+      <p class="note">En octubre cobramos +15% en el tarifario de Iru y 8.220 por noche en Maya Luxe, cuando los pares todavía están en baja.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="kick"><span class="rail">5 · La prueba</span><span class="q">¿Cómo sabemos si el precio era la traba?</span></div>
+    <div class="body">
+      <div class="prop">
+        <div class="card">
+          <div class="rail">Propuesta · decide Boris · Iru trae el costo del staff</div>
+          <div class="big">Casa entera a ~3.000 por noche, con staff incluido, durante 30 días</div>
+          <dl>
+            <dt>Ventana</dt><dd>llegadas hasta el 15 de diciembre; enero–marzo sin cambios</dd>
+            <dt>Dónde</dt><dd>Airbnb y lachamana.com, visible en la ficha</dd>
+            <dt>Por qué ahí</dt><dd>Casa Arka vende 57% a ~3.100 con chef y mayordomo</dd>
+            <dt>Éxito</dt><dd>2 reservas o más en 14 días</dd>
+            <dt>Si da cero</dt><dd>el precio no era la traba y vuelve el rack</dd>
+          </dl>
+        </div>
+        <div class="nights">
+          <div class="rail">Noches para cubrir USD 20k al mes</div>
+          <div class="row"><div class="top"><span>al rack, 4.500</span><b>4,4</b></div><div class="trk"><div class="fill" style="width:31.7%"></div></div></div>
+          <div class="row us"><div class="top"><span>a la prueba, ~3.000</span><b>6,7</b></div><div class="trk"><div class="fill" style="width:47.6%"></div></div></div>
+          <div class="row"><div class="top"><span>al precio de 16Tulum, 1.440</span><b>13,9</b></div><div class="trk"><div class="fill" style="width:99.2%"></div></div></div>
+          <p class="note">Hoy, en octubre y noviembre: 2 días bloqueados, sin confirmar que sean reservas.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="kick"><span class="rail">6 · Qué adoptamos</span><span class="q">En orden de noches posibles antes de marzo</span></div>
+    <div class="body">
+      <ol class="acts">
+        <li class="first"><div class="what">Octubre a mediados de diciembre como temporada baja, con la prueba a ~3.000<small>destraba D‑0927‑01 (vencida 07‑oct) y D‑0913‑02</small></div><div class="who">Boris</div></li>
+        <li><div class="what">Qué incluye la noche, en la primera línea y en el título de cada ficha<small>D‑0816‑05, abierta desde abril</small></div><div class="who">Boris · Iru</div></li>
+        <li><div class="what">Una tarifa, una lista de inclusiones y un número de baños en todas las fichas; reconciliar Maya Luxe<small>D‑0913‑01</small></div><div class="who">Iru propone · Boris</div></li>
+        <li><div class="what">Ritual de llegada y una concierge con nombre; respuesta en menos de una hora<small>operación</small></div><div class="who">Iru</div></li>
+        <li><div class="what">Calendario y precio por fecha en la web<small>apuesta A</small></div><div class="who">TK‑000, con go</div></li>
+        <li><div class="what">Dos canales de grupos: Batch, Community Concierge, Villas of Distinction o Boutique Homes<small>después del punto 3</small></div><div class="who">Gastón · Boris</div></li>
+        <li><div class="what">Celebración con fee, acuerdo escrito y tope de invitados de día<small>D‑0913‑05, vencida 23‑sep</small></div><div class="who">Boris</div></li>
+      </ol>
+      <p class="note">No copiamos: precios de 925 a 1.800, el tono de fiesta, capacidad de 26 a 42, precios distintos por canal.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="kick"><span class="rail">7 · Lo que no sabemos</span></div>
+    <div class="body">
+      <div class="unknown">
+        <p><b>No disponible no es reservado</b>Un canal puede mostrar bloqueos del dueño, y 16Tulum aparece en venta. Bianca repite el relevamiento el 6 de noviembre.</p>
+        <p><b>Maya Luxe se contradice</b>Dos lecturas del mismo día dan un piso de 6.850 o de 4.299. Hay que abrir la ficha a mano.</p>
+        <p><b>Costo del staff por noche</b>No existe en disco; lo necesita la prueba.</p>
+        <p><b>Ocupación del segmento de 8+ habitaciones</b>Sólo en AirDNA de pago.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Fuentes: relevamiento de Bianca (6‑oct) · Airbnb leído en navegador (12‑oct) · cinco investigaciones de AG‑006 · prensa y AirDNA</span>
+    <span>V1.0 · 12 oct 2026 · El Chaman para La Chamana</span>
+  </footer>
+</main>
+
+<script>
+(function(){
+  var NS='http://www.w3.org/2000/svg';
+  function el(tag, attrs, text){var e=document.createElementNS(NS,tag); for(var k in attrs) e.setAttribute(k, attrs[k]); if(text!=null) e.textContent=text; return e;}
+  var s=document.getElementById('scatter');
+  var W=640,H=300,m={l:44,r:20,t:16,b:36}, X1=5500, Y1=80;
+  var x=function(v){return m.l+v/X1*(W-m.l-m.r)}, y=function(v){return H-m.b-v/Y1*(H-m.t-m.b)};
+  s.appendChild(el('rect',{x:x(925),y:m.t,width:x(3100)-x(925),height:H-m.b-m.t,style:'fill:var(--accent);opacity:.12'}));
+  [0,20,40,60,80].forEach(function(t){s.appendChild(el('line',{x1:m.l,x2:W-m.r,y1:y(t),y2:y(t),class:t?'gridl':'ax'})); s.appendChild(el('text',{x:m.l-8,y:y(t)+4,'text-anchor':'end'},t+'%'));});
+  [0,1000,2000,3000,4000,5000].forEach(function(t){s.appendChild(el('line',{x1:x(t),x2:x(t),y1:H-m.b,y2:H-m.b+4,class:'ax'})); s.appendChild(el('text',{x:x(t),y:H-m.b+17,'text-anchor':'middle'},t?t.toLocaleString('es-AR'):'0'));});
+  s.appendChild(el('text',{x:W-m.r,y:H-2,'text-anchor':'end'},'USD por noche →'));
+  s.appendChild(el('text',{x:m.l-8,y:m.t-4,'text-anchor':'end'},'ocupado'));
+  var pts=[
+    {n:'16Tulum',p:1440,o:76.8,src:'a',dx:9,dy:4,a:'start'},
+    {n:'Casa W',p:1292,o:66.1,src:'a',dx:9,dy:4,a:'start'},
+    {n:'Ambre et Epices',p:925,o:58.9,src:'p',dx:9,dy:4,a:'start'},
+    {n:'Casa Arka',p:3100,o:57.1,src:'p',dx:9,dy:4,a:'start'},
+    {n:'El Gastón',p:2100,o:44.6,src:'a',dx:9,dy:4,a:'start'},
+    {n:'Yum Kaax',p:1050,o:30.4,src:'p',dx:-9,dy:4,a:'end'},
+    {n:'Bella Vita',p:1650,o:28.6,src:'p',dx:4,dy:19,a:'end'},
+    {n:"Villa Rae's",p:1860,o:28.6,src:'p',dx:9,dy:4,a:'start'},
+    {n:'La Chamana · 4.989 por noche · 3,6%',p:4989,o:3.6,src:'us',dx:-11,dy:4,a:'end'}
+  ];
+  pts.forEach(function(d){
+    s.appendChild(el('circle',{cx:x(d.p),cy:y(d.o),r:d.src==='us'?6.5:4.5,class:'pt'+(d.src==='p'?' pub':'')+(d.src==='us'?' us':'')}));
+    s.appendChild(el('text',{x:x(d.p)+d.dx,y:y(d.o)+d.dy,'text-anchor':d.a,class:'lab'+(d.src==='us'?' us':'')},d.n));
+  });
+})();
+</script>
+</body>
+</html>
