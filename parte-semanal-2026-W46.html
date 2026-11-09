@@ -1,0 +1,692 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>La Chamana · Semana 46</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Jost:wght@300;400;500;600&display=swap">
+<style>
+/* Dos suelos y un acento (guía de marca 2026-08-19): White / Deep como suelo, Ink para tarjetas en oscuro,
+   hairlines para separar, cobre como único acento. Sin crema intermedia. */
+:root{
+  --ground:#FBFAF7; --card:#FBFAF7; --card-2:#FBFAF7; --ink:#1A1611; --ink-2:#4B4237; --ink-3:#675C4F;
+  --line:#D8CDBC; --line-2:#E9E2D6;
+  --copper:#C99A6D; --copper-soft:#EFE3D3; --copper-ink:#78573A;
+  --crit:#93482E; --crit-bg:#F4E1D8; --warn:#7F5518; --warn-bg:#F3E7D2; --good:#5B6038; --good-bg:#E5E7D3;
+  --dash:#7A6F61;
+  --display:"Cormorant Garamond",Georgia,"Times New Roman",serif;
+  --ui:"Jost","Avenir Next","Helvetica Neue",Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --ground:#0E0C0A; --card:#14110E; --card-2:#14110E; --ink:#EDE6DA; --ink-2:#C9BFB0; --ink-3:#9A8F80;
+    --line:#2F271F; --line-2:#251F19;
+    --copper:#C99A6D; --copper-soft:#3B2E21; --copper-ink:#DDB48C;
+    --crit:#E0906E; --crit-bg:#33201A; --warn:#DDAE6A; --warn-bg:#2C2215; --good:#B4B987; --good-bg:#23251B;
+    --dash:#B3A794;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --ground:#0E0C0A; --card:#14110E; --card-2:#14110E; --ink:#EDE6DA; --ink-2:#C9BFB0; --ink-3:#9A8F80;
+  --line:#2F271F; --line-2:#251F19;
+  --copper:#C99A6D; --copper-soft:#3B2E21; --copper-ink:#DDB48C;
+  --crit:#E0906E; --crit-bg:#33201A; --warn:#DDAE6A; --warn-bg:#2C2215; --good:#B4B987; --good-bg:#23251B;
+  --dash:#B3A794;
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:var(--ui);font-size:16px;line-height:1.5;padding:0 16px}
+.app{max-width:880px;margin:0 auto;padding-block:26px 40px;display:grid;gap:18px}
+.num{font-family:var(--display);font-weight:300;font-variant-numeric:lining-nums tabular-nums;letter-spacing:-.005em}
+.lbl{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);font-weight:500}
+h1,h2,h3{font-family:var(--display);font-weight:300;margin:0;line-height:1.12;text-wrap:balance}
+h2{font-size:28px}
+p{margin:0}
+b{font-weight:600}
+h2.lbl,h3.lbl{font-family:var(--ui);font-size:11px;line-height:1.5;margin:0}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+.top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:10px 20px}
+.top h1{font-size:clamp(32px,4.6vw,42px)}
+.eyebrow{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.vmark{font-size:10.5px;letter-spacing:.04em;color:var(--ink-3);border:1px solid var(--line);padding:3px 8px;white-space:nowrap}
+.pills{display:flex;gap:8px;flex-wrap:wrap}
+.pill{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:500;padding:5px 12px;border-radius:99px;border:1px solid var(--line);color:var(--ink-2);background:var(--card)}
+.pill.r{background:var(--crit-bg);color:var(--crit);border-color:transparent}
+.dot{width:8px;height:8px;border-radius:50%;background:currentColor;flex:none}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px 24px;display:grid;gap:16px;min-width:0}
+.ch{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:6px 16px}
+.ch .aside{font-size:13px;color:var(--ink-3)}
+.note{font-size:13px;color:var(--ink-3);line-height:1.45}
+
+/* cubetas — misma anatomía en las cinco */
+.temp{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));grid-template-rows:auto auto auto 1fr auto;gap:10px}
+.tc{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 15px 12px;display:grid;grid-template-rows:subgrid;grid-row:span 5;gap:8px;min-width:0}
+.tc.r{--s:var(--crit);--sbg:var(--crit-bg)} .tc.a{--s:var(--warn);--sbg:var(--warn-bg)} .tc.g{--s:var(--good);--sbg:var(--good-bg)}
+.tc .hd{display:flex;justify-content:space-between;align-items:center;gap:4px 6px;flex-wrap:wrap}
+.tc .state{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;color:var(--s);background:var(--sbg);padding:2px 8px;border-radius:99px;white-space:nowrap}
+.tc .state .dot{width:6px;height:6px}
+.tc .v{font-size:40px;line-height:1;display:flex;align-items:baseline;gap:5px}
+.tc .v small{font-size:14px;color:var(--ink-3);font-family:var(--ui);font-weight:400}
+.tc .u{font-size:13px;color:var(--ink-2);line-height:1.35;margin-top:-4px}
+.verdict{font-size:15.5px;color:var(--ink-2);max-width:62ch;margin-top:8px;line-height:1.45}
+.mini{align-content:start}
+.tc .cmp{font-size:12.5px;color:var(--ink-3);border-top:1px solid var(--line-2);padding-top:7px;grid-row:5;align-self:stretch;display:flex;gap:5px;align-items:baseline;flex-wrap:wrap;align-content:start}
+.tc .cmp b{color:var(--ink);font-weight:600}
+.tc .cmp .ar{font-weight:700;color:var(--s)}
+
+
+/* decisiones */
+.decs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.dc{border:1px solid var(--line);border-radius:10px;padding:14px 15px;display:grid;gap:10px;align-content:start}
+.dc .k{display:flex;justify-content:space-between;gap:8px;font-size:12px}
+.dc .k .due{color:var(--ink-3)}
+.dc .q{font-size:16px;font-weight:600;line-height:1.3}
+.ab{display:grid;gap:6px}
+.ab div{display:grid;grid-template-columns:24px 1fr;gap:6px;font-size:13.5px;color:var(--ink-2);line-height:1.35}
+.ab .ol{font-family:var(--display);font-weight:300;font-size:19px;line-height:1;color:var(--copper-ink);font-variant-numeric:lining-nums}
+.dc .who{font-size:12.5px;color:var(--ink-2);display:grid;gap:2px}
+.dc .who b{color:var(--ink)}
+
+details{border-top:1px solid var(--line-2);padding-top:4px}
+details summary{cursor:pointer;font-size:13.5px;font-weight:500;color:var(--copper-ink);list-style:none;display:flex;align-items:center;gap:8px;min-height:32px;padding-block:6px}
+details summary::-webkit-details-marker{display:none}
+details summary::before{content:"+";display:inline-grid;place-items:center;width:20px;height:20px;border:1px solid var(--copper);border-radius:4px;font-size:14px;line-height:1;flex:none}
+details[open] > summary::before{content:"−"}
+details summary:focus-visible{outline:2px solid var(--copper-ink);outline-offset:3px;border-radius:4px}
+.dbody{padding:4px 0 8px;font-size:14px;color:var(--ink-2);display:grid;gap:8px}
+.dc details .dbody{font-size:13px}
+details.card{padding-top:16px;padding-bottom:14px;gap:0}
+.dcard summary{gap:12px;min-height:40px}
+.dcard summary h2{flex:1;font-size:28px;color:var(--ink)}
+.dcard summary .aside{font-size:13px;color:var(--ink-3);font-weight:400}
+.dcard[open] summary{margin-bottom:12px}
+
+/* pista */
+.seq{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border:1px solid var(--line-2);border-radius:10px;overflow:hidden}
+.sq{padding:10px 14px;display:grid;gap:2px;min-width:0}
+.sq+.sq{border-left:1px solid var(--line-2)}
+.sq .num{font-size:27px;line-height:1.05}
+.sq span{font-size:12.5px;color:var(--ink-3)}
+.sq.bad .num{color:var(--crit)}
+#runway{width:100%;height:auto;display:block}
+#runway text{font-family:Jost,Arial,sans-serif}
+.legend{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:12.5px;color:var(--ink-3)}
+.legend i{display:inline-block;width:18px;height:8px;border-top:1.6px solid var(--copper);background:linear-gradient(color-mix(in srgb,var(--copper) 20%,transparent),transparent);vertical-align:middle;margin-right:7px}
+.legend i.dash{background:none;height:0;border-top:1.4px dashed var(--copper-ink)}
+.fr.zero .fb i{display:none}
+.tag.mv{background:transparent;box-shadow:inset 0 0 0 1px var(--copper-ink);color:var(--copper-ink)}
+.legend i.bub{width:9px;height:9px;border:0;border-radius:50%;background:var(--copper-soft);box-shadow:inset 0 0 0 1px var(--copper-ink)}
+.legend i.bub.in{background:var(--copper)}
+.lostlist{margin:10px 0 0;padding-left:18px;font-size:14px;color:var(--ink-2)}
+.lostlist li{margin:4px 0}
+
+/* embudos */
+.funnels{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.fn{border:1px solid var(--line-2);border-radius:10px;padding:14px 16px 12px;display:grid;gap:10px;align-content:start;min-width:0}
+.fn .fh{display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap}
+.fn .fh h3{font-size:21px}
+.fn .fh span{font-size:12px;color:var(--ink-3)}
+.frows{display:grid;gap:5px 8px;grid-template-columns:100px minmax(0,1fr) max-content}
+.fr{display:grid;grid-column:1/-1;grid-template-columns:subgrid;align-items:center;font-size:12.5px}
+.fr .fl{color:var(--ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fr .fb{height:22px;display:flex;justify-content:flex-start}
+.fr .fb i{display:block;height:100%;background:var(--copper);border-radius:4px;min-width:6px}
+.fr.f2 .fb i{opacity:.85} .fr.f3 .fb i{opacity:.72} .fr.f4 .fb i{opacity:.62} .fr.f5 .fb i{opacity:.55}
+.fr.unk .fb i{opacity:1;background:repeating-linear-gradient(135deg,color-mix(in srgb,var(--copper) 40%,transparent) 0 3px,transparent 3px 6px);border:1.5px dashed var(--copper-ink);min-width:6px}
+.fr.lost .fb i{background:var(--ink-3);opacity:.28}
+.fr .fv{text-align:right;display:flex;justify-content:flex-end;align-items:baseline;gap:5px;white-space:nowrap}
+.fr .fv .num{font-size:20px;color:var(--ink)}
+.fr .fv small{color:var(--ink-3);font-size:11.5px}
+.fflow{font-size:12.5px;color:var(--ink-2);border-top:1px solid var(--line-2);padding-top:8px;display:flex;flex-wrap:wrap;gap:4px 12px}
+.fflow b{color:var(--ink);font-weight:600}
+.fflow .up{color:var(--good)} .fflow .dn{color:var(--crit)}
+
+/* pipeline */
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.seg button{font:500 13px var(--ui);padding:9px 14px;border:0;background:transparent;color:var(--ink-3);cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--copper-soft);color:var(--ink);font-weight:600;box-shadow:inset 0 -2px 0 var(--copper-ink)}
+.seg button:focus-visible{outline:2px solid var(--copper-ink);outline-offset:-2px}
+.pipe{display:grid;gap:4px}
+.prow{display:grid;grid-template-columns:minmax(0,210px) minmax(0,1fr) 128px;gap:14px;align-items:center;padding:6px 4px;border-radius:6px}
+.prow:hover,.prow:focus-visible{background:var(--copper-soft)}
+.prow:focus-visible{outline:2px solid var(--copper-ink);outline-offset:-2px}
+.prow:hover .w,.prow:hover .pv small,.prow:focus-visible .w,.prow:focus-visible .pv small{color:var(--ink-2)}
+.pn{min-width:0;display:grid;gap:1px}
+.pn b{font-weight:500;font-size:15px}
+.pn .tags{display:flex;gap:4px;flex-wrap:wrap}
+.pn span.w{font-size:12.5px;color:var(--ink-3)}
+.track{position:relative;height:16px;background:var(--line-2);border-radius:4px}
+.track .nom{position:absolute;inset:0 auto 0 0;background:var(--copper-soft);border:1px solid var(--copper);border-radius:4px}
+.track .w{position:absolute;inset:3px auto 3px 0;background:var(--copper);border-radius:3px}
+.pv{text-align:right;display:grid;justify-items:end;gap:0}
+.pv .num{font-size:23px;line-height:1.05}
+.pv small{font-size:11.5px;color:var(--ink-3)}
+.prob{font-size:11.5px;font-weight:600;padding:1px 6px;border-radius:4px;background:var(--line-2);color:var(--ink-2)}
+.tag{font-size:11px;font-weight:600;padding:0 6px;border-radius:3px;background:var(--copper-soft);color:var(--copper-ink);white-space:nowrap}
+.tag.in{background:var(--good-bg);color:var(--good)}
+.tag.plain{background:var(--line-2);color:var(--ink-2)}
+.sum{display:flex;flex-wrap:wrap;gap:6px 26px;font-size:13.5px;color:var(--ink-2);align-items:baseline}
+.sum .num{font-size:26px;color:var(--ink);margin-right:4px}
+.keys{font-size:12.5px;color:var(--ink-3);display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center}
+
+/* entregas de la máquina */
+.ships{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.ship{border:1px solid var(--line-2);border-radius:10px;overflow:hidden;display:grid;grid-template-rows:auto 1fr;min-width:0}
+.ship img{display:block;width:100%;height:auto;aspect-ratio:1100/640;object-fit:cover;object-position:top;border-bottom:1px solid var(--line-2);background:var(--line-2)}
+.ship .sb{padding:12px 13px 13px;display:grid;gap:6px;align-content:start}
+.ship h3{font-size:19px}
+.ship p{font-size:13px;color:var(--ink-2)}
+.ship .go{font-size:13.5px;font-weight:500;color:var(--copper-ink);text-decoration:none;display:inline-flex;align-items:center;gap:6px;min-height:32px}
+.ship .go:hover{text-decoration:underline}
+.ship .go:focus-visible{outline:2px solid var(--copper-ink);outline-offset:2px;border-radius:4px}
+.ship .st{font-size:11.5px;color:var(--ink-3)}
+
+/* pareja */
+.pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.mini .big{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.mini .big .num{font-size:44px;line-height:1}
+.mini .big span{font-size:14px;color:var(--ink-2)}
+.lbars{display:grid;gap:6px}
+.lb{display:grid;grid-template-columns:minmax(0,130px) minmax(0,1fr) 54px;gap:10px;align-items:center;font-size:13px;color:var(--ink-2)}
+.lb .t{height:9px;background:var(--line-2);border-radius:3px;position:relative}
+.lb .t i{position:absolute;inset:0 auto 0 0;background:var(--copper);border-radius:3px;opacity:.7}
+.lb .v{text-align:right;font-variant-numeric:tabular-nums}
+.recon{margin:0;padding:0;list-style:none;display:grid;gap:6px}
+.recon li{padding-left:16px;position:relative;font-size:13.5px}
+.recon li::before{content:"";position:absolute;left:0;top:8px;width:7px;height:7px;border-radius:50%;border:1.5px solid var(--warn)}
+.plist{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 20px}
+.plist div{font-size:13.5px;padding:4px 0;border-bottom:1px solid var(--line-2)}
+.plist div span{color:var(--ink-3)}
+
+footer{font-size:13px;color:var(--ink-3);display:grid;gap:8px}
+footer b{color:var(--ink-2)}
+.wmark{border-top:1px solid var(--line-2);margin-top:8px;padding-top:18px;text-align:center;font-size:12px;letter-spacing:.06em;color:var(--ink-3)}
+.wmark a{color:var(--copper-ink);text-decoration:none}
+
+/* victorias */
+.wins{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.win{border:1px solid var(--line-2);border-radius:10px;padding:13px 14px 12px;display:grid;gap:5px;align-content:start;min-width:0}
+.win .wv{font-family:var(--display);font-weight:300;font-size:36px;line-height:1;color:var(--copper-ink);font-variant-numeric:lining-nums}
+.win .wt{font-size:14px;font-weight:600;color:var(--ink);line-height:1.25}
+.win .wd{font-size:12.5px;color:var(--ink-3);line-height:1.35}
+.win a{color:var(--copper-ink)}
+
+/* antes → ahora */
+.shift{display:grid;border:1px solid var(--line-2);border-radius:10px;overflow:hidden}
+.sh{display:grid;grid-template-columns:96px minmax(0,1fr) 20px minmax(0,1.25fr);gap:10px;align-items:center;padding:9px 14px;font-size:13.5px}
+.sh+.sh{border-top:1px solid var(--line-2)}
+.sh .k{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);font-weight:500}
+.sh .was{color:var(--ink-3)}
+.sh .to{color:var(--copper-ink);font-weight:700;text-align:center}
+.sh .now{color:var(--ink);font-weight:500}
+
+/* segmentos */
+.segs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.sg{border:1px solid var(--line-2);border-radius:10px;padding:12px 14px;display:grid;gap:7px;align-content:start;min-width:0}
+.sg .sn{display:flex;gap:9px;align-items:baseline}
+.sg .sn .i{font-family:var(--display);font-size:24px;color:var(--copper-ink);line-height:1;font-variant-numeric:lining-nums}
+.sg .sn b{font-size:14.5px;line-height:1.25}
+.sg .clk{font-size:12px;color:var(--ink-3)}
+.chips{display:flex;flex-wrap:wrap;gap:4px}
+.chip{font-size:12px;font-weight:500;padding:2px 8px;border-radius:99px;background:transparent;border:1px solid var(--copper);color:var(--copper-ink);white-space:nowrap}
+.chip.live{background:var(--copper);border-color:var(--copper);color:#1A1611}
+.sg .now{font-size:12.5px;color:var(--ink-2);border-top:1px solid var(--line-2);padding-top:6px}
+.sg.off{border-style:dashed}
+.sg.off .sn .i,.sg.off .sn b{color:var(--ink-3)}
+.legend2{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12.5px;color:var(--ink-3);align-items:center}
+
+#tip{position:fixed;pointer-events:none;z-index:10;background:var(--ink);color:var(--card);font-size:13px;line-height:1.4;padding:8px 11px;border-radius:7px;max-width:280px}
+
+@media (max-width:760px){
+  .fr .fv{white-space:normal;flex-wrap:wrap} .fr .fv small{flex-basis:100%;text-align:right}
+  .temp{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:none;grid-auto-rows:auto}
+  .tc:first-child{grid-column:1/-1}
+  .tc .v{font-size:34px}
+  .seq{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .sq:nth-child(3){border-left:0}
+  .sq:nth-child(n+3){border-top:1px solid var(--line-2)}
+  .decs,.pair,.plist,.funnels,.ships,.segs{grid-template-columns:1fr}
+  .wins{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .sh{grid-template-columns:minmax(0,1fr) 16px minmax(0,1fr);gap:4px 8px}
+  .sh .k{grid-column:1/-1}
+  .frows{grid-template-columns:72px minmax(0,1fr) fit-content(36%)}
+  .temp > .tc:first-of-type{grid-column:1/-1}
+  .dcard summary{flex-wrap:wrap}
+  .dcard summary .aside{flex-basis:100%;padding-left:32px}
+  .prow{grid-template-columns:minmax(0,1fr) 112px}
+  .prow .track{grid-column:1/-1;grid-row:2}
+  .card{padding:18px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+.fn.meta .frows{grid-template-columns:100px minmax(0,1fr) fit-content(45%)}
+.prow.nov .track .nom{display:none}
+.prow.nov .track{background:transparent;border:1px dashed var(--line)}
+</style>
+<meta name="theme-color" content="#FBFAF7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0E0C0A" media="(prefers-color-scheme: dark)">
+</head><body>
+<div class="app">
+
+<header class="top">
+  <div>
+    <div class="eyebrow"><span class="lbl">La Chamana · parte semanal · 2026-W46</span><span class="vmark">both.ventures · versión</span></div>
+    <h1>3-nov → 9-nov</h1>
+    <p class="verdict">La caja llega a cero alrededor del 4 de diciembre con el último saldo informado (18.366 al 3-nov); esta semana entraron 6.178 y el saldo nuevo no llegó a este parte. Se ganaron dos reservas, USD 19.997, las dos para mayo de 2027: suman temporada, no caja de diciembre. Tres canales nuevos y un tarifario nuevo en dieciséis distribuidores. Para el martes: el bloqueo de abril de LATAM Retreats y fin de año (abajo, en «Para decidir»).</p>
+  </div>
+  <div class="pills">
+    <span class="pill r" title="Rojo: la caja no tiene cifra de esta semana y la última informada (18.366 al 3-nov) llega a cero ~4-dic. Las reservas nuevas caen en mayo. En cada cubeta: rojo es crítico, ámbar es vigilar, verde está en marcha. Lo propone El Chamán."><span class="dot"></span>Salud · rojo</span>
+    <span class="pill r" title="Último saldo informado: 18.366 al 3-nov, cero cerca del 4 de diciembre a 18.000 por mes. Esta semana entraron 6.178 vistos en Mercury; las salidas no se conocen."><span class="dot"></span>Caja · cero ~4-dic</span>
+    <span class="pill">2 reservas en Cloudbeds</span>
+    <span class="pill">Datos al 9-nov · v0.1</span>
+  </div>
+</header>
+
+<section class="card" aria-label="Lo que se ganó esta semana">
+  <div class="ch"><h2>Lo que se ganó esta semana</h2><span class="aside">3-nov → 9-nov</span></div>
+  <div class="wins">
+    <div class="win"><div class="wv">20K</div><div class="wt">en dos reservas con fila en Cloudbeds</div><div class="wd">Anibal, por Loco Luxury, 16 personas, 29-abr → 3-may. Hee Young, por Airbnb, 16, 21–24 may.</div></div>
+    <div class="win"><div class="wv">14</div><div class="wt">noches dentro del objetivo</div><div class="wd">Eran 7. Cloudbeds cuenta sólo ago → mar: las reservas de mayo no suman. Objetivo 96; piso 36.</div></div>
+    <div class="win"><div class="wv">6,2K</div><div class="wt">entraron en Mercury</div><div class="wd">La seña de Loco Luxury (5.178) y la habitación extra de Keith (1.000).</div></div>
+    <div class="win"><div class="wv">16</div><div class="wt">distribuidores con el tarifario nuevo</div><div class="wd">En un día, el 6-nov. Sotavento lo cargó esa misma tarde.</div></div>
+    <div class="win"><div class="wv">3</div><div class="wt">canales que entran</div><div class="wd">Dream Exotic firmó la adenda, Hummingbird confirma, Community Concierge la publica.</div></div>
+    <div class="win"><div class="wv">4</div><div class="wt">interesadas nuevas por email</div><div class="wd">La semana pasada, 2. Community Concierge trajo una consulta en 24 horas.</div></div>
+    <div class="win"><div class="wv">1</div><div class="wt">consulta de Google, con aviso automático</div><div class="wd">Joeline, 12 personas, fin de marzo. Le llegó a Iru por mail sin que nadie la buscara.</div></div>
+    <div class="win"><div class="wv">45</div><div class="wt">primeros contactos, ninguno rebotó</div><div class="wd">De 201 emails. Los 4 rebotes de la semana son de envíos de septiembre y octubre.</div></div>
+  </div>
+</section>
+
+<section class="temp" aria-labelledby="h-cubetas"><h2 class="sr" id="h-cubetas">Las cinco cubetas</h2>
+  <div class="tc r">
+    <div class="hd"><h3 class="lbl">Caja</h3><span class="state"><span class="dot"></span>Crítico</span></div>
+    <div class="v num">?<small>sin cifra</small></div>
+    <div class="u">El saldo de esta semana no llegó a este parte. Entraron 6.178 en Mercury. La seña de Pei (4.559), esperada esta semana, no aparece en esos avisos.</div>
+    <div class="cmp">cero, con el último saldo <b>~4-dic</b></div>
+  </div>
+  <div class="tc a">
+    <div class="hd"><h3 class="lbl">Reservas</h3><span class="state"><span class="dot"></span>Vigilar</span></div>
+    <div class="v num">2<small>en Cloudbeds</small></div>
+    <div class="u">Anibal (13.000) y Hee Young (6.997), las dos en mayo de 2027, fuera del objetivo ago → mar. Más dos tardes de una productora (600). Noches: 14 de 96; las de mayo no cuentan.</div>
+    <div class="cmp">noches <b>7</b> <span class="ar">→</span> <b>14</b></div>
+  </div>
+  <div class="tc a">
+    <div class="hd"><h3 class="lbl">Pipeline</h3><span class="state"><span class="dot"></span>Vigilar</span></div>
+    <div class="v num">~47<small>K USD</small></div>
+    <div class="u">ponderado, de 131K nominal, con las probabilidades del 3-nov: las de esta semana no llegaron. Se perdió la estadía larga de Loco Luxury (150K), que ya se contaba aparte.</div>
+    <div class="cmp">3-nov <b>~47K</b> <span class="ar">→</span> <b>sin re-medir</b></div>
+  </div>
+  <div class="tc g">
+    <div class="hd"><h3 class="lbl">Distribución</h3><span class="state"><span class="dot"></span>En marcha</span></div>
+    <div class="v num">3<small>canales</small></div>
+    <div class="u">entran, fuera del CRM: Dream Exotic firmó la adenda, Hummingbird confirma, Community Concierge publica. Casita publicó la casa. Loco Luxury trajo una reserva.</div>
+    <div class="cmp"><span style="white-space:nowrap">acuerdos CRM <b>19</b> <span class="ar">→</span> <b>19</b></span></div>
+  </div>
+  <div class="tc a">
+    <div class="hd"><h3 class="lbl">Adquisición</h3><span class="state"><span class="dot"></span>Vigilar</span></div>
+    <div class="v num">4<small>interesadas</small></div>
+    <div class="u">organizaciones nuevas, de 201 emails con 45 primeros contactos. Google: 19 clics, USD 69, una consulta. Meta, prendida el 4-nov: 18 clics, una conversación.</div>
+    <div class="cmp">sem. anterior <b>2</b> <span class="ar">→</span> <b>4</b></div>
+  </div>
+</section>
+
+<section class="card" aria-label="La estrategia, en un mapa">
+  <div class="ch"><h2>La estrategia, en un mapa</h2><span class="legend2"><span><span class="chip live">lleno</span> corriendo esta semana</span><span><span class="chip">contorno</span> armado, en pausa o en negociación</span></span></div>
+  <div class="shift">
+    <div class="sh"><span class="k">Precio</span><span class="was">2.900 o 3.100, sin cargar en las fichas</span><span class="to">→</span><span class="now">tarifario nuevo a distribuidores: la casa sola desde 2.600 (hasta 7.000 según temporada), la casa con experiencias desde 6.850; brutas, con la comisión adentro. Lo mandaron Iru y Bianca el 6-nov</span></div>
+    <div class="sh"><span class="k">Producto</span><span class="was">una sola casa, un solo precio</span><span class="to">→</span><span class="now">dos productos para la casa entera: sola, o con desayuno, traslados, una experiencia holística y un día de beach club o cenote (6-nov)</span></div>
+    <div class="sh"><span class="k">Retiros</span><span class="was">un retiro a la vez</span><span class="to">→</span><span class="now">retiros recurrentes con un organizador (El Kilombo, emprendedores) y precio por cama, king o dos twin (5-nov)</span></div>
+  </div>
+  <div class="segs">
+    <div class="sg"><div class="sn"><span class="i">1</span><b>La organizadora y su grupo</b></div><span class="clk">estética y bienestar · decide en semanas a meses</span><div class="chips"><span class="chip live">Google: grupo grande y familia</span><span class="chip live">Meta D</span><span class="chip live">Airbnb</span></div><div class="now">Hee Young reservó por Airbnb, 16 personas en mayo. Joeline llegó por Google: familia de 12, fin de marzo.</div></div>
+    <div class="sg"><div class="sn"><span class="i">2</span><b>Quien celebra un hito</b></div><span class="clk">40, 50, aniversario · decide en meses</span><div class="chips"><span class="chip live">Google: celebración íntima</span><span class="chip live">Dream Exotic</span><span class="chip">metros transitables</span></div><div class="now">Dream Exotic presenta un cumpleaños de 50 para sep-2027 ahora que está publicada. Gabby Silva visita la casa el 21–24 nov.</div></div>
+    <div class="sg"><div class="sn"><span class="i">3</span><b>Líder de retiro</b></div><span class="clk">cohorte de 8 a 16 · decide en 2–7 meses</span><div class="chips"><span class="chip live">email retiros</span><span class="chip live">Google: venue de retiro</span><span class="chip live">LATAM Retreats</span><span class="chip">El Kilombo</span></div><div class="now">LATAM pide extender el bloqueo de abril. El Kilombo quiere retiros recurrentes. Tiffany y un colectivo de breathwork piden propuesta.</div></div>
+    <div class="sg"><div class="sn"><span class="i">4</span><b>Talento, vía su management</b></div><span class="clk">artistas y deportistas · decide en días o semanas</span><div class="chips"><span class="chip">email a reps</span></div><div class="now">Ningún envío esta semana. Dos rebotes de olas de octubre.</div></div>
+    <div class="sg"><div class="sn"><span class="i">5</span><b>Agencias, asesores y concierges</b></div><span class="clk">la mayor parte de las consultas</span><div class="chips"><span class="chip live">email agencias y familias</span><span class="chip live">tarifario nuevo</span><span class="chip live">partners uno a uno</span></div><div class="now">Loco Luxury trajo a Anibal. Dream Exotic, Hummingbird y Community Concierge entran.</div></div>
+    <div class="sg"><div class="sn"><span class="i">6</span><b>Reloj corto: ya vienen a Tulum</b></div><span class="clk">reservan a 11 días, mediana</span><div class="chips"><span class="chip live">Google: villa privada</span><span class="chip live">la casa por horas</span></div><div class="now">Keith llega el 12. Una productora usó la casa dos tardes. Community Concierge pide 14–17 ene para un grupo de 8.</div></div>
+  </div>
+  <p class="note">Fuera del mapa, con datos: la quincena de festivales y los eventos con producción.</p>
+</section>
+
+<section class="card" aria-label="La pista de caja">
+  <div class="ch"><h2>La pista de caja</h2><span class="aside">USD · burn declarado 18.000 por mes</span></div>
+  <div class="seq">
+    <div class="sq"><span>Último informe · 3-nov</span><div class="num">18.366</div><span>el saldo de esta semana no llegó a este parte</span></div>
+    <div class="sq"><span>Entró esta semana</span><div class="num">+6.178</div><span>la seña de Loco Luxury (5.178, 6-nov) y Keith (1.000, 9-nov), en Mercury. La seña de Pei no aparece</span></div>
+    <div class="sq"><span>Diciembre, según el 3-nov</span><div class="num">+26.141</div><span>el 70% de Pei (febrero), la estadía de Gastón y la seña de LATAM Retreats, que pide extender su bloqueo. Si entran el 1-dic, antes del cero: ~27-ene</span></div>
+    <div class="sq bad"><span>Llega a cero</span><div class="num">~4-dic</div><span>con el último saldo. ~14-dic sumando las entradas vistas; ~27-ene si además entra diciembre. Las salidas de la semana no se conocen</span></div>
+  </div>
+  <svg id="runway" viewBox="0 0 840 340" role="img" aria-label="Proyección de caja desde el último saldo informado, 18.366 dólares al 3 de noviembre, con una quema de 18.000 por mes: cero cerca del 4 de diciembre. Una línea punteada suma las dos entradas vistas esta semana, 5.178 el 6 de noviembre y 1.000 el 9: cero cerca del 14 de diciembre. En la fila de estadías: Keith del 12 al 15 de noviembre; Maya Luxe del 22 al 28 de noviembre al 15%; dos en diciembre; fin de año al 50%; Marco Salvatierra; Community Concierge del 14 al 17 de enero; Sarah Pitts; Pei en febrero, reservada; LATAM Retreats en abril, acordada; Anibal del 29 de abril al 3 de mayo y Hee Young del 21 al 24 de mayo, reservadas."></svg>
+  <div class="legend">
+    <span><i></i>Caja, último saldo informado</span>
+    <span><i class="dash"></i>Con las entradas vistas (~14-dic) · y con diciembre (~27-ene)</span>
+    <span><i class="bub"></i>Próximas estadías · tamaño = USD</span>
+    <span><i class="bub in"></i>Antes del cero</span>
+  </div>
+  <details>
+    <summary>Cómo se calcula</summary>
+    <div class="dbody"><p>Parte del último saldo informado (18.366 al 3-nov) y quema USD 592 por día, que son los 18.000 por mes de ese informe: cero ~4-dic. La línea punteada suma las dos entradas que se ven en los avisos de Mercury de la ventana —5.178 de Loco Global, la empresa de Loco Luxury, el 6-nov: la seña de Anibal, y 1.000 de Keith el 9-nov—: cero ~14-dic. Es una cota: no descuenta salidas que no se conocen (seis transferencias de Santander el 5 y 6-nov sin monto en el aviso, el impuesto sobre nómina, el IMSS) ni suma la seña de Pei, que no aparece. La segunda línea suma los 26.141 de diciembre el 1-dic, día estimado; dos de esas tres partes están en duda (la seña de Pei no se vio, LATAM pide extender su bloqueo). El saldo y el runway de verdad están en el informe de la semana, que este parte no pudo leer. Mercury, que es una sola de las cuentas, cerró octubre en 16.199.</p></div>
+  </details>
+</section>
+
+<section class="card" aria-label="Los embudos">
+  <div class="ch"><h2>Los embudos</h2><span class="aside">arriba, dónde está cada cosa hoy · abajo, qué pasó esta semana</span></div>
+  <div class="funnels">
+    <div class="fn">
+      <div class="fh"><h3>Reservas</h3><span>CRM hoy · 18 abiertos</span></div>
+      <div class="frows">
+        <div class="fr f1"><span class="fl">Consulta</span><div class="fb"><i style="width:8.3%"></i></div><span class="fv"><span class="num">3</span><small>frías</small></span></div>
+        <div class="fr f2"><span class="fl">Cotizado</span><div class="fb"><i style="width:8.3%"></i></div><span class="fv"><span class="num">3</span></span></div>
+        <div class="fr f3"><span class="fl">En hold</span><div class="fb"><i style="width:33.3%"></i></div><span class="fv"><span class="num">12</span></span></div>
+        <div class="fr f4"><span class="fl">Reservado</span><div class="fb"><i style="width:22.2%"></i></div><span class="fv"><span class="num">8</span><small>2 en Cloudbeds esta semana</small></span></div>
+        <div class="fr lost"><span class="fl">Perdidos</span><div class="fb"><i style="width:100%"></i></div><span class="fv"><span class="num">36</span><small>desde julio</small></span></div>
+      </div>
+      <div class="fflow">Esta semana: <span><b class="up">+7</b> filas nuevas en el CRM</span> <span><b class="up">3</b> ganadas: Anibal, Hee Young, las dos tardes de Luis</span> <span><b class="dn">2</b> se perdieron</span> <span><b>2</b> pedidos de propuesta sin fila</span></div>
+    </div>
+    <div class="fn">
+      <div class="fh"><h3>Distribución</h3><span>CRM · 26 abiertos · 19 acuerdos</span></div>
+      <div class="frows">
+        <div class="fr f1"><span class="fl">Identificado</span><div class="fb"><i style="width:33%"></i></div><span class="fv"><span class="num">7</span></span></div>
+        <div class="fr f2"><span class="fl">Conversando</span><div class="fb"><i style="width:52%"></i></div><span class="fv"><span class="num">11</span></span></div>
+        <div class="fr f3"><span class="fl">Términos</span><div class="fb"><i style="width:38%"></i></div><span class="fv"><span class="num">8</span></span></div>
+        <div class="fr f4"><span class="fl">Acuerdo</span><div class="fb"><i style="width:90%"></i></div><span class="fv"><span class="num">19</span><small>en el CRM</small></span></div>
+        <div class="fr lost"><span class="fl">Declinaron</span><div class="fb"><i style="width:100%"></i></div><span class="fv"><span class="num">21</span></span></div>
+      </div>
+      <div class="fflow">Esta semana, en el CRM: <span><b>0</b> movimientos</span> · fuera de él: <span><b class="up">3</b> canales entran</span> <span><b class="up">16</b> con el tarifario nuevo</span> <span><b>1</b> socio trajo una reserva</span></div>
+    </div>
+    <div class="fn">
+      <div class="fh"><h3>Outreach por email</h3><span>desde agosto de 2026 · organizaciones</span></div>
+      <div class="frows">
+        <div class="fr f1"><span class="fl">Contactadas</span><div class="fb"><i style="width:100%"></i></div><span class="fv"><span class="num">~1.044</span></span></div>
+        <div class="fr f2"><span class="fl">Respondieron</span><div class="fb"><i style="width:8.3%"></i></div><span class="fv"><span class="num">~87</span><small>8,3%</small></span></div>
+        <div class="fr f3"><span class="fl">Interesadas</span><div class="fb"><i style="width:3.5%"></i></div><span class="fv"><span class="num">~36</span><small>3,5%</small></span></div>
+        <div class="fr f4"><span class="fl">En el CRM</span><div class="fb"><i style="width:3.6%"></i></div><span class="fv"><span class="num">37</span><small>deals de Lara</small></span></div>
+        <div class="fr f5"><span class="fl">Acuerdos</span><div class="fb"><i style="width:1%"></i></div><span class="fv"><span class="num">6 + 1</span><small>+1 reserva</small></span></div>
+      </div>
+      <div class="fflow">Esta semana: <span><b>201</b> enviados, 45 primeros contactos</span> <span><b>8</b> organizaciones escribieron</span> <span><b class="up">4</b> interesadas nuevas</span> <span><b>4</b> rebotes, de olas viejas</span></div>
+    </div>
+    <div class="fn meta">
+      <div class="fh"><h3>Pauta</h3><span>Google y Meta · 3 → 9-nov</span></div>
+      <div class="frows">
+        <div class="fr f1"><span class="fl">La ven</span><div class="fb"><i style="width:100%"></i></div><span class="fv"><span class="num">968</span><small>impresiones</small></span></div>
+        <div class="fr f2"><span class="fl">Entran</span><div class="fb"><i style="width:3.8%"></i></div><span class="fv"><span class="num">37</span><small>clics</small></span></div>
+        <div class="fr f3"><span class="fl">Escriben</span><div class="fb"><i style="width:0.4%"></i></div><span class="fv"><span class="num">2</span><small>form + chat</small></span></div>
+        <div class="fr f4 unk"><span class="fl">Consultas</span><div class="fb"><i style="width:0.2%"></i></div><span class="fv"><span class="num">1 + <span aria-hidden="true">?</span><span class="sr">sin medir</span></span><small>Meta sin cruzar</small></span></div>
+        <div class="fr f5 zero"><span class="fl">Reservas</span><div class="fb"><i></i></div><span class="fv"><span class="num">0</span></span></div>
+      </div>
+      <div class="fflow"><span>Google: 192 impresiones · 19 clics · USD 69,21 (grupos USD 43,27 · villa USD 25,94) · la consulta es Joeline · se frena el 24-nov</span> <span>Meta: 776 impresiones · 18 clics · 1 conversación · 74.031 pesos argentinos · 525 personas · se frena el 1-dic; sigue si hay 2 consultas reales</span></div>
+    </div>
+  </div>
+  <details>
+    <summary>Cómo se leen los embudos</summary>
+    <div class="dbody"><p>Reservas y Distribución son la foto del CRM hoy (9-nov, 20:31 UTC), por etapa, con los nombres del cockpit; las barras son proporcionales a la cantidad y la fila de perdidos va en contorno. En «reservado» están Pei, LATAM Retreats, Keith, Gastón, la fila vieja de fin de año de Loco Luxury que quedó como crédito de 13.500 (no es la consulta nueva al 50% del pipeline), y las tres de esta semana: Anibal y Hee Young, con fila en Cloudbeds, y dos tardes de una productora. Las «filas nuevas» incluyen dos de fin de año que el informe del 3-nov traía sin fila. El outreach cuenta organizaciones y suma a lo de la W45 lo de esta semana: 45 primeros contactos, 8 que escribieron (6 por primera vez) y 4 interesadas nuevas; es estimado, porque el barrido automático del buzón está parado desde el 2-nov y esta semana se leyó a mano. En la pauta, Google y Meta se suman sólo para ver el embudo: son públicos distintos. La conversación de Meta todavía no se cruzó con la planilla de Bianca, que es donde se decide si es una consulta.</p></div>
+  </details>
+</section>
+
+<section class="card" aria-label="Pipeline de reservas">
+  <div class="ch">
+    <h2>Pipeline de reservas</h2>
+    <div class="seg" role="group" aria-label="Ordenar por">
+      <button type="button" id="sort-w" aria-pressed="true">Ponderado</button>
+      <button type="button" id="sort-n" aria-pressed="false">Nominal</button>
+    </div>
+  </div>
+  <div class="pipe" id="pipe"></div>
+  <div class="sum" id="sum"><span class="sr" aria-live="polite" id="sort-status"></span>
+    <span><span class="num">131K</span>nominal, 7 leads con probabilidad · fin de año contado una vez</span>
+    <span><span class="num">~47K</span>ponderado, con las probabilidades del 3-nov</span>
+    <span><span class="num">85K</span>sin calificar, en 4 · 1 sin monto</span>
+  </div>
+  <div class="keys"><span>Barra de contorno = nominal · barra llena = ponderado por la probabilidad de Iru del 3-nov</span><span><span class="tag">Lara</span> llegó por el email</span><span><span class="tag in">antes de cero</span> la estadía cae antes del último cero informado</span><span><span class="tag mv">nueva</span> entró esta semana</span></div>
+  <details>
+    <summary>Notas por lead</summary>
+    <div class="dbody" id="notes"></div>
+  </details>
+  <details>
+    <summary>Lo que todavía no cruza con el CRM (5)</summary>
+    <div class="dbody"><ul class="recon">
+      <li>Fin de año: el CRM tiene dos filas de Loco Luxury, 27-dic → 7-ene a 35.000 y 29-dic → 3-ene a 32.500 con chef. El informe del 3-nov llamaba Beach Please a la segunda; hoy Beach Please figura como distribuidor.</li>
+      <li>LATAM Retreats: el informe del 3-nov dice que confirma sin pago hasta el 9-dic; su email del 9-nov dice que el bloqueo se liberaba el 9-nov y pide extenderlo al 30-nov.</li>
+      <li>Tiffany y el colectivo de breathwork piden propuesta y no tienen fila.</li>
+      <li>La producción de Luis del 19–20 nov (6.000 al 25%) está en el informe del 3-nov y no en el CRM.</li>
+      <li>Noches: 7 → 14 el 6-nov. Cuáles son las 7 nuevas no se sabe: las dos reservas de esta semana caen en mayo.</li>
+    </ul></div>
+  </details>
+</section>
+
+<div class="pair">
+  <section class="card mini" aria-label="Leads que salieron">
+    <h2 class="lbl">Salieron esta semana</h2>
+    <div class="big"><span class="num">2</span><span>reservas perdidas · 1 enfriada</span></div>
+    <ul class="lostlist"><li>Loco Luxury · estadía larga, feb → abr, 150K: no se cerró</li><li>SolSeed Retreats · retiro de 2028, 30K: sin respuesta, fuera de la oficina hasta el 30-nov</li><li>One Yoga House · 26K: pasa a frío; se retoma el 17-ene</li></ul>
+    <p class="note">Ninguna de las tres caía antes de febrero.</p>
+  </section>
+  <section class="card mini" aria-label="Origen de los leads activos">
+    <h2 class="lbl">De dónde vienen los 12 activos</h2>
+        <div class="lbars" id="origin"></div>
+  </section>
+</div>
+
+<details class="card">
+  <summary>Partners · Loco Luxury trae una reserva · Dream Exotic firma · Hummingbird y Community Concierge entran</summary>
+  <div class="dbody"><div class="plist">
+    <div>Loco Luxury <span>· trajo a Anibal (16 personas, 29-abr → 3-may) y pagó la seña; perdió la estadía larga; fin de año sigue abierto en dos filas</span></div>
+    <div>Dream Exotic Rentals <span>· la ficha está publicada; firmaron la adenda el 9-nov e Iru contrafirma; presentan a su cliente el cumpleaños de 50 de sep-2027</span></div>
+    <div>Hummingbird Travel <span>· «super excited to have La Chamana on board» (9-nov); recibieron el kit y el dossier de retiros</span></div>
+    <div>Community Concierge <span>· la publica en su web y la ofrece como broker; trajo un grupo de 8 para el 14–17 ene</span></div>
+    <div>LATAM Retreats <span>· su cliente está llenando el retiro de abril; piden extender el bloqueo y preguntan qué incluye la casa</span></div>
+    <div>El Kilombo <span>· retiros recurrentes de emprendedores; esperan la cotización base</span></div>
+    <div>Sotavento Villas <span>· aplicó el tarifario nuevo el mismo día; mínimo de 5 noches en fiestas</span></div>
+    <div>Maya Luxe <span>· compartió el tarifario nuevo con sus agentes</span></div>
+    <div>Beach Please <span>· «muy emocionadas por comenzar»; contrato a firmar</span></div>
+    <div>Casita · Locamex <span>· Casita publicó la casa; Locamex, red de locaciones para producciones, la va a promocionar</span></div>
+    <div>Sarah Pitts <span>· sigue con su grupo de enero: «I will keep you posted»</span></div>
+  </div></div>
+</details>
+
+<details class="card">
+  <summary>Distribución, fichas y canales · tarifario nuevo en 16 · lo que dicen los canales</summary>
+  <div class="dbody"><div class="plist">
+    <div>Tarifario nuevo <span>· salió el 6-nov a Sotavento, Maya Luxe, In Residence, Personal Villas, Exceptional Villas, Boutique Homes, Journey Mexico, Evoke, RM Ocean Front, Luxury Haciendas, Icon Private Collection, Wellness Booker, JAE, Fantasia Villas, Kosher Concierge y Concierge Adventure</span></div>
+    <div>Lo que dicen <span>· In Residence: ninguna consulta todavía. Concierge Adventure: sin pedidos para Tulum. Personal Villas: algo de interés, recién empiezan. Exceptional Villas la vende por Maya Luxe</span></div>
+    <div>Airbnb <span>· Hee Young reservó por ahí; Iru habló con Airbnb Luxe sobre la visibilidad en Tulum y fichas duplicadas</span></div>
+    <div>Google Business, octubre <span>· 506 vistas del perfil, 134 interacciones, 65 visitas a la web (+124%), 3 llamadas</span></div>
+    <div>Sin dato esta semana <span>· DMs enviados, reseñas de Google, horizontales sobre 22</span></div>
+  </div></div>
+</details>
+
+<details class="card">
+  <summary>Señales de la semana (6)</summary>
+  <div class="dbody"><div class="plist">
+    <div>Mayo <span>· las dos reservas de la semana, de 16 personas cada una, son de mayo de 2027: el comprador que planea con meses sigue apareciendo</span></div>
+    <div>Los canales <span>· piden lo mismo: calendario, precio con todo incluido, chef y traslados para 16, eventos para 60</span></div>
+    <div>Los retiros <span>· cuatro piden fechas o propuesta en una semana; la temporada que nombran va de fines de septiembre a marzo</span></div>
+    <div>El buzón <span>· el barrido automático de Lara no corre desde el 2-nov; esta semana se leyó a mano</span></div>
+    <div>La pauta <span>· Google: 43 de sus 107 palabras casi no se muestran y las dos campañas están limitadas por presupuesto</span></div>
+    <div>El precio en Airbnb <span>· Hee Young pagó 6.997 por tres noches, ~2.330 por noche: debajo del piso nuevo de 2.600. Si es la tarifa de mayo neta de Airbnb o un descuento, no se sabe</span></div>
+  </div></div>
+</details>
+
+<details class="card dcard" id="decisiones">
+  <summary><h2>Para decidir el martes 10</h2><span class="aside">el bloqueo de LATAM y fin de año · y lo que se decidió en la semana</span></summary>
+  <div class="decs">
+    <div class="dc">
+      <div class="k"><span class="lbl">Para el martes</span><span class="due">10-nov</span></div>
+      <div class="q">Dos temas para decidir y un dato que falta.</div>
+      <div class="ab">
+        <div><span class="ol">1</span><span>LATAM Retreats pide extender el bloqueo del 8–11 abr hasta el 30-nov, mientras su cliente llena el retiro.</span></div>
+        <div><span class="ol">2</span><span>Fin de año: Loco Luxury pide dos versiones de las mismas noches (27-dic → 7-ene y 29-dic → 3-ene).</span></div>
+        <div><span class="ol">3</span><span>El saldo de la semana y si entró la seña de Pei: lo trae el informe de Iru.</span></div>
+      </div>
+      <div class="who"><span><b>Decide</b> Gastón · Pato</span></div>
+    </div>
+    <div class="dc">
+      <div class="k"><span class="lbl">Lo que se decidió en la semana</span><span class="due">3 → 9-nov</span></div>
+      <div class="q">Tres.</div>
+      <div class="ab">
+        <div><span class="ol">1</span><span>El tarifario nuevo, con dos productos: cierra la pregunta de la tarifa de la semana pasada.</span></div>
+        <div><span class="ol">2</span><span>Sotavento: mínimo de 5 noches en fiestas, evaluable.</span></div>
+        <div><span class="ol">3</span><span>El Kilombo: retiros recurrentes y precio por cama.</span></div>
+      </div>
+    </div>
+  </div>
+</details>
+
+<footer>
+  <p><b>Cómo se armó.</b> Los buzones de Iru y de Lara, leídos el 9-nov · el CRM y las reservas de Cloudbeds · los envíos de email · Google y Meta, en vivo · la reunión del 5-nov, minada en both_os. Todo leído, nada modificado. El informe comercial de la semana no llegó a este parte: la caja y las probabilidades se actualizan cuando llegue.</p>
+  <p><b>Las llamadas de la semana.</b> Jueves 5-nov, La Chamana con El Kilombo: retiros de emprendedores. Miércoles 4-nov, la de finanzas, sin transcript. El 3 y el 6-nov, tres llamadas donde La Chamana aparece de paso.</p>
+  <p><b>Lo que no está.</b> El saldo y las salidas de la semana, las probabilidades, si entró la seña de Pei y cuáles son las 7 noches nuevas: lo trae el informe de Iru · las consultas de Meta en la planilla, los DMs, las reseñas y las horizontales: Bianca.</p>
+  <p><b>El semáforo.</b> Rojo es crítico: la caja no tiene cifra y la última llega a diciembre. Ámbar es vigilar; verde, en marcha. Lo propone El Chamán. «Sin medir» nunca se dibuja como cero.</p>
+  <div class="wmark">Made by <a href="https://both.ventures">@bothventures</a></div>
+</footer>
+
+</div>
+
+<div id="tip" hidden role="tooltip"></div>
+<script>
+(function(){
+  var tip=document.getElementById('tip');
+  function place(x,y){var w=tip.offsetWidth,h=tip.offsetHeight;if(x+w>innerWidth-8)x=Math.max(8,x-w-28);if(y+h>innerHeight-8)y=Math.max(8,y-h-28);tip.style.left=x+'px';tip.style.top=y+'px'}
+  function show(html,x,y){tip.innerHTML=html;tip.hidden=false;place(x,y)}
+  function hide(){tip.hidden=true}
+  function fmt(n){return Math.round(n).toLocaleString('es-AR')}
+  function bind(el,html){
+    el.addEventListener('mousemove',function(e){show(html,e.clientX+14,e.clientY+14)});
+    el.addEventListener('mouseleave',hide);
+    el.setAttribute('tabindex','0');
+    el.addEventListener('focus',function(){var r=el.getBoundingClientRect();show(html,r.left+12,r.bottom+8)});
+    el.addEventListener('blur',hide);
+  }
+  document.addEventListener('touchstart',function(e){if(!e.target.closest('[tabindex="0"]'))hide()},{passive:true});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')hide()});
+  addEventListener('scroll',hide,{passive:true});
+
+  /* la pista — último saldo informado y una cota con las entradas vistas */
+  var DAY=864e5, burn=18000/30.4;
+  function d(y,m,dd){return new Date(y,m-1,dd)}
+  var start=d(2026,11,3), end=d(2027,5,31), nov6=d(2026,11,6), nov9=d(2026,11,9);
+  var c0=18366;
+  var zeroB=new Date(start.getTime()+c0/burn*DAY);
+  /* sumando sólo lo visto en Mercury: 5.178 el 6-nov, 1.000 el 9-nov */
+  var s6=c0-burn*((nov6-start)/DAY), sA=s6+5178, s9=sA-burn*((nov9-nov6)/DAY), sB=s9+1000, zeroA=new Date(nov9.getTime()+sB/burn*DAY);
+  var dec1=d(2026,12,1), s1=sB-burn*((dec1-nov9)/DAY), sD=s1+26141, zeroD=new Date(dec1.getTime()+sD/burn*DAY);
+  function short(t){return t.getDate()+'-'+['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'][t.getMonth()]}
+  var narrow=matchMedia('(max-width:760px)').matches;
+  var W=narrow?340:840, H=narrow?290:346, L=narrow?34:44, R=narrow?8:16, T=narrow?16:20, plotB=narrow?178:226, yMax=34000;
+  var laneY=narrow?242:296, rMax=narrow?8:11, FS=narrow?11.5:11.5;
+  var svg=document.getElementById('runway'),ns='http://www.w3.org/2000/svg';
+  svg.setAttribute('viewBox','0 0 '+W+' '+H);
+  function X(t){return L+(t-start)/(end-start)*(W-L-R)}
+  function Y(v){return T+(1-v/yMax)*(plotB-T)}
+  function el(n,a,parent){var e=document.createElementNS(ns,n);for(var k in a)e.setAttribute(k,a[k]);(parent||svg).appendChild(e);return e}
+  function txt(x,y,s,a){var t=el('text',Object.assign({x:x,y:y,'font-size':FS,fill:'var(--ink-3)'},a||{}));t.textContent=s;return t}
+  function hit(x,y,r,title,html){if(narrow)return;var h=el('circle',{cx:x,cy:y,r:r,fill:'transparent',stroke:'none'});var tt=document.createElementNS(ns,'title');tt.textContent=title;h.appendChild(tt);bind(h,html);h.removeAttribute('tabindex')}
+  function P(pts){return 'M'+pts.map(function(p){return X(p[0]).toFixed(1)+','+Y(p[1]).toFixed(1)}).join(' L')}
+  var defs=el('defs',{}), g=el('linearGradient',{id:'rwFill',x1:0,y1:0,x2:0,y2:1},defs);
+  el('stop',{offset:'0%',style:'stop-color:var(--copper);stop-opacity:.20'},g);
+  el('stop',{offset:'100%',style:'stop-color:var(--copper);stop-opacity:0'},g);
+  (narrow?[0,15000,30000]:[0,10000,20000,30000]).forEach(function(v){
+    el('line',{x1:L,x2:W-R,y1:Y(v),y2:Y(v),stroke:v?'var(--line-2)':'var(--line)','stroke-width':1,'shape-rendering':'crispEdges'});
+    txt(L-8,Y(v)+3.5,v?(v/1000)+'K':'0',{'text-anchor':'end'});
+  });
+  [[d(2026,12,1),'dic'],[d(2027,1,1),'ene'],[d(2027,2,1),'feb'],[d(2027,3,1),'mar'],[d(2027,4,1),'abr'],[d(2027,5,1),'may']].forEach(function(m){
+    el('line',{x1:X(m[0]),x2:X(m[0]),y1:plotB,y2:plotB+4,stroke:'var(--line)','stroke-width':1});
+    txt(X(m[0]),plotB+17,m[1],{'text-anchor':'middle','letter-spacing':'.04em'});
+  });
+  // con diciembre
+  el('path',{d:P([[dec1,s1],[dec1,sD],[zeroD,0]]),fill:'none',stroke:'var(--copper-ink)','stroke-width':1.4,'stroke-dasharray':'4 4','stroke-linejoin':'round'});
+  el('circle',{cx:X(dec1),cy:Y(sD),r:3,fill:'var(--copper)',stroke:'var(--card)','stroke-width':2});
+  hit(X(dec1),Y(sD),12,'Diciembre: +26.141','<b>Diciembre · +USD 26.141</b><br>70% de Pei 10.637 · Gastón 10.000 · seña de LATAM 5.504. Día estimado: 1-dic. Dos de las tres partes están en duda');
+  if(!narrow) txt(X(dec1)+6,Y(sD)+4,'+26.141 · 1-dic',{fill:'var(--ink-3)',stroke:'var(--card)','stroke-width':4,'paint-order':'stroke','stroke-linejoin':'round'});
+  el('circle',{cx:X(zeroD),cy:Y(0),r:2.6,fill:'var(--copper)',opacity:.8});
+  txt(X(zeroD)+6,Y(0)-8,'~'+short(zeroD)+(narrow?'':' con diciembre'),{fill:'var(--ink-3)',stroke:'var(--card)','stroke-width':4,'paint-order':'stroke','stroke-linejoin':'round'});
+  // la cota con las entradas vistas
+  el('path',{d:P([[start,c0],[nov6,s6],[nov6,sA],[nov9,s9],[nov9,sB],[zeroA,0]]),fill:'none',stroke:'var(--copper-ink)','stroke-width':1.3,'stroke-dasharray':'3 4','stroke-linejoin':'round'});
+  el('circle',{cx:X(nov6),cy:Y(sA),r:3,fill:'var(--copper)',stroke:'var(--card)','stroke-width':2});
+  hit(X(nov6),Y(sA),12,'6-nov: +5.178','<b>6-nov · +USD 5.178</b><br>Loco Global Inc., la seña de la reserva de Anibal (Mercury)');
+  el('circle',{cx:X(nov9),cy:Y(sB),r:3,fill:'var(--copper)',stroke:'var(--card)','stroke-width':2});
+  hit(X(nov9),Y(sB),12,'9-nov: +1.000','<b>9-nov · +USD 1.000</b><br>Keith Rinzler vía Wise, la habitación extra (Mercury)');
+  el('circle',{cx:X(zeroA),cy:Y(0),r:2.6,fill:'var(--copper)',opacity:.8});
+  txt(X(zeroA)+6,Y(0)-(narrow?26:22),narrow?'~'+short(zeroA):'~'+short(zeroA)+' con lo visto',{fill:'var(--ink-3)',stroke:'var(--card)','stroke-width':4,'paint-order':'stroke','stroke-linejoin':'round'});
+  hit(X(zeroA),Y(0),12,'Con las entradas vistas: cero ~'+short(zeroA),'<b>Con las entradas vistas · cero ~'+short(zeroA)+'</b><br>Cota: no descuenta salidas que no se conocen ni suma la seña de Pei');
+  if(!narrow) txt(X(start),plotB+17,'3-nov',{'text-anchor':'start','letter-spacing':'.04em'});
+  // el último saldo informado
+  el('path',{d:P([[start,c0],[zeroB,0]])+' L'+X(start).toFixed(1)+','+Y(0)+' Z',fill:'url(#rwFill)',stroke:'none'});
+  el('line',{x1:X(zeroB),x2:X(zeroB),y1:plotB+22,y2:laneY-rMax-4,stroke:'var(--crit)','stroke-width':1,'stroke-dasharray':'2 3',opacity:.55});
+  el('path',{d:P([[start,c0],[zeroB,0]]),fill:'none',stroke:'var(--copper)','stroke-width':1.6,'stroke-linejoin':'round','stroke-linecap':'round'});
+  el('circle',{cx:X(start),cy:Y(c0),r:2.5,fill:'var(--copper)'});
+  hit(X(start),Y(c0),12,'3-nov: USD 18.366','<b>3-nov · USD 18.366</b><br>El último saldo informado');
+  el('circle',{cx:X(zeroB),cy:Y(0),r:7,fill:'var(--crit)',opacity:.16});
+  el('circle',{cx:X(zeroB),cy:Y(0),r:3.2,fill:'var(--crit)'});
+  txt(X(zeroB)-(narrow?4:22),Y(0)-(narrow?30:10),'cero ~'+short(zeroB),{'text-anchor':'end','font-size':narrow?11:12.5,'font-weight':500,fill:'var(--crit)',stroke:'var(--card)','stroke-width':4,'paint-order':'stroke','stroke-linejoin':'round'});
+  hit(X(zeroB),Y(0),14,'Caja en cero ~'+short(zeroB),'<b>Caja en cero ~'+short(zeroB)+'</b><br>18.366 a 18.000 por mes, sin ningún cobro');
+  if(!narrow) txt(W-R,laneY-rMax-24,'PRÓXIMAS ESTADÍAS',{'font-size':narrow?9.5:10,'letter-spacing':'.14em','font-weight':500,'text-anchor':'end'});
+  el('line',{x1:L,x2:W-R,y1:laneY,y2:laneY,stroke:'var(--line-2)','stroke-width':1,'shape-rendering':'crispEdges'});
+  // [fecha, USD, rótulo, detalle, rótulo angosto, detalle angosto, tooltip, arriba?, antes del cero?]
+  [[d(2026,11,12),3000,'Keith','cobrado','Keith','cobr.','Keith Rinzler · 12–15 nov · pagó además una habitación extra (1.000, 9-nov)',0,1],
+   [d(2026,11,21),36000,'Nov · 2','36K · 15–25%','Nov','36K','Luis, producción · 19–20 nov · USD 6.000 · 25%<br>Maya Luxe · 22–28 nov · USD 30.000 · 15% · Iru siguió el 6-nov, sin respuesta',1,1],
+   [d(2026,12,9),19000,'Dic · 2','19K · 25–50%','Dic','19K','12 Thribe × Loco Luxury · 8–10 dic · USD 7.000 · 25%<br>Pei Concierge · 10–14 dic · USD 12.000 · 50%',0,0],
+   [d(2026,12,30),52994,'Fin de año · 2','53K · 25–50%','Fin','53K','Fin de año · Loco Luxury pide 27-dic → 7-ene (35.000) o 29-dic → 3-ene (32.500 con chef) · 50% · cuenta una vez<br>Marco Salvatierra · 3–6 ene · USD 17.994 · 25% · cabe con la corta, no con la larga',1,0],
+   [d(2027,1,18),29800,'Ene · 2','30K · 2 grupos','Ene','30K','Community Concierge · 14–17 ene · 8 personas · USD 7.000 · sin probabilidad<br>Sarah Pitts · 21–25 ene · 7 personas · USD 22.800 · 50%',0,0],
+   [d(2027,2,24),15196,'Pei · feb','15K · reservada','Pei','15K','Pei Mastermind · 24–28 feb · USD 15.196 · reservada',0,0],
+   [d(2027,4,8),18345,'LATAM','18K · bloqueo en duda','LATAM','18K','LATAM Retreats · 8–11 abr · USD 18.345 · acordada; piden extender el bloqueo al 30-nov',1,0],
+   [d(2027,4,29),13000,'Anibal','13K · reservada','May · 2','20K','Anibal Jesus Oller, por Loco Luxury · 29-abr → 3-may · 16 personas · USD 13.000 · seña cobrada · fuera del objetivo ago → mar',0,0],
+   [d(2027,5,21),6997,'Hee Young','7K · reservada','','','Hee Young Kim, por Airbnb · 21–24 may · 16 personas · USD 6.997 · fuera del objetivo ago → mar',0,0]].forEach(function(s){
+    var r=Math.max(3,Math.sqrt(s[1]/30000)*rMax), cx=X(s[0]), near=cx>W-R-28, zx=X(zeroB);
+    var ax='middle', tx=cx;
+    if(near){ax='end';tx=cx+r}
+    else if(narrow&&s[8]&&cx<zx&&cx+22>zx){ax='end';tx=cx+r}
+    el('circle',{cx:cx,cy:laneY,r:r,fill:s[8]?'var(--copper)':'var(--copper-soft)',stroke:'var(--copper-ink)','stroke-width':1});
+    var n=narrow?s[4]:s[2], dd=narrow?s[5]:s[3];
+    var y1=s[7]?laneY-rMax-20:laneY+rMax+14, y2=s[7]?laneY-rMax-7:laneY+rMax+27;
+    txt(tx,y1,n,{'text-anchor':ax,fill:'var(--ink-2)','font-weight':500});
+    txt(tx,y2,dd,{'text-anchor':ax});
+    hit(cx,laneY,Math.max(r,13),s[6],'<b>'+s[2]+'</b><br>'+s[6]);
+  });
+
+  /* pipeline — probabilidades de Iru del 3-nov */
+  var leads=[
+    {n:'Loco Luxury · fin de año',w:'27-dic→7-ene · 16 personas · 11 noches',v:35000,lab:'35K',p:.5,o:'agencia',note:'Fila del CRM del 6-nov. Hay otra de Loco Luxury, 29-dic→3-ene a 32.500 con chef, que el informe del 3-nov llamaba Beach Please: piden las mismas noches y en el total cuentan una vez. Probabilidad del 3-nov.'},
+    {n:'Sarah Pitts',w:'retiro · 7 personas · 21–25 ene-2027',v:22800,lab:'22,8K',p:.5,o:'fam trip',note:'Sigue con su grupo de enero: «I will keep you posted» (6-nov). Probabilidad del 3-nov.'},
+    {n:'Pei · diciembre',w:'12 personas · 10–14 dic-2026',v:12000,lab:'12K',p:.5,o:'concierge',note:'Consulta de Pei Concierge. Probabilidad del 3-nov.'},
+    {n:'Marco Salvatierra',w:'8 personas · 3–6 ene-2027',v:17994,lab:'18K',p:.25,o:'referido',note:'Seguimiento el 12-nov.'},
+    {n:'Maya Luxe',w:'22–28 nov-2026',v:30000,lab:'30K',p:.15,o:'agencia',inside:true,note:'Iru le preguntó a Maya Luxe el 6-nov si el grupo sigue interesado; sin respuesta. La estadía empieza en dos semanas.'},
+    {n:'12 Thribe',w:'por Loco Luxury · 12 personas · 8–10 dic-2026',v:7000,lab:'7K',p:.25,o:'agencia',note:'Producción de fotos de una marca de ropa. Pasó a hold el 9-nov.'},
+    {n:'Luis · producción 19–20 nov',w:'otra producción, aparte de las dos tardes ganadas',v:6000,lab:'6K',p:.25,o:'directo',inside:true,note:'Del informe del 3-nov; no está en el CRM. Las dos tardes del 9 y 10-nov (600) ya se ganaron.'},
+    {n:'Federico · Community Concierge',w:'8 personas · 14–17 ene-2027',v:7000,lab:'7K',p:null,o:'Lara',moved:true,note:'Llegó por el email de Lara; Community Concierge publica la casa y trajo este grupo en 24 horas. Están comparando opciones (9-nov).'},
+    {n:'Joeline Alexander',w:'familia · 12 personas · 28-mar→4-abr',v:0,lab:'—',p:null,o:'Google',moved:true,note:'La primera consulta de Google exacto («tulum rentals with chef»). Iru le mandó precio el 4-nov y siguió el 9; sin respuesta.'},
+    {n:'Dream Exotic · cumpleaños',w:'16 duermen, 50–60 en la fiesta · 9–16 sep-2027',v:28000,lab:'28K',p:null,o:'agencia',note:'Ahora que la casa está publicada en su web, la presentan a su cliente.'},
+    {n:'Ritual Union',w:'retiro de 5 noches',v:26000,lab:'26K',p:null,o:'Lara',note:'Iru les ofreció la visita: diciembre y enero se están llenando, si no, febrero (6-nov).'},
+    {n:'Ryan Kern · boda',w:'16 personas · abr–may 2028 u oct–nov 2027',v:23900,lab:'23,9K',p:null,o:'directo',note:'Seguimiento a la propuesta el 13-nov.'}
+  ];
+  var pipe=document.getElementById('pipe'),mode='w',maxV=Math.max.apply(null,leads.map(function(l){return l.v}))||1;
+  function wv(l){return l.p==null?0:l.v*l.p}
+  function render(){
+    var list=leads.slice().sort(function(a,b){return mode==='w'?(wv(b)-wv(a)||(b.p!=null)-(a.p!=null)):(b.v-a.v)});
+    pipe.innerHTML='';
+    list.forEach(function(l){
+      var r=document.createElement('div');r.className='prow';
+      var tags='';
+      if(l.o) tags+='<span class="tag'+(l.o==='Lara'?'':' plain')+'">'+l.o+'</span>';
+      if(l.inside) tags+='<span class="tag in">antes de cero</span>';
+      if(l.moved) tags+='<span class="tag mv">nueva</span>';
+      if(!l.v) r.classList.add('nov');
+      var big=mode==='w'?(l.p==null?'—':'~'+(wv(l)<1000?(wv(l)/1000).toFixed(1).replace('.',','):Math.round(wv(l)/1000))+'K'):l.lab;
+      var sub=l.p==null?(l.v?'sin calificar':'sin monto'):(mode==='w'?l.lab+' nominal · '+Math.round(l.p*100)+'%':'~'+Math.round(wv(l)/1000)+'K ponderado · '+Math.round(l.p*100)+'%');
+      r.innerHTML='<div class="pn"><b>'+l.n+'</b><span class="w">'+l.w+'</span>'+(tags?'<span class="tags">'+tags+'</span>':'')+'</div><div class="track"><div class="nom" style="width:'+(l.v/maxV*100)+'%"></div><div class="w" style="width:'+(wv(l)/maxV*100)+'%"></div></div><div class="pv"><span class="num">'+big+'</span><small>'+sub+'</small></div>';
+      bind(r,'<b>'+l.n+'</b><br>'+l.note+'<br>Nominal '+(l.v?'USD '+fmt(l.v):'sin definir')+(l.p!=null?' · ponderado USD '+fmt(wv(l)):''));
+      pipe.appendChild(r);
+    });
+    document.getElementById('sort-status').textContent='Ordenado por '+(mode==='w'?'ponderado':'nominal');
+  }
+  function set(m){mode=m;document.getElementById('sort-w').setAttribute('aria-pressed',m==='w');document.getElementById('sort-n').setAttribute('aria-pressed',m==='n');render()}
+  document.getElementById('sort-w').onclick=function(){set('w')};
+  document.getElementById('sort-n').onclick=function(){set('n')};
+  render();
+  document.getElementById('notes').innerHTML=leads.map(function(l){return '<p><b>'+l.n+'.</b> '+l.note+'</p>'}).join('');
+
+  /* origen */
+  var origin=[['Agencias y distribuidores · 4',100000],['Email de Lara · 2',33000],['Directo · 2',29900],['Fam trip · 1',22800],['Referido · 1',17994],['Concierge · 1',12000],['Google · 1',0]];
+  document.getElementById('origin').innerHTML=origin.map(function(o){return '<div class="lb"><span>'+o[0]+'</span><div class="t"><i style="width:'+(o[1]/100000*100)+'%"></i></div><span class="v">'+(o[1]?Math.round(o[1]/1000)+'K':'—')+'</span></div>'}).join('');
+})();
+</script>
+</body></html>
