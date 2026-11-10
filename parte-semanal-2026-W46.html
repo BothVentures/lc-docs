@@ -52,6 +52,7 @@ h2.lbl,h3.lbl{font-family:var(--ui);font-size:11px;line-height:1.5;margin:0}
 .pills{display:flex;gap:8px;flex-wrap:wrap}
 .pill{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:500;padding:5px 12px;border-radius:99px;border:1px solid var(--line);color:var(--ink-2);background:var(--card)}
 .pill.r{background:var(--crit-bg);color:var(--crit);border-color:transparent}
+.pill.a{background:var(--warn-bg);color:var(--warn);border-color:transparent}
 .dot{width:8px;height:8px;border-radius:50%;background:currentColor;flex:none}
 
 .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px 24px;display:grid;gap:16px;min-width:0}
@@ -272,13 +273,13 @@ footer b{color:var(--ink-2)}
   <div>
     <div class="eyebrow"><span class="lbl">La Chamana · parte semanal · 2026-W46</span><span class="vmark">both.ventures · versión</span></div>
     <h1>3-nov → 9-nov</h1>
-    <p class="verdict">La caja llega a cero alrededor del 4 de diciembre con el último saldo informado (18.366 al 3-nov); esta semana entraron 6.178 y el saldo nuevo no llegó a este parte. Se ganaron dos reservas, USD 19.997, las dos para mayo de 2027: suman temporada, no caja de diciembre. Tres canales nuevos y un tarifario nuevo en dieciséis distribuidores. Para el martes: el bloqueo de abril de LATAM Retreats y fin de año (abajo, en «Para decidir»).</p>
+    <p class="verdict">Diciembre cierra cubierto y la caja llega al 19 de enero, según Iru; la semana pasada diciembre arrancaba en cero. Ya entró el 30% de lo ganado. Se ganaron dos reservas, USD 19.997, las dos para mayo de 2027. Tres canales nuevos y un tarifario nuevo en dieciséis distribuidores. Lo que decide enero es fin de año. Para el martes: el bloqueo de abril de LATAM Retreats y fin de año (abajo, en «Para decidir»).</p>
   </div>
   <div class="pills">
-    <span class="pill r" title="Rojo: la caja no tiene cifra de esta semana y la última informada (18.366 al 3-nov) llega a cero ~4-dic. Las reservas nuevas caen en mayo. En cada cubeta: rojo es crítico, ámbar es vigilar, verde está en marcha. Lo propone El Chamán."><span class="dot"></span>Salud · rojo</span>
-    <span class="pill r" title="Último saldo informado: 18.366 al 3-nov, cero cerca del 4 de diciembre a 18.000 por mes. Esta semana entraron 6.178 vistos en Mercury; las salidas no se conocen."><span class="dot"></span>Caja · cero ~4-dic</span>
+    <span class="pill a" title="Amarillo: diciembre cierra cubierto y la caja llega al 19-ene según Iru (9-nov, sin conciliar); las reservas nuevas caen en mayo. En cada cubeta: rojo es crítico, ámbar es vigilar, verde está en marcha."><span class="dot"></span>Salud · amarillo</span>
+    <span class="pill" title="Según Iru, 9-nov, con los cobros de diciembre. La semana pasada el cero era ~4-dic."><span class="dot"></span>Caja · hasta el 19-ene</span>
     <span class="pill">2 reservas en Cloudbeds</span>
-    <span class="pill">Datos al 9-nov · v0.1</span>
+    <span class="pill">Datos al 9-nov · v0.1.2</span>
   </div>
 </header>
 
@@ -287,7 +288,7 @@ footer b{color:var(--ink-2)}
   <div class="wins">
     <div class="win"><div class="wv">20K</div><div class="wt">en dos reservas con fila en Cloudbeds</div><div class="wd">Anibal, por Loco Luxury, 16 personas, 29-abr → 3-may. Hee Young, por Airbnb, 16, 21–24 may.</div></div>
     <div class="win"><div class="wv">14</div><div class="wt">noches dentro del objetivo</div><div class="wd">Eran 7. Cloudbeds cuenta sólo ago → mar: las reservas de mayo no suman. Objetivo 96; piso 36.</div></div>
-    <div class="win"><div class="wv">6,2K</div><div class="wt">entraron en Mercury</div><div class="wd">La seña de Loco Luxury (5.178) y la habitación extra de Keith (1.000).</div></div>
+    <div class="win"><div class="wv">19-ene</div><div class="wt">hasta dónde llega la caja</div><div class="wd">Con diciembre cobrado, según Iru. La semana pasada diciembre arrancaba en cero. Entraron 6.178: el 30% de lo ganado.</div></div>
     <div class="win"><div class="wv">16</div><div class="wt">distribuidores con el tarifario nuevo</div><div class="wd">En un día, el 6-nov. Sotavento lo cargó esa misma tarde.</div></div>
     <div class="win"><div class="wv">3</div><div class="wt">canales que entran</div><div class="wd">Dream Exotic firmó la adenda, Hummingbird confirma, Community Concierge la publica.</div></div>
     <div class="win"><div class="wv">4</div><div class="wt">interesadas nuevas por email</div><div class="wd">La semana pasada, 2. Community Concierge trajo una consulta en 24 horas.</div></div>
@@ -297,11 +298,11 @@ footer b{color:var(--ink-2)}
 </section>
 
 <section class="temp" aria-labelledby="h-cubetas"><h2 class="sr" id="h-cubetas">Las cinco cubetas</h2>
-  <div class="tc r">
-    <div class="hd"><h3 class="lbl">Caja</h3><span class="state"><span class="dot"></span>Crítico</span></div>
-    <div class="v num">?<small>sin cifra</small></div>
-    <div class="u">El saldo de esta semana no llegó a este parte. Entraron 6.178 en Mercury. La seña de Pei (4.559), esperada esta semana, no aparece en esos avisos.</div>
-    <div class="cmp">cero, con el último saldo <b>~4-dic</b></div>
+  <div class="tc a">
+    <div class="hd"><h3 class="lbl">Caja</h3><span class="state"><span class="dot"></span>Vigilar</span></div>
+    <div class="v num">19<small>de enero, según Iru</small></div>
+    <div class="u">Diciembre cierra cubierto. Ya se cobró el 30% de lo ganado: 6.178 en Mercury. El saldo de la semana lo trae Iru el martes. Enero depende de fin de año.</div>
+    <div class="cmp">cero <b>~4-dic</b> <span class="ar">→</span> <b>~19-ene</b></div>
   </div>
   <div class="tc a">
     <div class="hd"><h3 class="lbl">Reservas</h3><span class="state"><span class="dot"></span>Vigilar</span></div>
@@ -350,21 +351,20 @@ footer b{color:var(--ink-2)}
 <section class="card" aria-label="La pista de caja">
   <div class="ch"><h2>La pista de caja</h2><span class="aside">USD · burn declarado 18.000 por mes</span></div>
   <div class="seq">
-    <div class="sq"><span>Último informe · 3-nov</span><div class="num">18.366</div><span>el saldo de esta semana no llegó a este parte</span></div>
-    <div class="sq"><span>Entró esta semana</span><div class="num">+6.178</div><span>la seña de Loco Luxury (5.178, 6-nov) y Keith (1.000, 9-nov), en Mercury. La seña de Pei no aparece</span></div>
-    <div class="sq"><span>Diciembre, según el 3-nov</span><div class="num">+26.141</div><span>el 70% de Pei (febrero), la estadía de Gastón y la seña de LATAM Retreats, que pide extender su bloqueo. Si entran el 1-dic, antes del cero: ~27-ene</span></div>
-    <div class="sq bad"><span>Llega a cero</span><div class="num">~4-dic</div><span>con el último saldo. ~14-dic sumando las entradas vistas; ~27-ene si además entra diciembre. Las salidas de la semana no se conocen</span></div>
+    <div class="sq"><span>Último saldo con cifra · 3-nov</span><div class="num">18.366</div><span>el de esta semana lo trae Iru el martes</span></div>
+    <div class="sq"><span>Entró esta semana</span><div class="num">+6.178</div><span>el 30% de lo ganado: la seña de Loco Luxury (5.178, 6-nov) y la habitación extra de Keith (1.000, 9-nov)</span></div>
+    <div class="sq"><span>Diciembre</span><div class="num">+26.141</div><span>el 70% de Pei (febrero), la estadía de Gastón y la seña de LATAM Retreats. Iru: «diciembre lo cerramos seguro bien»</span></div>
+    <div class="sq"><span>Llega a cero</span><div class="num">~19-ene</div><span>según Iru, sin nuevos cobros. La semana pasada, ~4-dic</span></div>
   </div>
-  <svg id="runway" viewBox="0 0 840 340" role="img" aria-label="Proyección de caja desde el último saldo informado, 18.366 dólares al 3 de noviembre, con una quema de 18.000 por mes: cero cerca del 4 de diciembre. Una línea punteada suma las dos entradas vistas esta semana, 5.178 el 6 de noviembre y 1.000 el 9: cero cerca del 14 de diciembre. En la fila de estadías: Keith del 12 al 15 de noviembre; Maya Luxe del 22 al 28 de noviembre al 15%; dos en diciembre; fin de año al 50%; Marco Salvatierra; Community Concierge del 14 al 17 de enero; Sarah Pitts; Pei en febrero, reservada; LATAM Retreats en abril, acordada; Anibal del 29 de abril al 3 de mayo y Hee Young del 21 al 24 de mayo, reservadas."></svg>
+  <svg id="runway" viewBox="0 0 840 340" role="img" aria-label="Proyección de caja desde el último saldo con cifra, 18.366 dólares al 3 de noviembre: suman las entradas de esta semana, 5.178 el 6 de noviembre y 1.000 el 9, y los 26.141 de diciembre; según Iru la caja llega al 19 de enero. En la fila de estadías: Keith del 12 al 15 de noviembre; Maya Luxe del 22 al 28 de noviembre al 15%; dos en diciembre; fin de año al 50%; Marco Salvatierra; Community Concierge del 14 al 17 de enero; Sarah Pitts; Pei en febrero, reservada; LATAM Retreats en abril, acordada; Anibal del 29 de abril al 3 de mayo y Hee Young del 21 al 24 de mayo, reservadas."></svg>
   <div class="legend">
-    <span><i></i>Caja, último saldo informado</span>
-    <span><i class="dash"></i>Con las entradas vistas (~14-dic) · y con diciembre (~27-ene)</span>
+    <span><i></i>Caja hasta el 19-ene, según Iru</span>
     <span><i class="bub"></i>Próximas estadías · tamaño = USD</span>
     <span><i class="bub in"></i>Antes del cero</span>
   </div>
   <details>
     <summary>Cómo se calcula</summary>
-    <div class="dbody"><p>Parte del último saldo informado (18.366 al 3-nov) y quema USD 592 por día, que son los 18.000 por mes de ese informe: cero ~4-dic. La línea punteada suma las dos entradas que se ven en los avisos de Mercury de la ventana —5.178 de Loco Global, la empresa de Loco Luxury, el 6-nov: la seña de Anibal, y 1.000 de Keith el 9-nov—: cero ~14-dic. Es una cota: no descuenta salidas que no se conocen (seis transferencias de Santander el 5 y 6-nov sin monto en el aviso, el impuesto sobre nómina, el IMSS) ni suma la seña de Pei, que no aparece. La segunda línea suma los 26.141 de diciembre el 1-dic, día estimado; dos de esas tres partes están en duda (la seña de Pei no se vio, LATAM pide extender su bloqueo). El saldo y el runway de verdad están en el informe de la semana, que este parte no pudo leer. Mercury, que es una sola de las cuentas, cerró octubre en 16.199.</p></div>
+    <div class="dbody"><p>La fecha, 19-ene, es de Iru (9-nov): cuenta el saldo y las salidas que este parte no ve, y da diciembre por cobrado. La línea la dibuja así: parte del último saldo con cifra (18.366 al 3-nov), quema 592 por día —los 18.000 por mes del 3-nov—, suma las dos entradas que se ven en Mercury (5.178 de Loco Global, la empresa de Loco Luxury, el 6-nov: la seña de Anibal; 1.000 de Keith el 9-nov) y los 26.141 de diciembre el 1-dic, día estimado. Después del 1-dic va derecha a la fecha de Iru: la pendiente sale de esa fecha, no de una salida medida. Sin los cobros de diciembre, el cero sería ~14-dic. La semana pasada, con el saldo del 3-nov, era ~4-dic. Está sin conciliar con el banco.</p></div>
   </details>
 </section>
 
@@ -436,7 +436,7 @@ footer b{color:var(--ink-2)}
     <span><span class="num">~47K</span>ponderado, con las probabilidades del 3-nov</span>
     <span><span class="num">85K</span>sin calificar, en 4 · 1 sin monto</span>
   </div>
-  <div class="keys"><span>Barra de contorno = nominal · barra llena = ponderado por la probabilidad de Iru del 3-nov</span><span><span class="tag">Lara</span> llegó por el email</span><span><span class="tag in">antes de cero</span> la estadía cae antes del último cero informado</span><span><span class="tag mv">nueva</span> entró esta semana</span></div>
+  <div class="keys"><span>Barra de contorno = nominal · barra llena = ponderado por la probabilidad de Iru del 3-nov</span><span><span class="tag">Lara</span> llegó por el email</span><span><span class="tag in">antes de cero</span> la estadía cae antes del 19-ene</span><span><span class="tag mv">nueva</span> entró esta semana</span></div>
   <details>
     <summary>Notas por lead</summary>
     <div class="dbody" id="notes"></div>
@@ -532,10 +532,10 @@ footer b{color:var(--ink-2)}
 </details>
 
 <footer>
-  <p><b>Cómo se armó.</b> Los buzones de Iru y de Lara, leídos el 9-nov · el CRM y las reservas de Cloudbeds · los envíos de email · Google y Meta, en vivo · la reunión del 5-nov, minada en both_os. Todo leído, nada modificado. El informe comercial de la semana no llegó a este parte: la caja y las probabilidades se actualizan cuando llegue.</p>
+  <p><b>Cómo se armó.</b> Los buzones de Iru y de Lara, leídos el 9-nov · el CRM y las reservas de Cloudbeds · los envíos de email · Google y Meta, en vivo · la reunión del 5-nov, minada en both_os. Todo leído, nada modificado. El informe comercial de la semana no llegó a este parte; sí los comentarios de Iru del 9-nov, de donde sale la fecha de caja. El saldo y las probabilidades se actualizan cuando llegue.</p>
   <p><b>Las llamadas de la semana.</b> Jueves 5-nov, La Chamana con El Kilombo: retiros de emprendedores. Miércoles 4-nov, la de finanzas, sin transcript. El 3 y el 6-nov, tres llamadas donde La Chamana aparece de paso.</p>
   <p><b>Lo que no está.</b> El saldo y las salidas de la semana, las probabilidades, si entró la seña de Pei y cuáles son las 7 noches nuevas: lo trae el informe de Iru · las consultas de Meta en la planilla, los DMs, las reseñas y las horizontales: Bianca.</p>
-  <p><b>El semáforo.</b> Rojo es crítico: la caja no tiene cifra y la última llega a diciembre. Ámbar es vigilar; verde, en marcha. Lo propone El Chamán. «Sin medir» nunca se dibuja como cero.</p>
+  <p><b>El semáforo.</b> Amarillo: diciembre cubierto, enero por cerrar. Rojo es crítico, ámbar es vigilar, verde está en marcha. «Sin medir» nunca se dibuja como cero.</p>
   <div class="wmark">Made by <a href="https://both.ventures">@bothventures</a></div>
 </footer>
 
@@ -560,15 +560,14 @@ footer b{color:var(--ink-2)}
   document.addEventListener('keydown',function(e){if(e.key==='Escape')hide()});
   addEventListener('scroll',hide,{passive:true});
 
-  /* la pista — último saldo informado y una cota con las entradas vistas */
+  /* la pista — último saldo con cifra + entradas vistas + diciembre, hasta la fecha de Iru (19-ene) */
   var DAY=864e5, burn=18000/30.4;
   function d(y,m,dd){return new Date(y,m-1,dd)}
   var start=d(2026,11,3), end=d(2027,5,31), nov6=d(2026,11,6), nov9=d(2026,11,9);
   var c0=18366;
-  var zeroB=new Date(start.getTime()+c0/burn*DAY);
-  /* sumando sólo lo visto en Mercury: 5.178 el 6-nov, 1.000 el 9-nov */
-  var s6=c0-burn*((nov6-start)/DAY), sA=s6+5178, s9=sA-burn*((nov9-nov6)/DAY), sB=s9+1000, zeroA=new Date(nov9.getTime()+sB/burn*DAY);
-  var dec1=d(2026,12,1), s1=sB-burn*((dec1-nov9)/DAY), sD=s1+26141, zeroD=new Date(dec1.getTime()+sD/burn*DAY);
+  var s6=c0-burn*((nov6-start)/DAY), sA=s6+5178, s9=sA-burn*((nov9-nov6)/DAY), sB=s9+1000;
+  var dec1=d(2026,12,1), s1=sB-burn*((dec1-nov9)/DAY), sD=s1+26141;
+  var zeroI=d(2027,1,19), zeroB=zeroI;
   function short(t){return t.getDate()+'-'+['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'][t.getMonth()]}
   var narrow=matchMedia('(max-width:760px)').matches;
   var W=narrow?340:840, H=narrow?290:346, L=narrow?34:44, R=narrow?8:16, T=narrow?16:20, plotB=narrow?178:226, yMax=34000;
@@ -592,40 +591,32 @@ footer b{color:var(--ink-2)}
     el('line',{x1:X(m[0]),x2:X(m[0]),y1:plotB,y2:plotB+4,stroke:'var(--line)','stroke-width':1});
     txt(X(m[0]),plotB+17,m[1],{'text-anchor':'middle','letter-spacing':'.04em'});
   });
-  // con diciembre
-  el('path',{d:P([[dec1,s1],[dec1,sD],[zeroD,0]]),fill:'none',stroke:'var(--copper-ink)','stroke-width':1.4,'stroke-dasharray':'4 4','stroke-linejoin':'round'});
-  el('circle',{cx:X(dec1),cy:Y(sD),r:3,fill:'var(--copper)',stroke:'var(--card)','stroke-width':2});
-  hit(X(dec1),Y(sD),12,'Diciembre: +26.141','<b>Diciembre · +USD 26.141</b><br>70% de Pei 10.637 · Gastón 10.000 · seña de LATAM 5.504. Día estimado: 1-dic. Dos de las tres partes están en duda');
-  if(!narrow) txt(X(dec1)+6,Y(sD)+4,'+26.141 · 1-dic',{fill:'var(--ink-3)',stroke:'var(--card)','stroke-width':4,'paint-order':'stroke','stroke-linejoin':'round'});
-  el('circle',{cx:X(zeroD),cy:Y(0),r:2.6,fill:'var(--copper)',opacity:.8});
-  txt(X(zeroD)+6,Y(0)-8,'~'+short(zeroD)+(narrow?'':' con diciembre'),{fill:'var(--ink-3)',stroke:'var(--card)','stroke-width':4,'paint-order':'stroke','stroke-linejoin':'round'});
-  // la cota con las entradas vistas
-  el('path',{d:P([[start,c0],[nov6,s6],[nov6,sA],[nov9,s9],[nov9,sB],[zeroA,0]]),fill:'none',stroke:'var(--copper-ink)','stroke-width':1.3,'stroke-dasharray':'3 4','stroke-linejoin':'round'});
+  var pts=[[start,c0],[nov6,s6],[nov6,sA],[nov9,s9],[nov9,sB],[dec1,s1],[dec1,sD],[zeroI,0]];
+  var lbl={fill:'var(--ink-3)',stroke:'var(--card)','stroke-width':4,'paint-order':'stroke','stroke-linejoin':'round'};
+  el('path',{d:P(pts)+' L'+X(start).toFixed(1)+','+Y(0)+' Z',fill:'url(#rwFill)',stroke:'none'});
+  el('line',{x1:X(zeroI),x2:X(zeroI),y1:plotB+22,y2:laneY-rMax-4,stroke:'var(--warn)','stroke-width':1,'stroke-dasharray':'2 3',opacity:.55});
+  el('path',{d:P(pts),fill:'none',stroke:'var(--copper)','stroke-width':1.6,'stroke-linejoin':'round','stroke-linecap':'round'});
+  el('circle',{cx:X(start),cy:Y(c0),r:2.5,fill:'var(--copper)'});
+  hit(X(start),Y(c0),12,'3-nov: USD 18.366','<b>3-nov · USD 18.366</b><br>El último saldo con cifra');
   el('circle',{cx:X(nov6),cy:Y(sA),r:3,fill:'var(--copper)',stroke:'var(--card)','stroke-width':2});
   hit(X(nov6),Y(sA),12,'6-nov: +5.178','<b>6-nov · +USD 5.178</b><br>Loco Global Inc., la seña de la reserva de Anibal (Mercury)');
   el('circle',{cx:X(nov9),cy:Y(sB),r:3,fill:'var(--copper)',stroke:'var(--card)','stroke-width':2});
   hit(X(nov9),Y(sB),12,'9-nov: +1.000','<b>9-nov · +USD 1.000</b><br>Keith Rinzler vía Wise, la habitación extra (Mercury)');
-  el('circle',{cx:X(zeroA),cy:Y(0),r:2.6,fill:'var(--copper)',opacity:.8});
-  txt(X(zeroA)+6,Y(0)-(narrow?26:22),narrow?'~'+short(zeroA):'~'+short(zeroA)+' con lo visto',{fill:'var(--ink-3)',stroke:'var(--card)','stroke-width':4,'paint-order':'stroke','stroke-linejoin':'round'});
-  hit(X(zeroA),Y(0),12,'Con las entradas vistas: cero ~'+short(zeroA),'<b>Con las entradas vistas · cero ~'+short(zeroA)+'</b><br>Cota: no descuenta salidas que no se conocen ni suma la seña de Pei');
+  el('circle',{cx:X(dec1),cy:Y(sD),r:3,fill:'var(--copper)',stroke:'var(--card)','stroke-width':2});
+  hit(X(dec1),Y(sD),12,'Diciembre: +26.141','<b>Diciembre · +USD 26.141</b><br>70% de Pei 10.637 · Gastón 10.000 · seña de LATAM 5.504. Día estimado: 1-dic. Iru: «diciembre lo cerramos seguro bien»');
+  if(!narrow) txt(X(dec1)+6,Y(sD)+4,'+26.141 · diciembre',lbl);
   if(!narrow) txt(X(start),plotB+17,'3-nov',{'text-anchor':'start','letter-spacing':'.04em'});
-  // el último saldo informado
-  el('path',{d:P([[start,c0],[zeroB,0]])+' L'+X(start).toFixed(1)+','+Y(0)+' Z',fill:'url(#rwFill)',stroke:'none'});
-  el('line',{x1:X(zeroB),x2:X(zeroB),y1:plotB+22,y2:laneY-rMax-4,stroke:'var(--crit)','stroke-width':1,'stroke-dasharray':'2 3',opacity:.55});
-  el('path',{d:P([[start,c0],[zeroB,0]]),fill:'none',stroke:'var(--copper)','stroke-width':1.6,'stroke-linejoin':'round','stroke-linecap':'round'});
-  el('circle',{cx:X(start),cy:Y(c0),r:2.5,fill:'var(--copper)'});
-  hit(X(start),Y(c0),12,'3-nov: USD 18.366','<b>3-nov · USD 18.366</b><br>El último saldo informado');
-  el('circle',{cx:X(zeroB),cy:Y(0),r:7,fill:'var(--crit)',opacity:.16});
-  el('circle',{cx:X(zeroB),cy:Y(0),r:3.2,fill:'var(--crit)'});
-  txt(X(zeroB)-(narrow?4:22),Y(0)-(narrow?30:10),'cero ~'+short(zeroB),{'text-anchor':'end','font-size':narrow?11:12.5,'font-weight':500,fill:'var(--crit)',stroke:'var(--card)','stroke-width':4,'paint-order':'stroke','stroke-linejoin':'round'});
-  hit(X(zeroB),Y(0),14,'Caja en cero ~'+short(zeroB),'<b>Caja en cero ~'+short(zeroB)+'</b><br>18.366 a 18.000 por mes, sin ningún cobro');
+  el('circle',{cx:X(zeroI),cy:Y(0),r:6,fill:'var(--warn)',opacity:.16});
+  el('circle',{cx:X(zeroI),cy:Y(0),r:3,fill:'var(--warn)'});
+  txt(X(zeroI)+8,Y(0)-10,narrow?'~19-ene':'~19-ene, según Iru',Object.assign({},lbl,{'font-size':narrow?11:12.5,'font-weight':500,fill:'var(--warn)'}));
+  hit(X(zeroI),Y(0),14,'Caja hasta ~19-ene','<b>Caja hasta ~19-ene</b><br>Según Iru (9-nov), con diciembre cobrado y sin nuevos cobros. La semana pasada el cero era ~4-dic');
   if(!narrow) txt(W-R,laneY-rMax-24,'PRÓXIMAS ESTADÍAS',{'font-size':narrow?9.5:10,'letter-spacing':'.14em','font-weight':500,'text-anchor':'end'});
   el('line',{x1:L,x2:W-R,y1:laneY,y2:laneY,stroke:'var(--line-2)','stroke-width':1,'shape-rendering':'crispEdges'});
   // [fecha, USD, rótulo, detalle, rótulo angosto, detalle angosto, tooltip, arriba?, antes del cero?]
   [[d(2026,11,12),3000,'Keith','cobrado','Keith','cobr.','Keith Rinzler · 12–15 nov · pagó además una habitación extra (1.000, 9-nov)',0,1],
    [d(2026,11,21),36000,'Nov · 2','36K · 15–25%','Nov','36K','Luis, producción · 19–20 nov · USD 6.000 · 25%<br>Maya Luxe · 22–28 nov · USD 30.000 · 15% · Iru siguió el 6-nov, sin respuesta',1,1],
-   [d(2026,12,9),19000,'Dic · 2','19K · 25–50%','Dic','19K','12 Thribe × Loco Luxury · 8–10 dic · USD 7.000 · 25%<br>Pei Concierge · 10–14 dic · USD 12.000 · 50%',0,0],
-   [d(2026,12,30),52994,'Fin de año · 2','53K · 25–50%','Fin','53K','Fin de año · Loco Luxury pide 27-dic → 7-ene (35.000) o 29-dic → 3-ene (32.500 con chef) · 50% · cuenta una vez<br>Marco Salvatierra · 3–6 ene · USD 17.994 · 25% · cabe con la corta, no con la larga',1,0],
+   [d(2026,12,9),19000,'Dic · 2','19K · 25–50%','Dic','19K','12 Thribe × Loco Luxury · 8–10 dic · USD 7.000 · 25%<br>Pei Concierge · 10–14 dic · USD 12.000 · 50%',0,1],
+   [d(2026,12,30),52994,'Fin de año · 2','53K · 25–50%','Fin','53K','Fin de año · Loco Luxury pide 27-dic → 7-ene (35.000) o 29-dic → 3-ene (32.500 con chef) · 50% · cuenta una vez<br>Marco Salvatierra · 3–6 ene · USD 17.994 · 25% · cabe con la corta, no con la larga',1,1],
    [d(2027,1,18),29800,'Ene · 2','30K · 2 grupos','Ene','30K','Community Concierge · 14–17 ene · 8 personas · USD 7.000 · sin probabilidad<br>Sarah Pitts · 21–25 ene · 7 personas · USD 22.800 · 50%',0,0],
    [d(2027,2,24),15196,'Pei · feb','15K · reservada','Pei','15K','Pei Mastermind · 24–28 feb · USD 15.196 · reservada',0,0],
    [d(2027,4,8),18345,'LATAM','18K · bloqueo en duda','LATAM','18K','LATAM Retreats · 8–11 abr · USD 18.345 · acordada; piden extender el bloqueo al 30-nov',1,0],
@@ -645,14 +636,14 @@ footer b{color:var(--ink-2)}
 
   /* pipeline — probabilidades de Iru del 3-nov */
   var leads=[
-    {n:'Loco Luxury · fin de año',w:'27-dic→7-ene · 16 personas · 11 noches',v:35000,lab:'35K',p:.5,o:'agencia',note:'Fila del CRM del 6-nov. Hay otra de Loco Luxury, 29-dic→3-ene a 32.500 con chef, que el informe del 3-nov llamaba Beach Please: piden las mismas noches y en el total cuentan una vez. Probabilidad del 3-nov.'},
+    {n:'Loco Luxury · fin de año',inside:true,w:'27-dic→7-ene · 16 personas · 11 noches',v:35000,lab:'35K',p:.5,o:'agencia',note:'Fila del CRM del 6-nov. Hay otra de Loco Luxury, 29-dic→3-ene a 32.500 con chef, que el informe del 3-nov llamaba Beach Please: piden las mismas noches y en el total cuentan una vez. Probabilidad del 3-nov.'},
     {n:'Sarah Pitts',w:'retiro · 7 personas · 21–25 ene-2027',v:22800,lab:'22,8K',p:.5,o:'fam trip',note:'Sigue con su grupo de enero: «I will keep you posted» (6-nov). Probabilidad del 3-nov.'},
-    {n:'Pei · diciembre',w:'12 personas · 10–14 dic-2026',v:12000,lab:'12K',p:.5,o:'concierge',note:'Consulta de Pei Concierge. Probabilidad del 3-nov.'},
-    {n:'Marco Salvatierra',w:'8 personas · 3–6 ene-2027',v:17994,lab:'18K',p:.25,o:'referido',note:'Seguimiento el 12-nov.'},
+    {n:'Pei · diciembre',inside:true,w:'12 personas · 10–14 dic-2026',v:12000,lab:'12K',p:.5,o:'concierge',note:'Consulta de Pei Concierge. Probabilidad del 3-nov.'},
+    {n:'Marco Salvatierra',inside:true,w:'8 personas · 3–6 ene-2027',v:17994,lab:'18K',p:.25,o:'referido',note:'Seguimiento el 12-nov.'},
     {n:'Maya Luxe',w:'22–28 nov-2026',v:30000,lab:'30K',p:.15,o:'agencia',inside:true,note:'Iru le preguntó a Maya Luxe el 6-nov si el grupo sigue interesado; sin respuesta. La estadía empieza en dos semanas.'},
-    {n:'12 Thribe',w:'por Loco Luxury · 12 personas · 8–10 dic-2026',v:7000,lab:'7K',p:.25,o:'agencia',note:'Producción de fotos de una marca de ropa. Pasó a hold el 9-nov.'},
+    {n:'12 Thribe',inside:true,w:'por Loco Luxury · 12 personas · 8–10 dic-2026',v:7000,lab:'7K',p:.25,o:'agencia',note:'Producción de fotos de una marca de ropa. Pasó a hold el 9-nov.'},
     {n:'Luis · producción 19–20 nov',w:'otra producción, aparte de las dos tardes ganadas',v:6000,lab:'6K',p:.25,o:'directo',inside:true,note:'Del informe del 3-nov; no está en el CRM. Las dos tardes del 9 y 10-nov (600) ya se ganaron.'},
-    {n:'Federico · Community Concierge',w:'8 personas · 14–17 ene-2027',v:7000,lab:'7K',p:null,o:'Lara',moved:true,note:'Llegó por el email de Lara; Community Concierge publica la casa y trajo este grupo en 24 horas. Están comparando opciones (9-nov).'},
+    {n:'Federico · Community Concierge',inside:true,w:'8 personas · 14–17 ene-2027',v:7000,lab:'7K',p:null,o:'Lara',moved:true,note:'Llegó por el email de Lara; Community Concierge publica la casa y trajo este grupo en 24 horas. Están comparando opciones (9-nov).'},
     {n:'Joeline Alexander',w:'familia · 12 personas · 28-mar→4-abr',v:0,lab:'—',p:null,o:'Google',moved:true,note:'La primera consulta de Google exacto («tulum rentals with chef»). Iru le mandó precio el 4-nov y siguió el 9; sin respuesta.'},
     {n:'Dream Exotic · cumpleaños',w:'16 duermen, 50–60 en la fiesta · 9–16 sep-2027',v:28000,lab:'28K',p:null,o:'agencia',note:'Ahora que la casa está publicada en su web, la presentan a su cliente.'},
     {n:'Ritual Union',w:'retiro de 5 noches',v:26000,lab:'26K',p:null,o:'Lara',note:'Iru les ofreció la visita: diciembre y enero se están llenando, si no, febrero (6-nov).'},
