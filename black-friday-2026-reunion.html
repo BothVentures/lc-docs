@@ -1,0 +1,934 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex,nofollow"><style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Black Friday en enero</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap">
+<style>
+/* Layout: one reading column with a sticky section rail; the arc opens the page; the decisions are the working surface. */
+:root {
+  --bg: #FBFAF7;          /* White ground */
+  --surface: #F3EEE6;     /* boxed information on light */
+  --raised: #FFFFFF;
+  --fg: #1A1611;          /* On light */
+  --muted: #6E6253;
+  --line: #DDD3C4;        /* Sky, a touch deeper */
+  --copper: #B4835A;      /* marks on light (copper, deepened for 3:1) */
+  --copper-ink: #87582F;  /* copper as text on light */
+  --copper-soft: #EBDCCB;
+  --hero-bg: #0E0C0A;     /* Deep */
+  --hero-fg: #E9E2D6;     /* Bone */
+  --hero-copper: #C99A6D;
+  --ok: #5C6B2E; --ok-soft: #E6E8D6;
+  --warn: #8A6414; --warn-soft: #F2E7CC;
+  --bad: #A2452B; --bad-soft: #F3DDD4;
+  --hatch: #9C8F7E;
+  --f-display: "Cormorant Garamond", "Cormorant", Georgia, "Times New Roman", serif;
+  --f-body: "Jost", "Futura", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0E0C0A; --surface: #17130F; --raised: #1D1813; --fg: #E9E2D6; --muted: #A99B89; --line: #3A3129;
+    --copper: #C99A6D; --copper-ink: #D8AF86; --copper-soft: #33271C;
+    --hero-bg: #14110E; --hero-fg: #E9E2D6; --hero-copper: #C99A6D;
+    --ok: #A6B26E; --ok-soft: #262A18; --warn: #D9B25A; --warn-soft: #2E2512; --bad: #DE8C6E; --bad-soft: #321A12;
+    --hatch: #6F6457; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0E0C0A; --surface: #17130F; --raised: #1D1813; --fg: #E9E2D6; --muted: #A99B89; --line: #3A3129;
+  --copper: #C99A6D; --copper-ink: #D8AF86; --copper-soft: #33271C;
+  --hero-bg: #14110E; --hero-fg: #E9E2D6; --hero-copper: #C99A6D;
+  --ok: #A6B26E; --ok-soft: #262A18; --warn: #D9B25A; --warn-soft: #2E2512; --bad: #DE8C6E; --bad-soft: #321A12;
+  --hatch: #6F6457; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--f-body); font-weight: 300; font-size: 16px; line-height: 1.55; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+.wrap { max-width: 1020px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+h1, h2, h3 { font-family: var(--f-display); font-weight: 300; text-wrap: balance; margin: 0; letter-spacing: 0.005em; }
+h2 { font-size: clamp(30px, 4.4vw, 42px); line-height: 1.08; }
+h3 { font-size: 24px; line-height: 1.15; font-weight: 400; }
+p { margin: 0; }
+.eyebrow { font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--copper-ink); font-weight: 500; }
+.lede { color: var(--muted); max-width: 64ch; }
+.num { font-variant-numeric: tabular-nums; }
+a { color: var(--copper-ink); }
+:focus-visible { outline: 2px solid var(--copper); outline-offset: 2px; }
+
+/* hero */
+.hero { background: var(--hero-bg); color: var(--hero-fg); }
+.hero .wrap { padding-block: 44px 40px; display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 36px; align-items: end; }
+.hero .eyebrow { color: var(--hero-copper); }
+.hero h1 { font-size: clamp(44px, 7.4vw, 82px); line-height: 0.98; margin-top: 14px; }
+.hero h1 em { font-style: italic; color: var(--hero-copper); }
+.hero .sub { margin-top: 18px; max-width: 52ch; color: #C9BFAF; }
+.arc { position: relative; width: 100%; max-width: 340px; justify-self: end; aspect-ratio: 3 / 4; background: #241D16; border-radius: 50% 50% 0 0 / 37.5% 37.5% 0 0; display: grid; place-items: center; text-align: center; padding: 22% 12% 12%; overflow: hidden; }
+.arc::after { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(90deg, rgba(233,226,214,0.07) 0 1px, transparent 1px 22px); pointer-events: none; }
+.arc .big { font-family: var(--f-display); font-size: clamp(64px, 9vw, 104px); line-height: 0.9; color: var(--hero-copper); font-weight: 300; }
+.arc .cap { font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; color: #C9BFAF; margin-top: 10px; }
+.arc .small { font-family: var(--f-display); font-style: italic; font-size: 20px; margin-top: 14px; color: var(--hero-fg); }
+.tiles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px; background: #2E261E; border-top: 1px solid #2E261E; }
+.tile { background: var(--hero-bg); padding: 18px 18px 20px; display: grid; gap: 4px; align-content: start; }
+.tile .v { font-family: var(--f-display); font-size: 32px; line-height: 1; color: var(--hero-fg); }
+.tile .k { font-size: 13px; color: #B5AA99; }
+.tile .tag { justify-self: start; margin-top: 6px; }
+
+/* rail */
+.rail { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); border-bottom: 1px solid var(--line); }
+.rail .wrap { display: flex; gap: 6px; overflow-x: auto; padding-block: 10px; scrollbar-width: none; align-items: center; }
+.rail a { flex: none; font-size: 13px; text-decoration: none; color: var(--muted); padding: 6px 12px; border-radius: 999px; border: 1px solid transparent; }
+.rail a:hover { color: var(--fg); border-color: var(--line); }
+.rail a.key { color: var(--copper-ink); border-color: var(--copper); font-weight: 500; }
+.progress { margin-left: auto; flex: none; display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--muted); padding-left: 12px; }
+.progress .bar { width: 90px; height: 6px; border-radius: 3px; background: var(--line); overflow: hidden; }
+.progress .bar i { display: block; height: 100%; background: var(--copper); width: 0; transition: width .3s; }
+
+section { padding-block: 56px 8px; scroll-margin-top: 64px; }
+.sec-head { display: grid; gap: 10px; margin-bottom: 26px; }
+
+/* tags */
+.tag { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 500; letter-spacing: 0.04em; padding: 2px 8px; border-radius: 999px; white-space: nowrap; }
+.tag::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+.t-ver { color: var(--ok); background: var(--ok-soft); }
+.t-conf { color: var(--warn); background: var(--warn-soft); }
+.t-bad { color: var(--bad); background: var(--bad-soft); }
+.t-iru { color: var(--copper-ink); background: var(--copper-soft); }
+.t-iru::before { border-radius: 1px; }
+
+/* change cards */
+.changes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.change { background: var(--surface); padding: 18px; border-radius: 6px; display: grid; gap: 8px; align-content: start; }
+.change .h { font-family: var(--f-display); font-size: 22px; line-height: 1.15; font-weight: 400; }
+.change p { font-size: 14.5px; color: var(--muted); }
+.change .was { font-size: 12.5px; color: var(--muted); text-decoration: line-through; text-decoration-color: var(--bad); }
+
+/* calendar */
+.cal-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; }
+.month h3 { margin-bottom: 10px; }
+.grid7 { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 3px; }
+.grid7 .wd { font-size: 11px; color: var(--muted); text-align: center; padding-bottom: 4px; letter-spacing: 0.1em; }
+.day { aspect-ratio: 1 / 0.86; border-radius: 4px; background: var(--surface); position: relative; font-size: 12.5px; padding: 4px 6px; color: var(--muted); }
+.day.blank { background: transparent; }
+.day.hold { background: repeating-linear-gradient(135deg, var(--hatch) 0 1.5px, transparent 1.5px 6px), var(--surface); color: var(--fg); }
+.day.gaston { background: repeating-linear-gradient(45deg, var(--hatch) 0 1px, transparent 1px 7px), var(--surface); }
+.day.bf { background: var(--copper); color: #fff; font-weight: 500; }
+:root[data-theme="dark"] .day.bf { color: #14110E; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .day.bf { color: #14110E; } }
+.day.peak { box-shadow: inset 0 -3px 0 var(--copper-soft); }
+.day.cash::after { content: ""; position: absolute; inset: 2px; border: 2px solid var(--bad); border-radius: 3px; }
+.legend { display: flex; flex-wrap: wrap; gap: 14px 20px; margin-top: 16px; font-size: 13px; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 7px; }
+.sw { width: 16px; height: 13px; border-radius: 3px; display: inline-block; background: var(--surface); }
+.sw.hold { background: repeating-linear-gradient(135deg, var(--hatch) 0 1.5px, transparent 1.5px 6px), var(--surface); }
+.sw.gaston { background: repeating-linear-gradient(45deg, var(--hatch) 0 1px, transparent 1px 7px), var(--surface); }
+.sw.bf { background: var(--copper); }
+.sw.peak { box-shadow: inset 0 -3px 0 var(--copper-soft); }
+.sw.cash { border: 2px solid var(--bad); background: transparent; }
+.callout { margin-top: 22px; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 14px; align-items: start; background: var(--surface); border-radius: 6px; padding: 16px 18px; font-size: 15px; }
+.callout b { font-weight: 500; }
+.callout .ico { width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; background: var(--warn-soft); color: var(--warn); font-weight: 600; font-size: 14px; }
+
+/* svg charts */
+.scroll-x { overflow-x: auto; }
+svg text { font-family: var(--f-body); }
+.fig { background: var(--surface); border-radius: 6px; padding: 18px 18px 12px; }
+.fig + .fig { margin-top: 14px; }
+.fig-title { font-size: 14px; font-weight: 500; margin-bottom: 4px; }
+.fig-note { font-size: 13px; color: var(--muted); margin-top: 8px; }
+
+/* hbar */
+.hbars { display: grid; gap: 10px; margin-top: 12px; }
+.hb { display: grid; grid-template-columns: minmax(120px, 210px) minmax(0, 1fr); gap: 14px; align-items: center; font-size: 14px; }
+.hb .lab { color: var(--fg); line-height: 1.25; }
+.hb .lab small { display: block; color: var(--muted); font-size: 12px; }
+.hb .track { position: relative; height: 22px; }
+.hb .fill { position: absolute; left: 0; top: 3px; bottom: 3px; background: var(--copper); border-radius: 0 4px 4px 0; opacity: 0.55; }
+.hb .fill.base { opacity: 1; }
+.hb .val { position: absolute; top: 50%; transform: translateY(-50%); font-size: 13px; font-variant-numeric: tabular-nums; padding-left: 8px; color: var(--fg); white-space: nowrap; }
+.refline { position: absolute; top: -6px; bottom: -6px; border-left: 1.5px dashed var(--bad); }
+.hb-axis { display: grid; grid-template-columns: minmax(120px, 210px) minmax(0, 1fr); gap: 14px; font-size: 11px; color: var(--muted); }
+.hb-axis .ticks { position: relative; height: 16px; }
+.hb-axis .ticks span { position: absolute; transform: translateX(-50%); font-variant-numeric: tabular-nums; }
+
+/* calculator */
+.calc { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 18px; }
+.panel { background: var(--surface); border-radius: 6px; padding: 18px; display: grid; gap: 16px; align-content: start; }
+.field { display: grid; gap: 6px; }
+.field label, .field .fl { font-size: 13px; font-weight: 500; display: flex; justify-content: space-between; gap: 8px; }
+.field output { font-variant-numeric: tabular-nums; color: var(--copper-ink); }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; padding: 3px; gap: 3px; background: var(--bg); }
+.seg button { font: inherit; font-size: 14px; border: 0; background: transparent; color: var(--muted); padding: 6px 14px; border-radius: 999px; cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--copper); color: #fff; }
+input[type="range"] { width: 100%; accent-color: var(--copper); }
+select { font: inherit; font-size: 14px; padding: 7px 10px; border-radius: 4px; border: 1px solid var(--line); background: var(--bg); color: var(--fg); }
+.items { font-size: 13.5px; display: grid; gap: 5px; }
+.items div { display: flex; justify-content: space-between; gap: 10px; border-bottom: 1px dotted var(--line); padding-bottom: 4px; }
+.items div span:last-child { font-variant-numeric: tabular-nums; }
+.result { display: grid; gap: 14px; }
+.kpis { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.kpi { background: var(--raised); border: 1px solid var(--line); border-radius: 6px; padding: 12px 14px; }
+.kpi .k { font-size: 12px; color: var(--muted); }
+.kpi .v { font-family: var(--f-display); font-size: 32px; line-height: 1.05; font-variant-numeric: tabular-nums; }
+.kpi .v.strike { text-decoration: line-through; text-decoration-thickness: 1px; color: var(--muted); }
+.kpi.hl { border-color: var(--copper); }
+.stack { position: relative; height: 40px; display: flex; gap: 2px; margin-top: 30px; }
+.stack div { height: 100%; display: flex; align-items: center; padding: 0 8px; font-size: 12px; overflow: hidden; white-space: nowrap; min-width: 0; }
+.stack .s-casa { background: var(--copper); color: #fff; border-radius: 4px 0 0 4px; }
+.stack .s-exp { background: var(--copper-soft); color: var(--fg); }
+.stack .s-desc { background: repeating-linear-gradient(135deg, var(--hatch) 0 1px, transparent 1px 6px); color: var(--muted); border-radius: 0 4px 4px 0; border: 1px solid var(--line); }
+.floor { position: absolute; top: -26px; bottom: -4px; border-left: 2px solid var(--bad); }
+.floor span { position: absolute; top: 0; left: 6px; font-size: 11.5px; color: var(--bad); white-space: nowrap; font-weight: 500; }
+.verdict { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; font-size: 14.5px; }
+.pernight { font-family: var(--f-display); font-size: 46px; line-height: 1; font-variant-numeric: tabular-nums; }
+.packs-line { font-size: 14.5px; background: var(--raised); border: 1px solid var(--line); border-radius: 6px; padding: 12px 14px; }
+
+/* funnel */
+.funnel { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 0; align-items: stretch; }
+.fstep { padding: 14px 10px; border-left: 1px solid var(--line); display: grid; gap: 4px; align-content: start; position: relative; }
+.fstep:first-child { border-left: 0; }
+.fstep .v { font-family: var(--f-display); font-size: 34px; line-height: 1; font-variant-numeric: tabular-nums; }
+.fstep .k { font-size: 12.5px; color: var(--muted); line-height: 1.3; }
+.fstep .rate { font-size: 11.5px; color: var(--copper-ink); font-weight: 500; }
+.fstep.zero .v { color: var(--bad); }
+.fbar { height: 4px; border-radius: 2px; background: var(--copper); margin-top: 6px; }
+.two-col { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 14px; margin-top: 14px; }
+
+/* flow */
+.flow { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0; position: relative; }
+.node { position: relative; padding: 0 14px 0 0; display: grid; gap: 8px; align-content: start; }
+.node .box { background: var(--raised); border: 1px solid var(--line); border-radius: 6px; padding: 14px; min-height: 92px; display: grid; gap: 4px; align-content: start; }
+.node .box b { font-weight: 500; font-size: 14.5px; }
+.node .box span { font-size: 12.5px; color: var(--muted); line-height: 1.35; }
+.node:not(:last-child)::after { content: ""; position: absolute; right: 2px; top: 44px; width: 10px; height: 10px; border-top: 1.5px solid var(--copper); border-right: 1.5px solid var(--copper); transform: rotate(45deg); }
+.node code { font-size: 11.5px; background: var(--surface); padding: 1px 5px; border-radius: 3px; color: var(--fg); }
+.node .ev { display: grid; gap: 5px; font-size: 12px; }
+.lane { margin-top: 14px; font-size: 13.5px; color: var(--muted); border-top: 1px dashed var(--line); padding-top: 12px; }
+
+/* table */
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th { text-align: left; font-weight: 500; font-size: 12px; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; padding: 8px 10px; border-bottom: 1px solid var(--line); }
+td { padding: 11px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+td:first-child { font-weight: 500; }
+.sev { display: inline-flex; gap: 3px; }
+.sev i { width: 7px; height: 14px; border-radius: 2px; background: var(--line); display: block; }
+.sev.s3 i { background: var(--bad); } .sev.s2 i:nth-child(-n+2) { background: var(--warn); } .sev.s1 i:first-child { background: var(--ok); }
+
+/* decisions */
+.store-note { display: flex; gap: 10px; align-items: center; font-size: 13.5px; color: var(--muted); background: var(--surface); padding: 10px 14px; border-radius: 6px; margin-bottom: 18px; flex-wrap: wrap; }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--warn); flex: none; }
+.dot.on { background: var(--ok); }
+.decs { display: grid; gap: 16px; }
+.dec { border: 1px solid var(--line); border-radius: 8px; background: var(--raised); padding: 18px; display: grid; gap: 12px; }
+.dec.done { border-color: var(--copper); }
+.dec-top { display: flex; gap: 12px; align-items: baseline; flex-wrap: wrap; }
+.dec-top .n { font-size: 12px; color: var(--copper-ink); font-weight: 600; letter-spacing: 0.08em; }
+.dec-top h3 { flex: 1 1 260px; }
+.dec .why { font-size: 14.5px; color: var(--muted); max-width: 75ch; }
+.opts { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; }
+.opt { position: relative; display: block; cursor: pointer; }
+.opt input { position: absolute; opacity: 0; pointer-events: none; }
+.opt .card { height: 100%; border: 1px solid var(--line); border-radius: 6px; padding: 12px 13px; display: grid; gap: 5px; align-content: start; background: var(--bg); transition: border-color .15s, background .15s; }
+.opt:hover .card { border-color: var(--copper); }
+.opt input:focus-visible + .card { outline: 2px solid var(--copper); outline-offset: 2px; }
+.opt input:checked + .card { border-color: var(--copper); background: var(--copper-soft); box-shadow: inset 0 0 0 1px var(--copper); }
+.opt .ol { display: flex; gap: 8px; align-items: center; font-weight: 500; font-size: 14.5px; }
+.opt .ol .letter { width: 22px; height: 22px; border-radius: 50%; border: 1px solid var(--copper); display: grid; place-items: center; font-size: 12px; color: var(--copper-ink); flex: none; }
+.opt input:checked + .card .letter { background: var(--copper); color: #fff; }
+.opt .od { font-size: 13.5px; color: var(--muted); line-height: 1.45; }
+.rec { font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--copper-ink); font-weight: 600; }
+.dec-foot { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 12px; align-items: end; }
+.dec textarea { width: 100%; font: inherit; font-size: 14px; min-height: 42px; resize: vertical; padding: 9px 11px; border-radius: 6px; border: 1px solid var(--line); background: var(--bg); color: var(--fg); }
+.who { font-size: 12.5px; color: var(--muted); text-align: right; white-space: nowrap; }
+.clear { font: inherit; font-size: 12.5px; background: none; border: 0; color: var(--muted); text-decoration: underline; cursor: pointer; padding: 0; }
+
+/* checklist */
+.checks { display: grid; gap: 0; border-top: 1px solid var(--line); }
+.chk { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 14px; align-items: start; padding: 12px 4px; border-bottom: 1px solid var(--line); cursor: pointer; }
+.chk input { width: 18px; height: 18px; accent-color: var(--copper); margin-top: 3px; }
+.chk .t { font-size: 15px; }
+.chk .s { font-size: 13px; color: var(--muted); margin-top: 2px; }
+.chk .m { text-align: right; font-size: 13px; color: var(--muted); white-space: nowrap; }
+.chk .m b { display: block; color: var(--fg); font-weight: 500; }
+.chk.done .t { text-decoration: line-through; color: var(--muted); }
+.chk.gate .t::after { content: "condición de salida"; margin-left: 8px; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--bad); font-weight: 600; }
+
+/* timeline */
+.tl { position: relative; display: grid; gap: 0; padding-left: 26px; }
+.tl::before { content: ""; position: absolute; left: 7px; top: 8px; bottom: 8px; width: 1.5px; background: var(--line); }
+.ti { position: relative; padding: 0 0 18px; display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 14px; }
+.ti::before { content: ""; position: absolute; left: -24px; top: 6px; width: 12px; height: 12px; border-radius: 50%; background: var(--bg); border: 2px solid var(--line); }
+.ti.hot::before { border-color: var(--copper); background: var(--copper); }
+.ti.gate::before { border-color: var(--bad); }
+.ti .d { font-size: 13px; font-weight: 500; color: var(--copper-ink); font-variant-numeric: tabular-nums; }
+.ti .w { font-size: 15px; }
+.ti .w small { display: block; color: var(--muted); font-size: 13px; }
+
+.out { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.out div { background: var(--surface); padding: 14px 16px; border-radius: 6px; font-size: 14.5px; }
+.out b { font-weight: 500; display: block; margin-bottom: 3px; }
+footer { margin-top: 64px; border-top: 1px solid var(--line); padding-block: 26px 48px; font-size: 13px; color: var(--muted); display: grid; gap: 8px; }
+
+@media (max-width: 860px) {
+  .hero .wrap { grid-template-columns: 1fr; }
+  .arc { justify-self: start; max-width: 260px; }
+  .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .changes { grid-template-columns: 1fr 1fr; }
+  .calc { grid-template-columns: 1fr; }
+  .funnel { grid-template-columns: repeat(4, minmax(0, 1fr)); row-gap: 10px; }
+  .fstep:nth-child(5) { border-left: 0; }
+  .flow { grid-template-columns: 1fr; gap: 18px; }
+  .node { padding: 0; }
+  .node:not(:last-child)::after { right: auto; left: 50%; top: auto; bottom: -14px; transform: rotate(135deg); }
+  .progress { display: none; }
+}
+@media (max-width: 620px) {
+  .changes, .cal-row, .two-col, .out { grid-template-columns: 1fr; }
+  .kpis { grid-template-columns: 1fr 1fr; }
+  .hb, .hb-axis { grid-template-columns: 110px minmax(0, 1fr); }
+  .ti { grid-template-columns: 1fr; gap: 2px; }
+  .dec-foot { grid-template-columns: 1fr; }
+  .who { text-align: left; }
+  .funnel { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .fstep:nth-child(odd) { border-left: 0; }
+  .chk { grid-template-columns: auto minmax(0, 1fr); }
+  .chk .m { grid-column: 2; text-align: left; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+html { scroll-behavior: smooth; }
+</style>
+
+</head><body>
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">La Chamana · campaña en borrador · V0.1 · 17-nov-2026</p>
+      <h1>Black Friday,<br><em>enero en la casa</em></h1>
+      <p class="sub">Para trabajar el miércoles 18 con Bianca y llegar a Gastón con la oferta cerrada. Iru no está: lo que depende de ella va marcado y se lo pasamos después.</p>
+    </div>
+    <div class="arc" aria-label="19 noches de enero disponibles para la campaña">
+      <div>
+        <div class="big num">19</div>
+        <div class="cap">noches libres de enero</div>
+        <div class="small">del 13 al 31</div>
+      </div>
+    </div>
+  </div>
+  <div class="tiles">
+    <div class="tile"><span class="v num">26-nov → 4-dic</span><span class="k">ventana de venta (Thanksgiving a la semana siguiente)</span><span class="tag t-ver">acordado en la llamada</span></div>
+    <div class="tile"><span class="v num">≈ 19-ene</span><span class="k">la caja llega a cero si no entra nada nuevo</span><span class="tag t-conf">estimado de Iru</span></div>
+    <div class="tile"><span class="v num">USD 157</span><span class="k">Meta en 30 días: 8 conversaciones, 0 reservas</span><span class="tag t-ver">leído hoy</span></div>
+    <div class="tile"><span class="v num">1 reserva</span><span class="k">«bring me a conversion»: con eso la prueba se paga</span><span class="tag t-ver">Gastón</span></div>
+  </div>
+</header>
+
+<nav class="rail" aria-label="Secciones">
+  <div class="wrap">
+    <a href="#cambios">Qué cambió</a>
+    <a href="#enero">Enero</a>
+    <a href="#precio">Precio</a>
+    <a href="#cuenta">La cuenta</a>
+    <a href="#pauta">Pauta</a>
+    <a href="#recorrido">Recorrido</a>
+    <a href="#choques">Choques</a>
+    <a href="#decisiones" class="key">Decisiones</a>
+    <a href="#previos">Previos</a>
+    <a href="#calendario">Calendario</a>
+    <span class="progress" aria-live="polite"><span id="prog-txt">0 de 13</span><span class="bar"><i id="prog-bar"></i></span></span>
+  </div>
+</nav>
+
+<main class="wrap">
+
+<section id="cambios">
+  <div class="sec-head">
+    <p class="eyebrow">Antes de empezar</p>
+    <h2>Seis cosas que cambian el brief de Synergy</h2>
+    <p class="lede">Lo verifiqué contra el transcript de la llamada y contra los sistemas en vivo. Ninguna cambia la idea de Gastón. Todas cambian cómo se ejecuta.</p>
+  </div>
+  <div class="changes">
+    <div class="change"><span class="tag t-ver">transcript, l. 197</span><p class="h">Gastón lo ve mañana, no el jueves</p><p>«Lo cerramos, se lo presentamos a Gastón mañana». Esta reunión es la que cierra la oferta.</p></div>
+    <div class="change"><span class="tag t-ver">Cloudbeds + CRM</span><p class="h">Enero libre empieza el 13</p><p>Cloudbeds no tiene nada en enero, pero hay cuatro holds de fin de año que ocupan del 27-dic al 11-ene.</p></div>
+    <div class="change"><span class="tag t-bad">brand-law</span><p class="h">El «50%» choca con la ley de marca</p><p>Precio en el copy, «Limited Time Offer» y «Book Now» están prohibidos. Hace falta una excepción firmada.</p></div>
+    <div class="change"><span class="tag t-ver">código de la página</span><p class="h">La calculadora de retiros es para otro comprador</p><p>Le calcula el margen al organizador de un retiro. Una familia que viene en enero necesita la de estadía.</p></div>
+    <div class="change"><span class="tag t-ver">transcript, l. 377</span><p class="h">Lo de Lalo lo dijo Iru</p><p>Era sobre la estadía de Gastón. Para la campaña sirve igual: lo operativo de cada estadía va a Lalo, no a Bianca.</p></div>
+    <div class="change"><span class="tag t-ver">repo</span><p class="h">«Loco Luxury» ya es un socio real</p><p>La carpeta con ese nombre es la campaña con la distribuidora. La guía que imaginó Gastón, si sigue, necesita otro nombre.</p></div>
+  </div>
+</section>
+
+<section id="enero">
+  <div class="sec-head">
+    <p class="eyebrow">Disponibilidad</p>
+    <h2>Diciembre y enero, noche por noche</h2>
+    <p class="lede">Cada casillero es una noche. El cupo de la campaña son las noches de cobre: no compiten con ninguna consulta abierta y son las de tarifa más baja de la temporada alta.</p>
+  </div>
+  <div class="cal-row">
+    <div class="month"><h3>Diciembre 2026</h3><div class="grid7" id="cal-dic"></div></div>
+    <div class="month"><h3>Enero 2027</h3><div class="grid7" id="cal-ene"></div></div>
+  </div>
+  <div class="legend" aria-hidden="true">
+    <span><i class="sw bf"></i>Cupo Black Friday (13–31 ene)</span>
+    <span><i class="sw hold"></i>Holds de fin de año en el CRM</span>
+    <span><i class="sw gaston"></i>Estadía de Gastón, sin confirmar</span>
+    <span><i class="sw peak"></i>Libre a tarifa pico (7.000)</span>
+    <span><i class="sw cash"></i>La caja llega a cero (≈ 19-ene)</span>
+  </div>
+  <div class="callout">
+    <span class="ico">!</span>
+    <div><b>Cloudbeds no tiene todo.</b> En total devuelve 17 reservas y no refleja los 110k de febrero a mayo que Iru da por vendidos. Que enero esté vacío en Cloudbeds es un hecho. Que esté vacío en la casa lo confirma Iru con su planilla y con los calendarios de Airbnb y Booking. <span class="tag t-iru">lo confirma Iru</span></div>
+  </div>
+  <div class="fig" style="margin-top:14px">
+    <p class="fig-title">Los holds que ocupan fin de año</p>
+    <div class="scroll-x"><table>
+      <thead><tr><th>Consulta</th><th>Personas</th><th>Noches</th><th>Monto</th><th>Estado</th></tr></thead>
+      <tbody>
+        <tr><td>Grupo vía Private Villas</td><td class="num">15</td><td class="num">29-dic → 11-ene</td><td class="num">91.000</td><td><span class="tag t-conf">hold</span></td></tr>
+        <tr><td>Beach Please</td><td class="num">10</td><td class="num">29-dic → 3-ene</td><td class="num">35.000</td><td><span class="tag t-conf">hold</span></td></tr>
+        <tr><td>Loco Luxury (pedido 1)</td><td class="num">—</td><td class="num">27-dic → 7-ene</td><td class="num">35.000</td><td><span class="tag t-conf">hold</span></td></tr>
+        <tr><td>Loco Luxury (pedido 2, con chef)</td><td class="num">—</td><td class="num">29-dic → 3-ene</td><td class="num">32.500</td><td><span class="tag t-conf">hold</span></td></tr>
+      </tbody>
+    </table></div>
+    <p class="fig-note">Piden las mismas noches: si cierra una, las otras caen. CRM al 16-nov (parte W47). Si alguna se enfría antes del 26-nov, sus noches pueden sumarse al cupo.</p>
+  </div>
+</section>
+
+<section id="precio">
+  <div class="sec-head">
+    <p class="eyebrow">El precio de lista</p>
+    <h2>Tres tarifas para la misma noche de enero</h2>
+    <p class="lede">El porcentaje se calcula contra un precio. Hoy hay cinco números en circulación para enero. La cuenta usa el más bajo, 4.200, porque es el que Iru cotiza de verdad desde el 13. Calcularlo contra 7.000 sería un precio de referencia ficticio, y en EE.UU. eso es además un problema legal.</p>
+  </div>
+  <div class="fig">
+    <p class="fig-title">USD por noche, casa entera, enero 2027</p>
+    <div class="hbars" id="tarifas"></div>
+    <div class="hb-axis" style="margin-top:6px"><span></span><div class="ticks" id="tarifas-ticks"></div></div>
+    <p class="fig-note">Fuentes: Iru en la llamada del 17-nov · <code>pricing.config.js</code> de la Price Discovery Tool (3.999 × temporada) · <code>retreat.config.js</code>. La línea roja es la banda más baja que cotiza Iru (2.000): el piso que propongo para lo que le queda a la casa. Cuál rige afuera lo decide Boris, con el texto de Iru (D-0927-01).</p>
+  </div>
+</section>
+
+<section id="cuenta">
+  <div class="sec-head">
+    <p class="eyebrow">Probalo en vivo</p>
+    <h2>La cuenta del 50%</h2>
+    <p class="lede">Mové los controles. La barra muestra qué paga el grupo: cuánto le queda a la casa, cuánto cuestan las experiencias y cuánto es el descuento. La línea roja es el piso: 2.000 por noche para la casa.</p>
+  </div>
+  <div class="calc">
+    <div class="panel">
+      <div class="field"><span class="fl">Pack</span>
+        <div class="seg" role="group" aria-label="Duración del pack">
+          <button type="button" id="p3" aria-pressed="true">3 noches</button>
+          <button type="button" id="p5" aria-pressed="false">5 noches</button>
+        </div>
+      </div>
+      <div class="field"><label for="disc">Descuento sobre la lista <output id="disc-o" class="num">40%</output></label>
+        <input type="range" id="disc" min="20" max="60" step="5" value="40"></div>
+      <div class="field"><label for="cost">Costo real de las experiencias <output id="cost-o" class="num">2.500</output></label>
+        <input type="range" id="cost" min="1000" max="6000" step="100" value="2500">
+        <span style="font-size:12px;color:var(--muted)">Supuesto hasta que Iru pase los costos de temazcal, cena, desayuno y traslado.</span></div>
+      <div class="field"><label for="rate">Tarifa de lista por noche</label>
+        <select id="rate"><option value="4200" selected>4.200 · Iru, desde el 13-ene</option><option value="5129">5.129 · tarifa de retiros, alta</option><option value="5399">5.399 · Price Discovery, alta</option></select></div>
+      <div class="field"><label for="cupo">Packs a vender <output id="cupo-o" class="num">3</output></label>
+        <input type="range" id="cupo" min="1" max="6" step="1" value="3"></div>
+      <div>
+        <p class="fl" style="font-size:13px;font-weight:500;margin-bottom:6px">Qué suma la lista <span class="tag t-iru">precios a confirmar</span></p>
+        <div class="items" id="items"></div>
+      </div>
+    </div>
+    <div class="result">
+      <div class="kpis">
+        <div class="kpi"><div class="k">Precio de lista</div><div class="v strike num" id="k-list">17.010</div></div>
+        <div class="kpi hl"><div class="k">Precio Black Friday</div><div class="v num" id="k-bf">10.200</div></div>
+        <div class="kpi"><div class="k">Ahorro que ve el grupo</div><div class="v num" id="k-save">6.810</div></div>
+      </div>
+      <div class="fig" style="background:var(--surface)">
+        <p class="fig-title">Qué paga el grupo, sobre el total de la lista</p>
+        <div class="stack" id="stack" role="img" aria-label="Composición del precio">
+          <div class="s-casa" id="s-casa"></div><div class="s-exp" id="s-exp"></div><div class="s-desc" id="s-desc"></div>
+          <div class="floor" id="floor"><span id="floor-l">piso casa</span></div>
+        </div>
+        <div class="legend" style="margin-top:12px"><span><i class="sw bf"></i>Le queda a la casa</span><span><i class="sw" style="background:var(--copper-soft)"></i>Costo de experiencias</span><span><i class="sw hold"></i>Descuento</span></div>
+      </div>
+      <div class="verdict">
+        <div><div style="font-size:12px;color:var(--muted)">Le queda a la casa por noche</div><div class="pernight" id="k-net">2.567</div></div>
+        <span class="tag" id="k-verdict">sobre el piso</span>
+      </div>
+      <div class="packs-line" id="k-packs"></div>
+    </div>
+  </div>
+
+  <div class="fig" style="margin-top:18px">
+    <p class="fig-title">Los cuatro escenarios del brief: cuánto le queda a la casa por noche</p>
+    <div class="hbars" id="escenarios"></div>
+    <div class="hb-axis" style="margin-top:6px"><span></span><div class="ticks" id="esc-ticks"></div></div>
+    <p class="fig-note">El «50% de verdad» existe, pero cae justo sobre el piso. Lo de la llamada («en vez de 8 o 10 lucas, que te cueste 5») deja ~1.700 por noche antes de pagar las experiencias. La recomendación es la fila marcada: 3 noches a −40% y 5 noches a −50%. El titular «up to 50%» es verdad y el pack que más noches suma es el que lo cumple.</p>
+  </div>
+</section>
+
+<section id="pauta">
+  <div class="sec-head">
+    <p class="eyebrow">Lo que ya sabemos de la pauta</p>
+    <h2>Meta, últimos 30 días: del alcance a la reserva</h2>
+    <p class="lede">Leído en vivo hoy, solo lectura, del 18-oct al 17-nov. Las conversaciones existen. Donde se corta es entre el DM y el CRM, y ahí está el trabajo de Bianca.</p>
+  </div>
+  <div class="fig">
+    <div class="funnel" id="funnel"></div>
+  </div>
+  <div class="two-col">
+    <div class="fig">
+      <p class="fig-title">Pesos por conversación, por campaña</p>
+      <div class="hbars" id="cpc"></div>
+      <p class="fig-note">A amplia: ARS 51.701 por 1 conversación. D (DM sin preguntas): ARS 191.253 por 7. D es la que funciona y la que va a competir con Black Friday en las mismas 13 ciudades hasta el 1-dic.</p>
+    </div>
+    <div class="fig">
+      <p class="fig-title">Lo que hay que saber antes de subir el gasto</p>
+      <div class="items" style="font-size:14px;gap:9px;margin-top:8px">
+        <div><span>Cuenta de Meta en pesos argentinos</span><span class="tag t-conf">límite de la tarjeta</span></div>
+        <div><span>Meta D toca su tope (ARS 368.250)</span><span class="num">≈ 30-nov</span></div>
+        <div><span>Google exacto se frena solo</span><span class="num">24-nov</span></div>
+        <div><span>Google, 1–17 nov</span><span class="num">USD 182 · 1 consulta</span></div>
+        <div><span>Toronto en la segmentación</span><span class="tag t-bad">no está</span></div>
+        <div><span>NY · LA · Miami · Austin · Dallas</span><span class="tag t-ver">ya están</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="recorrido">
+  <div class="sec-head">
+    <p class="eyebrow">Del clic a la seña</p>
+    <h2>El recorrido que hay que probar antes del 24-nov</h2>
+    <p class="lede">Hoy no se registró ninguna reserva web. El camino más corto es el que ya funciona: la persona arma su pack, le escribe a Iru con el mensaje armado e Iru le manda el link de la seña. Cada paso tiene que dejar un evento medible.</p>
+  </div>
+  <div class="flow">
+    <div class="node"><div class="box"><b>Anuncio</b><span>Meta (feed, stories, reels) y una línea en Google. EN.</span></div><div class="ev"><span><code>utm_campaign=black-friday-2026</code></span><span class="tag t-conf">armar</span></div></div>
+    <div class="node"><div class="box"><b>Página de enero</b><span>Pack de 3 o 5 · fecha libre · lista contra precio BF · un extra.</span></div><div class="ev"><span><code>pack_select</code> <code>date_select</code></span><span class="tag t-bad">no existe todavía</span></div></div>
+    <div class="node"><div class="box"><b>WhatsApp con Iru</b><span>El mensaje llega con el pack, la fecha y las personas.</span></div><div class="ev"><span><code>whatsapp_click</code></span><span class="tag t-ver">la PDT ya lo hace</span></div></div>
+    <div class="node"><div class="box"><b>Link de seña</b><span>50% no reembolsable. Saldo 14 días antes.</span></div><div class="ev"><span>medio de pago</span><span class="tag t-iru">lo define Iru</span></div></div>
+    <div class="node"><div class="box"><b>Fila en el CRM</b><span>Campaign = black-friday-2026. Si no tiene fila, la reserva no se puede contar.</span></div><div class="ev"><span>Pipeline (Airtable)</span><span class="tag t-conf">regla nueva</span></div></div>
+  </div>
+  <p class="lane"><b style="font-weight:500;color:var(--fg)">Carril de Bianca:</b> IG orgánico y DMs llevan a la misma página. Cada conversación con grupo y fecha se anota en el CRM el mismo día. Hoy hay dos consultas de Meta que no tienen fila. Respuesta en menos de 2 horas, de 9 a 21 hora de Tulum, del 26-nov al 4-dic.</p>
+</section>
+
+<section id="choques">
+  <div class="sec-head">
+    <p class="eyebrow">Lo que ya corre</p>
+    <h2>Dónde puede chocar</h2>
+  </div>
+  <div class="scroll-x"><table>
+    <thead><tr><th>Qué corre</th><th>Riesgo</th><th>Choque</th><th>Lo que propongo</th></tr></thead>
+    <tbody>
+      <tr><td>Meta D · 13 metros · hasta el 1-dic</td><td><span class="sev s3" aria-label="alto"><i></i><i></i><i></i></span></td><td>Mismo público y mismas ciudades: Meta compite contra sí mismo y la atribución se mezcla.</td><td>Apagarla el 25-nov a la noche y pasar el resto del tope a Black Friday.</td></tr>
+      <tr><td>Distribuidores (tarifas corregidas por Bianca)</td><td><span class="sev s3" aria-label="alto"><i></i><i></i><i></i></span></td><td>Un 50% público debilita la tarifa que acaban de cargar.</td><td>Solo canal directo, con un aviso corto a los principales: es una promoción directa de 9 días.</td></tr>
+      <tr><td>Holds de fin de año</td><td><span class="sev s2" aria-label="medio"><i></i><i></i><i></i></span></td><td>Si la promo toca el 1–12 de enero, compite con cuatro consultas abiertas.</td><td>Ventana de estadía del 13 al 31 de enero.</td></tr>
+      <tr><td>Página de retiros + anuncios de retiros</td><td><span class="sev s2" aria-label="medio"><i></i><i></i><i></i></span></td><td>Los anuncios de Google de retiros llegan ahí: heredarían la promo.</td><td>Página propia para enero.</td></tr>
+      <tr><td>family-takeovers (email a familias)</td><td><span class="sev s1" aria-label="bajo"><i></i><i></i><i></i></span></td><td>Es el mismo comprador.</td><td>Oportunidad: una línea en el próximo seguimiento, si se elige la base propia.</td></tr>
+      <tr><td>Google exacto</td><td><span class="sev s1" aria-label="bajo"><i></i><i></i><i></i></span></td><td>Termina el 24-nov, antes del arranque.</td><td>Decidir si Black Friday tiene su línea en Google.</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="decisiones">
+  <div class="sec-head">
+    <p class="eyebrow">El trabajo de mañana</p>
+    <h2>Trece decisiones, en el orden en que destraban</h2>
+    <p class="lede">Cada una trae la opción recomendada marcada. Tocar una opción la elige. La nota es para lo que se diga en la sala. Las que dependen de Iru se pueden elegir igual: quedan marcadas para que ella confirme.</p>
+  </div>
+  <div class="store-note" id="store-note"><span class="dot" id="store-dot"></span><span id="store-txt">Conectando…</span></div>
+  <div class="decs" id="decs"></div>
+</section>
+
+<section id="previos">
+  <div class="sec-head">
+    <p class="eyebrow">Sin esto la pauta no sale</p>
+    <h2>Requisitos previos</h2>
+    <p class="lede">Marcar cuando esté hecho. La reserva de prueba de punta a punta es la condición de salida: si falla el 24-nov, no se gasta.</p>
+  </div>
+  <div class="checks" id="checks"></div>
+</section>
+
+<section id="calendario">
+  <div class="sec-head">
+    <p class="eyebrow">Nueve días hasta el arranque</p>
+    <h2>Calendario</h2>
+  </div>
+  <div class="fig" style="margin-bottom:22px">
+    <p class="fig-title">Los dos relojes: cuándo se vende, cuándo se cobra, cuándo se duerme</p>
+    <div class="scroll-x"><svg id="relojes" viewBox="0 0 900 250" width="100%" style="min-width:640px" role="img" aria-label="Línea de tiempo del 17 de noviembre al 1 de febrero"></svg></div>
+    <p class="fig-note">Con seña del 50% al reservar y saldo 14 días antes de la llegada, todo lo de un pack de enero se cobra antes de que la caja llegue a cero.</p>
+  </div>
+  <div class="tl" id="tl"></div>
+</section>
+
+<section id="fuera">
+  <div class="sec-head">
+    <p class="eyebrow">Fuera de esta campaña</p>
+    <h2>Lo que se habló y no entra</h2>
+  </div>
+  <div class="out">
+    <div><b>La guía «loco luxury» de Gastón</b>«Es otro plan». Si sigue, con otro nombre: Loco Luxury es un socio real con dos holds abiertos.</div>
+    <div><b>Otras casas Chamana en otras ciudades</b>Idea de Iru en la misma conversación. Otro plan.</div>
+    <div><b>TikTok y LinkedIn</b>Se abren cuando esta campaña esté bajo control (Gastón).</div>
+    <div><b>Cuentas de terceros («Tulum Pueblo»)</b>Fue un chiste. No va.</div>
+  </div>
+</section>
+
+<footer>
+  <p><span class="tag t-ver">verificado</span> leído el 17-nov en la fuente citada · <span class="tag t-conf">a confirmar</span> supuesto o cifra de oído · <span class="tag t-iru">lo confirma Iru</span> depende de un dato de ella.</p>
+  <p>Fuentes: transcript de la llamada «La Chamana GTM – Hands on full team» (17-nov, both_os) · Cloudbeds y Meta Graph API en vivo, solo lectura (17-nov) · CRM y caja del parte W47 (16-nov) · informe de pauta de noviembre (corte 17-nov) · configuraciones de la Price Discovery Tool y del Retreat Organizer Tool · <code>brand-law.md</code>. Brief completo: <code>vault/campaigns/black-friday-2026/brief-v0.1.md</code>.</p>
+  <p>Armado por El Chamán. Nada de esta página publica, gasta ni escribe en Meta: los creativos y la pauta los activa una persona.</p>
+</footer>
+</main>
+
+<script>
+(function () {
+  "use strict";
+  var fmt = function (n) { return Math.round(n).toLocaleString("es-AR"); };
+  function el(tag, attrs, html) { var e = document.createElement(tag); if (attrs) for (var k in attrs) e.setAttribute(k, attrs[k]); if (html != null) e.innerHTML = html; return e; }
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+
+  /* ---------- calendar ---------- */
+  function iso(y, m, d) { return y + "-" + String(m).padStart(2, "0") + "-" + String(d).padStart(2, "0"); }
+  function dayClass(s) {
+    if (s >= "2027-01-13" && s <= "2027-01-31") return "bf";
+    if (s >= "2026-12-27" && s <= "2027-01-10") return "hold";
+    if (s >= "2026-12-12" && s <= "2026-12-16") return "gaston";
+    if (s >= "2026-12-03" && s <= "2027-01-12") return "peak";
+    return "";
+  }
+  function month(id, y, m) {
+    var g = document.getElementById(id);
+    ["L", "M", "M", "J", "V", "S", "D"].forEach(function (w) { g.appendChild(el("div", { "class": "wd" }, w)); });
+    var first = new Date(Date.UTC(y, m - 1, 1)).getUTCDay(); var lead = (first + 6) % 7;
+    for (var i = 0; i < lead; i++) g.appendChild(el("div", { "class": "day blank", "aria-hidden": "true" }));
+    var n = new Date(Date.UTC(y, m, 0)).getUTCDate();
+    for (var d = 1; d <= n; d++) {
+      var s = iso(y, m, d), c = dayClass(s);
+      if (s === "2027-01-19") c += " cash";
+      var lbl = { bf: "cupo Black Friday", hold: "hold de fin de año", gaston: "estadía de Gastón sin confirmar", peak: "libre, tarifa pico" }[c.trim().split(" ")[0]] || "libre";
+      if (s === "2027-01-19") lbl += ", la caja llega a cero";
+      g.appendChild(el("div", { "class": "day " + c, title: d + ": " + lbl, "aria-label": d + ": " + lbl }, String(d)));
+    }
+  }
+  month("cal-dic", 2026, 12); month("cal-ene", 2027, 1);
+
+  /* ---------- horizontal bars ---------- */
+  function hbars(id, ticksId, rows, max, ref, tickVals) {
+    var box = document.getElementById(id);
+    rows.forEach(function (r) {
+      var w = Math.max(0, Math.min(100, r.v / max * 100));
+      var row = el("div", { "class": "hb" });
+      row.appendChild(el("div", { "class": "lab" }, r.lab + (r.sub ? "<small>" + r.sub + "</small>" : "")));
+      var tr = el("div", { "class": "track", title: r.lab + ": " + fmt(r.v) });
+      tr.appendChild(el("div", { "class": "fill" + (r.base ? " base" : ""), style: "width:" + w + "%" + (r.color ? ";background:" + r.color : "") }));
+      tr.appendChild(el("span", { "class": "val", style: "left:" + w + "%" }, (r.pre || "") + fmt(r.v) + (r.suf || "")));
+      if (ref != null) tr.appendChild(el("div", { "class": "refline", style: "left:" + (ref / max * 100) + "%" }));
+      row.appendChild(tr); box.appendChild(row);
+    });
+    if (ticksId) {
+      var t = document.getElementById(ticksId);
+      tickVals.forEach(function (v) { t.appendChild(el("span", { style: "left:" + (v / max * 100) + "%" }, fmt(v))); });
+    }
+  }
+  hbars("tarifas", "tarifas-ticks", [
+    { lab: "Iru, desde el 13-ene", sub: "base de la cuenta", v: 4200, base: true },
+    { lab: "Tarifa de retiros, alta", sub: "lachamana.com/pages/retreats", v: 5129 },
+    { lab: "Price Discovery, alta", sub: "3.999 × 135%", v: 5399 },
+    { lab: "Price Discovery, pico 1–15 ene", sub: "3.999 × 150%", v: 5999 },
+    { lab: "Iru, pico 3-dic → 12-ene", sub: "la que Gastón quería bajar «a 4»", v: 7000 }
+  ], 8000, 2000, [0, 2000, 4000, 6000, 8000]);
+  hbars("escenarios", "esc-ticks", [
+    { lab: "3 noches · −50%", sub: "8.500", v: 2000 },
+    { lab: "3 noches · −40% ★", sub: "10.200 · recomendado", v: 2567, base: true },
+    { lab: "5 noches · −50% ★", sub: "13.300 · recomendado", v: 1940, base: true },
+    { lab: "5 noches · −40%", sub: "15.900", v: 2460 }
+  ], 3000, 2000, [0, 1000, 2000, 3000]);
+  hbars("cpc", null, [
+    { lab: "A amplia", sub: "1 conversación", v: 51701, pre: "ARS " },
+    { lab: "D · DM sin preguntas", sub: "7 conversaciones", v: 27322, pre: "ARS ", base: true }
+  ], 60000, null, []);
+
+  /* ---------- funnel ---------- */
+  var F = [
+    { k: "Impresiones", v: 3518 }, { k: "Personas alcanzadas (suma de campañas)", v: 2462 }, { k: "Clics al enlace", v: 64 },
+    { k: "Conversaciones por DM", v: 8 }, { k: "Consultas con grupo anotadas", v: 2 }, { k: "Con fila en el CRM", v: 0 }, { k: "Reservas", v: 0 }
+  ];
+  var fb = document.getElementById("funnel");
+  F.forEach(function (s, i) {
+    var rate = i > 0 && F[i - 1].v ? Math.round(s.v / F[i - 1].v * 1000) / 10 + "% del paso anterior" : (i === 0 ? "ARS 242.953 ≈ USD 157" : "");
+    var w = s.v ? Math.max(4, Math.sqrt(s.v / F[0].v) * 100) : 0;
+    var c = el("div", { "class": "fstep" + (s.v === 0 ? " zero" : "") });
+    c.innerHTML = '<span class="v">' + fmt(s.v) + '</span><span class="k">' + s.k + '</span><span class="rate">' + rate + '</span>' + (w ? '<div class="fbar" style="width:' + w + '%"></div>' : "");
+    fb.appendChild(c);
+  });
+
+  /* ---------- calculator ---------- */
+  var C = { n: 3, disc: 40, cost: 2500, rate: 4200, cupo: 3 };
+  var defaults = { 3: { disc: 40, cost: 2500 }, 5: { disc: 50, cost: 3600 } };
+  function items(n) {
+    return [["Casa entera · " + n + " × tarifa", n * C.rate], ["Traslado ida y vuelta (2 camionetas)", 560], ["Temazcal, una sesión", 650], ["Cena con chef para 16", 1520], ["Desayuno · " + n + " × 16 × 35", n * 16 * 35]];
+  }
+  function calc() {
+    var it = items(C.n), list = it.reduce(function (a, b) { return a + b[1]; }, 0);
+    var bf = Math.round(list * (1 - C.disc / 100) / 100) * 100;
+    var casa = bf - C.cost, net = casa / C.n, floorTot = 2000 * C.n;
+    document.getElementById("items").innerHTML = it.map(function (r) { return "<div><span>" + r[0] + "</span><span>" + fmt(r[1]) + "</span></div>"; }).join("") + "<div style='font-weight:500;border-bottom:0'><span>Lista</span><span>" + fmt(list) + "</span></div>";
+    document.getElementById("k-list").textContent = fmt(list);
+    document.getElementById("k-bf").textContent = fmt(bf);
+    document.getElementById("k-save").textContent = fmt(list - bf);
+    document.getElementById("disc-o").textContent = C.disc + "%";
+    document.getElementById("cost-o").textContent = fmt(C.cost);
+    document.getElementById("cupo-o").textContent = C.cupo;
+    document.getElementById("k-net").textContent = fmt(net);
+    var pc = function (v) { return Math.max(0, v / list * 100); };
+    var sc = document.getElementById("s-casa"), se = document.getElementById("s-exp"), sd = document.getElementById("s-desc");
+    sc.style.flex = "0 0 calc(" + pc(Math.max(casa, 0)) + "% - 2px)"; sc.textContent = casa > 0 ? "casa " + fmt(casa) : "";
+    se.style.flex = "0 0 calc(" + pc(C.cost) + "% - 2px)"; se.textContent = "exp. " + fmt(C.cost);
+    sd.style.flex = "1 1 auto"; sd.textContent = "descuento " + fmt(list - bf);
+    document.getElementById("floor").style.left = pc(floorTot) + "%";
+    document.getElementById("floor-l").textContent = "piso casa " + fmt(floorTot);
+    var v = document.getElementById("k-verdict");
+    if (net >= 2100) { v.className = "tag t-ver"; v.textContent = "sobre el piso"; }
+    else if (net >= 1950) { v.className = "tag t-conf"; v.textContent = "en el piso, sin margen de error"; }
+    else { v.className = "tag t-bad"; v.textContent = "debajo del piso de 2.000"; }
+    document.getElementById("k-packs").innerHTML = "<b style='font-weight:500'>" + C.cupo + " pack" + (C.cupo > 1 ? "s" : "") + " de " + C.n + " noches</b> = <span class='num'>" + (C.cupo * C.n) + "</span> noches de enero y <span class='num'>USD " + fmt(C.cupo * bf) + "</span>. Con seña del 50% entran <span class='num'>USD " + fmt(C.cupo * bf / 2) + "</span> en la semana de venta.";
+  }
+  function setPack(n) {
+    C.n = n; C.disc = defaults[n].disc; C.cost = defaults[n].cost;
+    document.getElementById("disc").value = C.disc; document.getElementById("cost").value = C.cost;
+    document.getElementById("p3").setAttribute("aria-pressed", n === 3); document.getElementById("p5").setAttribute("aria-pressed", n === 5);
+    calc();
+  }
+  document.getElementById("p3").addEventListener("click", function () { setPack(3); });
+  document.getElementById("p5").addEventListener("click", function () { setPack(5); });
+  document.getElementById("disc").addEventListener("input", function (e) { C.disc = +e.target.value; calc(); });
+  document.getElementById("cost").addEventListener("input", function (e) { C.cost = +e.target.value; calc(); });
+  document.getElementById("rate").addEventListener("change", function (e) { C.rate = +e.target.value; calc(); });
+  document.getElementById("cupo").addEventListener("input", function (e) { C.cupo = +e.target.value; calc(); });
+  calc();
+
+  /* ---------- timeline svg ---------- */
+  (function () {
+    var svg = document.getElementById("relojes"), NS = "http://www.w3.org/2000/svg";
+    var t0 = Date.UTC(2026, 10, 17), t1 = Date.UTC(2027, 1, 1), X0 = 150, X1 = 880;
+    function x(y, m, d) { return X0 + (Date.UTC(y, m - 1, d) - t0) / (t1 - t0) * (X1 - X0); }
+    function add(tag, a, txt) { var e = document.createElementNS(NS, tag); for (var k in a) e.setAttribute(k, a[k]); if (txt != null) e.textContent = txt; svg.appendChild(e); return e; }
+    var defs = add("defs", {}); var pat = document.createElementNS(NS, "pattern");
+    pat.setAttribute("id", "hatch"); pat.setAttribute("width", "6"); pat.setAttribute("height", "6"); pat.setAttribute("patternUnits", "userSpaceOnUse"); pat.setAttribute("patternTransform", "rotate(45)");
+    var pl = document.createElementNS(NS, "line"); pl.setAttribute("x1", "0"); pl.setAttribute("y1", "0"); pl.setAttribute("x2", "0"); pl.setAttribute("y2", "6"); pl.setAttribute("stroke", "var(--hatch)"); pl.setAttribute("stroke-width", "2");
+    pat.appendChild(pl); defs.appendChild(pat);
+    [[2026, 12, 1, "1 dic"], [2027, 1, 1, "1 ene"], [2027, 2, 1, "1 feb"]].forEach(function (t) {
+      var xx = x(t[0], t[1], t[2]); add("line", { x1: xx, x2: xx, y1: 22, y2: 222, stroke: "var(--line)", "stroke-width": 1 });
+      add("text", { x: xx, y: 240, "text-anchor": "middle", "font-size": 11, fill: "var(--muted)" }, t[3]);
+    });
+    var rows = [
+      { y: 40, lab: "Venta Black Friday", a: [2026, 11, 26], b: [2026, 12, 5], fill: "var(--copper)", txt: "26-nov → 4-dic" },
+      { y: 80, lab: "Señas del 50%", a: [2026, 11, 26], b: [2026, 12, 5], fill: "var(--copper-soft)", txt: "al reservar" },
+      { y: 120, lab: "Holds de fin de año", a: [2026, 12, 27], b: [2027, 1, 11], fill: "url(#hatch)", txt: "27-dic → 11-ene" },
+      { y: 160, lab: "Saldos (14 días antes)", a: [2026, 12, 30], b: [2027, 1, 18], fill: "var(--copper-soft)", txt: "30-dic → 17-ene" },
+      { y: 200, lab: "Estadías del pack", a: [2027, 1, 13], b: [2027, 2, 1], fill: "var(--copper)", txt: "13 → 31 ene" }
+    ];
+    rows.forEach(function (r) {
+      add("text", { x: 0, y: r.y + 4, "font-size": 12.5, fill: "var(--fg)" }, r.lab);
+      var xa = x.apply(null, r.a), xb = x.apply(null, r.b);
+      add("rect", { x: xa, y: r.y - 10, width: Math.max(2, xb - xa), height: 20, rx: 4, fill: r.fill, stroke: r.fill === "url(#hatch)" ? "var(--hatch)" : "none", "stroke-width": 1 });
+      add("text", { x: xb + 6, y: r.y + 4, "font-size": 11, fill: "var(--muted)" }, r.txt);
+    });
+    [[2026, 11, 17, "hoy", "var(--fg)"], [2026, 11, 18, "", "var(--copper-ink)"], [2027, 1, 19, "caja ≈ 0", "var(--bad)"]].forEach(function (m) {
+      var xx = x(m[0], m[1], m[2]); add("line", { x1: xx, x2: xx, y1: 14, y2: 222, stroke: m[4], "stroke-width": 1.5, "stroke-dasharray": "4 3" });
+      if (m[3]) add("text", { x: xx + 4, y: 14, "font-size": 11, fill: m[4], "font-weight": 500 }, m[3]);
+    });
+  })();
+
+  /* ---------- day-by-day timeline ---------- */
+  var TL = [
+    ["mié 18-nov", "Reunión Boris + Bianca: cerrar las 13 decisiones · tarde: presentación a Gastón", "hot"],
+    ["jue 19-nov", "Boris firma la excepción de marca y el presupuesto · Iru pasa los costos reales · borrador de copy", ""],
+    ["vie 20-nov", "Página de enero en construcción · creativos v1", ""],
+    ["sáb 21-nov", "Research de competencia listo", ""],
+    ["lun 23-nov", "Copy y creativos en revisión (copy-reviewer + brand-review) · medición instalada", ""],
+    ["mar 24-nov", "Reserva de prueba de punta a punta. Si falla, la pauta no sale · Google exacto se frena solo", "gate"],
+    ["mié 25-nov", "Creativos aprobados · página publicada sin enlazar · campañas armadas en borrador por una persona · Meta D apagada a la noche · lista de chefs", ""],
+    ["jue 26-nov", "Arranque, Thanksgiving", "hot"],
+    ["27 → 29-nov", "Lectura diaria a las 10:00: gasto, clics, uso de la calculadora, conversaciones, señas", ""],
+    ["dom 29-nov", "Si hay 3 o más conversaciones con grupo y fecha, se libera el segundo tramo de USD 1.000", ""],
+    ["lun 30-nov", "Si no hay ninguna conversación con grupo y fecha, el gasto baja a la mitad", "gate"],
+    ["vie 4-dic", "Cierre · aprendizaje escrito en el log de campañas · la campaña pasa a done o killed", "hot"]
+  ];
+  var tl = document.getElementById("tl");
+  TL.forEach(function (t) { var i = el("div", { "class": "ti " + t[2] }); i.innerHTML = '<span class="d">' + t[0] + '</span><span class="w">' + t[1] + "</span>"; tl.appendChild(i); });
+
+  /* ---------- decisions + checklist data ---------- */
+  var DEC = [
+    { id: "d40", n: "4.0", t: "Marca: ¿se publica un porcentaje?", why: "brand-law prohíbe precio en el copy, urgencia transaccional y «book now». La llamada pidió los tres. Decide Boris; René, a su criterio. Traba todas las piezas.", owner: "Boris", rec: "A", o: [
+      ["A", "Excepción acotada", "% y precio solo en la pauta y la página de enero, del 26-nov al 4-dic. «Reserve», nunca «Book now». Escasez = el calendario real. Nada en el grid orgánico."],
+      ["B", "Sin número", "La pieza vende el pack; el precio aparece en la calculadora, después del clic. Cumple la ley entera, pierde el «50%»."],
+      ["C", "Lo de Gastón, tal cual", "«50% Black Friday · Limited Time Offer · Book Now» en anuncios, página e IG."]] },
+    { id: "d43", n: "4.3", t: "La cuenta del 50%", why: "El 50% real cae justo sobre el piso de 2.000 por noche. Ver la calculadora de arriba.", owner: "Boris", iru: true, rec: "C", o: [
+      ["A", "Todo a −50%", "3 noches 8.500 · 5 noches 13.300. Máxima intención, cero margen de error."],
+      ["B", "Todo a −40%", "3 noches 10.200 · 5 noches 15.900. Copy «up to 40%». Respeta el piso con margen."],
+      ["C", "Escalonado", "3 noches a −40% (10.200) y 5 noches a −50% (13.300). «Up to 50%» es verdad y lo cumple el pack que más noches suma."]] },
+    { id: "d42", n: "4.2", t: "Ventana de estadía", why: "Del 27-dic al 11-ene hay cuatro holds de fin de año.", owner: "Boris", rec: "A", o: [
+      ["A", "13 al 31 de enero", "19 noches sin ningún hold en contra y la tarifa más baja de la alta (4.200)."],
+      ["B", "Todo enero", "Lo que imaginaba Gastón («de 7 a 4»), pero compite con cuatro consultas abiertas."],
+      ["C", "13–31 + lo que se libere", "Se suman días del 1–12 si algún hold cae antes del 26-nov."]] },
+    { id: "d41", n: "4.1", t: "Duración del pack", why: "La métrica del año son noches: un pack de 5 vale casi dos de 3.", owner: "Boris", rec: "C", o: [
+      ["A", "Solo 3 noches", "Ticket más bajo. Gastón cree que se mueve más."],
+      ["B", "Solo 5 noches", "Coincide con el mínimo que Iru sostiene a fin de año."],
+      ["C", "Las dos", "3 noches es la puerta; 5 noches lleva el «hasta 50%»."]] },
+    { id: "d45", n: "4.5", t: "Cupo", why: "Tiene que ser real y verse en la página como calendario, nunca como «quedan N».", owner: "Boris", rec: "B", o: [
+      ["A", "Hasta 6", "Un pack por cada hueco del 13 al 31."],
+      ["B", "Tres packs", "Número real y visible. Deja la mitad de enero para vender a precio normal."],
+      ["C", "Cinco packs", "Más volumen y más noches con descuento."]] },
+    { id: "d44", n: "4.4", t: "Qué entra en el pack", why: "Lo que pidieron distribuidores y el B&B, y lo que Lalo puede coordinar sin sumar gente.", owner: "Iru", iru: true, rec: "A", o: [
+      ["A", "Mínimo y operable", "Traslado ida y vuelta, un temazcal, una cena con chef y desayunos."],
+      ["B", "A + un masaje por persona", "Más valor percibido. El costo visto con Keith (≈ USD 1.100) se come el pack de 3."],
+      ["C", "Casa sola + extras", "Más flexible, pero es un descuento por noche: lo contrario de lo que pidió Gastón."]] },
+    { id: "d47", n: "4.7", t: "Condiciones de reserva", why: "Las estadías de enero quedan a menos de 60 días: la seña de siempre deja de ser devolvible casi enseguida.", owner: "Boris", iru: true, rec: "A", o: [
+      ["A", "Seña 50% no reembolsable", "Saldo 14 días antes. Un cambio de fecha dentro de enero y febrero. La plata entra antes del 19-ene."],
+      ["B", "Pago total, no reembolsable", "Lo mejor para la caja, lo más duro para el que compra."],
+      ["C", "Las de siempre (30%)", "Nada que explicar, pero la caja no mejora."]] },
+    { id: "d46", n: "4.6", t: "Ventana de venta", why: "Gastón propuso arrancar el jueves y seguir toda la semana siguiente.", owner: "Boris", rec: "B", o: [
+      ["A", "26 al 30-nov", "De Thanksgiving a Cyber Monday."],
+      ["B", "26-nov al 4-dic", "Con regla de corte: si el lunes 30 no hay ninguna conversación con grupo y fecha, el gasto baja a la mitad."]] },
+    { id: "d48", n: "4.8", t: "Canales y distribuidores", why: "Bianca acaba de corregir las tarifas en todas las distribuidoras.", owner: "Bianca", rec: "A", o: [
+      ["A", "Solo canal directo", "Página, WhatsApp e IG. Bianca avisa a los principales que es una promo directa de 9 días que no toca su tarifa. Airbnb y Booking no la reflejan."],
+      ["B", "Directo + distribuidores", "Más alcance, pero el margen cae debajo del piso y queda una tarifa nueva en la calle."],
+      ["C", "Directo + base propia", "Familias de family-takeovers y consultas de fin de año sin cerrar. Sin distribuidores."]] },
+    { id: "d48b", n: "4.8b", t: "IG orgánico y DMs", why: "Lo publica una persona, a mano. El repo deja el material listo.", owner: "Bianca", rec: "A", o: [
+      ["A", "Acompaña sin porcentaje", "Una historia por día con el pack y el link, y una respuesta lista para el DM que lleva a la calculadora."],
+      ["B", "Mismo creativo con %", "Más consistente con la pauta. Pone el porcentaje en el grid de la marca."],
+      ["C", "No acompaña", "La campaña vive solo en pauta."]] },
+    { id: "d49", n: "4.9", t: "Presupuesto de pauta", why: "Meta gastó ≈ USD 157 en 30 días. Gastón no puso techo. Una reserva de 10k–13k paga cualquiera de estas.", owner: "Boris", rec: "B", o: [
+      ["A", "USD 1.000", "≈ 110 por día, todo a Meta."],
+      ["B", "USD 2.000 en dos tramos", "1.000 del 26 al 29-nov; los otros 1.000 si hay 3 o más conversaciones con grupo y fecha. 80% Meta, 20% Google. Meta D se apaga el 25."],
+      ["C", "USD 500 de prueba", "Prudente, pero en 9 días Meta no llega a aprender."]] },
+    { id: "d410a", n: "4.10", t: "Página y calculadora", why: "La de retiros responde al organizador, y los anuncios de retiros llegan ahí.", owner: "Boris", rec: "B", o: [
+      ["A", "La página de retiros", "Lo que se dijo en la llamada. Pregunta equivocada para una familia."],
+      ["B", "Página nueva de enero", "Con el motor de la Price Discovery Tool (ya tacha lo ocupado en Cloudbeds), pack 3/5, fecha, lista contra BF, un extra y eventos medidos."],
+      ["C", "Página estática", "Dos packs, el calendario y un botón. Red de seguridad si B no está el 24-nov."]] },
+    { id: "d410b", n: "4.10b", t: "Cierre de la venta", why: "Hoy no se registró ninguna reserva web. Gana lo que ya funciona.", owner: "Iru", iru: true, rec: "A", o: [
+      ["A", "WhatsApp con Iru + link de seña", "El mensaje llega armado. Respuesta en menos de 2 horas, de 9 a 21."],
+      ["B", "Checkout de Shopify", "Mide mejor, pero no está probado y no hay tiempo de probarlo."],
+      ["C", "Formulario y llamada", "Más fricción y más demora."]] }
+  ];
+  var PRE = [
+    ["p1", "Excepción de marca firmada y oferta cerrada", "decisiones 4.0 a 4.7", "Boris · texto de Iru", "jue 19"],
+    ["p2", "Costos reales de temazcal, cena, desayuno y traslado", "el pack no puede esperar a la lista de chefs", "Iru", "jue 19"],
+    ["p3", "Medición: GA4, Tag Manager, UTMs, evento de Meta y eventos de la calculadora", "la página de retiros tiene form_submit; la PDT no tiene ningún evento", "Boris", "lun 23"],
+    ["p4", "Cloudbeds contra la planilla de Iru y Shopify ↔ Cloudbeds", "Cloudbeds no refleja febrero–mayo", "Boris + Iru", "lun 23"],
+    ["p5", "Reserva de prueba de punta a punta", "anuncio → página → WhatsApp → fila en el CRM con la campaña", "Boris", "mar 24", true],
+    ["p6", "Research de competencia", "cuánto reservaron las villas comparables en 2 semanas y demanda dic–may", "Boris", "sáb 21"],
+    ["p7", "Creativos (1:1, 4:5, 9:16), copy EN y la página de enero", "a revisión el lun 23, listos el mié 25", "Boris + Bianca", "mié 25"],
+    ["p8", "copy-reviewer y brand-review sobre cada pieza", "", "El Chamán", "mar 24"],
+    ["p9", "Aviso a los distribuidores principales", "si se elige canal directo", "Bianca", "mié 25"],
+    ["p10", "Límite de la tarjeta de Meta y apagado de Meta D", "", "Boris", "mié 25"],
+    ["p11", "Lista de chefs con precio por temporada", "", "Iru", "mié 25"]
+  ];
+
+  /* ---------- store: shared db, local fallback ---------- */
+  var S = { dec: {}, pre: {} }, db = null, user = null, me = null, names = {};
+  var LS = "lc-bf26-v1";
+  function loadLocal() { try { var j = JSON.parse(localStorage.getItem(LS) || "null"); if (j) S = j; } catch (e) {} }
+  function saveLocal() { try { localStorage.setItem(LS, JSON.stringify(S)); } catch (e) {} }
+  function setNote(on, txt) { document.getElementById("store-dot").className = "dot" + (on ? " on" : ""); document.getElementById("store-txt").textContent = txt; }
+
+  function whoLine(rec) {
+    if (!rec || !rec.en) return "";
+    var d = new Date(rec.en), t = d.toLocaleString("es-AR", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" });
+    var n = rec.por && names[rec.por] ? names[rec.por] : (rec.por ? "alguien" : "");
+    return (n ? n + " · " : "") + t;
+  }
+
+  function renderDecs() {
+    var box = document.getElementById("decs");
+    DEC.forEach(function (q) {
+      var r = S.dec[q.id] || {};
+      var card = document.getElementById("dec-" + q.id);
+      if (!card) {
+        card = el("article", { "class": "dec", id: "dec-" + q.id });
+        var opts = q.o.map(function (o) {
+          var oid = q.id + "-" + o[0];
+          return '<label class="opt" for="' + oid + '"><input type="radio" name="' + q.id + '" id="' + oid + '" value="' + o[0] + '"><span class="card"><span class="ol"><span class="letter">' + o[0] + "</span>" + esc(o[1]) + "</span>" + (o[0] === q.rec ? '<span class="rec">Recomendada</span>' : "") + '<span class="od">' + esc(o[2]) + "</span></span></label>";
+        }).join("");
+        card.innerHTML = '<div class="dec-top"><span class="n">' + q.n + "</span><h3>" + esc(q.t) + '</h3><span class="tag t-conf">decide ' + q.owner + "</span>" + (q.iru ? '<span class="tag t-iru">lo confirma Iru</span>' : "") + '</div><p class="why">' + esc(q.why) + '</p><div class="opts" role="radiogroup" aria-label="' + esc(q.t) + '">' + opts + '</div><div class="dec-foot"><textarea id="note-' + q.id + '" placeholder="Nota de la reunión (se guarda al salir del campo)" aria-label="Nota sobre ' + esc(q.t) + '"></textarea><div class="who"><span id="who-' + q.id + '"></span><br><button type="button" class="clear" id="clr-' + q.id + '">Quitar elección</button></div></div>';
+        box.appendChild(card);
+        card.querySelectorAll('input[type="radio"]').forEach(function (inp) {
+          inp.addEventListener("change", function () { writeDec(q.id, { opcion: inp.value }); });
+        });
+        var ta = card.querySelector("textarea");
+        ta.addEventListener("blur", function () { var cur = (S.dec[q.id] || {}).nota || ""; if (ta.value !== cur) writeDec(q.id, { nota: ta.value }); });
+        card.querySelector(".clear").addEventListener("click", function () { writeDec(q.id, { opcion: "" }); });
+      }
+      card.querySelectorAll('input[type="radio"]').forEach(function (inp) { inp.checked = inp.value === r.opcion; });
+      var ta2 = card.querySelector("textarea"); if (document.activeElement !== ta2) ta2.value = r.nota || "";
+      card.classList.toggle("done", !!r.opcion);
+      document.getElementById("who-" + q.id).textContent = r.opcion ? "Elegida: " + r.opcion + (whoLine(r) ? " · " + whoLine(r) : "") : (r.nota ? "Con nota, sin elegir" : "Sin elegir");
+    });
+    var done = DEC.filter(function (q) { return S.dec[q.id] && S.dec[q.id].opcion; }).length;
+    document.getElementById("prog-txt").textContent = done + " de " + DEC.length + " decididas";
+    document.getElementById("prog-bar").style.width = (done / DEC.length * 100) + "%";
+  }
+
+  function renderChecks() {
+    var box = document.getElementById("checks");
+    PRE.forEach(function (p) {
+      var r = S.pre[p[0]] || {};
+      var row = document.getElementById("chk-" + p[0]);
+      if (!row) {
+        row = el("label", { "class": "chk" + (p[5] ? " gate" : ""), id: "chk-" + p[0], "for": "cb-" + p[0] });
+        row.innerHTML = '<input type="checkbox" id="cb-' + p[0] + '"><div><div class="t">' + esc(p[1]) + "</div>" + (p[2] ? '<div class="s">' + esc(p[2]) + "</div>" : "") + '</div><div class="m"><b>' + esc(p[4]) + "</b>" + esc(p[3]) + "</div>";
+        box.appendChild(row);
+        row.querySelector("input").addEventListener("change", function (e) { writePre(p[0], e.target.checked); });
+      }
+      row.querySelector("input").checked = !!r.hecho;
+      row.classList.toggle("done", !!r.hecho);
+    });
+  }
+
+  function render() { renderDecs(); renderChecks(); }
+
+  function writeDec(id, patch) {
+    var cur = S.dec[id] || {};
+    var next = { opcion: patch.opcion != null ? patch.opcion : (cur.opcion || ""), nota: patch.nota != null ? patch.nota : (cur.nota || ""), por: me || cur.por || "", en: new Date().toISOString() };
+    S.dec[id] = next; render();
+    if (db) db.collection("decisiones").doc(id).set(next).catch(function () { setNote(false, "No se pudo guardar el último cambio. Tu permiso puede ser solo de lectura."); });
+    else saveLocal();
+  }
+  function writePre(id, v) {
+    var next = { hecho: !!v, por: me || "", en: new Date().toISOString() };
+    S.pre[id] = next; render();
+    if (db) db.collection("previos").doc(id).set(next).catch(function () { setNote(false, "No se pudo guardar el último cambio. Tu permiso puede ser solo de lectura."); });
+    else saveLocal();
+  }
+
+  async function resolveNames() {
+    if (!user || !user.profiles) return;
+    var ids = {};
+    Object.keys(S.dec).forEach(function (k) { if (S.dec[k].por) ids[S.dec[k].por] = 1; });
+    var list = Object.keys(ids).filter(function (i) { return !names[i]; });
+    if (!list.length) return;
+    try { var ps = await user.profiles(list); list.forEach(function (i) { names[i] = (ps[i] && ps[i].name) || ""; }); renderDecs(); } catch (e) {}
+  }
+
+  render();
+  (async function () {
+    var api = window.claude && window.claude.use ? window.claude : null;
+    if (!api) { loadLocal(); render(); setNote(false, "En esta versión web, lo que marques queda guardado solo en este navegador. Al terminar, pasale las elecciones a Boris."); return; }
+    setNote(false, "Conectando con el registro compartido…");
+    try { db = await api.use("db"); } catch (e) { db = null; }
+    try { user = await api.use("user"); } catch (e) { user = null; }
+    if (!db) { loadLocal(); render(); setNote(false, "Sin registro compartido en esta vista: las elecciones se guardan solo en este navegador."); return; }
+    try { if (user && user.id) me = await user.id(); } catch (e) {}
+    var timer = setTimeout(function () { setNote(false, "El registro compartido tarda en responder. Podés seguir: se guarda cuando conecte."); }, 10000);
+    db.collection("decisiones").onSnapshot(function (snap) {
+      clearTimeout(timer);
+      var m = {}; snap.docs.forEach(function (d) { m[d.id] = d.data() || {}; }); S.dec = m; render(); resolveNames();
+      setNote(true, "Lo que se marque queda guardado para todos los que abran esta página. El Chamán lo lee para escribir el documento final.");
+    }, function () { clearTimeout(timer); setNote(false, "No se pudo leer el registro compartido. Lo que marques queda solo en esta vista."); });
+    db.collection("previos").onSnapshot(function (snap) {
+      var m = {}; snap.docs.forEach(function (d) { m[d.id] = d.data() || {}; }); S.pre = m; renderChecks();
+    }, function () {});
+  })();
+})();
+</script>
+
+</body></html>
