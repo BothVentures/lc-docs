@@ -1,0 +1,993 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex,nofollow"><style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Black Friday, la campaña</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap">
+<style>
+/* Layout: one reading column with a sticky section rail; the arc opens the page; the decisions are the working surface. */
+:root {
+  --bg: #FBFAF7;          /* White ground */
+  --surface: #F3EEE6;     /* boxed information on light */
+  --raised: #FFFFFF;
+  --fg: #1A1611;          /* On light */
+  --muted: #6E6253;
+  --line: #DDD3C4;        /* Sky, a touch deeper */
+  --copper: #B4835A;      /* marks on light (copper, deepened for 3:1) */
+  --copper-ink: #87582F;  /* copper as text on light */
+  --copper-soft: #EBDCCB;
+  --hero-bg: #0E0C0A;     /* Deep */
+  --hero-fg: #E9E2D6;     /* Bone */
+  --hero-copper: #C99A6D;
+  --ok: #5C6B2E; --ok-soft: #E6E8D6;
+  --warn: #8A6414; --warn-soft: #F2E7CC;
+  --bad: #A2452B; --bad-soft: #F3DDD4;
+  --hatch: #9C8F7E;
+  --f-display: "Cormorant Garamond", "Cormorant", Georgia, "Times New Roman", serif;
+  --f-body: "Jost", "Futura", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0E0C0A; --surface: #17130F; --raised: #1D1813; --fg: #E9E2D6; --muted: #A99B89; --line: #3A3129;
+    --copper: #C99A6D; --copper-ink: #D8AF86; --copper-soft: #33271C;
+    --hero-bg: #14110E; --hero-fg: #E9E2D6; --hero-copper: #C99A6D;
+    --ok: #A6B26E; --ok-soft: #262A18; --warn: #D9B25A; --warn-soft: #2E2512; --bad: #DE8C6E; --bad-soft: #321A12;
+    --hatch: #6F6457; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0E0C0A; --surface: #17130F; --raised: #1D1813; --fg: #E9E2D6; --muted: #A99B89; --line: #3A3129;
+  --copper: #C99A6D; --copper-ink: #D8AF86; --copper-soft: #33271C;
+  --hero-bg: #14110E; --hero-fg: #E9E2D6; --hero-copper: #C99A6D;
+  --ok: #A6B26E; --ok-soft: #262A18; --warn: #D9B25A; --warn-soft: #2E2512; --bad: #DE8C6E; --bad-soft: #321A12;
+  --hatch: #6F6457; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--f-body); font-weight: 300; font-size: 16px; line-height: 1.55; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+.wrap { max-width: 1020px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+h1, h2, h3 { font-family: var(--f-display); font-weight: 300; text-wrap: balance; margin: 0; letter-spacing: 0.005em; }
+h2 { font-size: clamp(30px, 4.4vw, 42px); line-height: 1.08; }
+h3 { font-size: 24px; line-height: 1.15; font-weight: 400; }
+p { margin: 0; }
+.eyebrow { font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--copper-ink); font-weight: 500; }
+.lede { color: var(--muted); max-width: 64ch; }
+.num { font-variant-numeric: tabular-nums; }
+a { color: var(--copper-ink); }
+:focus-visible { outline: 2px solid var(--copper); outline-offset: 2px; }
+
+/* hero */
+.hero { background: var(--hero-bg); color: var(--hero-fg); }
+.hero .wrap { padding-block: 44px 40px; display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 36px; align-items: end; }
+.hero .eyebrow { color: var(--hero-copper); }
+.hero h1 { font-size: clamp(44px, 7.4vw, 82px); line-height: 0.98; margin-top: 14px; }
+.hero h1 em { font-style: italic; color: var(--hero-copper); }
+.hero .sub { margin-top: 18px; max-width: 52ch; color: #C9BFAF; }
+.arc { position: relative; width: 100%; max-width: 340px; justify-self: end; aspect-ratio: 3 / 4; background: #241D16; border-radius: 50% 50% 0 0 / 37.5% 37.5% 0 0; display: grid; place-items: center; text-align: center; padding: 22% 12% 12%; overflow: hidden; }
+.arc::after { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(90deg, rgba(233,226,214,0.07) 0 1px, transparent 1px 22px); pointer-events: none; }
+.arc .big { font-family: var(--f-display); font-size: clamp(64px, 9vw, 104px); line-height: 0.9; color: var(--hero-copper); font-weight: 300; }
+.arc .cap { font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; color: #C9BFAF; margin-top: 10px; }
+.arc .small { font-family: var(--f-display); font-style: italic; font-size: 20px; margin-top: 14px; color: var(--hero-fg); }
+.tiles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px; background: #2E261E; border-top: 1px solid #2E261E; }
+.tile { background: var(--hero-bg); padding: 18px 18px 20px; display: grid; gap: 4px; align-content: start; }
+.tile .v { font-family: var(--f-display); font-size: 32px; line-height: 1; color: var(--hero-fg); }
+.tile .k { font-size: 13px; color: #B5AA99; }
+.tile .tag { justify-self: start; margin-top: 6px; }
+
+/* rail */
+.rail { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); border-bottom: 1px solid var(--line); }
+.rail .wrap { display: flex; gap: 6px; overflow-x: auto; padding-block: 10px; scrollbar-width: none; align-items: center; }
+.rail a { flex: none; font-size: 13px; text-decoration: none; color: var(--muted); padding: 6px 12px; border-radius: 999px; border: 1px solid transparent; }
+.rail a:hover { color: var(--fg); border-color: var(--line); }
+.rail a.key { color: var(--copper-ink); border-color: var(--copper); font-weight: 500; }
+.progress { margin-left: auto; flex: none; display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--muted); padding-left: 12px; }
+.progress .bar { width: 90px; height: 6px; border-radius: 3px; background: var(--line); overflow: hidden; }
+.progress .bar i { display: block; height: 100%; background: var(--copper); width: 0; transition: width .3s; }
+
+section { padding-block: 56px 8px; scroll-margin-top: 64px; }
+.sec-head { display: grid; gap: 10px; margin-bottom: 26px; }
+
+/* tags */
+.tag { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 500; letter-spacing: 0.04em; padding: 2px 8px; border-radius: 999px; white-space: nowrap; }
+.tag::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+.t-ver { color: var(--ok); background: var(--ok-soft); }
+.t-conf { color: var(--warn); background: var(--warn-soft); }
+.t-bad { color: var(--bad); background: var(--bad-soft); }
+.t-iru { color: var(--copper-ink); background: var(--copper-soft); }
+.t-iru::before { border-radius: 1px; }
+
+/* change cards */
+.changes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.change { background: var(--surface); padding: 18px; border-radius: 6px; display: grid; gap: 8px; align-content: start; }
+.change .h { font-family: var(--f-display); font-size: 22px; line-height: 1.15; font-weight: 400; }
+.change p { font-size: 14.5px; color: var(--muted); }
+.change .was { font-size: 12.5px; color: var(--muted); text-decoration: line-through; text-decoration-color: var(--bad); }
+
+/* calendar */
+.cal-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; }
+.month h3 { margin-bottom: 10px; }
+.grid7 { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 3px; }
+.grid7 .wd { font-size: 11px; color: var(--muted); text-align: center; padding-bottom: 4px; letter-spacing: 0.1em; }
+.day { aspect-ratio: 1 / 0.86; border-radius: 4px; background: var(--surface); position: relative; font-size: 12.5px; padding: 4px 6px; color: var(--muted); }
+.day.blank { background: transparent; }
+.day.hold { background: repeating-linear-gradient(135deg, var(--hatch) 0 1.5px, transparent 1.5px 6px), var(--surface); color: var(--fg); }
+.day.gaston { background: repeating-linear-gradient(45deg, var(--hatch) 0 1px, transparent 1px 7px), var(--surface); }
+.day.bf { background: var(--copper); color: #fff; font-weight: 500; }
+:root[data-theme="dark"] .day.bf { color: #14110E; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .day.bf { color: #14110E; } }
+.day.peak { box-shadow: inset 0 -3px 0 var(--copper-soft); }
+.day.cash::after { content: ""; position: absolute; inset: 2px; border: 2px solid var(--bad); border-radius: 3px; }
+.legend { display: flex; flex-wrap: wrap; gap: 14px 20px; margin-top: 16px; font-size: 13px; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 7px; }
+.sw { width: 16px; height: 13px; border-radius: 3px; display: inline-block; background: var(--surface); }
+.sw.hold { background: repeating-linear-gradient(135deg, var(--hatch) 0 1.5px, transparent 1.5px 6px), var(--surface); }
+.sw.gaston { background: repeating-linear-gradient(45deg, var(--hatch) 0 1px, transparent 1px 7px), var(--surface); }
+.sw.bf { background: var(--copper); }
+.sw.peak { box-shadow: inset 0 -3px 0 var(--copper-soft); }
+.sw.cash { border: 2px solid var(--bad); background: transparent; }
+.callout { margin-top: 22px; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 14px; align-items: start; background: var(--surface); border-radius: 6px; padding: 16px 18px; font-size: 15px; }
+.callout b { font-weight: 500; }
+.callout .ico { width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; background: var(--warn-soft); color: var(--warn); font-weight: 600; font-size: 14px; }
+
+/* svg charts */
+.scroll-x { overflow-x: auto; }
+svg text { font-family: var(--f-body); }
+.fig { background: var(--surface); border-radius: 6px; padding: 18px 18px 12px; }
+.fig + .fig { margin-top: 14px; }
+.fig-title { font-size: 14px; font-weight: 500; margin-bottom: 4px; }
+.fig-note { font-size: 13px; color: var(--muted); margin-top: 8px; }
+
+/* hbar */
+.hbars { display: grid; gap: 10px; margin-top: 12px; }
+.hb { display: grid; grid-template-columns: minmax(120px, 210px) minmax(0, 1fr); gap: 14px; align-items: center; font-size: 14px; }
+.hb .lab { color: var(--fg); line-height: 1.25; }
+.hb .lab small { display: block; color: var(--muted); font-size: 12px; }
+.hb .track { position: relative; height: 22px; }
+.hb .fill { position: absolute; left: 0; top: 3px; bottom: 3px; background: var(--copper); border-radius: 0 4px 4px 0; opacity: 0.55; }
+.hb .fill.base { opacity: 1; }
+.hb .val { position: absolute; top: 50%; transform: translateY(-50%); font-size: 13px; font-variant-numeric: tabular-nums; padding-left: 8px; color: var(--fg); white-space: nowrap; }
+.refline { position: absolute; top: -6px; bottom: -6px; border-left: 1.5px dashed var(--bad); }
+.hb-axis { display: grid; grid-template-columns: minmax(120px, 210px) minmax(0, 1fr); gap: 14px; font-size: 11px; color: var(--muted); }
+.hb-axis .ticks { position: relative; height: 16px; }
+.hb-axis .ticks span { position: absolute; transform: translateX(-50%); font-variant-numeric: tabular-nums; }
+
+/* calculator */
+.calc { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 18px; }
+.panel { background: var(--surface); border-radius: 6px; padding: 18px; display: grid; gap: 16px; align-content: start; }
+.field { display: grid; gap: 6px; }
+.field label, .field .fl { font-size: 13px; font-weight: 500; display: flex; justify-content: space-between; gap: 8px; }
+.field output { font-variant-numeric: tabular-nums; color: var(--copper-ink); }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; padding: 3px; gap: 3px; background: var(--bg); }
+.seg button { font: inherit; font-size: 14px; border: 0; background: transparent; color: var(--muted); padding: 6px 14px; border-radius: 999px; cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--copper); color: #fff; }
+input[type="range"] { width: 100%; accent-color: var(--copper); }
+select { font: inherit; font-size: 14px; padding: 7px 10px; border-radius: 4px; border: 1px solid var(--line); background: var(--bg); color: var(--fg); }
+.items { font-size: 13.5px; display: grid; gap: 5px; }
+.items div { display: flex; justify-content: space-between; gap: 10px; border-bottom: 1px dotted var(--line); padding-bottom: 4px; }
+.items div span:last-child { font-variant-numeric: tabular-nums; }
+.result { display: grid; gap: 14px; }
+.kpis { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.kpi { background: var(--raised); border: 1px solid var(--line); border-radius: 6px; padding: 12px 14px; }
+.kpi .k { font-size: 12px; color: var(--muted); }
+.kpi .v { font-family: var(--f-display); font-size: 32px; line-height: 1.05; font-variant-numeric: tabular-nums; }
+.kpi .v.strike { text-decoration: line-through; text-decoration-thickness: 1px; color: var(--muted); }
+.kpi.hl { border-color: var(--copper); }
+.stack { position: relative; height: 40px; display: flex; gap: 2px; margin-top: 30px; }
+.stack div { height: 100%; display: flex; align-items: center; padding: 0 8px; font-size: 12px; overflow: hidden; white-space: nowrap; min-width: 0; }
+.stack .s-casa { background: var(--copper); color: #fff; border-radius: 4px 0 0 4px; }
+.stack .s-exp { background: var(--copper-soft); color: var(--fg); }
+.stack .s-desc { background: repeating-linear-gradient(135deg, var(--hatch) 0 1px, transparent 1px 6px); color: var(--muted); border-radius: 0 4px 4px 0; border: 1px solid var(--line); }
+.floor { position: absolute; top: -26px; bottom: -4px; border-left: 2px solid var(--bad); }
+.floor span { position: absolute; top: 0; left: 6px; font-size: 11.5px; color: var(--bad); white-space: nowrap; font-weight: 500; }
+.verdict { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; font-size: 14.5px; }
+.pernight { font-family: var(--f-display); font-size: 46px; line-height: 1; font-variant-numeric: tabular-nums; }
+.packs-line { font-size: 14.5px; background: var(--raised); border: 1px solid var(--line); border-radius: 6px; padding: 12px 14px; }
+
+/* funnel */
+.funnel { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 0; align-items: stretch; }
+.fstep { padding: 14px 10px; border-left: 1px solid var(--line); display: grid; gap: 4px; align-content: start; position: relative; }
+.fstep:first-child { border-left: 0; }
+.fstep .v { font-family: var(--f-display); font-size: 34px; line-height: 1; font-variant-numeric: tabular-nums; }
+.fstep .k { font-size: 12.5px; color: var(--muted); line-height: 1.3; }
+.fstep .rate { font-size: 11.5px; color: var(--copper-ink); font-weight: 500; }
+.fstep.zero .v { color: var(--bad); }
+.fbar { height: 4px; border-radius: 2px; background: var(--copper); margin-top: 6px; }
+.two-col { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 14px; margin-top: 14px; }
+
+/* flow */
+.flow { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0; position: relative; }
+.node { position: relative; padding: 0 14px 0 0; display: grid; gap: 8px; align-content: start; }
+.node .box { background: var(--raised); border: 1px solid var(--line); border-radius: 6px; padding: 14px; min-height: 92px; display: grid; gap: 4px; align-content: start; }
+.node .box b { font-weight: 500; font-size: 14.5px; }
+.node .box span { font-size: 12.5px; color: var(--muted); line-height: 1.35; }
+.node:not(:last-child)::after { content: ""; position: absolute; right: 2px; top: 44px; width: 10px; height: 10px; border-top: 1.5px solid var(--copper); border-right: 1.5px solid var(--copper); transform: rotate(45deg); }
+.node code { font-size: 11.5px; background: var(--surface); padding: 1px 5px; border-radius: 3px; color: var(--fg); }
+.node .ev { display: grid; gap: 5px; font-size: 12px; }
+.lane { margin-top: 14px; font-size: 13.5px; color: var(--muted); border-top: 1px dashed var(--line); padding-top: 12px; }
+
+/* table */
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th { text-align: left; font-weight: 500; font-size: 12px; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; padding: 8px 10px; border-bottom: 1px solid var(--line); }
+td { padding: 11px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+td:first-child { font-weight: 500; }
+.sev { display: inline-flex; gap: 3px; }
+.sev i { width: 7px; height: 14px; border-radius: 2px; background: var(--line); display: block; }
+.sev.s3 i { background: var(--bad); } .sev.s2 i:nth-child(-n+2) { background: var(--warn); } .sev.s1 i:first-child { background: var(--ok); }
+
+/* decisions */
+.store-note { display: flex; gap: 10px; align-items: center; font-size: 13.5px; color: var(--muted); background: var(--surface); padding: 10px 14px; border-radius: 6px; margin-bottom: 18px; flex-wrap: wrap; }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--warn); flex: none; }
+.dot.on { background: var(--ok); }
+.decs { display: grid; gap: 16px; }
+.dec { border: 1px solid var(--line); border-radius: 8px; background: var(--raised); padding: 18px; display: grid; gap: 12px; }
+.dec.done { border-color: var(--copper); }
+.dec-top { display: flex; gap: 12px; align-items: baseline; flex-wrap: wrap; }
+.dec-top .n { font-size: 12px; color: var(--copper-ink); font-weight: 600; letter-spacing: 0.08em; }
+.dec-top h3 { flex: 1 1 260px; }
+.dec .why { font-size: 14.5px; color: var(--muted); max-width: 75ch; }
+.opts { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; }
+.opt { position: relative; display: block; cursor: pointer; }
+.opt input { position: absolute; opacity: 0; pointer-events: none; }
+.opt .card { height: 100%; border: 1px solid var(--line); border-radius: 6px; padding: 12px 13px; display: grid; gap: 5px; align-content: start; background: var(--bg); transition: border-color .15s, background .15s; }
+.opt:hover .card { border-color: var(--copper); }
+.opt input:focus-visible + .card { outline: 2px solid var(--copper); outline-offset: 2px; }
+.opt input:checked + .card { border-color: var(--copper); background: var(--copper-soft); box-shadow: inset 0 0 0 1px var(--copper); }
+.opt .ol { display: flex; gap: 8px; align-items: center; font-weight: 500; font-size: 14.5px; }
+.opt .ol .letter { width: 22px; height: 22px; border-radius: 50%; border: 1px solid var(--copper); display: grid; place-items: center; font-size: 12px; color: var(--copper-ink); flex: none; }
+.opt input:checked + .card .letter { background: var(--copper); color: #fff; }
+.opt .od { font-size: 13.5px; color: var(--muted); line-height: 1.45; }
+.rec { font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--copper-ink); font-weight: 600; }
+.dec-foot { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 12px; align-items: end; }
+.dec textarea { width: 100%; font: inherit; font-size: 14px; min-height: 42px; resize: vertical; padding: 9px 11px; border-radius: 6px; border: 1px solid var(--line); background: var(--bg); color: var(--fg); }
+.who { font-size: 12.5px; color: var(--muted); text-align: right; white-space: nowrap; }
+.clear { font: inherit; font-size: 12.5px; background: none; border: 0; color: var(--muted); text-decoration: underline; cursor: pointer; padding: 0; }
+
+/* checklist */
+.checks { display: grid; gap: 0; border-top: 1px solid var(--line); }
+.chk { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 14px; align-items: start; padding: 12px 4px; border-bottom: 1px solid var(--line); cursor: pointer; }
+.chk input { width: 18px; height: 18px; accent-color: var(--copper); margin-top: 3px; }
+.chk .t { font-size: 15px; }
+.chk .s { font-size: 13px; color: var(--muted); margin-top: 2px; }
+.chk .m { text-align: right; font-size: 13px; color: var(--muted); white-space: nowrap; }
+.chk .m b { display: block; color: var(--fg); font-weight: 500; }
+.chk.done .t { text-decoration: line-through; color: var(--muted); }
+.chk.gate .t::after { content: "condición de salida"; margin-left: 8px; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--bad); font-weight: 600; }
+
+/* timeline */
+.tl { position: relative; display: grid; gap: 0; padding-left: 26px; }
+.tl::before { content: ""; position: absolute; left: 7px; top: 8px; bottom: 8px; width: 1.5px; background: var(--line); }
+.ti { position: relative; padding: 0 0 18px; display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 14px; }
+.ti::before { content: ""; position: absolute; left: -24px; top: 6px; width: 12px; height: 12px; border-radius: 50%; background: var(--bg); border: 2px solid var(--line); }
+.ti.hot::before { border-color: var(--copper); background: var(--copper); }
+.ti.gate::before { border-color: var(--bad); }
+.ti .d { font-size: 13px; font-weight: 500; color: var(--copper-ink); font-variant-numeric: tabular-nums; }
+.ti .w { font-size: 15px; }
+.ti .w small { display: block; color: var(--muted); font-size: 13px; }
+
+.out { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.out div { background: var(--surface); padding: 14px 16px; border-radius: 6px; font-size: 14.5px; }
+.out b { font-weight: 500; display: block; margin-bottom: 3px; }
+footer { margin-top: 64px; border-top: 1px solid var(--line); padding-block: 26px 48px; font-size: 13px; color: var(--muted); display: grid; gap: 8px; }
+
+@media (max-width: 860px) {
+  .hero .wrap { grid-template-columns: 1fr; }
+  .arc { justify-self: start; max-width: 260px; }
+  .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .changes { grid-template-columns: 1fr 1fr; }
+  .calc { grid-template-columns: 1fr; }
+  .funnel { grid-template-columns: repeat(4, minmax(0, 1fr)); row-gap: 10px; }
+  .fstep:nth-child(5) { border-left: 0; }
+  .flow { grid-template-columns: 1fr; gap: 18px; }
+  .node { padding: 0; }
+  .node:not(:last-child)::after { right: auto; left: 50%; top: auto; bottom: -14px; transform: rotate(135deg); }
+  .progress { display: none; }
+}
+@media (max-width: 620px) {
+  .changes, .cal-row, .two-col, .out { grid-template-columns: 1fr; }
+  .kpis { grid-template-columns: 1fr 1fr; }
+  .hb, .hb-axis { grid-template-columns: 110px minmax(0, 1fr); }
+  .ti { grid-template-columns: 1fr; gap: 2px; }
+  .dec-foot { grid-template-columns: 1fr; }
+  .who { text-align: left; }
+  .funnel { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .fstep:nth-child(odd) { border-left: 0; }
+  .chk { grid-template-columns: auto minmax(0, 1fr); }
+  .chk .m { grid-column: 2; text-align: left; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+html { scroll-behavior: smooth; }
+
+/* ——— additions for V1.0 ——— */
+.agreed { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; }
+.ag { background: var(--surface); border-radius: 6px; padding: 14px 16px; display: grid; gap: 6px; align-content: start; }
+.ag .n { font-size: 11px; letter-spacing: 0.14em; color: var(--copper-ink); font-weight: 600; }
+.ag .h { font-family: var(--f-display); font-size: 21px; line-height: 1.15; font-weight: 400; }
+.ag p { font-size: 14px; color: var(--muted); }
+.ag .src { font-size: 12px; color: var(--muted); border-top: 1px dotted var(--line); padding-top: 6px; margin-top: 2px; }
+.shift { display: grid; grid-template-columns: minmax(0,1fr) auto minmax(0,1fr); gap: 16px; align-items: stretch; margin-bottom: 22px; }
+.shift > div { border: 1px solid var(--line); border-radius: 6px; padding: 14px 16px; font-size: 14.5px; display: grid; gap: 6px; align-content: start; }
+.shift .was li { text-decoration: line-through; text-decoration-color: var(--bad); color: var(--muted); }
+.shift ul { margin: 0; padding-left: 18px; display: grid; gap: 3px; }
+.shift .arrow { display: grid; place-items: center; color: var(--copper); font-size: 26px; border: 0; padding: 0; }
+.shift .now { border-color: var(--copper); background: var(--copper-soft); }
+.pack { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: 18px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { border: 1px solid var(--copper); border-radius: 999px; padding: 7px 14px; font-size: 14px; background: var(--raised); }
+.chip.base { border-color: var(--line); color: var(--muted); }
+.chip.off { border-style: dashed; border-color: var(--line); color: var(--muted); text-decoration: line-through; }
+.adcard { background: #16120E; color: #E9E2D6; border-radius: 6px; padding: 26px 22px 22px; text-align: center; display: grid; gap: 10px; justify-items: center; position: relative; overflow: hidden; min-height: 300px; align-content: center; }
+.adcard::before { content: ""; position: absolute; inset: 14px 26px auto; height: 62%; border: 1px solid rgba(201,154,109,0.45); border-bottom: 0; border-radius: 50% 50% 0 0 / 34% 34% 0 0; }
+.adcard .k { font-size: 10.5px; letter-spacing: 0.34em; color: #C9BFAF; position: relative; }
+.adcard .t { font-family: var(--f-display); font-style: italic; font-size: 22px; position: relative; }
+.adcard .bf { font-family: var(--f-display); font-size: 40px; letter-spacing: 0.12em; line-height: 1; position: relative; }
+.adcard .p { font-size: 13px; letter-spacing: 0.08em; color: #C99A6D; position: relative; }
+.adcard .cta { border: 1px solid #C9BFAF; font-size: 10.5px; letter-spacing: 0.28em; padding: 7px 14px; position: relative; }
+.adcard + small { display: block; font-size: 12px; color: var(--muted); margin-top: 6px; }
+.vstack { position: relative; display: flex; gap: 0; height: 46px; margin-top: 34px; }
+.vstack div { flex: none; height: 100%; display: flex; align-items: center; padding: 0 8px; font-size: 12px; white-space: nowrap; overflow: hidden; min-width: 0; color: var(--fg); background: var(--copper-soft); box-shadow: inset -2px 0 0 var(--surface); }
+.vstack .s-casa { background: var(--copper); color: #fff; border-radius: 4px 0 0 4px; }
+.vstack div:last-child { border-radius: 0 4px 4px 0; }
+:root[data-theme="dark"] .vstack .s-casa { color: #14110E; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .vstack .s-casa { color: #14110E; } }
+.pmark { position: absolute; top: -30px; bottom: -6px; border-left: 2px solid var(--fg); }
+.pmark span { position: absolute; top: 0; right: 6px; font-size: 12px; font-weight: 500; white-space: nowrap; }
+.vlegend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 12.5px; color: var(--muted); margin-top: 10px; }
+.vlegend b { color: var(--fg); font-weight: 500; font-variant-numeric: tabular-nums; }
+.wf { display: grid; gap: 8px; margin-top: 12px; }
+.wf .r { display: grid; grid-template-columns: minmax(130px, 230px) minmax(0, 1fr) 70px; gap: 12px; align-items: center; font-size: 14px; }
+.wf .r small { display: block; font-size: 12px; color: var(--muted); }
+.wf .tr { position: relative; height: 20px; }
+.wf .b { position: absolute; top: 2px; bottom: 2px; border-radius: 3px; }
+.wf .b.pos { background: var(--copper); }
+.wf .b.neg { background: repeating-linear-gradient(135deg, var(--bad) 0 1.5px, transparent 1.5px 6px); border: 1px solid var(--bad); }
+.wf .b.end { background: var(--ok); }
+.wf .v { text-align: right; font-variant-numeric: tabular-nums; font-size: 13.5px; }
+.wf .r.total { border-top: 1px solid var(--line); padding-top: 8px; font-weight: 500; }
+.ptable td:nth-child(n+2) { font-variant-numeric: tabular-nums; }
+.ptable td.x { color: var(--bad); font-weight: 500; }
+.quote { border-left: 2px solid var(--copper); padding: 4px 0 4px 14px; font-family: var(--f-display); font-size: 21px; font-style: italic; line-height: 1.3; }
+.quote small { display: block; font-family: var(--f-body); font-style: normal; font-size: 12.5px; color: var(--muted); margin-top: 4px; }
+.finds { display: grid; gap: 14px; }
+.find { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 14px; align-items: start; }
+.find .i { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; font-family: var(--f-display); font-size: 18px; background: var(--copper-soft); color: var(--copper-ink); }
+.find h3 { font-size: 22px; margin-bottom: 4px; }
+.find p { font-size: 14.5px; color: var(--muted); max-width: 78ch; }
+.find .to { font-size: 12.5px; color: var(--copper-ink); font-weight: 500; margin-top: 4px; }
+.jan { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 28px; align-items: start; }
+.day.out { background: repeating-linear-gradient(135deg, var(--hatch) 0 1px, transparent 1px 7px), var(--surface); color: var(--muted); }
+.stays { display: grid; grid-template-columns: repeat(19, minmax(0, 1fr)); gap: 2px; margin-top: 8px; }
+.stays .nt { height: 26px; background: var(--copper); opacity: .9; border-radius: 2px; font-size: 10px; color: #fff; display: grid; place-items: center; }
+.stays .nt.spare { background: var(--surface); color: var(--muted); border: 1px dashed var(--line); }
+:root[data-theme="dark"] .stays .nt { color: #14110E; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .stays .nt { color: #14110E; } }
+.brk { display: grid; grid-template-columns: repeat(19, minmax(0, 1fr)); gap: 2px; margin-top: 4px; }
+.brk span { grid-column: span 3; border: 1.5px solid var(--copper); border-top: 0; height: 10px; border-radius: 0 0 4px 4px; }
+.brk-l { display: grid; grid-template-columns: repeat(19, minmax(0, 1fr)); gap: 2px; font-size: 10.5px; color: var(--muted); margin-top: 2px; }
+.brk-l span { grid-column: span 3; text-align: center; }
+.ext { margin-top: 18px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 4px; font-size: 12.5px; }
+.ext div { padding: 8px 10px; border-radius: 4px; background: var(--surface); color: var(--muted); }
+.ext div.on { background: var(--copper); color: #fff; }
+:root[data-theme="dark"] .ext div.on { color: #14110E; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .ext div.on { color: #14110E; } }
+.ext div.dash { background: transparent; border: 1px dashed var(--copper); color: var(--fg); }
+.flow6 { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+.budget { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 8px; align-items: start; padding-top: 22px; position: relative; }
+.bcol { display: grid; align-content: start; gap: 6px; position: relative; }
+.bcol .bar { position: relative; height: 120px; display: flex; align-items: flex-end; }
+.bcol .full { width: 100%; height: 100%; background: var(--copper); border-radius: 4px 4px 0 0; }
+.bcol .ghost { position: absolute; inset: 0; border: 1.5px dashed var(--copper); border-bottom: 0; border-radius: 4px 4px 0 0; }
+.bcol .half { position: relative; width: 100%; height: 50%; background: repeating-linear-gradient(135deg, var(--hatch) 0 1.5px, transparent 1.5px 6px), var(--surface); border: 1px solid var(--hatch); border-bottom: 0; border-radius: 4px 4px 0 0; }
+.bcol .lab { font-size: 12px; text-align: center; color: var(--muted); font-variant-numeric: tabular-nums; min-height: 34px; }
+.bcol .lab b { display: block; color: var(--fg); font-weight: 500; }
+.bcol.bf .lab b { color: var(--copper-ink); }
+.rule { position: absolute; top: 0; height: 142px; border-left: 2px solid var(--bad); }
+.rule span { position: absolute; top: -2px; left: 6px; font-size: 11.5px; color: var(--bad); font-weight: 500; white-space: nowrap; }
+.adlist { display: grid; gap: 8px; }
+.adlist div { background: var(--raised); border: 1px solid var(--line); border-radius: 6px; padding: 10px 14px; font-family: var(--f-display); font-size: 20px; }
+.adlist div small { display: block; font-family: var(--f-body); font-size: 12px; color: var(--muted); }
+.primary { background: var(--surface); border-radius: 6px; padding: 14px 16px; font-size: 15px; line-height: 1.6; }
+.whoami { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; background: var(--surface); padding: 12px 14px; border-radius: 6px; margin-bottom: 18px; font-size: 14px; }
+.whoami .seg button { font-size: 13.5px; padding: 5px 12px; }
+.copybar { position: sticky; bottom: 0; z-index: 4; margin-top: 18px; background: var(--bg); border-top: 1px solid var(--line); padding: 12px 0; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+.btn { font: inherit; font-size: 14.5px; font-weight: 500; border: 0; border-radius: 999px; padding: 10px 20px; background: var(--copper); color: #fff; cursor: pointer; }
+:root[data-theme="dark"] .btn { color: #14110E; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .btn { color: #14110E; } }
+.btn.ghost { background: transparent; color: var(--copper-ink); border: 1px solid var(--copper); }
+.copybar .msg { font-size: 13.5px; color: var(--muted); }
+.copybar textarea { width: 100%; min-height: 120px; font: inherit; font-size: 13px; border: 1px solid var(--line); border-radius: 6px; padding: 10px; background: var(--raised); color: var(--fg); }
+.owner { font-size: 12px; color: var(--muted); }
+.owner b { color: var(--fg); font-weight: 500; }
+.matrix { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.mcol { border-radius: 8px; padding: 16px 18px; display: grid; gap: 10px; align-content: start; border: 1px solid var(--line); }
+.mcol.a { background: var(--copper-soft); border-color: var(--copper); }
+.mcol.b { background: var(--surface); }
+.mcol.c { background: repeating-linear-gradient(135deg, var(--line) 0 1px, transparent 1px 9px), var(--bg); }
+.mcol h3 { font-size: 23px; }
+.mcol .why { font-size: 12.5px; color: var(--muted); border-top: 1px dotted var(--line); padding-top: 8px; }
+.mcol ul { margin: 0; padding-left: 18px; display: grid; gap: 5px; font-size: 14px; }
+.int-flag { font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--warn); font-weight: 600; }
+@media (max-width: 860px) {
+  .pack, .jan, .matrix { grid-template-columns: 1fr; }
+  .flow6 { grid-template-columns: 1fr; }
+  .shift { grid-template-columns: 1fr; }
+  .shift .arrow { transform: rotate(90deg); }
+  .ext { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 620px) {
+  .wf .r { grid-template-columns: 110px minmax(0, 1fr) 58px; gap: 8px; }
+  .budget { gap: 4px; }
+  .bcol .lab { font-size: 10.5px; }
+  .stays .nt { font-size: 0; }
+}
+</style>
+</head><body>
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">La Chamana · campaña para validar · V1.0 · 19-nov-2026</p>
+      <h1>Black Friday,<br><em>tres noches de enero</em></h1>
+      <p class="sub">Lo que acordamos el 18 con Iru y Bianca, la oferta en números, lo que encontré al cruzarla con los datos, y diez puntos para validar antes del viernes 20. Marcá tus respuestas, copialas y pegalas en el grupo.</p>
+    </div>
+    <div class="arc" aria-label="Precio Black Friday: 12.500 dólares la estadía">
+      <div>
+        <div class="big num" style="font-size:clamp(54px,7.6vw,86px)">12.500</div>
+        <div class="cap">USD la estadía</div>
+        <div class="small">3 noches · la casa entera · hasta 16</div>
+      </div>
+    </div>
+  </div>
+  <div class="tiles">
+    <div class="tile"><span class="v num">24-nov → 1-dic</span><span class="k">venta: 8 días, con Black Friday y Cyber Monday</span><span class="tag t-conf">a validar · V6</span></div>
+    <div class="tile"><span class="v num">13 → 31 ene</span><span class="k">estadías · hoy ninguna reserva en Cloudbeds</span><span class="tag t-ver">acordado · leído hoy</span></div>
+    <div class="tile"><span class="v num">19.108</span><span class="k">valor de referencia · 34,6% menos</span><span class="tag t-conf">sostenerlo · V2</span></div>
+    <div class="tile"><span class="v num">1 reserva</span><span class="k">paga la semana de pauta y deja ganancia</span><span class="tag t-ver">cuenta</span></div>
+  </div>
+</header>
+
+<nav class="rail" aria-label="Secciones">
+  <div class="wrap">
+    <a href="#acordado">Acordado</a>
+    <a href="#oferta">Oferta</a>
+    <a href="#numeros" data-int>Números</a>
+    <a href="#hallazgos">Hallazgos</a>
+    <a href="#enero">Enero</a>
+    <a href="#recorrido">Recorrido</a>
+    <a href="#pauta">Pauta</a>
+    <a href="#validar" class="key">Validar</a>
+    <a href="#quien">Quién hace qué</a>
+    <a href="#calendario">Calendario</a>
+    <a href="#riesgos">Riesgos</a>
+    <span class="progress"><span class="bar"><i id="pbar"></i></span><span id="ptxt" class="num">0/10</span></span>
+  </div>
+</nav>
+
+<main class="wrap">
+
+<section id="acordado">
+  <div class="sec-head">
+    <p class="eyebrow">01 · reunión del 18-nov</p>
+    <h2>Lo que ya quedó acordado</h2>
+    <p class="lede">Verificado contra el transcript. Esto no se vuelve a discutir: es la base de los puntos para validar.</p>
+  </div>
+  <div class="shift">
+    <div class="was"><span class="owner">El 17-nov, en la llamada con Gastón</span><ul><li>«hasta 50%»</li><li>packs de 3 y de 5 noches</li><li>todo enero</li><li>calculadora en la página</li></ul></div>
+    <div class="arrow" aria-hidden="true">→</div>
+    <div class="now"><span class="owner"><b>El 18-nov, con Iru y Bianca</b></span><ul><li>un paquete de 3 noches con valor agregado</li><li>un precio cerrado: 12.500</li><li>13 al 31 de enero</li><li>se compra en el calendario de la web</li></ul></div>
+  </div>
+  <div class="agreed" id="agreed"></div>
+</section>
+
+<section id="oferta">
+  <div class="sec-head">
+    <p class="eyebrow">02 · la oferta</p>
+    <h2>Qué compra quien reserva</h2>
+  </div>
+  <div class="pack">
+    <div style="display:grid;gap:18px;align-content:start">
+      <div>
+        <p class="fig-title">Lo que trae el paquete</p>
+        <div class="chips" style="margin-top:8px">
+          <span class="chip">La casa entera · 3 noches · hasta 16</span>
+          <span class="chip">Desayuno todas las mañanas</span>
+          <span class="chip">Una cena privada</span>
+          <span class="chip">Beach club, todos los días</span>
+          <span class="chip">Sound healing privado</span>
+        </div>
+      </div>
+      <div>
+        <p class="fig-title">Lo de siempre</p>
+        <div class="chips" style="margin-top:8px">
+          <span class="chip base">Housekeeping</span><span class="chip base">Concierge</span><span class="chip base">Mantenimiento</span><span class="chip base">Seguridad nocturna</span>
+        </div>
+      </div>
+      <div>
+        <p class="fig-title">Lo que salió</p>
+        <div class="chips" style="margin-top:8px"><span class="chip off">Traslado al aeropuerto</span></div>
+        <p class="fig-note">Iru lo sacó: es un solo viaje, lo van a pedir igual y no le deja margen a la casa. El sound healing es más atractivo y abre la puerta a otros extras.</p>
+      </div>
+      <div class="fig">
+        <p class="fig-title">El valor, pieza por pieza, y dónde cae el precio</p>
+        <div class="vstack" role="img" aria-label="Valor de referencia 19.108: casa 12.600, desayuno 2.496, cena 1.472, beach club 2.160, sound healing 380. El precio Black Friday, 12.500, cae apenas antes del final de la casa sola.">
+          <div class="s-casa" style="width:65.94%">casa 12.600</div>
+          <div style="width:13.06%">desayuno</div>
+          <div style="width:7.70%">cena</div>
+          <div style="width:11.30%">beach</div>
+          <div style="width:1.99%"></div>
+          <span class="pmark" style="left:65.42%"><span>Black Friday 12.500</span></span>
+        </div>
+        <div class="vlegend"><span>casa 3 × 4.200 <b>12.600</b></span><span>desayuno 16 × 3 × 52 <b>2.496</b></span><span>cena 16 × 92 <b>1.472</b></span><span>beach club 16 × 3 × 45 <b>2.160</b></span><span>sound healing <b>380</b></span><span>total <b>19.108</b></span></div>
+        <p class="fig-note"><b>El precio Black Friday es menor que la casa sola a tarifa de enero.</b> Dicho en una línea: las experiencias van de regalo. Es un buen argumento para el copy, pero sirve solo si la tarifa de 4.200 y los precios de cada experiencia son los que se publican de verdad (V2).</p>
+      </div>
+    </div>
+    <div>
+      <div class="adcard" aria-label="Boceto del anuncio, sin foto">
+        <span class="k">LA CHAMANA · TULUM</span>
+        <span class="t">A Private Escape</span>
+        <span class="bf">BLACK<br>FRIDAY</span>
+        <span class="p">USD 12,500 · THREE NIGHTS · THE WHOLE HOUSE</span>
+        <span class="cta">RESERVE</span>
+      </div>
+      <small>Boceto sobre el mockup de Bianca: la foto real de la casa va de fondo. El precio aparece solo si se aprueba V1-A o V1-B.</small>
+    </div>
+  </div>
+</section>
+
+<section id="numeros" data-int>
+  <div class="sec-head">
+    <p class="eyebrow">03 · números · <span class="int-flag">interno</span></p>
+    <h2>Cuánto le queda a la casa</h2>
+    <p class="lede">La hoja de Iru termina en una ganancia operativa de 5.040 antes de impuestos. Abajo, lo que esa hoja no descuenta (cifras de El Chamán, todas estimadas) y la prueba contra el piso de 2.000 por noche.</p>
+  </div>
+  <div class="two-col" style="margin-top:0">
+    <div class="fig">
+      <p class="fig-title">La hoja de Iru</p>
+      <div class="hbars" id="iruBars"></div>
+      <p class="fig-note">Costos: casa 3 × 1.000 · desayuno 16 × 3 × 25 · cena 16 × 45 · beach club 2.160 · sound healing 380. Desayuno y cena son presupuestos a negociar con proveedores más baratos.</p>
+    </div>
+    <div class="fig">
+      <p class="fig-title">Por noche, después de pagar las experiencias</p>
+      <div class="hbars" id="nightBars"></div>
+      <p class="fig-note">La línea punteada es el piso de 2.000, la banda más baja que cotiza Iru. Con IVA adentro la casa queda justo encima: no hay margen para bajar más.</p>
+    </div>
+  </div>
+  <div class="fig" style="margin-top:14px">
+    <p class="fig-title">De la ganancia operativa al peor caso: una sola venta que paga toda la pauta</p>
+    <div class="wf" id="wf"></div>
+    <p class="fig-note">El IVA del 16% resta solo si el 12.500 incluye impuestos (V3); el impuesto estatal de hospedaje no está en la cuenta. La comisión de tarjeta es la tasa típica, a confirmar en Cloudbeds Payments. La pauta toma el tope de V7.</p>
+  </div>
+</section>
+
+<section id="hallazgos">
+  <div class="sec-head">
+    <p class="eyebrow">04 · al cruzar la reunión con los datos</p>
+    <h2>Seis cosas que encontré</h2>
+  </div>
+  <div class="finds">
+    <div class="find"><span class="i">1</span><div>
+      <h3>Hay tres listas de precios y dicen cosas distintas</h3>
+      <p>El tachado de 19.108 se sostiene solo si los precios sueltos son los que se cobran de verdad. En EE.UU. y en México un precio tachado tiene que ser un precio real.</p>
+      <div class="scroll-x" style="margin-top:12px"><table class="ptable">
+        <thead><tr><th></th><th>Hoja de Iru · 18-nov</th><th>Herramienta de precios pública · 12-nov</th><th>FAQ de lachamana.com · 18-nov</th></tr></thead>
+        <tbody>
+          <tr><td>Casa, 13–31 ene</td><td>4.200 / noche</td><td class="x">5.399 / noche (5.999 hasta el 15)</td><td>—</td></tr>
+          <tr><td>Desayuno</td><td>52 por persona</td><td class="x">35 por persona</td><td class="x">«included»</td></tr>
+          <tr><td>Cena privada</td><td>92 por persona</td><td>95 por persona</td><td>—</td></tr>
+          <tr><td>Beach club</td><td>45 por persona y día</td><td class="x">450 por grupo y día</td><td class="x">«included»</td></tr>
+          <tr><td>Sound healing</td><td>380</td><td class="x">holístico, 650</td><td class="x">«included»</td></tr>
+        </tbody></table></div>
+      <p class="to">→ V2 · una sola lista antes del lunes 23</p>
+    </div></div>
+    <div class="find"><span class="i">2</span><div>
+      <h3>La web regala lo que el paquete vende</h3>
+      <p>El bloque «Always Included» de lachamana.com lista housekeeping, concierge y seguridad. Su FAQ dice otra cosa:</p>
+      <p class="quote" style="margin-top:10px">«What's included? Round-trip airport transfers… daily breakfast… beach club access, an authentic temazcal ritual, and a sound healing session.»<small>lachamana.com, FAQ, leído el 18-nov</small></p>
+      <p style="margin-top:10px">Iru lo dejó claro en la reunión: «le incluís breakfast, que no está incluido en el paquete inicial». El que está mal es el FAQ.</p>
+      <p class="to">→ V10 · corregir el FAQ antes del 23</p>
+    </div></div>
+    <div class="find"><span class="i">3</span><div>
+      <h3>No sabemos si el 12.500 incluye impuestos</h3>
+      <p>El rack se publica «tax included», y la hoja de Iru dice «antes de impuestos». Es lo que más mueve la ganancia: con el IVA adentro, la ganancia operativa baja de 5.040 a ≈ 3.300.</p>
+      <p class="to">→ V3 · lo confirma Iru</p>
+    </div></div>
+    <div class="find"><span class="i">4</span><div>
+      <h3>La hoja dice «Dec 2026 &amp; Jan 2027»</h3>
+      <p>La reunión cerró 13 al 31 de enero, y la tarifa de 4.200 con la que está hecha la cuenta rige recién desde el 13. Diciembre hasta el 22 cuesta ≈ 3.000 la noche: con ese número el paquete no da 12.500. Hay que corregir la etiqueta antes de que la hoja circule.</p>
+      <p class="to">→ Iru</p>
+    </div></div>
+    <div class="find"><span class="i">5</span><div>
+      <h3>Casi toda la base de outreach son intermediarios</h3>
+      <p>Las fichas de Bianca y las secuencias de email son family offices, productores de retiros, mánagers, y también travel advisors que cobran comisión. Mandarle Black Friday a toda la base choca con lo acordado: sin distribuidores.</p>
+      <p class="to">→ V8 · solo a quien compra para su propio grupo</p>
+    </div></div>
+    <div class="find"><span class="i">6</span><div>
+      <h3>La compra sin hablar con nadie es posible hoy</h3>
+      <p>La web ya carga el motor de reservas de Cloudbeds. Falta que Iru cree la tarifa o el cupón Black Friday, y probar que la reserva quede medida.</p>
+      <p class="to">→ Iru · reserva de prueba el lunes 23</p>
+    </div></div>
+  </div>
+</section>
+
+<section id="enero">
+  <div class="sec-head">
+    <p class="eyebrow">05 · enero</p>
+    <h2>Diecinueve noches, seis estadías como máximo</h2>
+    <p class="lede">Cloudbeds, leído en vivo el 19-nov: ninguna reserva entre el 13 y el 31 de enero. El calendario del motor de reservas evita que dos compras se pisen.</p>
+  </div>
+  <div class="jan">
+    <div class="month">
+      <h3>Enero 2027</h3>
+      <div class="grid7" id="calJan"></div>
+      <div class="legend">
+        <span><i class="sw bf"></i>estadías Black Friday</span>
+        <span><i class="sw hold"></i>fuera: fin de año y primera quincena, last minute sin promo</span>
+      </div>
+    </div>
+    <div>
+      <p class="fig-title">Si se vendiera todo: seis estadías de 3 noches</p>
+      <div class="stays" id="stays"></div>
+      <div class="brk"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+      <div class="brk-l"><span>13–16</span><span>16–19</span><span>19–22</span><span>22–25</span><span>25–28</span><span>28–31</span></div>
+      <p class="fig-note">Queda una noche suelta. Con noches extra (V4), menos estadías pero más largas: la métrica del año son noches.</p>
+      <p class="fig-title" style="margin-top:22px">La tarifa de 4.200 sigue igual hasta el 30 de abril</p>
+      <div class="ext"><div class="on">13–31 ene · Black Friday</div><div class="dash">febrero</div><div class="dash">marzo</div><div class="dash">abril</div></div>
+      <p class="fig-note">Por eso la extensión es posible si funciona (Iru, 45:48), y por eso un cambio de fecha no le cuesta nada a la casa (V5). Ya hay una reserva del 24 al 28 de febrero, y Semana Santa es temporada pico.</p>
+    </div>
+  </div>
+</section>
+
+<section id="recorrido">
+  <div class="sec-head">
+    <p class="eyebrow">06 · del anuncio a la seña</p>
+    <h2>Se compra sin hablar con nadie</h2>
+    <p class="lede">Iru: «tenés que poder comprar sin interactuar con humanos». Boris: si alguien pregunta, se le habla. El recorrido hace las dos cosas.</p>
+  </div>
+  <div class="flow flow6">
+    <div class="node"><div class="box"><b>Anuncio, DM o email</b><span>con UTM black-friday-2026</span></div></div>
+    <div class="node"><div class="box"><b>Página de Black Friday</b><span>paquete, valor y precio · vista, clic en Reserve, clic en WhatsApp</span></div></div>
+    <div class="node"><div class="box"><b>Motor de Cloudbeds</b><span>tarifa o cupón BF · fechas 13–31 ene · mínimo 3 noches</span></div></div>
+    <div class="node"><div class="box"><b>Seña</b><span>confirmación automática · conversión en Meta</span></div></div>
+    <div class="node"><div class="box"><b>Iru, en menos de 24 h</b><span>bienvenida · fila en el CRM con la campaña</span></div></div>
+    <div class="node"><div class="box"><b>Operación</b><span>chef, desayuno, beach club, sound healing</span></div></div>
+  </div>
+  <p class="lane"><b>Salida al costado:</b> «Talk to us» en la misma página → WhatsApp de reservas → Iru. Para quien no compra 12.500 en un clic (Boris, 36:55).</p>
+</section>
+
+<section id="pauta">
+  <div class="sec-head">
+    <p class="eyebrow">07 · pauta y mensaje</p>
+    <h2>Fuerte al principio, y se ajusta el sábado</h2>
+    <p class="lede">Una campaña en Meta, una oferta y 3 anuncios con distinto titular. 70% prospección y 30% retargeting, en EE.UU. y Canadá. Meta D se pausa el 24: es la misma cuenta y le pega al mismo público. Todo lo que toca Meta lo hace una persona.</p>
+  </div>
+  <div class="fig">
+    <p class="fig-title">USD por día (propuesta V7-A)</p>
+    <div class="budget" id="budget"></div>
+    <div class="legend"><span><i class="sw bf"></i>100 por día</span><span><i class="sw" style="border:1.5px dashed var(--copper);background:transparent"></i>sigue a 100 si el sábado hay al menos una reserva · total 800</span><span><i class="sw hold"></i>baja a 50 si no hay ninguna · total 600</span></div>
+    <p class="fig-note">Tope duro: USD 800, por debajo de la «luca verde» que puso Boris como límite. En ARS, ≈ 154.500 por día a 100 dólares (1.545 por dólar, cotización del 17-nov).</p>
+  </div>
+  <div class="two-col">
+    <div class="fig">
+      <p class="fig-title">Titulares · borrador EN</p>
+      <div class="adlist" style="margin-top:10px">
+        <div>A private escape. January, the whole house.<small>la idea de Bianca</small></div>
+        <div>Three nights. The whole house. Sixteen people.<small>el «derechito» de Iru</small></div>
+        <div>Black Friday at La Chamana.<small>el evento</small></div>
+      </div>
+    </div>
+    <div class="fig">
+      <p class="fig-title">Texto principal · borrador EN</p>
+      <p class="primary" style="margin-top:10px"><i>Black Friday at La Chamana. Three nights in January, the whole house for up to sixteen. Breakfast every morning, a private dinner, the beach club, a sound healing session. USD 12,500 for the stay. Dates from January 13 to 31. Reserve until December 1.</i></p>
+      <p class="fig-note">Llamado «Reserve»; botón de Meta «Get offer». Salió «an exclusive opportunity» del copy de la guía: la palabra está prohibida y la excepción para anuncios pagos no la cubre. Todo pasa por copy-reviewer antes de circular.</p>
+    </div>
+  </div>
+</section>
+
+<section id="validar">
+  <div class="sec-head">
+    <p class="eyebrow">08 · para validar antes del viernes 20</p>
+    <h2>Diez puntos, cada uno con una recomendación</h2>
+    <p class="lede">Basta con aceptar la recomendada o elegir otra. Lo que marques queda guardado solo en este navegador: al terminar, «Copiar mis respuestas» y pegalas en el grupo.</p>
+  </div>
+  <div class="whoami">
+    <span>Quién valida:</span>
+    <div class="seg" id="who" role="group" aria-label="Quién valida">
+      <button type="button" data-v="Boris">Boris</button><button type="button" data-v="Bianca">Bianca</button><button type="button" data-v="Iru">Iru</button><button type="button" data-v="Gastón">Gastón</button>
+    </div>
+    <button type="button" class="clear" id="accAll">aceptar todas las recomendadas</button>
+  </div>
+  <div class="decs" id="decs"></div>
+  <div class="copybar">
+    <button type="button" class="btn" id="copyBtn">Copiar mis respuestas</button>
+    <span class="msg" id="copyMsg">0 de 10 marcadas.</span>
+    <textarea id="copyOut" hidden readonly aria-label="Respuestas para copiar"></textarea>
+  </div>
+</section>
+
+<section id="quien">
+  <div class="sec-head">
+    <p class="eyebrow">09 · autonomía</p>
+    <h2>Qué hace El Chamán solo, y qué necesita a una persona</h2>
+    <p class="lede">El pedido es que el setup y la ejecución corran lo más solos posible. Este es el reparto real, con los límites que ya están escritos.</p>
+  </div>
+  <div class="matrix">
+    <div class="mcol a"><h3>El Chamán, solo</h3><ul>
+      <li>este plan y esta página</li>
+      <li>el copy de anuncios, DMs, emails, la respuesta a agencias y el FAQ, con copy-reviewer y revisión de marca sobre cada pieza</li>
+      <li>la página de Black Friday: código y texto</li>
+      <li>el paquete de Meta listo para cargar: estructura, públicos, UTMs, presupuesto por día</li>
+      <li>la lista de DMs para Bianca y la lista y los cuerpos del email</li>
+      <li><b>la lectura diaria a las 10:00</b>: Meta, Cloudbeds, buzón de lara@ y eventos de la página</li>
+      <li>la regla del sábado 28, el cierre y el aprendizaje</li>
+    </ul><p class="why">Escribe archivos y lee datos. No envía ni publica nada.</p></div>
+    <div class="mcol b"><h3>Con el «go» de Boris</h3><ul>
+      <li>publicar la página de Black Friday</li>
+      <li>actualizar la herramienta de precios pública</li>
+      <li>mandar el email desde lara@, en olas de 20 como máximo</li>
+    </ul><p class="why">Cada envío o publicación lo aprieta Boris. Se puede dar todo en un solo mandato: «go black-friday».</p></div>
+    <div class="mcol c"><h3>Solo una persona</h3><ul>
+      <li><b>todo lo que toca Meta</b>: armar, activar, cambiar presupuesto, pausar Meta D (~20 min con el paquete listo)</li>
+      <li>los DMs de Instagram (Bianca)</li>
+      <li>la tarifa o el cupón en Cloudbeds (Iru)</li>
+      <li>la reserva de prueba (alguien con tarjeta)</li>
+      <li>precio, condiciones y presupuesto (Boris)</li>
+    </ul><p class="why">La automatización no toca Meta ni Instagram desde la restricción de junio, y en este repo eso está bloqueado en la configuración. Cloudbeds, El Chamán solo lo lee.</p></div>
+  </div>
+</section>
+
+<section id="calendario">
+  <div class="sec-head">
+    <p class="eyebrow">10 · calendario</p>
+    <h2>Del jueves 19 al miércoles 2</h2>
+  </div>
+  <div class="tl" id="tl"></div>
+</section>
+
+<section id="riesgos">
+  <div class="sec-head">
+    <p class="eyebrow">11 · riesgos</p>
+    <h2>Lo que puede salir mal, y qué lo cubre</h2>
+  </div>
+  <div class="scroll-x"><table>
+    <thead><tr><th>Riesgo</th><th>Peso</th><th>Qué lo cubre</th></tr></thead>
+    <tbody>
+      <tr><td>Un precio de referencia que no se sostiene</td><td><span class="sev s3"><i></i><i></i><i></i></span></td><td>V2: una sola lista de precios antes del 23</td></tr>
+      <tr><td>Una venta que no se puede atribuir</td><td><span class="sev s3"><i></i><i></i><i></i></span></td><td>reserva de prueba el 23; sin ella la pauta no sale</td></tr>
+      <tr><td>Que una agencia vea el precio y pida paridad</td><td><span class="sev s2"><i></i><i></i><i></i></span></td><td>respuesta acordada (A4) · la promo nunca va al grid orgánico</td></tr>
+      <tr><td>La operación de enero no está lista para 16 con chef</td><td><span class="sev s2"><i></i><i></i><i></i></span></td><td>proveedores confirmados antes del 13-ene (Iru)</td></tr>
+      <tr><td>Nadie compra 12.500 en un clic</td><td><span class="sev s2"><i></i><i></i><i></i></span></td><td>salida a WhatsApp · respuesta de Iru en menos de 24 h</td></tr>
+      <tr><td>El ruido de Black Friday encarece la pauta</td><td><span class="sev s1"><i></i><i></i><i></i></span></td><td>tope duro de 800 · regla del sábado 28</td></tr>
+    </tbody></table></div>
+  <div class="out" style="margin-top:22px">
+    <div><b>Fuera de esta campaña</b>Diciembre y la primera quincena de enero (last minute, sin promo) · Google Ads · agencias y distribuidoras.</div>
+    <div><b>También fuera</b>La guía «loco luxury» de Gastón · TikTok y LinkedIn · los temas operativos de la casa, que van por la operación.</div>
+  </div>
+</section>
+
+</main>
+<footer class="wrap">
+  <span>Plan de récord: vault/campaigns/black-friday-2026/plan-v1.0.md · campaign.yaml rev 2.</span>
+  <span>Fuentes: reunión «Black Friday Catch up» del 18-nov · hoja «Financial Overview» de Iru (18-nov) · «Strategy Guide v3» de Bianca (18-nov) · Cloudbeds leído el 19-nov · lachamana.com leída el 18-nov.</span>
+  <span>Nada sale hasta que Boris firme precio y marca (V1), impuestos (V3), condiciones (V5) y presupuesto (V7). Nada de esta campaña escribe en Meta desde el sistema: lo arma y lo activa una persona.</span>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+  var KEY = "lc-bf26-campana-v1";
+  var fmt = function (n) { return n.toLocaleString("es-AR"); };
+
+  var AGREED = [
+    ["A1", "El paquete", "3 noches, casa entera, hasta 16. Desayuno diario, una cena privada, beach club diario y sound healing. Sin traslado.", "Iru · hoja del 18-nov"],
+    ["A2", "El precio: 12.500", "Valor de referencia 19.108, ahorro 34,6%. Ganancia operativa 5.040 antes de impuestos.", "hoja de Iru"],
+    ["A3", "Estadías del 13 al 31 de enero", "Fin de año y la primera quincena se venden last minute, sin promo. Extensible: la tarifa de 4.200 sigue hasta el 30-abr.", "Bianca 40:19 · Boris 43:35 · Iru 45:29"],
+    ["A4", "Solo venta directa", "A las distribuidoras no se les ofrece. Si una agencia pregunta, tarifa neta anual y su comisión encima.", "Bianca 27:38 · Iru 28:37"],
+    ["A5", "Se compra sin hablar con nadie", "Con fechas, en el calendario de la web, con una tarifa o cupón Black Friday que crea Iru.", "Iru 22:36 · 36:47"],
+    ["A6", "Precio a la vista, derechito", "«Tal mes, tanta plata.» Sin un descuento que no es tal: se descartó la tarifa plana de 7.000.", "Boris 13:58 · 34:48 · Iru 35:30"],
+    ["A7", "Pauta fuerte y ajuste", "Arranque fuerte y ajuste a los pocos días según venta. Por debajo de USD 1.000.", "Iru 26:05 · Boris 24:32 · 14:40"],
+    ["A8", "Outreach con Black Friday", "Esa semana, las fichas de Bianca son todas de Black Friday, con link al sitio.", "Boris 23:22 · Bianca 24:21"],
+    ["A9", "Un sitio solo para Black Friday", "Lo arma El Chamán en ~48 h, con el setup y la pauta.", "Boris 14:40 · 42:31"],
+    ["A10", "Arranque el 24 o el 26", "«No importa, después vemos.»", "Boris 2:25"],
+    ["A11", "Quién revisa", "Boris y Bianca primero, después Iru, después el grupo.", "Boris 30:24 · 31:07"]
+  ];
+  var ag = document.getElementById("agreed");
+  AGREED.forEach(function (a) {
+    var d = document.createElement("div"); d.className = "ag";
+    d.innerHTML = '<span class="n"></span><span class="h"></span><p></p><span class="src"></span>';
+    d.children[0].textContent = a[0]; d.children[1].textContent = a[1]; d.children[2].textContent = a[2]; d.children[3].textContent = a[3];
+    ag.appendChild(d);
+  });
+
+  function hbars(el, rows, max, ref) {
+    if (!el) return;
+    rows.forEach(function (r) {
+      var row = document.createElement("div"); row.className = "hb";
+      var pct = (r[1] / max * 100).toFixed(1);
+      row.innerHTML = '<div class="lab"></div><div class="track"><div class="fill' + (r[3] ? " base" : "") + '" style="width:' + pct + '%"></div><span class="val num" style="left:' + pct + '%"></span>' + (ref ? '<span class="refline" style="left:' + (ref / max * 100).toFixed(1) + '%"></span>' : "") + "</div>";
+      row.querySelector(".lab").innerHTML = r[0] + (r[2] ? "<small></small>" : "");
+      if (r[2]) row.querySelector(".lab small").textContent = r[2];
+      row.querySelector(".val").textContent = fmt(r[1]);
+      el.appendChild(row);
+    });
+  }
+  hbars(document.getElementById("iruBars"), [
+    ["Valor de referencia", 19108, "suma de precios sueltos", false],
+    ["Precio Black Friday", 12500, "lo que paga quien reserva", true],
+    ["Costo operativo", 7460, "casa + experiencias", false],
+    ["Ganancia operativa", 5040, "40,3% del precio", true]
+  ], 23000);
+  hbars(document.getElementById("nightBars"), [
+    ["Sin IVA adentro", 2680, "(12.500 − 4.460) ÷ 3", true],
+    ["Con IVA adentro", 2105, "(10.776 − 4.460) ÷ 3", false]
+  ], 3400, 2000);
+
+  var wf = document.getElementById("wf");
+  if (wf) {
+    var M = 5040;
+    [
+      ["Ganancia operativa", "hoja de Iru", 0, 5040, "pos", "5.040"],
+      ["IVA 16%", "si el precio lo incluye", 3316, 5040, "neg", "−1.724"],
+      ["Tarjeta ~3%", "a confirmar", 2941, 3316, "neg", "−375"],
+      ["Pauta de la semana", "tope de V7", 2141, 2941, "neg", "−800"],
+      ["Queda, peor caso", "una sola venta paga todo", 0, 2141, "end", "≈ 2.140"]
+    ].forEach(function (r, i, all) {
+      var row = document.createElement("div"); row.className = "r" + (i === all.length - 1 ? " total" : "");
+      row.innerHTML = '<div><span></span><small></small></div><div class="tr"><span class="b ' + r[4] + '" style="left:' + (r[2] / M * 100).toFixed(1) + "%;width:" + ((r[3] - r[2]) / M * 100).toFixed(1) + '%"></span></div><div class="v"></div>';
+      row.querySelector("span").textContent = r[0]; row.querySelector("small").textContent = r[1]; row.querySelector(".v").textContent = r[5];
+      wf.appendChild(row);
+    });
+  }
+
+  var cal = document.getElementById("calJan");
+  ["L", "M", "M", "J", "V", "S", "D"].forEach(function (w) { var s = document.createElement("div"); s.className = "wd"; s.textContent = w; cal.appendChild(s); });
+  var first = new Date(2027, 0, 1).getDay(); var lead = (first + 6) % 7;
+  for (var i = 0; i < lead; i++) { var b = document.createElement("div"); b.className = "day blank"; cal.appendChild(b); }
+  for (var d = 1; d <= 31; d++) {
+    var c = document.createElement("div"); c.className = "day " + (d >= 13 ? "bf" : "out"); c.textContent = d;
+    c.title = d >= 13 ? "Estadía Black Friday posible" : "Fuera de la promo";
+    cal.appendChild(c);
+  }
+  var st = document.getElementById("stays");
+  for (var n = 13; n <= 31; n++) { var x = document.createElement("div"); x.className = "nt" + (n === 31 ? " spare" : ""); x.textContent = n; st.appendChild(x); }
+
+  var bud = document.getElementById("budget");
+  var days = [["mar", "24", 100], ["mié", "25", 100], ["jue", "26", 100], ["vie", "27 · BF", 100, "bf"], ["sáb", "28", 50], ["dom", "29", 50], ["lun", "30", 50], ["mar", "1-dic", 50]];
+  days.forEach(function (dd, i) {
+    var col = document.createElement("div"); col.className = "bcol" + (dd[3] ? " bf" : "");
+    var bar = i < 4 ? '<div class="bar"><div class="full"></div></div>' : '<div class="bar"><span class="ghost"></span><div class="half"></div></div>';
+    col.innerHTML = bar + '<div class="lab"><b>' + (i < 4 ? "100" : "100 / 50") + "</b>" + dd[0] + " " + dd[1] + "</div>";
+    bud.appendChild(col);
+  });
+  var rule = document.createElement("span"); rule.className = "rule"; rule.style.left = "calc(50% - 4px)"; rule.innerHTML = "<span>sáb 28, 10:00 · regla</span>"; bud.appendChild(rule);
+
+  var TL = [
+    ["jue 19-nov", "Este plan, primero a Boris y Bianca; después a Iru; después al grupo", "El Chamán · Boris", "hot"],
+    ["vie 20-nov", "Validación cerrada. Boris firma V1, V3, V5 y V7. Iru confirma impuestos y la etiqueta de fechas, y crea la tarifa o el cupón en Cloudbeds", "Boris · Iru", "hot"],
+    ["sáb 21 – dom 22", "El Chamán arma la página, el paquete de Meta, el copy, la lista de DMs, el email, la respuesta a agencias, el FAQ y los precios alineados. Todo pasa por copy-reviewer y revisión de marca", "El Chamán", ""],
+    ["lun 23-nov", "FAQ corregido · página publicada · campaña de Meta armada en pausa por una persona · reserva de prueba de punta a punta: condición de salida", "Boris · Bianca · Iru", "gate"],
+    ["mar 24-nov", "Arranque: Meta encendido (una persona) · Meta D en pausa · email de lara@ (go de Boris) · DMs de Black Friday (Bianca)", "equipo", "hot"],
+    ["24-nov → 1-dic", "Lectura diaria a las 10:00 en el grupo · respuestas en menos de 24 h", "El Chamán · Iru", ""],
+    ["vie 27-nov", "Black Friday. La pauta sigue a 100", "", ""],
+    ["sáb 28-nov, 10:00", "Regla de ajuste: con una reserva o más, sigue a 100; sin reservas, baja a 50", "El Chamán propone · una persona cambia", "gate"],
+    ["mar 1-dic, 23:59", "Cierre de la venta. La tarifa Black Friday se apaga en Cloudbeds", "Iru", "hot"],
+    ["mié 2-dic", "Lectura de cierre: reservas, noches, ingreso, costo por reserva. El aprendizaje queda escrito el mismo día", "El Chamán · Boris", ""]
+  ];
+  var tl = document.getElementById("tl");
+  TL.forEach(function (t) {
+    var it = document.createElement("div"); it.className = "ti" + (t[3] ? " " + t[3] : "");
+    it.innerHTML = '<div class="d"></div><div class="w"><span></span><small></small></div>';
+    it.querySelector(".d").textContent = t[0]; it.querySelector(".w span").textContent = t[1]; it.querySelector(".w small").textContent = t[2];
+    tl.appendChild(it);
+  });
+
+  var DEC = [
+    { id: "V1", t: "Cómo se muestra el precio", owner: "Boris (René, si quiere)", why: "La reunión pidió el precio a la vista. La ley de marca prohíbe precio en el copy y «book now»: hace falta una excepción con fecha, solo para las piezas de Black Friday, del 24-nov al 1-dic.", rec: 0, o: [
+      ["Precio en el anuncio, tachado en la página", "El anuncio dice «USD 12,500 · three nights · the whole house». La página muestra el valor línea por línea y el tachado. Llamado «Reserve», botón de Meta «Get offer»."],
+      ["Tachado también en el anuncio", "El «sprayette» completo de Iru. Necesita V2-A cerrado antes del 23."],
+      ["Sin precio", "La guía de Bianca. La reunión lo dejó atrás."]] },
+    { id: "V2", t: "Una sola lista de precios antes de tachar", owner: "Boris · El Chamán prepara", why: "Hoy la hoja de Iru, la herramienta pública y el FAQ dicen tres cosas distintas. El tachado tiene que ser un precio real.", rec: 0, o: [
+      ["Pasar los precios de Iru a la herramienta y corregir el FAQ", "Casa a 4.200 desde el 13-ene, desayuno 52, cena 92, beach club 45 por persona, sound healing 380. Todo antes del lunes 23."],
+      ["No tachar", "Solo en la página: «valued at USD 19,108 when booked separately»."],
+      ["Tachar sin alinear", "No recomendado: el primero que compare va a ver otro número."]] },
+    { id: "V3", t: "¿El 12.500 incluye impuestos?", owner: "Iru confirma · Boris decide", why: "Es lo que más mueve la ganancia: 5.040 sin IVA adentro, ≈ 3.300 con IVA adentro.", rec: 0, o: [
+      ["Impuestos incluidos, como el rack", "Precio final claro para una compra por impulso. La casa queda sobre el piso igual (≈ 2.100 por noche)."],
+      ["12.500 + impuestos", "Ganancia intacta, pero el número final sube a ~14.500 o más y deja de ser derechito."]] },
+    { id: "V4", t: "Noches extra", owner: "Iru", why: "La métrica del año son noches: una estadía de 4 o 5 noches vale más que dos de 3.", rec: 0, o: [
+      ["Sí, a la tarifa de enero con desayuno", "Cada noche extra a 4.200, con desayuno."],
+      ["Solo el paquete de 3 noches", "Más simple, menos noches."]] },
+    { id: "V5", t: "Condiciones de reserva", owner: "Boris decide · Iru redacta", why: "Es una compra por impulso: tiene que ser firme para la casa y sin miedo para quien compra.", rec: 0, o: [
+      ["50% no reembolsable, con un cambio de fecha", "Saldo 15 días antes de llegar. Un cambio de fechas permitido entre el 13-ene y el 30-abr: la tarifa es la misma, así que a la casa no le cuesta nada."],
+      ["30% como el rack, reembolsable", "Con reembolso hasta 30 días antes."],
+      ["Pago total, no reembolsable", "Lo más firme, lo que más frena."]] },
+    { id: "V6", t: "Ventana de venta", owner: "Boris", why: "Iru y Bianca dijeron el 24; Boris, el 26. «No importa.»", rec: 0, o: [
+      ["Mar 24-nov → mar 1-dic, 23:59 Tulum", "8 días con Black Friday y Cyber Monday. Coincide con el cierre de la guía de Bianca."],
+      ["Jue 26-nov → mar 1-dic", "6 días."],
+      ["Mar 24 → lun 30-nov", "7 días, cierra en Cyber Monday."]] },
+    { id: "V7", t: "Presupuesto de Meta y la regla", owner: "Boris", why: "Iru: arrancar fuerte, bajar si no vende. Boris: por debajo de USD 1.000.", rec: 0, o: [
+      ["100/día hasta el 27, regla el sábado 28", "Con al menos una reserva sigue a 100 (total 800); sin ninguna baja a 50 (total 600). Tope duro 800. EE.UU. y Canadá, sin México. Meta D en pausa el 24."],
+      ["50–60/día parejo", "≈ 450 en total. La propuesta de Boris en la reunión."],
+      ["100/día parejo", "800 en total, sin regla."]] },
+    { id: "V8", t: "A quién le llega el outreach", owner: "Boris · Bianca", why: "La base son sobre todo intermediarios, y lo acordado es venta directa, sin distribuidores.", rec: 0, o: [
+      ["Solo a quien compra para su propio grupo", "Productores de retiros, family offices, private client y mánagers de talento. Sin travel advisors ni agencias con comisión. DMs de Bianca y un email de lara@."],
+      ["Toda la base", "Agencias incluidas, con «sin comisión» en la letra chica."],
+      ["Sin outreach", "Solo pauta."]] },
+    { id: "V9", t: "Dónde vive la página de Black Friday", owner: "Boris", why: "Para una compra de 12.500 por impulso, el dominio pesa.", rec: 0, o: [
+      ["En lachamana.com", "Mismo dominio, el motor de Cloudbeds ya está y la medición es la del sitio. Sale por el riel de Shopify: El Chamán escribe, Boris publica."],
+      ["Micrositio en Vercel", "Más rápido y 100% en manos de El Chamán, pero el dominio es «vercel.app»."]] },
+    { id: "V10", t: "Qué incluye el rack, y el FAQ", owner: "Boris (D-0816-05)", why: "El FAQ dice incluido lo que el paquete ofrece como beneficio. Está abierta desde abril.", rec: 0, o: [
+      ["Rack: housekeeping, concierge, mantenimiento, seguridad", "Desayuno, beach club, sound healing, temazcal y traslados son experiencias aparte. El FAQ se corrige antes del 23."],
+      ["Dejar la web como está", "El Black Friday regala lo que el FAQ ya promete."]] }
+  ];
+
+  var state = { who: "", d: {} };
+  try { var raw = localStorage.getItem(KEY); if (raw) { var p = JSON.parse(raw); if (p && typeof p === "object") state = { who: p.who || "", d: p.d || {} }; } } catch (e) {}
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+
+  var host = document.getElementById("decs");
+  DEC.forEach(function (dc) {
+    var card = document.createElement("article"); card.className = "dec"; card.id = "dec-" + dc.id;
+    var top = document.createElement("div"); top.className = "dec-top";
+    top.innerHTML = '<span class="n"></span><h3></h3><span class="owner"></span>';
+    top.querySelector(".n").textContent = dc.id; top.querySelector("h3").textContent = dc.t; top.querySelector(".owner").innerHTML = "decide: <b></b>"; top.querySelector(".owner b").textContent = dc.owner;
+    card.appendChild(top);
+    var why = document.createElement("p"); why.className = "why"; why.textContent = dc.why; card.appendChild(why);
+    var opts = document.createElement("div"); opts.className = "opts";
+    dc.o.forEach(function (op, i) {
+      var L = String.fromCharCode(65 + i);
+      var lab = document.createElement("label"); lab.className = "opt";
+      lab.innerHTML = '<input type="radio"><span class="card"><span class="ol"><span class="letter"></span><span></span></span>' + (i === dc.rec ? '<span class="rec">recomendada</span>' : "") + '<span class="od"></span></span>';
+      var inp = lab.querySelector("input"); inp.name = "r-" + dc.id; inp.value = L;
+      lab.querySelector(".letter").textContent = L; lab.querySelector(".ol span:last-child").textContent = op[0]; lab.querySelector(".od").textContent = op[1];
+      inp.addEventListener("change", function () { state.d[dc.id] = state.d[dc.id] || {}; state.d[dc.id].o = L; save(); paint(); });
+      opts.appendChild(lab);
+    });
+    card.appendChild(opts);
+    var foot = document.createElement("div"); foot.className = "dec-foot";
+    foot.innerHTML = '<textarea placeholder="Nota (opcional): un matiz, una condición, un número distinto"></textarea><button type="button" class="clear">borrar</button>';
+    var ta = foot.querySelector("textarea"); ta.setAttribute("aria-label", "Nota sobre " + dc.id);
+    ta.addEventListener("input", function () { state.d[dc.id] = state.d[dc.id] || {}; state.d[dc.id].n = ta.value; save(); });
+    foot.querySelector("button").addEventListener("click", function () { delete state.d[dc.id]; save(); paint(); });
+    card.appendChild(foot);
+    host.appendChild(card);
+  });
+
+  var whoEl = document.getElementById("who");
+  whoEl.addEventListener("click", function (e) { var b = e.target.closest("button"); if (!b) return; state.who = b.getAttribute("data-v"); save(); paint(); });
+  document.getElementById("accAll").addEventListener("click", function () {
+    DEC.forEach(function (dc) { if (!state.d[dc.id] || !state.d[dc.id].o) { state.d[dc.id] = state.d[dc.id] || {}; state.d[dc.id].o = String.fromCharCode(65 + dc.rec); } });
+    save(); paint();
+  });
+
+  function paint() {
+    var done = 0;
+    DEC.forEach(function (dc) {
+      var s = state.d[dc.id] || {}; var card = document.getElementById("dec-" + dc.id);
+      card.querySelectorAll("input").forEach(function (i) { i.checked = i.value === s.o; });
+      var ta = card.querySelector("textarea"); if (document.activeElement !== ta) ta.value = s.n || "";
+      card.classList.toggle("done", !!s.o); if (s.o) done++;
+    });
+    whoEl.querySelectorAll("button").forEach(function (b) { b.setAttribute("aria-pressed", String(b.getAttribute("data-v") === state.who)); });
+    document.getElementById("pbar").style.width = (done / DEC.length * 100) + "%";
+    document.getElementById("ptxt").textContent = done + "/" + DEC.length;
+    document.getElementById("copyMsg").textContent = done + " de " + DEC.length + " marcadas" + (state.who ? " · valida " + state.who : " · elegí quién valida") + ".";
+  }
+  paint();
+
+  function buildText() {
+    var lines = ["Black Friday 2026 · validación" + (state.who ? " de " + state.who : "") + " · " + new Date().toLocaleDateString("es-AR")];
+    DEC.forEach(function (dc) {
+      var s = state.d[dc.id] || {};
+      if (!s.o) { lines.push(dc.id + " " + dc.t + ": (sin marcar)"); return; }
+      var idx = s.o.charCodeAt(0) - 65;
+      lines.push(dc.id + " " + dc.t + ": " + s.o + " — " + dc.o[idx][0] + (idx === dc.rec ? " (la recomendada)" : "") + (s.n ? " · nota: " + s.n.trim() : ""));
+    });
+    return lines.join("\n");
+  }
+  document.getElementById("copyBtn").addEventListener("click", function () {
+    var txt = buildText(); var out = document.getElementById("copyOut"); var msg = document.getElementById("copyMsg");
+    function fallback() { out.hidden = false; out.value = txt; out.focus(); out.select(); msg.textContent = "Seleccionado: copialo con Cmd/Ctrl + C y pegalo en el grupo."; }
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(txt).then(function () { msg.textContent = "Copiado. Pegalo en el grupo."; out.hidden = false; out.value = txt; }, fallback);
+      } else fallback();
+    } catch (e) { fallback(); }
+  });
+})();
+</script>
+</body></html>
