@@ -417,14 +417,48 @@ html { scroll-behavior: smooth; }
   .bcol .lab { font-size: 10.5px; }
   .stays .nt { font-size: 0; }
 }
+
+/* V2.0: campaign tables, kpis, funnel */
+.sub-h { font-size: 22px; margin: 30px 0 10px; }
+.kpis { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 10px; margin-bottom: 8px; }
+.kpis div { background: var(--surface); border-radius: 6px; padding: 12px 12px 10px; display: grid; gap: 2px; }
+.kpis b { font-family: var(--f-display); font-weight: 400; font-size: 30px; line-height: 1; color: var(--copper-ink); }
+.kpis span { font-size: 12.5px; color: var(--muted); line-height: 1.3; }
+.tbl { font-size: 13.5px; }
+.tbl th { text-align: left; font-weight: 500; font-size: 12px; letter-spacing: 0.04em; color: var(--muted); border-bottom: 1px solid var(--line); padding: 8px 10px 8px 0; vertical-align: bottom; }
+.tbl td { border-bottom: 1px solid var(--line); padding: 9px 10px 9px 0; vertical-align: top; }
+.tbl td small { display: block; font-size: 12px; color: var(--muted); }
+.tbl.num-r td { font-variant-numeric: tabular-nums; }
+.tbl .hl { background: var(--copper-soft); padding-left: 8px; }
+.tbl tr.tot td { border-top: 1.5px solid var(--fg); }
+.tbl tr.hot td:first-child b { color: var(--copper-ink); }
+.tbl tr.gate td { background: var(--warn-soft); }
+.tbl tr.rule-row td { background: var(--warn-soft); font-size: 13px; padding-left: 8px; }
+.mono { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 12px; word-break: break-word; }
+.st { display: inline-block; font-size: 11.5px; font-weight: 500; padding: 2px 8px; border-radius: 999px; white-space: nowrap; }
+.st.ok { color: var(--ok); background: var(--ok-soft); }
+.st.warn { color: var(--warn); background: var(--warn-soft); }
+.st.bad { color: var(--bad); background: var(--bad-soft); }
+.fun { display: grid; gap: 6px; margin-top: 12px; }
+.fr { display: grid; grid-template-columns: minmax(150px, 240px) minmax(0, 1fr) 80px; gap: 12px; align-items: center; font-size: 14px; }
+.fr .fl small { display: block; font-size: 12px; color: var(--muted); }
+.fr .ft { height: 26px; display: flex; justify-content: center; }
+.fr .fb { height: 100%; background: var(--copper); border-radius: 3px; }
+.fr.last .fb { background: var(--ok); }
+.fr .fv { text-align: right; font-weight: 500; }
+.two-col .fig + .fig { margin-top: 0; }
+.two-col > * { min-width: 0; }
+.tbl.num-r td:first-child { white-space: nowrap; }
+@media (max-width: 860px) { .kpis { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 620px) { .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); } .fr { grid-template-columns: 110px minmax(0, 1fr) 62px; gap: 8px; font-size: 13px; } .tbl { min-width: 640px; } }
 </style>
 </head><body>
 <header class="hero">
   <div class="wrap">
     <div>
-      <p class="eyebrow">La Chamana · campaña para validar · V1.0 · 19-nov-2026</p>
+      <p class="eyebrow">La Chamana · la campaña · V2.0 · 22-nov-2026</p>
       <h1>Black Friday,<br><em>tres noches de enero</em></h1>
-      <p class="sub">Lo que acordamos el 18 con Iru y Bianca, la oferta en números, lo que encontré al cruzarla con los datos, y diez puntos para validar antes del viernes 20. Marcá tus respuestas, copialas y pegalas en el grupo.</p>
+      <p class="sub">La oferta, lo que le queda a la casa, lo que hay que arreglar en la web, la campaña en Meta y en directo, el funnel día por día y lo que falta definir. Se muestra al equipo el martes 24 y, si estamos todos OK, se prende.</p>
     </div>
     <div class="arc" aria-label="Precio Black Friday: 12.500 dólares la estadía">
       <div>
@@ -435,9 +469,9 @@ html { scroll-behavior: smooth; }
     </div>
   </div>
   <div class="tiles">
-    <div class="tile"><span class="v num">24-nov → 1-dic</span><span class="k">venta: 8 días, con Black Friday y Cyber Monday</span><span class="tag t-conf">a validar · V6</span></div>
+    <div class="tile"><span class="v num">24-nov → 1-dic</span><span class="k">venta: 8 días, con Black Friday y Cyber Monday</span><span class="tag t-ver">decidido · 22-nov</span></div>
     <div class="tile"><span class="v num">13 → 31 ene</span><span class="k">estadías · hoy ninguna reserva en Cloudbeds</span><span class="tag t-ver">acordado · leído hoy</span></div>
-    <div class="tile"><span class="v num">19.108</span><span class="k">valor de referencia · 34,6% menos</span><span class="tag t-conf">sostenerlo · V2</span></div>
+    <div class="tile"><span class="v num">19.108</span><span class="k">valor de referencia · 34,6% menos</span><span class="tag t-ver">una sola lista · lunes</span></div>
     <div class="tile"><span class="v num">1 reserva</span><span class="k">paga la semana de pauta y deja ganancia</span><span class="tag t-ver">cuenta</span></div>
   </div>
 </header>
@@ -450,12 +484,9 @@ html { scroll-behavior: smooth; }
     <a href="#hallazgos">Hallazgos</a>
     <a href="#enero">Enero</a>
     <a href="#recorrido">Recorrido</a>
-    <a href="#pauta">Pauta</a>
-    <a href="#validar" class="key">Validar</a>
-    <a href="#quien">Quién hace qué</a>
-    <a href="#calendario">Calendario</a>
-    <a href="#riesgos">Riesgos</a>
-    <span class="progress"><span class="bar"><i id="pbar"></i></span><span id="ptxt" class="num">0/10</span></span>
+    <a href="#campana" class="key">Campaña</a>
+    <a href="#funnel" class="key">Funnel</a>
+    <a href="#pendiente">Pendiente</a>
   </div>
 </nav>
 
@@ -465,7 +496,7 @@ html { scroll-behavior: smooth; }
   <div class="sec-head">
     <p class="eyebrow">01 · reunión del 18-nov</p>
     <h2>Lo que ya quedó acordado</h2>
-    <p class="lede">Verificado contra el transcript. Esto no se vuelve a discutir: es la base de los puntos para validar.</p>
+    <p class="lede">Verificado contra el transcript. Esto no se vuelve a discutir: es la base de la campaña.</p>
   </div>
   <div class="shift">
     <div class="was"><span class="owner">El 17-nov, en la llamada con Gastón</span><ul><li>«hasta 50%»</li><li>packs de 3 y de 5 noches</li><li>todo enero</li><li>calculadora en la página</li></ul></div>
@@ -514,7 +545,7 @@ html { scroll-behavior: smooth; }
           <span class="pmark" style="left:65.42%"><span>Black Friday 12.500</span></span>
         </div>
         <div class="vlegend"><span>casa 3 × 4.200 <b>12.600</b></span><span>desayuno 16 × 3 × 52 <b>2.496</b></span><span>cena 16 × 92 <b>1.472</b></span><span>beach club 16 × 3 × 45 <b>2.160</b></span><span>sound healing <b>380</b></span><span>total <b>19.108</b></span></div>
-        <p class="fig-note"><b>El precio Black Friday es menor que la casa sola a tarifa de enero.</b> Dicho en una línea: las experiencias van de regalo. Es un buen argumento para el copy, pero sirve solo si la tarifa de 4.200 y los precios de cada experiencia son los que se publican de verdad (V2).</p>
+        <p class="fig-note"><b>El precio Black Friday es menor que la casa sola a tarifa de enero.</b> Dicho en una línea: las experiencias van de regalo. Es un buen argumento para el copy, pero sirve solo si la tarifa de 4.200 y los precios de cada experiencia son los que se publican de verdad: por eso pasan a la herramienta pública el lunes.</p>
       </div>
     </div>
     <div>
@@ -525,7 +556,7 @@ html { scroll-behavior: smooth; }
         <span class="p">USD 12,500 · THREE NIGHTS · THE WHOLE HOUSE</span>
         <span class="cta">RESERVE</span>
       </div>
-      <small>Boceto sobre el mockup de Bianca: la foto real de la casa va de fondo. El precio aparece solo si se aprueba V1-A o V1-B.</small>
+      <small>Boceto sobre el mockup de Bianca: la foto real de la casa va de fondo. Decidido: el precio va en el texto del anuncio y en la página, no sobre la foto.</small>
     </div>
   </div>
 </section>
@@ -551,7 +582,7 @@ html { scroll-behavior: smooth; }
   <div class="fig" style="margin-top:14px">
     <p class="fig-title">De la ganancia operativa al peor caso: una sola venta que paga toda la pauta</p>
     <div class="wf" id="wf"></div>
-    <p class="fig-note">El IVA del 16% resta solo si el 12.500 incluye impuestos (V3); el impuesto estatal de hospedaje no está en la cuenta. La comisión de tarjeta es la tasa típica, a confirmar en Cloudbeds Payments. La pauta toma el tope de V7.</p>
+    <p class="fig-note">El IVA del 16% resta solo si el 12.500 incluye impuestos (decidido: los incluye; Iru confirma el número); el impuesto estatal de hospedaje no está en la cuenta. La comisión de tarjeta es la tasa típica, a confirmar en Cloudbeds Payments. La pauta toma el tope de USD 800.</p>
   </div>
 </section>
 
@@ -573,34 +604,34 @@ html { scroll-behavior: smooth; }
           <tr><td>Beach club</td><td>45 por persona y día</td><td class="x">450 por grupo y día</td><td class="x">«included»</td></tr>
           <tr><td>Sound healing</td><td>380</td><td class="x">holístico, 650</td><td class="x">«included»</td></tr>
         </tbody></table></div>
-      <p class="to">→ V2 · una sola lista antes del lunes 23</p>
+      <p class="to">→ decidido: los precios de Iru pasan a la herramienta pública · El Chamán prepara, Boris publica · lunes 23</p>
     </div></div>
     <div class="find"><span class="i">2</span><div>
       <h3>La web regala lo que el paquete vende</h3>
       <p>El bloque «Always Included» de lachamana.com lista housekeeping, concierge y seguridad. Su FAQ dice otra cosa:</p>
       <p class="quote" style="margin-top:10px">«What's included? Round-trip airport transfers… daily breakfast… beach club access, an authentic temazcal ritual, and a sound healing session.»<small>lachamana.com, FAQ, leído el 18-nov</small></p>
       <p style="margin-top:10px">Iru lo dejó claro en la reunión: «le incluís breakfast, que no está incluido en el paquete inicial». El que está mal es el FAQ.</p>
-      <p class="to">→ V10 · corregir el FAQ antes del 23</p>
+      <p class="to">→ decidido: el rack es housekeeping, concierge, mantenimiento y seguridad · texto nuevo listo · lo cambia una persona en el theme de Shopify el lunes 23 (el sistema no tiene permiso sobre el theme)</p>
     </div></div>
     <div class="find"><span class="i">3</span><div>
       <h3>No sabemos si el 12.500 incluye impuestos</h3>
       <p>El rack se publica «tax included», y la hoja de Iru dice «antes de impuestos». Es lo que más mueve la ganancia: con el IVA adentro, la ganancia operativa baja de 5.040 a ≈ 3.300.</p>
-      <p class="to">→ V3 · lo confirma Iru</p>
+      <p class="to">→ decidido: impuestos incluidos · Iru confirma el número el lunes a las 10:00</p>
     </div></div>
     <div class="find"><span class="i">4</span><div>
       <h3>La hoja dice «Dec 2026 &amp; Jan 2027»</h3>
       <p>La reunión cerró 13 al 31 de enero, y la tarifa de 4.200 con la que está hecha la cuenta rige recién desde el 13. Diciembre hasta el 22 cuesta ≈ 3.000 la noche: con ese número el paquete no da 12.500. Hay que corregir la etiqueta antes de que la hoja circule.</p>
-      <p class="to">→ Iru</p>
+      <p class="to">→ decidido: solo del 13 al 31 de enero · Iru corrige la etiqueta</p>
     </div></div>
     <div class="find"><span class="i">5</span><div>
       <h3>Casi toda la base de outreach son intermediarios</h3>
       <p>Las fichas de Bianca y las secuencias de email son family offices, productores de retiros, mánagers, y también travel advisors que cobran comisión. Mandarle Black Friday a toda la base choca con lo acordado: sin distribuidores.</p>
-      <p class="to">→ V8 · solo a quien compra para su propio grupo</p>
+      <p class="to">→ decidido: solo a quien compra para su propio grupo · DMs y email sin precio, llevan a la página</p>
     </div></div>
     <div class="find"><span class="i">6</span><div>
       <h3>La compra sin hablar con nadie es posible hoy</h3>
       <p>La web ya carga el motor de reservas de Cloudbeds. Falta que Iru cree la tarifa o el cupón Black Friday, y probar que la reserva quede medida.</p>
-      <p class="to">→ Iru · reserva de prueba el lunes 23</p>
+      <p class="to">→ Iru crea la tarifa el lunes a las 12:00 · reserva de prueba el lunes a la tarde</p>
     </div></div>
   </div>
 </section>
@@ -625,10 +656,10 @@ html { scroll-behavior: smooth; }
       <div class="stays" id="stays"></div>
       <div class="brk"><span></span><span></span><span></span><span></span><span></span><span></span></div>
       <div class="brk-l"><span>13–16</span><span>16–19</span><span>19–22</span><span>22–25</span><span>25–28</span><span>28–31</span></div>
-      <p class="fig-note">Queda una noche suelta. Con noches extra (V4), menos estadías pero más largas: la métrica del año son noches.</p>
+      <p class="fig-note">Queda una noche suelta. Con noches extra (a 4.200 con desayuno), menos estadías pero más largas: la métrica del año son noches.</p>
       <p class="fig-title" style="margin-top:22px">La tarifa de 4.200 sigue igual hasta el 30 de abril</p>
       <div class="ext"><div class="on">13–31 ene · Black Friday</div><div class="dash">febrero</div><div class="dash">marzo</div><div class="dash">abril</div></div>
-      <p class="fig-note">Por eso la extensión es posible si funciona (Iru, 45:48), y por eso un cambio de fecha no le cuesta nada a la casa (V5). Ya hay una reserva del 24 al 28 de febrero, y Semana Santa es temporada pico.</p>
+      <p class="fig-note">Por eso la extensión es posible si funciona (Iru, 45:48), y por eso un cambio de fecha no le cuesta nada a la casa: la seña es no reembolsable, pero se permite un cambio de fechas. Ya hay una reserva del 24 al 28 de febrero, y Semana Santa es temporada pico.</p>
     </div>
   </div>
 </section>
@@ -650,127 +681,168 @@ html { scroll-behavior: smooth; }
   <p class="lane"><b>Salida al costado:</b> «Talk to us» en la misma página → WhatsApp de reservas → Iru. Para quien no compra 12.500 en un clic (Boris, 36:55).</p>
 </section>
 
-<section id="pauta">
+<section id="campana">
   <div class="sec-head">
-    <p class="eyebrow">07 · pauta y mensaje</p>
-    <h2>Fuerte al principio, y se ajusta el sábado</h2>
-    <p class="lede">Una campaña en Meta, una oferta y 3 anuncios con distinto titular. 70% prospección y 30% retargeting, en EE.UU. y Canadá. Meta D se pausa el 24: es la misma cuenta y le pega al mismo público. Todo lo que toca Meta lo hace una persona.</p>
+    <p class="eyebrow">07 · la campaña en Meta</p>
+    <h2>Una campaña, dos públicos, cinco anuncios</h2>
+    <p class="lede">Fuerte al principio y se ajusta el sábado. EE.UU. y Canadá. La carga y la activación las hace una persona: El Chamán entrega el paquete listo para cargar, y nada de esta campaña escribe en Meta desde el sistema.</p>
   </div>
-  <div class="fig">
-    <p class="fig-title">USD por día (propuesta V7-A)</p>
+  <div class="kpis">
+    <div><b class="num">1</b><span>campaña</span></div>
+    <div><b class="num">2</b><span>públicos · prospección y retargeting</span></div>
+    <div><b class="num">4</b><span>creativos · 7 archivos</span></div>
+    <div><b class="num">5</b><span>anuncios</span></div>
+    <div><b class="num">600–800</b><span>USD en 8 días · tope 800</span></div>
+    <div><b class="num">≈ 12–16 mil</b><span>personas alcanzadas · estimado</span></div>
+  </div>
+
+  <h3 class="sub-h">La estructura</h3>
+  <div class="scroll-x"><table class="tbl">
+    <thead><tr><th>Nivel</th><th>Qué</th><th>Por qué así</th></tr></thead>
+    <tbody>
+      <tr><td><b>Campaña</b><small>LC-2026-11 — Black Friday — US+CA</small></td><td>Objetivo <b>Tráfico</b>, optimizado a <b>visitas a la página de destino</b>. Tope de gasto de la campaña: USD 800. Del martes 24 a las 00:00 al martes 1-dic a las 23:59, hora de Tulum.</td><td>Optimizar a compras necesita ~50 por semana para aprender; acá esperamos 1 a 3. Y el píxel dentro del motor de Cloudbeds es <i>desconocido</i> hasta la prueba del lunes. Si la prueba lo muestra, la compra se mide igual.</td></tr>
+      <tr><td><b>Conjunto 1 · Prospección</b><small>70% del día · 60% desde el 28</small></td><td>EE.UU. y Canadá · 30 a 65 años · público Advantage+ con sugerencias: viajes de lujo, alquiler de villas, vacaciones en familia, viajes en grupo, retiros de bienestar · ubicaciones Advantage+ (Instagram y Facebook) · excluye a los del conjunto 2.</td><td>El público amplio fue el CPM más barato de la cuenta (USD 21, «A amplia», octubre). México quedó afuera: no estaba en el pedido y suma costo.</td></tr>
+      <tr><td><b>Conjunto 2 · Retargeting</b><small>30% del día · 40% desde el 28</small></td><td>Quien interactuó con @chamana.live en 365 días · visitantes de lachamana.com en 180 días · quien vio el 50% del reel C3 · visitantes de la página de Black Friday (se llena desde el 24).</td><td>Son los que ya conocen la casa: ahí vive la compra rápida. Su tamaño es <i>desconocido</i> hasta que Bianca cree los públicos el lunes.</td></tr>
+      <tr><td><b>Anuncios</b><small>5</small></td><td>Prospección: C1, C2 y C3. Retargeting: C2 desde el 24 y C4 desde el sábado 28.</td><td>Tres ideas distintas compiten en prospección y Meta reparte hacia la que rinde. El cierre habla solo a quien ya vio la oferta.</td></tr>
+      <tr><td><b>Links</b></td><td><span class="mono">utm_source=meta · utm_medium=paid · utm_campaign=black-friday-2026 · utm_content=c1-escape | c2-carrusel | c3-reel | c4-cierre</span></td><td>Cada visita y cada reserva se puede atribuir al anuncio que la trajo.</td></tr>
+    </tbody></table></div>
+
+  <h3 class="sub-h">Los cuatro creativos</h3>
+  <div class="scroll-x"><table class="tbl">
+    <thead><tr><th>Creativo</th><th>Formato</th><th>Qué dice la imagen</th><th>Titular · texto</th><th>Corre en</th><th>Estado</th></tr></thead>
+    <tbody>
+      <tr><td><b>C1 · A Private Escape</b><small>el mockup de Bianca</small></td><td>foto 4:5 + 9:16</td><td>A PRIVATE ESCAPE · BLACK FRIDAY, sobre la foto real de la casa. Sin precio ni beneficios en la imagen.</td><td><i>A private escape. January, the whole house.</i> · texto P1</td><td>prospección · desde el 24</td><td><span class="st warn">4:5 listo · falta 9:16</span></td></tr>
+      <tr><td><b>C2 · La estadía</b><small>lo que incluye, tarjeta por tarjeta</small></td><td>carrusel 4:5, 5 tarjetas</td><td>The whole house · Breakfast, every morning · One private dinner · The beach club, for sixteen · A sound healing session</td><td><i>Three nights. The whole house. Sixteen people.</i> · P1 / P2</td><td>prospección y retargeting · desde el 24</td><td><span class="st bad">falta · fotos de cada experiencia</span></td></tr>
+      <tr><td><b>C3 · Reel</b><small>la casa en movimiento</small></td><td>video 9:16, 10 a 15 s</td><td>Tres textos: Black Friday at La Chamana / Three nights in January / Until December 1</td><td><i>Black Friday at La Chamana.</i> · P1</td><td>prospección · desde el 24</td><td><span class="st bad">falta · edición</span></td></tr>
+      <tr><td><b>C4 · Cierre</b><small>solo a quien ya vio la oferta</small></td><td>foto 4:5 + 9:16</td><td>Until December 1</td><td><i>Until December 1. Three nights in January.</i> · P2</td><td>retargeting · desde el sábado 28</td><td><span class="st bad">falta · entrega jueves 26</span></td></tr>
+    </tbody></table></div>
+  <div class="two-col">
+    <div class="fig"><p class="fig-title">Texto principal P1 · prospección</p><p class="primary" style="margin-top:10px"><i>Black Friday at La Chamana. Three nights in January, the whole house for up to sixteen. Breakfast every morning, a private dinner, the beach club, a sound healing session. USD 12,500 for the stay. Dates from January 13 to 31. Reserve until December 1.</i></p></div>
+    <div class="fig"><p class="fig-title">Texto principal P2 · retargeting</p><p class="primary" style="margin-top:10px"><i>The house holds sixteen. In January, one group has it for three nights. Breakfast every morning, a private dinner, the beach club and a sound healing session, at USD 12,500 for the stay. Black Friday closes December 1.</i></p></div>
+  </div>
+  <p class="fig-note">El precio va en el texto del anuncio y en la página, no sobre la foto (criterio de la guía de Bianca, compatible con el precio a la vista). Botón de Meta: «Get offer». El copy completo está en <span class="mono">copy-v1.0.md</span> y pasó copy-reviewer el 22-nov: sin fallas duras, cuatro avisos menores ya corregidos. Falta tu OK.</p>
+
+  <h3 class="sub-h">La plata, día por día</h3>
+  <div class="scroll-x"><table class="tbl num-r">
+    <thead><tr><th>Fase</th><th>Días</th><th>USD por día</th><th>ARS por día</th><th>Prospección / retargeting</th><th>Total de la fase</th><th>Acumulado</th></tr></thead>
+    <tbody>
+      <tr><td><b>Arranque</b></td><td>mar 24 → vie 27</td><td>100</td><td>154.540</td><td>70 / 30</td><td>400</td><td>400</td></tr>
+      <tr class="rule-row"><td colspan="7"><b>Sábado 28, 10:00 · la regla.</b> El Chamán lee Cloudbeds y propone; una persona cambia el presupuesto.</td></tr>
+      <tr><td><b>Refuerzo</b> · con al menos una reserva</td><td>sáb 28 → mar 1-dic</td><td>100</td><td>154.540</td><td>60 / 40</td><td>400</td><td><b>800</b></td></tr>
+      <tr><td><b>Refuerzo</b> · sin reservas</td><td>sáb 28 → mar 1-dic</td><td>50</td><td>77.270</td><td>30 / 20</td><td>200</td><td><b>600</b></td></tr>
+    </tbody></table></div>
+  <div class="fig" style="margin-top:14px">
+    <p class="fig-title">USD por día</p>
     <div class="budget" id="budget"></div>
     <div class="legend"><span><i class="sw bf"></i>100 por día</span><span><i class="sw" style="border:1.5px dashed var(--copper);background:transparent"></i>sigue a 100 si el sábado hay al menos una reserva · total 800</span><span><i class="sw hold"></i>baja a 50 si no hay ninguna · total 600</span></div>
-    <p class="fig-note">Tope duro: USD 800, por debajo de la «luca verde» que puso Boris como límite. En ARS, ≈ 154.500 por día a 100 dólares (1.545 por dólar, cotización del 17-nov).</p>
-  </div>
-  <div class="two-col">
-    <div class="fig">
-      <p class="fig-title">Titulares · borrador EN</p>
-      <div class="adlist" style="margin-top:10px">
-        <div>A private escape. January, the whole house.<small>la idea de Bianca</small></div>
-        <div>Three nights. The whole house. Sixteen people.<small>el «derechito» de Iru</small></div>
-        <div>Black Friday at La Chamana.<small>el evento</small></div>
-      </div>
-    </div>
-    <div class="fig">
-      <p class="fig-title">Texto principal · borrador EN</p>
-      <p class="primary" style="margin-top:10px"><i>Black Friday at La Chamana. Three nights in January, the whole house for up to sixteen. Breakfast every morning, a private dinner, the beach club, a sound healing session. USD 12,500 for the stay. Dates from January 13 to 31. Reserve until December 1.</i></p>
-      <p class="fig-note">Llamado «Reserve»; botón de Meta «Get offer». Salió «an exclusive opportunity» del copy de la guía: la palabra está prohibida y la excepción para anuncios pagos no la cubre. Todo pasa por copy-reviewer antes de circular.</p>
-    </div>
+    <p class="fig-note">Tope duro: USD 800, debajo de la «luca verde». ARS a 1.545,40 por dólar (oficial del cockpit, 17-nov). Para tener escala: Meta D gasta hoy ≈ USD 8,50 por día y se pausa el 24, a mano. Esto es doce veces eso, durante ocho días.</p>
   </div>
 </section>
 
-<section id="validar">
+<section id="funnel">
   <div class="sec-head">
-    <p class="eyebrow">08 · para validar antes del viernes 20</p>
-    <h2>Diez puntos, cada uno con una recomendación</h2>
-    <p class="lede">Basta con aceptar la recomendada o elegir otra. Lo que marques queda guardado solo en este navegador: al terminar, «Copiar mis respuestas» y pegalas en el grupo.</p>
+    <p class="eyebrow">08 · el funnel en el tiempo</p>
+    <h2>De doce mil personas a una reserva</h2>
+    <p class="lede">Todo lo de esta sección es <b>estimado</b>, y se apoya en lo que la cuenta midió en sus tres campañas en EE.UU. (septiembre a noviembre). Ninguna de esas tres tenía oferta, precio ni compra directa: esta tiene las tres, así que la comparación sirve para el tope de arriba del funnel, no para el de abajo.</p>
   </div>
-  <div class="whoami">
-    <span>Quién valida:</span>
-    <div class="seg" id="who" role="group" aria-label="Quién valida">
-      <button type="button" data-v="Boris">Boris</button><button type="button" data-v="Bianca">Bianca</button><button type="button" data-v="Iru">Iru</button><button type="button" data-v="Gastón">Gastón</button>
-    </div>
-    <button type="button" class="clear" id="accAll">aceptar todas las recomendadas</button>
-  </div>
-  <div class="decs" id="decs"></div>
-  <div class="copybar">
-    <button type="button" class="btn" id="copyBtn">Copiar mis respuestas</button>
-    <span class="msg" id="copyMsg">0 de 10 marcadas.</span>
-    <textarea id="copyOut" hidden readonly aria-label="Respuestas para copiar"></textarea>
-  </div>
-</section>
 
-<section id="quien">
-  <div class="sec-head">
-    <p class="eyebrow">09 · autonomía</p>
-    <h2>Qué hace El Chamán solo, y qué necesita a una persona</h2>
-    <p class="lede">El pedido es que el setup y la ejecución corran lo más solos posible. Este es el reparto real, con los límites que ya están escritos.</p>
+  <div class="fig">
+    <p class="fig-title">El embudo completo · escenario base · USD 600</p>
+    <div class="fun" id="fun"></div>
+    <p class="fig-note">Con USD 800 (si hay una reserva antes del sábado), todo crece ~⅓: ≈ 15.800 personas, ≈ 340 visitas, ≈ 14 clics en «Reserve». La reserva esperada viene la mitad desde el motor de Cloudbeds y la otra mitad desde una conversación por WhatsApp que cierra Iru.</p>
   </div>
-  <div class="matrix">
-    <div class="mcol a"><h3>El Chamán, solo</h3><ul>
-      <li>este plan y esta página</li>
-      <li>el copy de anuncios, DMs, emails, la respuesta a agencias y el FAQ, con copy-reviewer y revisión de marca sobre cada pieza</li>
-      <li>la página de Black Friday: código y texto</li>
-      <li>el paquete de Meta listo para cargar: estructura, públicos, UTMs, presupuesto por día</li>
-      <li>la lista de DMs para Bianca y la lista y los cuerpos del email</li>
-      <li><b>la lectura diaria a las 10:00</b>: Meta, Cloudbeds, buzón de lara@ y eventos de la página</li>
-      <li>la regla del sábado 28, el cierre y el aprendizaje</li>
-    </ul><p class="why">Escribe archivos y lee datos. No envía ni publica nada.</p></div>
-    <div class="mcol b"><h3>Con el «go» de Boris</h3><ul>
-      <li>publicar la página de Black Friday</li>
-      <li>actualizar la herramienta de precios pública</li>
-      <li>mandar el email desde lara@, en olas de 20 como máximo</li>
-    </ul><p class="why">Cada envío o publicación lo aprieta Boris. Se puede dar todo en un solo mandato: «go black-friday».</p></div>
-    <div class="mcol c"><h3>Solo una persona</h3><ul>
-      <li><b>todo lo que toca Meta</b>: armar, activar, cambiar presupuesto, pausar Meta D (~20 min con el paquete listo)</li>
-      <li>los DMs de Instagram (Bianca)</li>
-      <li>la tarifa o el cupón en Cloudbeds (Iru)</li>
-      <li>la reserva de prueba (alguien con tarjeta)</li>
-      <li>precio, condiciones y presupuesto (Boris)</li>
-    </ul><p class="why">La automatización no toca Meta ni Instagram desde la restricción de junio, y en este repo eso está bloqueado en la configuración. Cloudbeds, El Chamán solo lo lee.</p></div>
-  </div>
-</section>
 
-<section id="calendario">
-  <div class="sec-head">
-    <p class="eyebrow">10 · calendario</p>
-    <h2>Del jueves 19 al miércoles 2</h2>
-  </div>
-  <div class="tl" id="tl"></div>
-</section>
-
-<section id="riesgos">
-  <div class="sec-head">
-    <p class="eyebrow">11 · riesgos</p>
-    <h2>Lo que puede salir mal, y qué lo cubre</h2>
-  </div>
-  <div class="scroll-x"><table>
-    <thead><tr><th>Riesgo</th><th>Peso</th><th>Qué lo cubre</th></tr></thead>
+  <h3 class="sub-h">Tres escenarios, con USD 600</h3>
+  <div class="scroll-x"><table class="tbl num-r">
+    <thead><tr><th></th><th>Pesimista</th><th class="hl">Base</th><th>Optimista</th><th>Qué lo sostiene</th></tr></thead>
     <tbody>
-      <tr><td>Un precio de referencia que no se sostiene</td><td><span class="sev s3"><i></i><i></i><i></i></span></td><td>V2: una sola lista de precios antes del 23</td></tr>
-      <tr><td>Una venta que no se puede atribuir</td><td><span class="sev s3"><i></i><i></i><i></i></span></td><td>reserva de prueba el 23; sin ella la pauta no sale</td></tr>
-      <tr><td>Que una agencia vea el precio y pida paridad</td><td><span class="sev s2"><i></i><i></i><i></i></span></td><td>respuesta acordada (A4) · la promo nunca va al grid orgánico</td></tr>
-      <tr><td>La operación de enero no está lista para 16 con chef</td><td><span class="sev s2"><i></i><i></i><i></i></span></td><td>proveedores confirmados antes del 13-ene (Iru)</td></tr>
-      <tr><td>Nadie compra 12.500 en un clic</td><td><span class="sev s2"><i></i><i></i><i></i></span></td><td>salida a WhatsApp · respuesta de Iru en menos de 24 h</td></tr>
-      <tr><td>El ruido de Black Friday encarece la pauta</td><td><span class="sev s1"><i></i><i></i><i></i></span></td><td>tope duro de 800 · regla del sábado 28</td></tr>
+      <tr><td>Costo por mil impresiones</td><td>USD 40</td><td class="hl">USD 28</td><td>USD 20</td><td>la cuenta: 21 a 76, promedio 31 · Black Friday encarece</td></tr>
+      <tr><td>Personas alcanzadas</td><td>7.500</td><td class="hl">11.800</td><td>18.800</td><td>frecuencia 1,6 a 2</td></tr>
+      <tr><td>Clics al link</td><td>150</td><td class="hl">340</td><td>690</td><td>la cuenta: 1,8% de las impresiones</td></tr>
+      <tr><td>Visitas a la página</td><td>105</td><td class="hl">260</td><td>550</td><td>70 a 80% de los clics cargan la página</td></tr>
+      <tr><td>Clics en «Reserve»</td><td>2</td><td class="hl">10</td><td>33</td><td>2 a 6% de las visitas · precio a la vista filtra</td></tr>
+      <tr><td>Conversaciones por WhatsApp</td><td>1</td><td class="hl">5</td><td>17</td><td>1 a 3% de las visitas</td></tr>
+      <tr class="tot"><td><b>Reservas desde la pauta</b></td><td><b>0</b></td><td class="hl"><b>≈ 1</b></td><td><b>2–3</b></td><td>3 a 6% de quienes abren el motor · 8 a 10% de las conversaciones</td></tr>
+      <tr><td>Costo por reserva</td><td>—</td><td class="hl">≈ USD 600–800</td><td>≈ USD 250</td><td>una reserva deja ≈ 2.140 después de todo</td></tr>
     </tbody></table></div>
-  <div class="out" style="margin-top:22px">
-    <div><b>Fuera de esta campaña</b>Diciembre y la primera quincena de enero (last minute, sin promo) · Google Ads · agencias y distribuidoras.</div>
-    <div><b>También fuera</b>La guía «loco luxury» de Gastón · TikTok y LinkedIn · los temas operativos de la casa, que van por la operación.</div>
+
+  <h3 class="sub-h">Día por día · escenario base</h3>
+  <div class="scroll-x"><table class="tbl num-r">
+    <thead><tr><th>Día</th><th>Qué pasa</th><th>Meta · USD acumulado</th><th>Personas · acum.</th><th>Visitas · acum.</th><th>Email lara@</th><th>DMs Bianca</th></tr></thead>
+    <tbody>
+      <tr class="hot"><td><b>mar 24</b></td><td><b>Arranque.</b> Se muestra la campaña al equipo y, con el OK, se prende. Meta D en pausa.</td><td>100</td><td>2.900</td><td>43</td><td>≤ 40 · olas de 20</td><td>~10</td></tr>
+      <tr><td>mié 25</td><td>Primera lectura a las 10:00 en el grupo</td><td>200</td><td>5.400</td><td>86</td><td>—</td><td>~10</td></tr>
+      <tr><td>jue 26</td><td>Thanksgiving · Bianca entrega C4</td><td>300</td><td>7.600</td><td>129</td><td>—</td><td>~10</td></tr>
+      <tr class="hot"><td><b>vie 27</b></td><td><b>Black Friday</b></td><td>400</td><td>9.600</td><td>171</td><td>≤ 40 · olas de 20</td><td>~10</td></tr>
+      <tr class="gate"><td><b>sáb 28</b></td><td><b>10:00 · la regla.</b> C4 entra en retargeting</td><td>450 / 500</td><td>10.200</td><td>193</td><td>—</td><td>~10</td></tr>
+      <tr><td>dom 29</td><td>—</td><td>500 / 600</td><td>10.800</td><td>214</td><td>—</td><td>~10</td></tr>
+      <tr class="hot"><td><b>lun 30</b></td><td><b>Cyber Monday</b></td><td>550 / 700</td><td>11.400</td><td>236</td><td>≤ 40 · olas de 20</td><td>~10</td></tr>
+      <tr class="hot"><td><b>mar 1-dic</b></td><td><b>Cierre a las 23:59.</b> Iru apaga la tarifa en Cloudbeds</td><td>600 / 800</td><td>11.800</td><td>257</td><td>—</td><td>~10</td></tr>
+      <tr><td>mié 2-dic</td><td>Lectura de cierre: reservas, noches, ingreso, costo por reserva · aprendizaje escrito el mismo día</td><td colspan="5"></td></tr>
+    </tbody></table></div>
+  <p class="fig-note">Donde hay dos números, el primero es sin reserva el sábado (baja a 50) y el segundo con reserva (sigue a 100). Las personas y las visitas son las del primer camino.</p>
+
+  <h3 class="sub-h">Los otros canales</h3>
+  <div class="scroll-x"><table class="tbl">
+    <thead><tr><th>Canal</th><th>Volumen</th><th>A quién</th><th>Qué esperamos</th><th>Lo hace</th></tr></thead>
+    <tbody>
+      <tr><td><b>Email de lara@</b><small>sin precio: lleva a la página</small></td><td>3 días de envío, hasta 120 (olas de 20)</td><td>quienes ya recibieron la secuencia y compran para su propio grupo: familias, productores de retiros, mánagers de talento. Sin travel advisors ni agencias. La base filtrada es <i>desconocida</i> hasta filtrarla (familias 353 y retiros 275 direcciones antes del filtro).</td><td>2 a 5 respuestas · ≈ 1 conversación</td><td>El Chamán arma la lista y los cuerpos · Boris da el go de cada ola</td></tr>
+      <tr><td><b>DMs de Instagram</b><small>sin precio: lleva a la página</small></td><td>~10 por día, ~80 en total · <i>Bianca confirma</i></td><td>todas las fichas de esa semana van a Black Friday (A8), solo compradores directos</td><td>3 a 7 respuestas · 1 a 2 conversaciones (la cuenta: 9 respuestas de 18 DMs en W46–W47)</td><td>El Chamán arma la cola · Bianca manda a mano</td></tr>
+      <tr><td><b>Agencias que pregunten</b></td><td>reactivo</td><td>no se les ofrece (A4)</td><td>tarifa neta anual y su comisión encima</td><td>El Chamán redacta · Iru responde</td></tr>
+      <tr><td><b>Orgánico</b></td><td>nada al grid</td><td>—</td><td>la promo no vive en el perfil</td><td>—</td></tr>
+    </tbody></table></div>
+  <p class="fig-note"><b>Todo junto, escenario base:</b> ≈ 260 visitas a la página, 7 a 10 conversaciones entre WhatsApp, DMs y email, y <b>una reserva</b>, que es el criterio de Gastón. Para que salgan dos, hace falta el escenario optimista o que una conversación de outreach cierre.</p>
+
+  <h3 class="sub-h">En qué se apoya: lo que midió la cuenta</h3>
+  <div class="scroll-x"><table class="tbl num-r">
+    <thead><tr><th>Campaña · EE.UU.</th><th>Gasto USD</th><th>Impresiones</th><th>Personas</th><th>CPM USD</th><th>Clics al link</th><th>Conversaciones</th><th>Reservas</th></tr></thead>
+    <tbody>
+      <tr><td>Test 1 · septiembre</td><td>354</td><td>7.868</td><td>5.133</td><td>45</td><td>123</td><td>23</td><td>0</td></tr>
+      <tr><td>A amplia · octubre</td><td>417</td><td>20.164</td><td>8.569</td><td>21</td><td>378</td><td>15</td><td>0</td></tr>
+      <tr><td>D · noviembre</td><td>161</td><td>2.129</td><td>1.374</td><td>76</td><td>45</td><td>11</td><td>0</td></tr>
+      <tr class="tot"><td><b>Total</b></td><td><b>932</b></td><td><b>30.161</b></td><td>—</td><td><b>31</b></td><td><b>546</b></td><td><b>49</b></td><td><b>0</b></td></tr>
+    </tbody></table></div>
+  <p class="fig-note">Leído de la cuenta publicitaria el 22-nov (solo lectura), ARS pasados a 1.545,40. Las tres campañas buscaban conversaciones por DM, sin precio ni compra. La lección que ya pagamos: conversar no es reservar, y por eso esta campaña lleva a una página con precio y calendario.</p>
+</section>
+
+<section id="pendiente">
+  <div class="sec-head">
+    <p class="eyebrow">09 · lo que falta definir</p>
+    <h2>Dieciséis cosas, cada una con dueño y hora</h2>
+    <p class="lede">Las decisiones de fondo (precio a la vista, impuestos incluidos, seña, presupuesto, a quién se le habla) ya las tomó Boris el 22-nov, con el OK de René, Gastón y Pato. Lo que queda es ejecución. El paso a paso del lunes y el martes está en <a href="black-friday-2026-lunes.html">el documento aparte</a>.</p>
   </div>
+  <div class="scroll-x"><table class="tbl">
+    <thead><tr><th>#</th><th>Qué</th><th>Quién</th><th>Para cuándo</th><th>Qué destraba</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>Tarifa o cupón Black Friday en Cloudbeds, con su link directo, y la descripción que le pasamos</td><td><span class="st bad">Iru</span></td><td>lun 23 · 12:00</td><td>el botón «Reserve» de la página</td></tr>
+      <tr><td>2</td><td>Confirmar que 12.500 es el precio final con IVA y el impuesto de hospedaje adentro</td><td><span class="st bad">Iru</span></td><td>lun 23 · 10:00</td><td>la página y los anuncios</td></tr>
+      <tr><td>3</td><td>Que la tarifa cobre 50% de seña no reembolsable y el saldo 15 días antes</td><td><span class="st bad">Iru</span></td><td>lun 23 · 12:00</td><td>las condiciones en la página</td></tr>
+      <tr><td>4</td><td>Cómo se comportan las noches extra en el motor (¿a 4.200?)</td><td><span class="st bad">Iru</span></td><td>lun 23 · 12:00</td><td>las noches extra en la página</td></tr>
+      <tr><td>5</td><td>Proveedores de enero confirmados para 16: chef, desayuno, beach club, sound healing</td><td><span class="st bad">Iru</span></td><td>lun 23</td><td>la promesa del paquete</td></tr>
+      <tr><td>6</td><td>¿El motor de Cloudbeds tiene el píxel de Meta y GA4?</td><td><span class="st bad">Iru</span> mira la configuración</td><td>lun 23 · 12:00</td><td>medir la compra</td></tr>
+      <tr><td>7</td><td>Archivos finales de C1 (9:16), C2 y C3</td><td><span class="st bad">Bianca</span></td><td>lun 23 · 15:00</td><td>la carga en Meta</td></tr>
+      <tr><td>8</td><td>Archivo de C4 · cierre</td><td><span class="st bad">Bianca</span></td><td>jue 26</td><td>el retargeting del sábado</td></tr>
+      <tr><td>9</td><td>Públicos de retargeting creados en la cuenta, y su tamaño</td><td><span class="st bad">Bianca</span></td><td>lun 23 · 15:00</td><td>el conjunto 2</td></tr>
+      <tr><td>10</td><td>Cargar la campaña en Meta con el paquete, en pausa</td><td><span class="st bad">Bianca</span> o Boris</td><td>lun 23 · 18:00</td><td>el arranque del martes</td></tr>
+      <tr><td>11</td><td>Cambiar las dos respuestas del FAQ en el theme de Shopify (el texto lo damos nosotros)</td><td><span class="st bad">Bianca</span> o Boris</td><td>lun 23</td><td>el tachado de 19.108</td></tr>
+      <tr><td>12</td><td>Cuántos DMs por día puede mandar y a quiénes · cola armada</td><td><span class="st bad">Bianca</span> · El Chamán arma</td><td>lun 23</td><td>los DMs del martes</td></tr>
+      <tr><td>13</td><td>Copy final con copy-reviewer · página de Black Friday · herramienta de precios alineada · lista y cuerpos del email · respuesta a agencias</td><td><span class="st ok">El Chamán</span></td><td>dom 22 → lun 23</td><td>todo lo demás</td></tr>
+      <tr><td>14</td><td>Publicar la página y la herramienta de precios</td><td><span class="st ok">Boris</span> · go</td><td>lun 23 · 17:00</td><td>la reserva de prueba</td></tr>
+      <tr><td>15</td><td>Reserva de prueba de punta a punta y su cancelación</td><td><span class="st ok">Boris</span> · Iru cancela</td><td>lun 23 · 18–20</td><td><b>el arranque</b>: si no se ve completa, no sale</td></tr>
+      <tr><td>16</td><td>El FAQ nuevo saca el «From USD 4,500» (enero se cotiza a 4.200 y brand-law no quiere precio en la web): ¿OK?</td><td><span class="st ok">Boris</span></td><td>lun 23</td><td>coherencia con el tachado</td></tr>
+    </tbody></table></div>
 </section>
 
 </main>
 <footer class="wrap">
-  <span>Plan de récord: vault/campaigns/black-friday-2026/plan-v1.0.md · campaign.yaml rev 2.</span>
-  <span>Fuentes: reunión «Black Friday Catch up» del 18-nov · hoja «Financial Overview» de Iru (18-nov) · «Strategy Guide v3» de Bianca (18-nov) · Cloudbeds leído el 19-nov · lachamana.com leída el 18-nov.</span>
-  <span>Nada sale hasta que Boris firme precio y marca (V1), impuestos (V3), condiciones (V5) y presupuesto (V7). Nada de esta campaña escribe en Meta desde el sistema: lo arma y lo activa una persona.</span>
+  <span>Plan de récord: vault/campaigns/black-friday-2026/plan-v1.0.md · copy: copy-v1.0.md (V1.1) · campaign.yaml.</span>
+  <span>Fuentes: reunión «Black Friday Catch up» del 18-nov · hoja «Financial Overview» de Iru (18-nov) · «Strategy Guide v3» de Bianca (18-nov) · Cloudbeds leído el 19-nov · lachamana.com leída el 18 y el 22-nov · cuenta publicitaria de Meta leída el 22-nov (solo lectura).</span>
+  <span>Decisiones de fondo tomadas por Boris el 22-nov con el OK de René, Gastón y Pato. Nada de esta campaña escribe en Meta desde el sistema: lo carga y lo activa una persona.</span>
 </footer>
 
 <script>
 (function () {
   "use strict";
-  var KEY = "lc-bf26-campana-v1";
   var fmt = function (n) { return n.toLocaleString("es-AR"); };
 
   var AGREED = [
@@ -824,7 +896,7 @@ html { scroll-behavior: smooth; }
       ["Ganancia operativa", "hoja de Iru", 0, 5040, "pos", "5.040"],
       ["IVA 16%", "si el precio lo incluye", 3316, 5040, "neg", "−1.724"],
       ["Tarjeta ~3%", "a confirmar", 2941, 3316, "neg", "−375"],
-      ["Pauta de la semana", "tope de V7", 2141, 2941, "neg", "−800"],
+      ["Pauta de la semana", "tope de la semana", 2141, 2941, "neg", "−800"],
       ["Queda, peor caso", "una sola venta paga todo", 0, 2141, "end", "≈ 2.140"]
     ].forEach(function (r, i, all) {
       var row = document.createElement("div"); row.className = "r" + (i === all.length - 1 ? " total" : "");
@@ -856,137 +928,15 @@ html { scroll-behavior: smooth; }
   });
   var rule = document.createElement("span"); rule.className = "rule"; rule.style.left = "calc(50% - 4px)"; rule.innerHTML = "<span>sáb 28, 10:00 · regla</span>"; bud.appendChild(rule);
 
-  var TL = [
-    ["jue 19-nov", "Este plan, primero a Boris y Bianca; después a Iru; después al grupo", "El Chamán · Boris", "hot"],
-    ["vie 20-nov", "Validación cerrada. Boris firma V1, V3, V5 y V7. Iru confirma impuestos y la etiqueta de fechas, y crea la tarifa o el cupón en Cloudbeds", "Boris · Iru", "hot"],
-    ["sáb 21 – dom 22", "El Chamán arma la página, el paquete de Meta, el copy, la lista de DMs, el email, la respuesta a agencias, el FAQ y los precios alineados. Todo pasa por copy-reviewer y revisión de marca", "El Chamán", ""],
-    ["lun 23-nov", "FAQ corregido · página publicada · campaña de Meta armada en pausa por una persona · reserva de prueba de punta a punta: condición de salida", "Boris · Bianca · Iru", "gate"],
-    ["mar 24-nov", "Arranque: Meta encendido (una persona) · Meta D en pausa · email de lara@ (go de Boris) · DMs de Black Friday (Bianca)", "equipo", "hot"],
-    ["24-nov → 1-dic", "Lectura diaria a las 10:00 en el grupo · respuestas en menos de 24 h", "El Chamán · Iru", ""],
-    ["vie 27-nov", "Black Friday. La pauta sigue a 100", "", ""],
-    ["sáb 28-nov, 10:00", "Regla de ajuste: con una reserva o más, sigue a 100; sin reservas, baja a 50", "El Chamán propone · una persona cambia", "gate"],
-    ["mar 1-dic, 23:59", "Cierre de la venta. La tarifa Black Friday se apaga en Cloudbeds", "Iru", "hot"],
-    ["mié 2-dic", "Lectura de cierre: reservas, noches, ingreso, costo por reserva. El aprendizaje queda escrito el mismo día", "El Chamán · Boris", ""]
-  ];
-  var tl = document.getElementById("tl");
-  TL.forEach(function (t) {
-    var it = document.createElement("div"); it.className = "ti" + (t[3] ? " " + t[3] : "");
-    it.innerHTML = '<div class="d"></div><div class="w"><span></span><small></small></div>';
-    it.querySelector(".d").textContent = t[0]; it.querySelector(".w span").textContent = t[1]; it.querySelector(".w small").textContent = t[2];
-    tl.appendChild(it);
-  });
-
-  var DEC = [
-    { id: "V1", t: "Cómo se muestra el precio", owner: "Boris (René, si quiere)", why: "La reunión pidió el precio a la vista. La ley de marca prohíbe precio en el copy y «book now»: hace falta una excepción con fecha, solo para las piezas de Black Friday, del 24-nov al 1-dic.", rec: 0, o: [
-      ["Precio en el anuncio, tachado en la página", "El anuncio dice «USD 12,500 · three nights · the whole house». La página muestra el valor línea por línea y el tachado. Llamado «Reserve», botón de Meta «Get offer»."],
-      ["Tachado también en el anuncio", "El «sprayette» completo de Iru. Necesita V2-A cerrado antes del 23."],
-      ["Sin precio", "La guía de Bianca. La reunión lo dejó atrás."]] },
-    { id: "V2", t: "Una sola lista de precios antes de tachar", owner: "Boris · El Chamán prepara", why: "Hoy la hoja de Iru, la herramienta pública y el FAQ dicen tres cosas distintas. El tachado tiene que ser un precio real.", rec: 0, o: [
-      ["Pasar los precios de Iru a la herramienta y corregir el FAQ", "Casa a 4.200 desde el 13-ene, desayuno 52, cena 92, beach club 45 por persona, sound healing 380. Todo antes del lunes 23."],
-      ["No tachar", "Solo en la página: «valued at USD 19,108 when booked separately»."],
-      ["Tachar sin alinear", "No recomendado: el primero que compare va a ver otro número."]] },
-    { id: "V3", t: "¿El 12.500 incluye impuestos?", owner: "Iru confirma · Boris decide", why: "Es lo que más mueve la ganancia: 5.040 sin IVA adentro, ≈ 3.300 con IVA adentro.", rec: 0, o: [
-      ["Impuestos incluidos, como el rack", "Precio final claro para una compra por impulso. La casa queda sobre el piso igual (≈ 2.100 por noche)."],
-      ["12.500 + impuestos", "Ganancia intacta, pero el número final sube a ~14.500 o más y deja de ser derechito."]] },
-    { id: "V4", t: "Noches extra", owner: "Iru", why: "La métrica del año son noches: una estadía de 4 o 5 noches vale más que dos de 3.", rec: 0, o: [
-      ["Sí, a la tarifa de enero con desayuno", "Cada noche extra a 4.200, con desayuno."],
-      ["Solo el paquete de 3 noches", "Más simple, menos noches."]] },
-    { id: "V5", t: "Condiciones de reserva", owner: "Boris decide · Iru redacta", why: "Es una compra por impulso: tiene que ser firme para la casa y sin miedo para quien compra.", rec: 0, o: [
-      ["50% no reembolsable, con un cambio de fecha", "Saldo 15 días antes de llegar. Un cambio de fechas permitido entre el 13-ene y el 30-abr: la tarifa es la misma, así que a la casa no le cuesta nada."],
-      ["30% como el rack, reembolsable", "Con reembolso hasta 30 días antes."],
-      ["Pago total, no reembolsable", "Lo más firme, lo que más frena."]] },
-    { id: "V6", t: "Ventana de venta", owner: "Boris", why: "Iru y Bianca dijeron el 24; Boris, el 26. «No importa.»", rec: 0, o: [
-      ["Mar 24-nov → mar 1-dic, 23:59 Tulum", "8 días con Black Friday y Cyber Monday. Coincide con el cierre de la guía de Bianca."],
-      ["Jue 26-nov → mar 1-dic", "6 días."],
-      ["Mar 24 → lun 30-nov", "7 días, cierra en Cyber Monday."]] },
-    { id: "V7", t: "Presupuesto de Meta y la regla", owner: "Boris", why: "Iru: arrancar fuerte, bajar si no vende. Boris: por debajo de USD 1.000.", rec: 0, o: [
-      ["100/día hasta el 27, regla el sábado 28", "Con al menos una reserva sigue a 100 (total 800); sin ninguna baja a 50 (total 600). Tope duro 800. EE.UU. y Canadá, sin México. Meta D en pausa el 24."],
-      ["50–60/día parejo", "≈ 450 en total. La propuesta de Boris en la reunión."],
-      ["100/día parejo", "800 en total, sin regla."]] },
-    { id: "V8", t: "A quién le llega el outreach", owner: "Boris · Bianca", why: "La base son sobre todo intermediarios, y lo acordado es venta directa, sin distribuidores.", rec: 0, o: [
-      ["Solo a quien compra para su propio grupo", "Productores de retiros, family offices, private client y mánagers de talento. Sin travel advisors ni agencias con comisión. DMs de Bianca y un email de lara@."],
-      ["Toda la base", "Agencias incluidas, con «sin comisión» en la letra chica."],
-      ["Sin outreach", "Solo pauta."]] },
-    { id: "V9", t: "Dónde vive la página de Black Friday", owner: "Boris", why: "Para una compra de 12.500 por impulso, el dominio pesa.", rec: 0, o: [
-      ["En lachamana.com", "Mismo dominio, el motor de Cloudbeds ya está y la medición es la del sitio. Sale por el riel de Shopify: El Chamán escribe, Boris publica."],
-      ["Micrositio en Vercel", "Más rápido y 100% en manos de El Chamán, pero el dominio es «vercel.app»."]] },
-    { id: "V10", t: "Qué incluye el rack, y el FAQ", owner: "Boris (D-0816-05)", why: "El FAQ dice incluido lo que el paquete ofrece como beneficio. Está abierta desde abril.", rec: 0, o: [
-      ["Rack: housekeeping, concierge, mantenimiento, seguridad", "Desayuno, beach club, sound healing, temazcal y traslados son experiencias aparte. El FAQ se corrige antes del 23."],
-      ["Dejar la web como está", "El Black Friday regala lo que el FAQ ya promete."]] }
-  ];
-
-  var state = { who: "", d: {} };
-  try { var raw = localStorage.getItem(KEY); if (raw) { var p = JSON.parse(raw); if (p && typeof p === "object") state = { who: p.who || "", d: p.d || {} }; } } catch (e) {}
-  function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
-
-  var host = document.getElementById("decs");
-  DEC.forEach(function (dc) {
-    var card = document.createElement("article"); card.className = "dec"; card.id = "dec-" + dc.id;
-    var top = document.createElement("div"); top.className = "dec-top";
-    top.innerHTML = '<span class="n"></span><h3></h3><span class="owner"></span>';
-    top.querySelector(".n").textContent = dc.id; top.querySelector("h3").textContent = dc.t; top.querySelector(".owner").innerHTML = "decide: <b></b>"; top.querySelector(".owner b").textContent = dc.owner;
-    card.appendChild(top);
-    var why = document.createElement("p"); why.className = "why"; why.textContent = dc.why; card.appendChild(why);
-    var opts = document.createElement("div"); opts.className = "opts";
-    dc.o.forEach(function (op, i) {
-      var L = String.fromCharCode(65 + i);
-      var lab = document.createElement("label"); lab.className = "opt";
-      lab.innerHTML = '<input type="radio"><span class="card"><span class="ol"><span class="letter"></span><span></span></span>' + (i === dc.rec ? '<span class="rec">recomendada</span>' : "") + '<span class="od"></span></span>';
-      var inp = lab.querySelector("input"); inp.name = "r-" + dc.id; inp.value = L;
-      lab.querySelector(".letter").textContent = L; lab.querySelector(".ol span:last-child").textContent = op[0]; lab.querySelector(".od").textContent = op[1];
-      inp.addEventListener("change", function () { state.d[dc.id] = state.d[dc.id] || {}; state.d[dc.id].o = L; save(); paint(); });
-      opts.appendChild(lab);
-    });
-    card.appendChild(opts);
-    var foot = document.createElement("div"); foot.className = "dec-foot";
-    foot.innerHTML = '<textarea placeholder="Nota (opcional): un matiz, una condición, un número distinto"></textarea><button type="button" class="clear">borrar</button>';
-    var ta = foot.querySelector("textarea"); ta.setAttribute("aria-label", "Nota sobre " + dc.id);
-    ta.addEventListener("input", function () { state.d[dc.id] = state.d[dc.id] || {}; state.d[dc.id].n = ta.value; save(); });
-    foot.querySelector("button").addEventListener("click", function () { delete state.d[dc.id]; save(); paint(); });
-    card.appendChild(foot);
-    host.appendChild(card);
-  });
-
-  var whoEl = document.getElementById("who");
-  whoEl.addEventListener("click", function (e) { var b = e.target.closest("button"); if (!b) return; state.who = b.getAttribute("data-v"); save(); paint(); });
-  document.getElementById("accAll").addEventListener("click", function () {
-    DEC.forEach(function (dc) { if (!state.d[dc.id] || !state.d[dc.id].o) { state.d[dc.id] = state.d[dc.id] || {}; state.d[dc.id].o = String.fromCharCode(65 + dc.rec); } });
-    save(); paint();
-  });
-
-  function paint() {
-    var done = 0;
-    DEC.forEach(function (dc) {
-      var s = state.d[dc.id] || {}; var card = document.getElementById("dec-" + dc.id);
-      card.querySelectorAll("input").forEach(function (i) { i.checked = i.value === s.o; });
-      var ta = card.querySelector("textarea"); if (document.activeElement !== ta) ta.value = s.n || "";
-      card.classList.toggle("done", !!s.o); if (s.o) done++;
-    });
-    whoEl.querySelectorAll("button").forEach(function (b) { b.setAttribute("aria-pressed", String(b.getAttribute("data-v") === state.who)); });
-    document.getElementById("pbar").style.width = (done / DEC.length * 100) + "%";
-    document.getElementById("ptxt").textContent = done + "/" + DEC.length;
-    document.getElementById("copyMsg").textContent = done + " de " + DEC.length + " marcadas" + (state.who ? " · valida " + state.who : " · elegí quién valida") + ".";
-  }
-  paint();
-
-  function buildText() {
-    var lines = ["Black Friday 2026 · validación" + (state.who ? " de " + state.who : "") + " · " + new Date().toLocaleDateString("es-AR")];
-    DEC.forEach(function (dc) {
-      var s = state.d[dc.id] || {};
-      if (!s.o) { lines.push(dc.id + " " + dc.t + ": (sin marcar)"); return; }
-      var idx = s.o.charCodeAt(0) - 65;
-      lines.push(dc.id + " " + dc.t + ": " + s.o + " — " + dc.o[idx][0] + (idx === dc.rec ? " (la recomendada)" : "") + (s.n ? " · nota: " + s.n.trim() : ""));
-    });
-    return lines.join("\n");
-  }
-  document.getElementById("copyBtn").addEventListener("click", function () {
-    var txt = buildText(); var out = document.getElementById("copyOut"); var msg = document.getElementById("copyMsg");
-    function fallback() { out.hidden = false; out.value = txt; out.focus(); out.select(); msg.textContent = "Seleccionado: copialo con Cmd/Ctrl + C y pegalo en el grupo."; }
-    try {
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(txt).then(function () { msg.textContent = "Copiado. Pegalo en el grupo."; out.hidden = false; out.value = txt; }, fallback);
-      } else fallback();
-    } catch (e) { fallback(); }
+  var FUN = [["Personas alcanzadas", 11800, "≈ 21.400 impresiones · CPM USD 28"], ["Clics al link", 340, "1,6%"], ["Visitas a la página", 260, "75% de los clics"], ["Clics en «Reserve»", 10, "4% de las visitas"], ["Conversaciones por WhatsApp", 5, "2% de las visitas"], ["Reservas", 1, "≈ 0,7 a 1 · la mitad por el motor, la mitad por Iru"]];
+  var fun = document.getElementById("fun");
+  if (fun) FUN.forEach(function (f, i) {
+    var w = Math.max(Math.sqrt(f[1] / FUN[0][1]) * 100, 6);
+    var r = document.createElement("div"); r.className = "fr" + (i === FUN.length - 1 ? " last" : "");
+    r.innerHTML = '<div class="fl"><span></span><small></small></div><div class="ft"><div class="fb" style="width:' + w.toFixed(1) + '%"></div></div><div class="fv num"></div>';
+    r.querySelector(".fl span").textContent = f[0]; r.querySelector(".fl small").textContent = f[2];
+    r.querySelector(".fv").textContent = (i === FUN.length - 1 ? "≈ " : "≈ ") + fmt(f[1]);
+    fun.appendChild(r);
   });
 })();
 </script>
