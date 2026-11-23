@@ -1,207 +1,811 @@
 <!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex,nofollow">
-<title>Black Friday en una página</title>
+<title>Black Friday 2026 — la campaña en una página</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Jost:wght@300;400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Jost:wght@300;400;500;600&display=swap">
 <style>
-:root {
-  --bg: #FBFAF7; --surface: #F3EEE6; --fg: #1A1611; --muted: #6E6253; --line: #DDD3C4;
-  --copper: #B4835A; --copper-ink: #87582F; --copper-soft: #EBDCCB;
-  --hero-bg: #0E0C0A; --hero-fg: #E9E2D6; --hero-copper: #C99A6D;
-  --ok: #5C6B2E; --ok-soft: #E6E8D6; --warn: #8A6414; --warn-soft: #F2E7CC;
-  --f-display: "Cormorant Garamond", Georgia, serif;
-  --f-body: "Jost", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+/* Dos suelos y un acento (guía de marca 2026-08-19): White y Deep como suelo, cobre como único acento,
+   Cormorant 300 para títulos y cifras, Jost para todo lo demás. El arco solo enmarca fotografía. */
+:root{
+  --ground:#FBFAF7; --card:#FFFFFF; --ink:#1A1611; --ink-2:#4B4237; --ink-3:#675C4F;
+  --line:#D8CDBC; --line-2:#E9E2D6;
+  --copper:#B4835A; --copper-ink:#78573A; --copper-soft:#EFE3D3; --mark-2:#3E352B;
+  --crit:#93482E; --crit-bg:#F4E1D8; --warn:#7F5518; --warn-bg:#F3E7D2; --good:#5B6038; --good-bg:#E5E7D3;
+  --display:"Cormorant Garamond",Georgia,"Times New Roman",serif;
+  --ui:"Jost","Avenir Next","Helvetica Neue",Arial,sans-serif;
 }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #0E0C0A; --surface: #17130F; --fg: #E9E2D6; --muted: #A99B89; --line: #3A3129;
-    --copper: #C99A6D; --copper-ink: #D8AF86; --copper-soft: #33271C; --hero-bg: #14110E;
-    --ok: #A6B26E; --ok-soft: #262A18; --warn: #D9B25A; --warn-soft: #2E2512; color-scheme: dark;
-  }
+.deep{
+  --ground:#0E0C0A; --card:#14110E; --ink:#EDE6DA; --ink-2:#C9BFB0; --ink-3:#9A8F80;
+  --line:#2F271F; --line-2:#251F19;
+  --copper:#C99A6D; --copper-ink:#DDB48C; --copper-soft:#3B2E21; --mark-2:#8E8272;
+  --crit:#E0906E; --crit-bg:#33201A; --warn:#DDAE6A; --warn-bg:#2C2215; --good:#B4B987; --good-bg:#23251B;
 }
-:root[data-theme="dark"] {
-  --bg: #0E0C0A; --surface: #17130F; --fg: #E9E2D6; --muted: #A99B89; --line: #3A3129;
-  --copper: #C99A6D; --copper-ink: #D8AF86; --copper-soft: #33271C; --hero-bg: #14110E;
-  --ok: #A6B26E; --ok-soft: #262A18; --warn: #D9B25A; --warn-soft: #2E2512; color-scheme: dark;
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:60px}
+body{margin:0;background:#FBFAF7;color:var(--ink);font-family:var(--ui);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+img{max-width:100%}
+h1,h2,h3{font-family:var(--display);font-weight:300;margin:0;line-height:1.08;text-wrap:balance}
+p{margin:0}
+b{font-weight:600}
+.num{font-family:var(--display);font-weight:300;font-variant-numeric:lining-nums tabular-nums;letter-spacing:-.005em;line-height:1}
+.lbl{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--copper-ink);font-weight:500}
+.note{font-size:13.5px;color:var(--ink-3);line-height:1.45}
+.ic{width:22px;height:22px;flex:none;fill:none;stroke:currentColor;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round;opacity:.75}
+
+/* navegación */
+.nav{position:sticky;top:0;z-index:5;background:rgba(14,12,10,.94);backdrop-filter:blur(6px);border-bottom:1px solid #2F271F}
+.nav div{max-width:1120px;margin:0 auto;display:flex;gap:4px;overflow-x:auto;padding:0 12px;scrollbar-width:none}
+.nav div::-webkit-scrollbar{display:none}
+.nav a{flex:none;color:#C9BFB0;text-decoration:none;font-size:12.5px;letter-spacing:.04em;padding:13px 9px;white-space:nowrap}
+.nav a:hover,.nav a:focus-visible{color:#DDB48C}
+.nav a b{font-family:var(--display);font-weight:300;font-size:15px;color:#C99A6D;margin-right:5px;font-variant-numeric:lining-nums}
+
+/* secciones */
+.sec{background:var(--ground);color:var(--ink);padding:76px 20px}
+.sec + .sec:not(.deep){border-top:1px solid var(--line-2)}
+.wrap{max-width:1080px;margin:0 auto;display:grid;gap:28px}
+.sh{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:6px 22px;align-items:start}
+.sh .no{font-size:64px;color:var(--copper);margin-top:-6px}
+.sh h2{font-size:clamp(34px,4.4vw,48px)}
+.sh .lede{font-size:17px;color:var(--ink-2);max-width:60ch;margin-top:8px;line-height:1.45}
+.chip{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:500;padding:5px 12px;border-radius:99px;white-space:nowrap;border:1px solid var(--line);color:var(--ink-2)}
+.chip::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor;flex:none}
+.chip.ok{background:var(--good-bg);color:var(--good);border-color:transparent}
+.chip.wa{background:var(--warn-bg);color:var(--warn);border-color:transparent}
+.chip.cr{background:var(--crit-bg);color:var(--crit);border-color:transparent}
+.sh .chip{margin-top:10px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:24px 26px;display:grid;gap:16px;min-width:0;align-content:start}
+.card h3{font-size:25px}
+.g2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.g3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.g4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.g-58{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,8fr);gap:18px}
+.g-85{display:grid;grid-template-columns:minmax(0,8fr) minmax(0,5fr);gap:18px}
+.stackcol{display:grid;gap:14px;align-content:start}
+
+/* cifras grandes */
+.kpis{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.kpi{padding:18px 18px 16px;display:grid;gap:6px;align-content:start;min-width:0}
+.kpi + .kpi{border-left:1px solid var(--line)}
+.kpi .num{font-size:46px;color:var(--ink)}
+.kpi .num small{font-family:var(--ui);font-size:13px;color:var(--ink-3);font-weight:400;letter-spacing:.04em;margin-left:4px}
+.kpi span{font-size:13.5px;color:var(--ink-2);line-height:1.35}
+.kpi em{font-style:normal;font-size:12px;color:var(--ink-3)}
+.tile{border:1px solid var(--line);border-radius:10px;padding:16px 18px;display:grid;gap:6px;align-content:start;background:var(--card);min-width:0}
+.tile .num{font-size:38px}
+.tile .num small{font-family:var(--ui);font-size:13px;color:var(--ink-3);font-weight:400;margin-left:4px}
+.tile span{font-size:13.5px;color:var(--ink-2);line-height:1.4}
+
+/* hero */
+.hero{padding:64px 20px 0}
+.hero .wrap{grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:36px 48px;align-items:end}
+.hero .txt{display:grid;gap:22px;padding-bottom:44px}
+.hero h1{font-size:clamp(42px,5.6vw,72px);letter-spacing:-.01em}
+.hero h1 i{font-style:italic;color:var(--copper-ink);display:block}
+.hero .sub{font-size:18px;color:var(--ink-2);max-width:46ch;line-height:1.45}
+.price{display:flex;flex-wrap:wrap;align-items:flex-end;gap:10px 26px;border-top:1px solid var(--line);padding-top:22px}
+.price .big{font-size:clamp(70px,9vw,112px);color:var(--copper)}
+.price .big small{font-family:var(--ui);font-size:15px;letter-spacing:.2em;color:var(--ink-3);margin-right:10px;font-weight:400}
+.price .was{display:grid;gap:4px;padding-bottom:12px;font-size:14px;color:var(--ink-2)}
+.price .was s{font-family:var(--display);font-weight:300;font-size:30px;color:var(--ink-3);font-variant-numeric:lining-nums;text-decoration-thickness:1px}
+.price .was b{color:var(--copper-ink);font-weight:500}
+.arc{aspect-ratio:4/5;border-radius:999px 999px 0 0;overflow:hidden;background:#14110E url("https://lachamana.com/cdn/shop/files/hero2-corregida.jpg?width=2000") center 58%/cover no-repeat;align-self:end;width:100%;max-width:430px;justify-self:end}
+.hero .kpis{grid-column:1/-1;border-radius:12px 12px 0 0;border-bottom:0;background:var(--card)}
+
+/* oferta */
+.inc{display:grid;gap:0}
+.inc div{display:grid;grid-template-columns:22px minmax(0,1fr) auto;gap:14px;align-items:center;padding:11px 0;border-top:1px solid var(--line-2);font-size:16px}
+.inc div:first-child{border-top:0;padding-top:0}
+.inc small{font-size:12.5px;color:var(--ink-3);white-space:nowrap}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font-size:12.5px;padding:4px 10px;border-radius:99px;border:1px solid var(--line);color:var(--ink-2);white-space:nowrap}
+.tag.no{border-style:dashed;color:var(--ink-3);text-decoration:line-through;text-decoration-color:var(--ink-3)}
+.sub-l{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3);font-weight:500}
+.vbar{position:relative;padding:34px 0 30px}
+.vbar .stack{display:flex;gap:2px;height:44px}
+.vbar .stack i{display:block;height:100%;background:var(--copper)}
+.vbar .stack i:first-child{background:var(--mark-2);border-radius:4px 0 0 4px}
+.vbar .stack i:last-child{border-radius:0 4px 4px 0}
+.vbar .stack i:nth-child(3){opacity:.82}.vbar .stack i:nth-child(4){opacity:.66}.vbar .stack i:nth-child(5){opacity:.5}
+.vbar .mk{position:absolute;top:0;bottom:0;left:70.75%;border-left:1.5px dashed var(--ink);}
+.vbar .mk b{position:absolute;top:0;right:8px;white-space:nowrap;font-size:13px;font-weight:600}
+.vbar .mk em{position:absolute;bottom:0;left:8px;white-space:nowrap;font-style:normal;font-size:13px;color:var(--copper-ink);font-weight:500}
+.vrows{display:grid;gap:0}
+.vrows div{display:grid;grid-template-columns:14px minmax(0,1fr) auto auto;gap:10px;align-items:baseline;padding:7px 0;border-top:1px solid var(--line-2);font-size:14.5px}
+.vrows i{width:12px;height:12px;border-radius:3px;background:var(--copper);align-self:center}
+.vrows small{font-size:12.5px;color:var(--ink-3);white-space:nowrap}
+.vrows .num{font-size:22px;min-width:74px;text-align:right}
+.vrows .tot{border-top:1px solid var(--line);font-weight:500}
+.vrows .tot .num{font-size:28px}
+
+/* ventana */
+.days8{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:4px}
+.days8 div{border:1px solid var(--line);border-radius:8px;padding:9px 2px 8px;text-align:center;display:grid;gap:1px;min-width:0}
+.days8 .num{font-size:28px}
+.days8 small{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+.days8 .hot{background:var(--copper);border-color:var(--copper);color:#14110E}
+.days8 .hot small{color:#14110E}
+.capt{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12.5px;color:var(--ink-3)}
+.capt i{display:inline-block;width:11px;height:11px;border-radius:3px;background:var(--copper);vertical-align:-1px;margin-right:6px}
+.tl{position:relative;height:74px}
+.tl::before{content:"";position:absolute;left:0;right:0;top:36px;border-top:1px dashed var(--ink-3)}
+.tl i{position:absolute;top:26px;height:20px;border-radius:4px;background:var(--copper)}
+.tl i.b{background:var(--mark-2)}
+.tl span{position:absolute;font-size:12px;color:var(--ink-2);white-space:nowrap}
+.tl span b{font-weight:600;color:var(--ink)}
+.cal{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:3px}
+.cal span{font-size:10.5px;letter-spacing:.1em;color:var(--ink-3);text-align:center;padding-bottom:3px}
+.cal div{aspect-ratio:1.7/1;display:grid;place-items:center;border-radius:6px;font-family:var(--display);font-size:19px;font-weight:300;font-variant-numeric:lining-nums;color:var(--ink-3)}
+.cal .on{background:var(--copper-soft);color:var(--ink)}
+.cal .on.a{background:var(--copper);color:#14110E}
+.cal .on.x{background:transparent;box-shadow:inset 0 0 0 1.5px var(--copper);border-radius:6px}
+.stays{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:4px}
+.stays div{border-radius:6px;padding:6px 2px;text-align:center;font-size:12.5px;background:var(--copper-soft);font-variant-numeric:tabular-nums}
+.stays div:nth-child(odd){background:var(--copper);color:#14110E}
+.big-l{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.big-l .num{font-size:72px;color:var(--copper)}
+.big-l span{font-size:15px;color:var(--ink-2)}
+
+/* recorrido */
+.flow{display:grid;gap:0;justify-items:center}
+.fl-src{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;width:100%}
+.node{border:1px solid var(--line);border-radius:10px;padding:14px 16px;background:var(--card);display:grid;gap:4px;align-content:start;min-width:0}
+.node .k{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--copper-ink);font-weight:500}
+.node b{font-size:17px;font-weight:500}
+.node span{font-size:13px;color:var(--ink-3);line-height:1.4}
+.down,.down2{display:grid;width:100%;height:42px}
+.down{grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.down2{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.down i,.down2 i{justify-self:center;width:1px;background:var(--copper);position:relative;height:100%}
+.down i::after,.down2 i::after{content:"";position:absolute;width:7px;height:7px;border-right:1px solid var(--copper);border-bottom:1px solid var(--copper);bottom:1px;left:-3.5px;transform:rotate(45deg)}
+.fl-page{width:100%;border-radius:12px;background:#0E0C0A;color:#EDE6DA;padding:22px 26px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:14px 28px;align-items:center}
+.fl-page h3{font-size:30px}
+.fl-page p{font-size:14px;color:#C9BFB0;margin-top:4px;max-width:58ch}
+.fl-page .lbl{color:#DDB48C}
+.btns{display:flex;gap:10px;flex-wrap:wrap}
+.btns span{font-size:12px;letter-spacing:.2em;text-transform:uppercase;padding:11px 20px;border-radius:99px;border:1px solid #C99A6D;color:#DDB48C;white-space:nowrap}
+.btns span:first-child{background:#C99A6D;color:#14110E;font-weight:500}
+.lanes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;width:100%}
+.lane{border:1px solid var(--line);border-radius:12px;padding:18px 20px;display:grid;gap:12px;align-content:start;background:var(--card)}
+.lane.main{border-color:var(--copper);box-shadow:inset 0 3px 0 var(--copper)}
+.lane h3{font-size:24px}
+.steps{display:grid;gap:0}
+.step{position:relative;display:grid;grid-template-columns:30px minmax(0,1fr);gap:12px;padding:9px 0;align-items:start}
+.step .n{width:30px;height:30px;border-radius:50%;border:1px solid var(--copper);display:grid;place-items:center;font-family:var(--display);font-size:17px;font-variant-numeric:lining-nums;color:var(--copper-ink);background:var(--card);position:relative;z-index:1}
+.step:not(:last-child)::after{content:"";position:absolute;left:14.5px;top:39px;bottom:-9px;width:1px;background:var(--copper)}
+.step b{font-weight:500;font-size:15.5px}
+.step span{display:block;font-size:13px;color:var(--ink-3);line-height:1.4}
+.step span.chip{display:inline-flex;margin-top:5px;font-size:11.5px;padding:3px 9px;color:var(--crit)}
+.step span.n{display:grid;color:var(--copper-ink)}
+
+/* canales */
+.chan{border:1px solid var(--line);border-radius:12px;padding:20px 22px;display:grid;gap:12px;align-content:start;background:var(--card);min-width:0}
+.chan .hd{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.chan h3{font-size:26px}
+.chan .num{font-size:54px;color:var(--copper)}
+.chan .num small{display:block;font-family:var(--ui);font-size:13.5px;color:var(--ink-3);font-weight:400;margin-top:6px;letter-spacing:0}
+.chan p{font-size:14px;color:var(--ink-2);line-height:1.45}
+.kv{display:grid;gap:0;font-size:13.5px}
+.kv div{display:grid;grid-template-columns:86px minmax(0,1fr);gap:10px;padding:6px 0;border-top:1px solid var(--line-2)}
+.kv .k{color:var(--ink-3)}
+.kv.lr div{grid-template-columns:minmax(0,1fr) auto}
+.kv.lr b{font-weight:500;font-variant-numeric:tabular-nums}
+.pr{font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:3px 9px;border-radius:99px;font-weight:500;white-space:nowrap}
+.pr.y{background:var(--copper);color:#14110E}
+.pr.n{box-shadow:inset 0 0 0 1px var(--line);color:var(--ink-3)}
+.nots{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.not{border:1px dashed var(--ink-3);border-radius:12px;padding:16px 20px;display:grid;gap:4px}
+.not b{font-weight:500}
+.not span{font-size:14px;color:var(--ink-2)}
+
+/* anuncios */
+.camp{border:1px solid var(--ink);border-radius:14px;padding:16px;display:grid;gap:12px;background:var(--card)}
+.camp > .hd{display:flex;justify-content:space-between;gap:6px 18px;flex-wrap:wrap;align-items:baseline;padding:2px 6px}
+.camp > .hd b{font-family:var(--display);font-weight:300;font-size:26px}
+.camp > .hd span{font-size:13px;color:var(--ink-3)}
+.sets{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,3fr);gap:12px}
+.set{border-radius:10px;padding:16px 18px;display:grid;gap:10px;align-content:start;background:var(--copper-soft)}
+.set.rt{background:transparent;border:1px solid var(--mark-2)}
+.set .pct{font-size:50px}
+.set .pct small{font-family:var(--ui);font-size:13px;color:var(--ink-3);margin-left:6px;font-weight:400}
+.set p{font-size:13.5px;color:var(--ink-2);line-height:1.45}
+.ads{display:flex;gap:6px;flex-wrap:wrap}
+.ads span{font-size:12.5px;font-weight:500;padding:5px 11px;border-radius:6px;background:var(--card);border:1px solid var(--line)}
+.ads span small{font-weight:400;color:var(--ink-3)}
+.cre{display:grid;gap:10px;align-content:start;min-width:0}
+.fr{position:relative;aspect-ratio:4/5;border-radius:6px;overflow:hidden;background:#14110E center/cover no-repeat;display:grid;place-items:center;text-align:center;padding:14px}
+.fr::before{content:"";position:absolute;inset:0;background:linear-gradient(rgba(14,12,10,.3),rgba(14,12,10,.62))}
+.fr span{position:relative;color:#EDE6DA;font-size:11.5px;letter-spacing:.24em;text-transform:uppercase;line-height:1.9}
+.fr span b{display:block;font-family:var(--display);font-weight:300;font-size:25px;letter-spacing:.02em;text-transform:none;line-height:1.1;margin-bottom:6px}
+.fr .fmt{position:absolute;left:8px;top:8px;font-style:normal;font-size:10px;letter-spacing:.12em;background:rgba(14,12,10,.72);color:#DDB48C;padding:3px 7px;border-radius:4px;line-height:1.4}
+.fr .dots{position:absolute;bottom:10px;left:0;right:0;display:flex;justify-content:center;gap:5px}
+.fr .dots i{width:5px;height:5px;border-radius:50%;background:#EDE6DA;opacity:.45}
+.fr .dots i:first-child{opacity:1}
+.fr .play{position:absolute;right:10px;bottom:10px;width:0;height:0;border-left:11px solid #EDE6DA;border-top:7px solid transparent;border-bottom:7px solid transparent;opacity:.9}
+.cre h3{font-size:22px}
+.cre .hl{font-family:var(--display);font-style:italic;font-size:17px;line-height:1.25;color:var(--ink-2)}
+.cre .kv div{grid-template-columns:52px minmax(0,1fr)}
+
+/* plata */
+.bud{display:grid;grid-template-columns:34px minmax(0,1fr);gap:0 8px;padding-top:14px}
+.bud .ax{position:relative;height:190px;font-size:11.5px;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.bud .ax span{position:absolute;right:0;transform:translateY(50%)}
+.bud .plot{position:relative;height:190px;display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:0 10px;align-items:end;border-bottom:1px solid var(--ink-3);background:linear-gradient(var(--line-2),var(--line-2)) 0 0/100% 1px no-repeat,linear-gradient(var(--line-2),var(--line-2)) 0 50%/100% 1px no-repeat}
+.bud .col{height:100%;display:flex;flex-direction:column-reverse;gap:2px;max-width:64px;width:100%;justify-self:center}
+.bud .col i{display:block;width:100%}
+.bud .p{background:var(--copper)}
+.bud .r{background:var(--mark-2)}
+.bud .c{background:repeating-linear-gradient(135deg,color-mix(in srgb,var(--copper) 45%,transparent) 0 3px,transparent 3px 7px);border:1.5px dashed var(--copper-ink);border-bottom:0}
+.bud .col i:last-child{border-radius:4px 4px 0 0}
+.bud .rule{position:absolute;top:-14px;bottom:-62px;left:50%;border-left:1.5px dashed var(--ink)}
+.bud .rule b{position:absolute;top:-6px;right:8px;font-size:12.5px;font-weight:600;white-space:nowrap;background:var(--card);padding:0 4px}
+.bud .xl{grid-column:2;display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:0 10px;padding-top:8px;text-align:center}
+.bud .xl div{display:grid;gap:1px;font-size:12.5px;color:var(--ink-2);min-width:0}
+.bud .xl b{font-weight:500}
+.bud .xl small{font-size:11px;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.bud .xl em{font-style:normal;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--copper-ink);font-weight:600;min-height:15px}
+.leg{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:12.5px;color:var(--ink-2)}
+.leg i{display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:-1.5px;margin-right:6px;background:var(--copper)}
+.leg i.r{background:var(--mark-2)}
+.leg i.c{background:repeating-linear-gradient(135deg,color-mix(in srgb,var(--copper) 45%,transparent) 0 3px,transparent 3px 7px);box-shadow:inset 0 0 0 1px var(--copper-ink)}
+
+/* embudo */
+.fun{display:grid;gap:0;justify-items:center}
+.fs{width:var(--w);min-width:210px;border-radius:8px;padding:13px 18px;display:flex;justify-content:center;align-items:baseline;gap:12px;flex-wrap:wrap;background:color-mix(in srgb,var(--copper) var(--o),var(--card));text-align:center}
+.fs .num{font-size:40px}
+.fs span{font-size:14px;color:var(--ink-2)}
+.fs.end{background:var(--copper);color:#14110E}
+.fs.end span{color:#14110E}
+.fs.end .num{font-size:52px}
+.fsplit{width:44%;min-width:300px;display:grid;grid-template-columns:2fr 1fr;gap:6px}
+.fsplit .fs{width:100%;min-width:0;padding-inline:10px}
+.fr-rate{font-size:12.5px;color:var(--ink-3);padding:7px 0;display:flex;align-items:center;gap:8px}
+.fr-rate::before{content:"";width:1px;height:14px;background:var(--copper)}
+.sc{border:1px solid var(--line);border-radius:12px;padding:18px 20px;display:grid;gap:12px;align-content:start;background:var(--card)}
+.sc.base{border-color:var(--copper);box-shadow:inset 0 3px 0 var(--copper)}
+.sc .num{font-size:60px;color:var(--copper)}
+.sc .num small{font-family:var(--ui);font-size:14px;color:var(--ink-3);margin-left:8px;font-weight:400}
+.mb{height:8px;border-radius:4px;background:var(--line);overflow:hidden}
+.mb i{display:block;height:100%;background:var(--copper);border-radius:4px}
+.evi{border:1px solid var(--line);border-radius:12px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr)) minmax(0,1.7fr);overflow:hidden;background:var(--card)}
+.evi > div{padding:16px 18px;display:grid;gap:4px;align-content:start}
+.evi > div + div{border-left:1px solid var(--line)}
+.evi .num{font-size:40px}
+.evi span{font-size:13px;color:var(--ink-3)}
+.evi .say{font-family:var(--display);font-style:italic;font-size:22px;line-height:1.2;color:var(--ink);align-content:center}
+.evi .zero .num{color:var(--crit)}
+
+/* cascada */
+.wf{display:grid;gap:12px 14px;grid-template-columns:168px minmax(0,1fr) 104px}
+.wr{display:grid;grid-column:1/-1;grid-template-columns:subgrid;align-items:center}
+.wr .l{font-size:14px;color:var(--ink-2);line-height:1.25}
+.wr .l small{display:block;font-size:11.5px;color:var(--ink-3)}
+.wr .t{height:38px;position:relative;background:linear-gradient(var(--line-2),var(--line-2)) 0 100%/100% 1px no-repeat}
+.wr .t i{position:absolute;top:0;bottom:0;left:var(--l,0%);width:var(--w);border-radius:0 4px 4px 0;background:var(--copper)}
+.wr.neg .t i{background:repeating-linear-gradient(135deg,color-mix(in srgb,var(--mark-2) 55%,transparent) 0 3px,transparent 3px 6px);box-shadow:inset 0 0 0 1px var(--mark-2);border-radius:3px}
+.wr.base .t i{background:var(--mark-2)}
+.wr .v{font-size:25px;text-align:right;white-space:nowrap}
+.wr.neg .v{color:var(--ink-3)}
+.wr.tot .v{font-size:32px;color:var(--copper-ink)}
+.wr.tot .l{font-weight:600;color:var(--ink)}
+.wr.sep{border-top:1px solid var(--line-2);padding-top:12px}
+.nb{display:grid;gap:10px;position:relative;padding-top:22px}
+.nb .row{display:grid;gap:4px}
+.nb .row span{font-size:13.5px;color:var(--ink-2);display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.nb .row .num{font-size:28px;color:var(--ink);font-weight:300}
+.nb .bar{height:22px;background:linear-gradient(var(--line-2),var(--line-2)) 0 100%/100% 1px no-repeat}
+.nb .bar i{display:block;height:100%;background:var(--copper);border-radius:0 4px 4px 0}
+.nb .floor{position:absolute;top:0;bottom:0;left:57.1%;border-left:1.5px dashed var(--ink)}
+.nb .floor b{position:absolute;top:-2px;right:7px;font-size:12px;font-weight:600;white-space:nowrap}
+.costs{display:flex;gap:2px;height:14px}
+.costs i{display:block;background:var(--mark-2);height:100%}
+.costs i:first-child{border-radius:3px 0 0 3px}.costs i:last-child{border-radius:0 3px 3px 0}
+.costs i:nth-child(2){opacity:.8}.costs i:nth-child(3){opacity:.62}.costs i:nth-child(4){opacity:.48}.costs i:nth-child(5){opacity:.34}
+
+/* semana */
+.scroll{overflow-x:auto;margin:0 -6px;padding:0 6px 6px}
+.gantt{display:grid;grid-template-columns:118px repeat(9,minmax(74px,1fr));gap:0;min-width:820px;font-size:13px}
+.gantt > *{padding:8px 4px;border-top:1px solid var(--line-2);min-width:0}
+.gantt .dh{border-top:0;text-align:center;display:grid;gap:0;padding-bottom:10px}
+.gantt .dh .num{font-size:30px}
+.gantt .dh small{font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+.gantt .dh.hot .num{color:var(--copper-ink)}
+.gantt .dh em{font-style:normal;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--copper-ink);font-weight:600;min-height:15px}
+.gantt .rl{font-weight:500;color:var(--ink);display:grid;gap:0;align-content:center;padding-left:0}
+.gantt .rl small{font-weight:400;color:var(--ink-3);font-size:11.5px}
+.gantt .hito{font-size:12px;line-height:1.3;color:var(--ink-2);text-align:center;align-self:stretch;display:grid;align-content:center}
+.gantt .hito b{display:block;color:var(--ink);font-weight:600}
+.gantt .span{padding:10px 3px;display:grid;align-items:center}
+.gantt .span i{display:flex;align-items:center;justify-content:center;height:30px;border-radius:6px;background:var(--copper);color:#14110E;font-style:normal;font-size:12.5px;font-weight:500;white-space:nowrap;overflow:hidden;padding:0 8px}
+.gantt .span i.alt{background:repeating-linear-gradient(135deg,color-mix(in srgb,var(--copper) 40%,transparent) 0 3px,transparent 3px 7px);box-shadow:inset 0 0 0 1.5px var(--copper-ink);color:var(--ink)}
+.gantt .span i.alt u{text-decoration:none;background:var(--card);padding:1px 8px;border-radius:4px}
+.gantt .span i.dk{background:var(--mark-2);color:#FBFAF7}
+.gantt .pt{display:grid;justify-items:center;align-content:center;gap:3px;text-align:center;font-size:11.5px;color:var(--ink-3)}
+.gantt .pt i{width:14px;height:14px;border-radius:50%;background:var(--copper)}
+.gantt .pt i.o{background:transparent;box-shadow:inset 0 0 0 1.5px var(--copper-ink)}
+.gantt .pt i.dk{background:var(--mark-2)}
+
+/* para prender */
+.meter{display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px 28px;align-items:center}
+.meter .num{font-size:92px;color:var(--copper)}
+.meter .num small{font-family:var(--ui);font-size:16px;color:var(--ink-3);margin-left:10px;font-weight:400}
+.segs{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:4px}
+.segs i{height:16px;border-radius:4px;background:var(--good)}
+.segs i.e{background:transparent;box-shadow:inset 0 0 0 1.5px var(--crit)}
+.segs i.e2{background:transparent;box-shadow:inset 0 0 0 1.5px var(--ink-3)}
+.todo{border:1px solid var(--line);border-radius:12px;padding:18px 20px;display:grid;grid-template-columns:26px minmax(0,1fr);gap:6px 14px;align-content:start;background:var(--card)}
+.todo.must{border-color:var(--crit);box-shadow:inset 0 3px 0 var(--crit)}
+.todo .bx{width:24px;height:24px;border-radius:5px;border:1.5px solid var(--ink-2);margin-top:3px}
+.todo h3{font-size:23px}
+.todo p{grid-column:2;font-size:14px;color:var(--ink-2);line-height:1.45}
+.todo .who{grid-column:2;display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.who span{font-size:12.5px;font-weight:500;padding:3px 10px;border-radius:99px;background:var(--copper-soft);color:var(--ink)}
+.done{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.done div{border-radius:10px;background:var(--good-bg);padding:13px 15px;font-size:13.5px;color:var(--ink-2);display:grid;grid-template-columns:18px minmax(0,1fr);gap:9px;line-height:1.4}
+.done div::before{content:"";width:9px;height:5px;border-left:2px solid var(--good);border-bottom:2px solid var(--good);transform:rotate(-45deg);margin-top:5px;margin-left:3px}
+.done b{color:var(--ink);font-weight:500;display:block}
+.roles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--card)}
+.roles div{padding:18px 20px;display:grid;gap:4px;align-content:start}
+.roles div + div{border-left:1px solid var(--line)}
+.roles b{font-family:var(--display);font-weight:300;font-size:30px;line-height:1.05}
+.roles span{font-size:13.5px;color:var(--ink-2);line-height:1.4}
+.foot{background:#0E0C0A;color:#9A8F80;font-size:12.5px;padding:26px 20px 34px}
+.foot div{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;gap:6px 22px;justify-content:space-between}
+.foot a{color:#DDB48C}
+
+@media screen and (max-width:860px){
+  .sec{padding:54px 16px}
+  .hero{padding:44px 16px 0}
+  .hero .wrap{grid-template-columns:minmax(0,1fr)}
+  .hero .txt{padding-bottom:8px}
+  .arc{justify-self:center;max-width:300px}
+  .sh{grid-template-columns:auto minmax(0,1fr)}
+  .sh .no{font-size:44px;margin-top:-2px}
+  .sh .chip{grid-column:1/-1;justify-self:start;margin-top:2px;white-space:normal}
+  .chip{white-space:normal}
+  .g2,.g3,.g-58,.g-85,.lanes,.sets,.nots,.fl-src{grid-template-columns:minmax(0,1fr)}
+  .g4,.done,.roles{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .roles div:nth-child(3){border-left:0}.roles div:nth-child(n+3){border-top:1px solid var(--line)}
+  .kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .kpi + .kpi{border-left:0}
+  .kpi:nth-child(even){border-left:1px solid var(--line)}
+  .kpi:nth-child(n+3){border-top:1px solid var(--line)}
+  .kpi:last-child{grid-column:1/-1;border-left:0}
+  .kpi .num{font-size:40px}
+  .card{padding:20px 18px}
+  .down{grid-template-columns:1fr;height:30px}.down i:nth-child(n+2){display:none}
+  .down2{grid-template-columns:1fr;height:30px}.down2 i:nth-child(2){display:none}
+  .fl-page{grid-template-columns:minmax(0,1fr);padding:20px}
+  .evi{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .evi > div:nth-child(3){border-left:0}.evi > div:nth-child(n+3){border-top:1px solid var(--line)}
+  .evi .say{grid-column:1/-1;border-left:0}
+  .wf{grid-template-columns:minmax(0,1fr) 104px;gap:2px 10px}
+  .wr .l{grid-column:1/-1;padding-top:6px}
+  .fs{min-width:0}.fs .num{font-size:32px}
+  .fun > .fs{width:max(var(--w),64%)}
+  .fsplit{width:82%;min-width:0}
+  .meter{grid-template-columns:minmax(0,1fr)}
+  .meter .num{font-size:70px}
+  .bud .plot,.bud .xl{gap:0 5px}
+  .bud .xl div{font-size:11px}
+  .bud .xl small{font-size:9.5px}
+  .bud .xl em{display:none}
+  .bud .rule b{font-size:11px}
+  .days8 .num{font-size:22px}.days8 small{font-size:9px;letter-spacing:.04em}
+  .vbar .mk b{font-size:12px}
+  .vbar .mk em{left:auto;right:8px}
+  .tl .e{display:none}
+  .inc small{white-space:normal;text-align:right}
 }
-* { box-sizing: border-box; }
-body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--f-body); font-weight: 300; font-size: 14px; line-height: 1.45; }
-.page { max-width: 1000px; margin: 0 auto; padding: 0 16px 28px; }
-h1, h2 { font-family: var(--f-display); font-weight: 300; margin: 0; text-wrap: balance; }
-p, ul { margin: 0; }
-.num { font-variant-numeric: lining-nums tabular-nums; }
-.price .now, .fun b { font-variant-numeric: lining-nums tabular-nums; }
-.eyebrow { font-size: 10.5px; letter-spacing: .28em; text-transform: uppercase; font-weight: 500; color: var(--copper-ink); }
-
-.top { background: var(--hero-bg); color: var(--hero-fg); margin: 0 -16px; padding: 22px 24px 20px; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 18px; align-items: end; }
-.top .eyebrow { color: var(--hero-copper); }
-.top h1 { font-size: clamp(28px, 4.2vw, 40px); line-height: 1.05; margin-top: 8px; }
-.top h1 em { color: var(--hero-copper); }
-.top .sub { margin-top: 6px; color: #BDB2A2; font-size: 13.5px; }
-.price { text-align: right; }
-.price .was { font-size: 13px; color: #A99B89; }
-.price .now { font-family: var(--f-display); font-size: 46px; line-height: 1; color: var(--hero-fg); }
-.price .now small { font-size: 18px; margin-right: 4px; color: var(--hero-copper); }
-.price .per { font-size: 11.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--hero-copper); margin-top: 4px; }
-
-.ask { margin-top: 16px; padding: 12px 16px; border-left: 3px solid var(--copper); background: var(--surface); font-size: 14.5px; }
-.ask b { font-weight: 500; }
-
-.grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px 18px; margin-top: 16px; }
-.blk h2 { font-size: 21px; line-height: 1.1; border-bottom: 1px solid var(--line); padding-bottom: 5px; margin-bottom: 7px; }
-.blk h2 .n { font-family: var(--f-body); font-size: 10.5px; letter-spacing: .2em; color: var(--copper-ink); font-weight: 500; margin-right: 6px; vertical-align: 3px; }
-.blk ul { padding-left: 15px; }
-.blk li { margin: 2px 0; }
-.blk li::marker { color: var(--copper); }
-.muted { color: var(--muted); }
-.span2 { grid-column: span 2; }
-.span3 { grid-column: 1 / -1; }
-
-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-th, td { text-align: left; padding: 3px 6px 3px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
-th { font-weight: 500; font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
-td.r, th.r { text-align: right; }
-tr.hl td { font-weight: 500; }
-
-.fun { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 2px; margin-top: 4px; }
-.fun div { background: var(--copper-soft); padding: 6px 6px 5px; text-align: center; }
-.fun div:first-child { border-radius: 4px 0 0 4px; } .fun div:last-child { border-radius: 0 4px 4px 0; background: var(--copper); color: #fff; }
-.fun b { display: block; font-family: var(--f-display); font-size: 22px; font-weight: 400; line-height: 1.05; }
-.fun span { font-size: 11px; color: var(--muted); }
-.fun div:last-child span { color: #fff; }
-
-.check { list-style: none; padding: 0 !important; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 3px 18px; }
-.check li { margin: 0; padding-left: 22px; position: relative; }
-.check li::before { content: ""; position: absolute; left: 0; top: .22em; width: 12px; height: 12px; border: 1.5px solid var(--muted); border-radius: 2px; }
-.check li.ok::before { content: "✓"; border-color: var(--ok); color: var(--ok); font-size: 10px; line-height: 10px; text-align: center; font-weight: 600; }
-.check small { color: var(--muted); }
-.foot { margin-top: 12px; font-size: 11px; color: var(--muted); display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
-
-@media screen and (max-width: 760px) {
-  .top { grid-template-columns: 1fr; } .price { text-align: left; }
-  .grid { grid-template-columns: 1fr; } .span2, .span3 { grid-column: auto; }
-  .fun { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  .check { grid-template-columns: 1fr; }
-  table { display: block; overflow-x: auto; }
-  .top .eyebrow { letter-spacing: .18em; }
+@media screen and (max-width:520px){
+  .g4{grid-template-columns:minmax(0,1fr)}
+  .cre{grid-template-columns:118px minmax(0,1fr);gap:6px 14px}
+  .cre .fr{grid-row:span 3;padding:8px}
+  .cre .fr span b{font-size:18px}
+  .cre .fr span{font-size:9px;letter-spacing:.14em}
+  .done{grid-template-columns:minmax(0,1fr)}
 }
-@page { size: A4; margin: 9mm 10mm; }
-@media print {
-  :root { --bg: #fff; }
-  body { font-size: 10.9px; line-height: 1.36; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  .page { max-width: none; padding: 0; }
-  .top { margin: 0; padding: 14px 16px 13px; border-radius: 3px; }
-  .top h1 { font-size: 28px; } .price .now { font-size: 36px; }
-  .ask { margin-top: 11px; padding: 8px 12px; font-size: 12px; }
-  .grid { gap: 9px 15px; margin-top: 10px; }
-  .blk h2 { font-size: 18px; margin-bottom: 5px; padding-bottom: 3px; }
-  table { font-size: 10.5px; } th, td { padding: 2px 5px 2px 0; }
-  .fun b { font-size: 19px; } .fun span { font-size: 10px; } .fun div { padding: 4px 3px; }
-  .foot { margin-top: 10px; font-size: 10px; }
+/* impresión: una sola hoja larga, con el mismo diseño que la pantalla */
+@page{size:1180px 10712px;margin:0}
+@media print{
+  .nav{display:none}
+  html{scroll-behavior:auto}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
 }
-</style></head><body><div class="page">
+</style></head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="i-house" viewBox="0 0 24 24"><circle cx="12" cy="12" r="7.5"/><circle cx="12" cy="12" r="2.1"/></symbol>
+<symbol id="i-dining" viewBox="0 0 24 24"><path d="M3 10h18M5 10v8M19 10v8M3 7h18"/></symbol>
+<symbol id="i-chef" viewBox="0 0 24 24"><path d="M4 16.5h16"/><path d="M5.6 16.5a6.4 6.4 0 0 1 12.8 0"/><path d="M12 6.4v3.7"/></symbol>
+<symbol id="i-pool" viewBox="0 0 24 24"><path d="M3 10c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/><path d="M3 15c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/></symbol>
+<symbol id="i-cer" viewBox="0 0 24 24"><path d="M12 4c2.6 3.6 4.4 5 4.4 8a4.4 4.4 0 0 1-8.8 0c0-3 1.8-4.4 4.4-8z"/></symbol>
+</defs></svg>
 
-<header class="top">
-  <div>
-    <p class="eyebrow">La Chamana · Black Friday 2026 · martes 24-nov</p>
-    <h1>Tres noches de enero, <em>la casa entera</em>, en venta directa</h1>
-    <p class="sub">Se vende del martes 24-nov al martes 1-dic. Estadías del 13 al 31 de enero de 2027.</p>
-  </div>
-  <div class="price">
-    <p class="was">valor de referencia <s class="num">USD 17.668</s> · 29% menos</p>
-    <p class="now num"><small>USD</small>12.500</p>
-    <p class="per">la estadía · impuestos incluidos</p>
-  </div>
-</header>
+<nav class="nav" aria-label="Secciones"><div>
+<a href="#oferta"><b>01</b>La oferta</a><a href="#ventana"><b>02</b>La ventana</a><a href="#recorrido"><b>03</b>El recorrido</a><a href="#canales"><b>04</b>Por dónde llega</a><a href="#anuncios"><b>05</b>Los anuncios</a><a href="#plata"><b>06</b>La plata</a><a href="#esperamos"><b>07</b>Qué esperamos</a><a href="#casa"><b>08</b>Lo que queda</a><a href="#semana"><b>09</b>La semana</a><a href="#prender"><b>10</b>Para prender</a>
+</div></nav>
 
-<p class="ask"><b>Lo que decidimos hoy: si se prende.</b> Se prende con los cuatro primeros casilleros del punto 6 tildados. Sin la tarifa en Cloudbeds no hay pauta: la página llevaría a la tarifa normal. Sin píxel sí, optimizando a clics.</p>
-
-<div class="grid">
-
-  <section class="blk">
-    <h2><span class="n">01</span>Qué se vende</h2>
-    <ul>
-      <li>La casa entera, 3 noches, hasta 16 personas.</li>
-      <li>Tres desayunos, una cena privada, un día de beach club y una sesión privada de sound healing.</li>
-      <li>Más lo de siempre: housekeeping, concierge, mantenimiento y seguridad. Sin traslado.</li>
-      <li>Noches extra a USD 4.200, con desayuno.</li>
-      <li>100% al reservar, no reembolsable. El cambio de fecha queda solo en los términos, a pedido.</li>
-    </ul>
-  </section>
-
-  <section class="blk">
-    <h2><span class="n">02</span>Por dónde llega</h2>
-    <ul>
-      <li><b>Pauta en Meta:</b> prospección en 13 ciudades de EE.UU. y 4 de Canadá, y retargeting a quien ya conoce la casa.</li>
-      <li><b>DMs de Bianca</b>, a mano: líderes de retiro y mánagers, sin precio, con el link.</li>
-      <li><b>Email de lara@:</b> 40 el primer día, sin precio, a la página.</li>
-      <li><b>La página</b> <span class="muted">lachamana.com/pages/black-friday</span> → «Reserve» al motor de Cloudbeds, o WhatsApp.</li>
-      <li>Solo venta directa. Si pregunta una agencia: su neta anual más su comisión.</li>
-    </ul>
-  </section>
-
-  <section class="blk">
-    <h2><span class="n">03</span>Los anuncios</h2>
-    <table>
-      <tr><th>Creativo</th><th>Formato</th><th>Desde</th></tr>
-      <tr><td>C1 · A Private Escape</td><td>imagen 4:5 y 9:16</td><td>mar 24</td></tr>
-      <tr><td>C2 · La estadía</td><td>carrusel de 5</td><td>mar 24</td></tr>
-      <tr><td>C3 · Reel</td><td>video 10–15 s</td><td>mar 24</td></tr>
-      <tr><td>C4 · Cierre</td><td>imagen, retargeting</td><td>sáb 28</td></tr>
-    </table>
-    <p class="muted" style="margin-top:4px">El precio va en el texto del anuncio, nunca sobre la foto. «Reserve», nunca «Book now». Nada al feed orgánico.</p>
-  </section>
-
-  <section class="blk">
-    <h2><span class="n">04</span>La plata</h2>
-    <table>
-      <tr><th>Tramo</th><th class="r">USD/día</th><th>Cómo</th></tr>
-      <tr><td>mar 24 → vie 27</td><td class="r num">100</td><td>70 prospección · 30 retargeting</td></tr>
-      <tr><td>sáb 28 → mar 1, con reserva</td><td class="r num">100</td><td>60 · 40</td></tr>
-      <tr><td>sáb 28 → mar 1, sin reserva</td><td class="r num">50</td><td>30 · 20</td></tr>
-      <tr class="hl"><td>Tope de la campaña</td><td class="r num">800</td><td>ARS 1.236.320</td></tr>
-    </table>
-    <p class="muted" style="margin-top:4px">Meta D se pausa el martes. La regla del sábado la propone El Chamán leyendo Cloudbeds.</p>
-  </section>
-
-  <section class="blk span2">
-    <h2><span class="n">05</span>Qué esperamos, con USD 600 gastados <span class="muted" style="font-family:var(--f-body);font-size:11px">· estimado sobre las campañas de la cuenta</span></h2>
-    <div class="fun">
-      <div><b class="num">11.800</b><span>personas alcanzadas</span></div>
-      <div><b class="num">340</b><span>clics</span></div>
-      <div><b class="num">260</b><span>visitas a la página</span></div>
-      <div><b class="num">10</b><span>abren el motor</span></div>
-      <div><b class="num">5</b><span>conversaciones por WhatsApp</span></div>
-      <div><b class="num">≈ 1</b><span>reserva</span></div>
+<!-- HERO -->
+<header class="sec deep hero"><div class="wrap">
+  <div class="txt">
+    <p class="lbl">La Chamana · Black Friday 2026 · reunión del martes 24-nov</p>
+    <h1>Tres noches de enero. <i>La casa entera.</i></h1>
+    <p class="sub">Una oferta de venta directa, con precio cerrado, que se compra en la web sin hablar con nadie. Acá está la campaña completa, pilar por pilar.</p>
+    <div class="price">
+      <div class="num big"><small>USD</small>12.500</div>
+      <div class="was"><span>valor de referencia <s>17.668</s></span><b>29% menos · impuestos incluidos</b></div>
     </div>
-    <p style="margin-top:6px">Escenario pesimista: 0 reservas. Optimista: 2 a 3. <b>Una sola reserva paga toda la pauta</b>: después de impuestos (22%), tarjeta y los USD 800, a la casa le quedan ≈ USD 3.050. Las noches que se venden son de una quincena de enero que hoy no tiene ninguna reserva.</p>
-  </section>
+  </div>
+  <div class="arc" role="img" aria-label="El gran arco de La Chamana al atardecer"></div>
+  <div class="kpis">
+    <div class="kpi"><div class="num">8<small>días</small></div><span>de venta</span><em>mar 24-nov → mar 1-dic</em></div>
+    <div class="kpi"><div class="num">19<small>noches</small></div><span>de enero en juego</span><em>del 13 al 31 · sin reservas al 19-nov</em></div>
+    <div class="kpi"><div class="num">16<small>personas</small></div><span>un solo grupo por estadía</span><em>3 noches como mínimo</em></div>
+    <div class="kpi"><div class="num">800<small>USD</small></div><span>tope de pauta en Meta</span><em>100 por día al arrancar</em></div>
+    <div class="kpi"><div class="num">1<small>reserva</small></div><span>paga toda la pauta</span><em>y deja ≈ USD 3.050</em></div>
+  </div>
+</div></header>
 
-  <section class="blk span3">
-    <h2><span class="n">06</span>Para prender · se tilda en la reunión</h2>
-    <ul class="check">
-      <li>Tarifa Black Friday cargada en Cloudbeds, con link o pública <small>· Iru</small></li>
-      <li>Página publicada y prueba hasta la pantalla de pago, sin cobro <small>· Boris · Iru</small></li>
-      <li>Creativos C1–C3 finales, campaña cargada en pausa <small>· Bianca</small></li>
-      <li>Píxel 744944938681825 asignado a la cuenta, o se sale optimizando a clics <small>· Boris o Bianca</small></li>
-      <li>FAQ de lachamana.com con las dos respuestas nuevas <small>· Bianca</small></li>
-      <li>Proveedores de enero confirmados para 16 <small>· Iru → Operaciones</small></li>
-      <li class="ok">Precio final con impuestos confirmado <small>· Iru, 23-nov</small></li>
-      <li class="ok">Copy de anuncios, página, DMs y email aprobado por copy-reviewer <small>· 23-nov</small></li>
-      <li class="ok">Paquete de Meta, cola de DMs y lista de email listos <small>· El Chamán</small></li>
-      <li class="ok">OK de René, Gastón y Pato <small>· 22-nov</small></li>
-    </ul>
-  </section>
+<!-- 01 OFERTA -->
+<section class="sec" id="oferta"><div class="wrap">
+  <header class="sh"><span class="no num">01</span><div><h2>La oferta</h2><p class="lede">Un paquete de tres noches con cuatro experiencias adentro, a un precio menor que el de la casa sola en enero.</p></div><span class="chip ok">precio confirmado por Iru · 23-nov</span></header>
+  <div class="g-58">
+    <div class="card">
+      <h3>Lo que trae</h3>
+      <div class="inc">
+        <div><svg class="ic"><use href="#i-house"/></svg><span>La casa entera, tres noches</span><small>hasta 16 personas</small></div>
+        <div><svg class="ic"><use href="#i-dining"/></svg><span>Desayuno</span><small>las tres mañanas</small></div>
+        <div><svg class="ic"><use href="#i-chef"/></svg><span>Una cena privada</span><small>una noche</small></div>
+        <div><svg class="ic"><use href="#i-pool"/></svg><span>Beach club</span><small>un día</small></div>
+        <div><svg class="ic"><use href="#i-cer"/></svg><span>Sound healing privado</span><small>una sesión</small></div>
+      </div>
+      <p class="sub-l">Lo de siempre</p>
+      <div class="tags"><span class="tag">Housekeeping</span><span class="tag">Concierge</span><span class="tag">Mantenimiento</span><span class="tag">Seguridad nocturna</span></div>
+      <p class="sub-l">No entra</p>
+      <div class="tags"><span class="tag no">Traslado al aeropuerto</span></div>
+    </div>
+    <div class="card">
+      <h3>El valor, pieza por pieza, y dónde cae el precio</h3>
+      <div class="vbar" role="img" aria-label="Valor de referencia 17.668 dólares: casa 12.600, desayuno 2.496, cena 1.472, beach club 720, sound healing 380. El precio Black Friday es 12.500.">
+        <div class="stack"><i style="width:71.3%" title="La casa · 12.600"></i><i style="width:14.1%" title="Desayuno · 2.496"></i><i style="width:8.3%" title="Cena · 1.472"></i><i style="width:4.1%" title="Beach club · 720"></i><i style="width:2.2%" title="Sound healing · 380"></i></div>
+        <div class="mk"><b>Black Friday · 12.500</b><em>5.168 de regalo</em></div>
+      </div>
+      <div class="vrows">
+        <div><i style="background:var(--mark-2)"></i><span>La casa</span><small>3 × 4.200</small><span class="num">12.600</span></div>
+        <div><i></i><span>Desayuno</span><small>16 × 3 × 52</small><span class="num">2.496</span></div>
+        <div><i style="opacity:.82"></i><span>Cena privada</span><small>16 × 92</small><span class="num">1.472</span></div>
+        <div><i style="opacity:.66"></i><span>Beach club, un día</span><small>16 × 45</small><span class="num">720</span></div>
+        <div><i style="opacity:.5"></i><span>Sound healing</span><small>una sesión</small><span class="num">380</span></div>
+        <div class="tot"><span></span><span>Valor de referencia</span><small>USD</small><span class="num">17.668</span></div>
+      </div>
+      <p class="note">La línea punteada cae antes de que termine la casa: quien reserva paga menos que tres noches sueltas de enero, y las cuatro experiencias van de regalo.</p>
+    </div>
+  </div>
+  <div class="g4">
+    <div class="tile"><div class="num">100%</div><span>al reservar. No hay seña ni saldo.</span></div>
+    <div class="tile"><div class="num">0</div><span>reembolso. El cambio de fecha no se comunica: queda en los términos de la tarifa, a pedido.</span></div>
+    <div class="tile"><div class="num">22%</div><span>de impuestos ya adentro del precio: IVA 16% y hospedaje 6%.</span></div>
+    <div class="tile"><div class="num">4.200</div><span>cada noche extra, con desayuno e impuestos.</span></div>
+  </div>
+  <p><span class="chip wa">condiciones de pago: propuesta de Iru del 23-nov, reemplaza el 50% de seña</span></p>
+</div></section>
 
-  <section class="blk span3">
-    <h2><span class="n">07</span>La semana</h2>
-    <table>
-      <tr><th>mar 24</th><th>mié 25 → lun 30</th><th>jue 26</th><th>vie 27 · lun 30</th><th>sáb 28, 10:00</th><th>mar 1-dic</th><th>mié 2</th></tr>
-      <tr><td>OK del equipo, se prende · Meta D en pausa · primera ola de email</td><td>lectura diaria a las 10:00: gasto, clics, motor, conversaciones, reservas</td><td>C4 listo</td><td>Black Friday y Cyber Monday · email a los candidatos</td><td>regla de presupuesto · entra C4</td><td>cierra sola a las 23:59</td><td>lectura de cierre y aprendizaje</td></tr>
-    </table>
-  </section>
+<!-- 02 VENTANA -->
+<section class="sec" id="ventana"><div class="wrap">
+  <header class="sh"><span class="no num">02</span><div><h2>La ventana</h2><p class="lede">Dos relojes. Ocho días para vender, y una quincena larga de enero para dormir.</p></div><span class="chip ok">acordado el 18-nov</span></header>
+  <div class="g2">
+    <div class="card">
+      <div class="big-l"><span class="num">8</span><span>días de venta<br><b>martes 24-nov → martes 1-dic</b></span></div>
+      <div class="days8">
+        <div><small>mar</small><span class="num">24</span></div><div><small>mié</small><span class="num">25</span></div><div><small>jue</small><span class="num">26</span></div><div class="hot"><small>vie</small><span class="num">27</span></div><div><small>sáb</small><span class="num">28</span></div><div><small>dom</small><span class="num">29</span></div><div class="hot"><small>lun</small><span class="num">30</span></div><div><small>mar</small><span class="num">1</span></div>
+      </div>
+      <div class="capt"><span><i></i>Black Friday (27) y Cyber Monday (30)</span><span>jueves 26: Thanksgiving</span></div>
+      <p class="note">Cierra sola el martes 1 a las 23:59, hora de Tulum. Iru apaga la tarifa en Cloudbeds.</p>
+      <p class="sub-l" style="margin-top:8px">De la compra a la estadía</p>
+      <div class="tl" role="img" aria-label="La venta va del 24 de noviembre al 1 de diciembre; las estadías, del 13 al 31 de enero. Entre el cierre y la primera estadía pasan seis semanas.">
+        <i style="left:0;width:11.6%"></i><i class="b" style="left:72.5%;width:27.5%"></i>
+        <span style="left:0;top:0"><b>Se vende</b> · 8 días</span><span style="right:0;top:0"><b>Se duerme</b> · 19 noches</span>
+        <span class="e" style="left:0;top:54px">24-nov</span><span style="left:42%;top:54px;transform:translateX(-50%)">seis semanas entre el cierre y la primera estadía</span><span class="e" style="right:0;top:54px">31-ene</span>
+      </div>
+      <p class="note">Quien compra viaja entre seis y diez semanas después. Hasta ahora la casa se reservó con 11 días de anticipación (mediana de 7 reservas).</p>
+    </div>
+    <div class="card">
+      <div class="big-l"><span class="num">19</span><span>noches de enero<br><b>estadías del 13 al 31 · hasta 6 de tres noches</b></span></div>
+      <div class="cal" role="img" aria-label="Enero de 2027: las estadías Black Friday van del miércoles 13 al domingo 31">
+        <span>L</span><span>M</span><span>M</span><span>J</span><span>V</span><span>S</span><span>D</span>
+        <i></i><i></i><i></i><i></i><div>1</div><div>2</div><div>3</div>
+        <div>4</div><div>5</div><div>6</div><div>7</div><div>8</div><div>9</div><div>10</div>
+        <div>11</div><div>12</div><div class="on a">13</div><div class="on a">14</div><div class="on a">15</div><div class="on">16</div><div class="on">17</div>
+        <div class="on">18</div><div class="on a">19</div><div class="on a">20</div><div class="on a">21</div><div class="on">22</div><div class="on">23</div><div class="on">24</div>
+        <div class="on a">25</div><div class="on a">26</div><div class="on a">27</div><div class="on">28</div><div class="on">29</div><div class="on">30</div><div class="on x">31</div>
+      </div>
+      <div class="stays"><div>13–16</div><div>16–19</div><div>19–22</div><div>22–25</div><div>25–28</div><div>28–31</div></div>
+      <p class="note">Si se vendiera todo: seis estadías y una noche suelta, la del 31. Cloudbeds, leído el 19-nov, no tenía ninguna reserva entre el 13 y el 31. La tarifa de 4.200 sigue igual hasta el 30 de abril, así que se puede extender si funciona.</p>
+    </div>
+  </div>
+</div></section>
 
-</div>
+<!-- 03 RECORRIDO -->
+<section class="sec" id="recorrido"><div class="wrap">
+  <header class="sh"><span class="no num">03</span><div><h2>El recorrido</h2><p class="lede">Todo lleva a una sola página. Desde ahí hay dos caminos: comprar solo en el calendario, o escribirnos.</p></div><span class="chip cr">«Reserve» espera la tarifa en Cloudbeds</span></header>
+  <div class="flow">
+    <div class="fl-src">
+      <div class="node"><span class="k">Entrada 1</span><b>Anuncio en Meta</b><span>Instagram y Facebook · con precio en el texto</span></div>
+      <div class="node"><span class="k">Entrada 2</span><b>DM de Bianca</b><span>a mano, uno por uno · sin precio</span></div>
+      <div class="node"><span class="k">Entrada 3</span><b>Email de lara@</b><span>a quien ya nos conoce · sin precio</span></div>
+    </div>
+    <div class="down" aria-hidden="true"><i></i><i></i><i></i></div>
+    <div class="fl-page">
+      <div><p class="lbl">lachamana.com/pages/black-friday</p><h3>La página de Black Friday</h3><p>El paquete, el valor tachado, el precio y las condiciones. Cada entrada llega con su marca, así se sabe qué trajo cada visita.</p></div>
+      <div class="btns"><span>Reserve</span><span>Talk to us</span></div>
+    </div>
+    <div class="down2" aria-hidden="true"><i></i><i></i></div>
+    <div class="lanes">
+      <div class="lane main">
+        <p class="lbl">Camino A · «Reserve»</p><h3>Compra sola, sin hablar con nadie</h3>
+        <div class="steps">
+          <div class="step"><span class="n">1</span><div><b>Motor de reservas de Cloudbeds</b><span>Tarifa Black Friday · fechas del 13 al 31 de enero · mínimo 3 noches</span><span class="chip cr">falta: Iru carga la tarifa</span></div></div>
+          <div class="step"><span class="n">2</span><div><b>Pago del 100%</b><span>Confirmación automática. El calendario evita que dos compras se pisen.</span></div></div>
+          <div class="step"><span class="n">3</span><div><b>Iru, en menos de 24 horas</b><span>Bienvenida y fila en el CRM con la campaña.</span></div></div>
+          <div class="step"><span class="n">4</span><div><b>Operación</b><span>Chef, desayunos, el día de beach club y el sound healing.</span></div></div>
+        </div>
+      </div>
+      <div class="lane">
+        <p class="lbl">Camino B · «Talk to us»</p><h3>Con una conversación</h3>
+        <div class="steps">
+          <div class="step"><span class="n">1</span><div><b>WhatsApp de reservas</b><span>Para quien no compra 12.500 en un clic.</span></div></div>
+          <div class="step"><span class="n">2</span><div><b>Iru responde y cierra</b><span>Manda el link del motor o toma la reserva a mano.</span></div></div>
+          <div class="step"><span class="n">3</span><div><b>Sigue por el camino A</b><span>Pago, bienvenida y operación son los mismos.</span></div></div>
+        </div>
+        <p class="note">Esperamos la mitad de las reservas por cada camino.</p>
+      </div>
+    </div>
+  </div>
+</div></section>
 
-<p class="foot"><span>Responde y cierra: Iru · creativos, Meta y DMs: Bianca · presiona y prende: Boris · lee y propone cada mañana: El Chamán</span><span>V1.0 · 23-nov-2026 · el detalle: black-friday-2026-campana.html</span></p>
+<!-- 04 CANALES -->
+<section class="sec" id="canales"><div class="wrap">
+  <header class="sh"><span class="no num">04</span><div><h2>Por dónde llega</h2><p class="lede">Tres canales activos y dos puertas cerradas. Es venta directa: le hablamos solo a quien compra para su propio grupo.</p></div><span class="chip ok">decidido el 22-nov</span></header>
+  <div class="g3">
+    <div class="chan">
+      <div class="hd"><h3>Pauta en Meta</h3><span class="pr y">con precio</span></div>
+      <div class="num">11.800<small>personas alcanzadas · estimado</small></div>
+      <p>Prospección en 13 ciudades de EE.UU. y 4 de Canadá, más retargeting a quien ya conoce la casa.</p>
+      <div class="kv"><div><span class="k">Ciudades</span><span>Miami · Houston · Austin · Dallas · Scottsdale · Atlanta · Los Ángeles · San Francisco · Denver · Nueva York · Chicago · Boston · Seattle · Toronto · Vancouver · Montreal · Calgary</span></div><div><span class="k">Edad</span><span>30 a 65</span></div><div><span class="k">Lo hace</span><span>Bianca la carga en pausa y una persona la prende. El sistema no escribe en Meta.</span></div></div>
+    </div>
+    <div class="chan">
+      <div class="hd"><h3>DMs de Instagram</h3><span class="pr n">sin precio</span></div>
+      <div class="num">≈ 80<small>mensajes · unos 10 por día</small></div>
+      <p>Líderes de retiro y mánagers que compran para su grupo. Tres frases y el link a la página.</p>
+      <div class="kv"><div><span class="k">Esperamos</span><span>3 a 7 respuestas, 1 a 2 conversaciones</span></div><div><span class="k">Se apoya en</span><span>9 respuestas de 18 DMs en las semanas 46 y 47</span></div><div><span class="k">Lo hace</span><span>El Chamán arma la cola. Bianca manda a mano.</span></div></div>
+    </div>
+    <div class="chan">
+      <div class="hd"><h3>Email de lara@</h3><span class="pr n">sin precio</span></div>
+      <div class="num">≤ 120<small>correos · 3 días de envío</small></div>
+      <p>Familias, productores de retiros y mánagers que ya recibieron la secuencia. Hasta 40 por día, en olas de 20.</p>
+      <div class="kv"><div><span class="k">Esperamos</span><span>2 a 5 respuestas, ≈ 1 conversación</span></div><div><span class="k">Días</span><span>martes 24 · viernes 27 · lunes 30</span></div><div><span class="k">Lo hace</span><span>El Chamán arma lista y textos. Boris da el go de cada ola.</span></div></div>
+    </div>
+  </div>
+  <div class="nots">
+    <div class="not"><b>Agencias y travel advisors: no se les ofrece</b><span>Si una pregunta, Iru responde con su tarifa neta de siempre y su comisión encima. El texto ya está escrito.</span></div>
+    <div class="not"><b>Perfil de Instagram: nada al grid</b><span>La promo no vive en el perfil. Corre solo como anuncio y como mensaje.</span></div>
+  </div>
+</div></section>
 
-</div></body></html>
+<!-- 05 ANUNCIOS -->
+<section class="sec" id="anuncios"><div class="wrap">
+  <header class="sh"><span class="no num">05</span><div><h2>Los anuncios</h2><p class="lede">Una campaña, dos públicos, cuatro creativos. El precio va en el texto del anuncio, nunca sobre la foto.</p></div><span class="chip wa">creativos en producción · Bianca</span></header>
+  <div class="camp">
+    <div class="hd"><b>Una campaña · EE.UU. y Canadá</b><span>objetivo: visitas a la página · tope USD 800 · mar 24 00:00 → mar 1-dic 23:59</span></div>
+    <div class="sets">
+      <div class="set"><p class="lbl">Público 1 · prospección</p><div class="num pct">70%<small>del día · 60% desde el sábado 28</small></div><p>Gente nueva en las 17 ciudades, con intereses de viajes de lujo, villas, viajes en grupo y retiros. Tres ideas compiten y Meta reparte hacia la que rinde.</p><div class="ads"><span>C1 · A Private Escape</span><span>C2 · La estadía</span><span>C3 · Reel</span></div></div>
+      <div class="set rt"><p class="lbl">Público 2 · retargeting</p><div class="num pct">30%<small>40% desde el 28</small></div><p>Quien ya interactuó con la cuenta, visitó la web o vio el reel. Ahí vive la compra rápida.</p><div class="ads"><span>C2 · La estadía</span><span>C4 · Cierre <small>desde el 28</small></span></div></div>
+    </div>
+  </div>
+  <div class="g4">
+    <div class="cre">
+      <div class="fr" style="background-image:url('https://lachamana.com/cdn/shop/files/hero2-corregida.jpg?width=700')"><i class="fmt">IMAGEN 4:5 · 9:16</i><span><b>A Private Escape</b>Black Friday</span></div>
+      <h3>C1 · A Private Escape</h3>
+      <p class="hl">«A private escape. January, the whole house.»</p>
+      <div class="kv"><div><span class="k">Corre</span><span>prospección, desde el martes 24</span></div><div><span class="k">Estado</span><span>4:5 listo · falta 9:16</span></div></div>
+    </div>
+    <div class="cre">
+      <div class="fr" style="background-image:url('https://lachamana.com/cdn/shop/files/07A0883.jpg?width=700')"><i class="fmt">CARRUSEL · 5</i><span><b>The whole house</b>1 de 5</span><div class="dots"><i></i><i></i><i></i><i></i><i></i></div></div>
+      <h3>C2 · La estadía</h3>
+      <p class="hl">«Three nights. The whole house. Sixteen people.»</p>
+      <div class="kv"><div><span class="k">Corre</span><span>los dos públicos, desde el martes 24</span></div><div><span class="k">Estado</span><span>falta · una foto por experiencia</span></div></div>
+    </div>
+    <div class="cre">
+      <div class="fr" style="background-image:url('https://lachamana.com/cdn/shop/files/9.jpg?width=700')"><i class="fmt">REEL · 10–15 s</i><span><b>Three nights in January</b>Until December 1</span><i class="play"></i></div>
+      <h3>C3 · Reel</h3>
+      <p class="hl">«Black Friday at La Chamana.»</p>
+      <div class="kv"><div><span class="k">Corre</span><span>prospección, desde el martes 24</span></div><div><span class="k">Estado</span><span>falta · edición</span></div></div>
+    </div>
+    <div class="cre">
+      <div class="fr" style="background-image:url('https://lachamana.com/cdn/shop/files/07A1004.jpg?width=600')"><i class="fmt">IMAGEN · CIERRE</i><span><b>Until December 1</b></span></div>
+      <h3>C4 · Cierre</h3>
+      <p class="hl">«Until December 1. Three nights in January.»</p>
+      <div class="kv"><div><span class="k">Corre</span><span>retargeting, desde el sábado 28</span></div><div><span class="k">Estado</span><span>entrega el jueves 26</span></div></div>
+    </div>
+  </div>
+  <p class="note">Los cuadros son bocetos sobre fotos de la web, no los archivos finales de Bianca. El estado de cada creativo es el del domingo 22 y lo confirma Bianca en la reunión. Botón de Meta: «Get offer». En la página: «Reserve».</p>
+</div></section>
+
+<!-- 06 PLATA -->
+<section class="sec" id="plata"><div class="wrap">
+  <header class="sh"><span class="no num">06</span><div><h2>La plata</h2><p class="lede">Fuerte al principio. El sábado se mira Cloudbeds: si hubo una reserva sigue igual, si no hubo baja a la mitad.</p></div><span class="chip ok">decidido el 22-nov · tope 800</span></header>
+  <div class="g-85">
+    <div class="card">
+      <h3>USD por día</h3>
+      <div class="bud" role="img" aria-label="Presupuesto diario: 100 dólares por día del martes 24 al viernes 27, 70 a prospección y 30 a retargeting. Del sábado 28 al martes 1, 50 por día sin reserva o 100 con al menos una reserva.">
+        <div class="ax"><span style="bottom:100%">100</span><span style="bottom:50%">50</span><span style="bottom:0">0</span></div>
+        <div class="plot">
+          <div class="col" title="mar 24 · 100: 70 prospección, 30 retargeting"><i class="r" style="height:30%"></i><i class="p" style="height:70%"></i></div>
+          <div class="col" title="mié 25 · 100"><i class="r" style="height:30%"></i><i class="p" style="height:70%"></i></div>
+          <div class="col" title="jue 26 · 100"><i class="r" style="height:30%"></i><i class="p" style="height:70%"></i></div>
+          <div class="col" title="vie 27 · 100"><i class="r" style="height:30%"></i><i class="p" style="height:70%"></i></div>
+          <div class="col" title="sáb 28 · 50 sin reserva, 100 con reserva"><i class="r" style="height:20%"></i><i class="p" style="height:30%"></i><i class="c" style="height:50%"></i></div>
+          <div class="col" title="dom 29 · 50 o 100"><i class="r" style="height:20%"></i><i class="p" style="height:30%"></i><i class="c" style="height:50%"></i></div>
+          <div class="col" title="lun 30 · 50 o 100"><i class="r" style="height:20%"></i><i class="p" style="height:30%"></i><i class="c" style="height:50%"></i></div>
+          <div class="col" title="mar 1 · 50 o 100"><i class="r" style="height:20%"></i><i class="p" style="height:30%"></i><i class="c" style="height:50%"></i></div>
+          <div class="rule"><b>sábado 10:00 · la regla</b></div>
+        </div>
+        <div class="xl">
+          <div><b>mar 24</b><small>100</small><em></em></div><div><b>mié 25</b><small>200</small><em></em></div><div><b>jue 26</b><small>300</small><em></em></div><div><b>vie 27</b><small>400</small><em>Black Friday</em></div><div><b>sáb 28</b><small>450 · 500</small><em></em></div><div><b>dom 29</b><small>500 · 600</small><em></em></div><div><b>lun 30</b><small>550 · 700</small><em>Cyber Monday</em></div><div><b>mar 1</b><small>600 · 800</small><em>cierre</em></div>
+        </div>
+      </div>
+      <div class="leg"><span><i></i>prospección</span><span><i class="r"></i>retargeting</span><span><i class="c"></i>se suma solo si el sábado ya hay una reserva</span></div>
+      <p class="note">Debajo de cada día va el gasto acumulado. Donde hay dos cifras, la primera es sin reserva y la segunda con reserva.</p>
+    </div>
+    <div class="stackcol">
+      <div class="tile"><div class="num">800<small>USD · tope duro</small></div><span>ARS 1.236.320 al oficial del 17-nov. Meta corta sola al llegar.</span></div>
+      <div class="tile"><div class="num">600<small>USD</small></div><span>es lo que se gasta si el sábado no hay ninguna reserva.</span></div>
+      <div class="tile"><div class="num">12×</div><span>lo que gasta hoy la campaña Meta D (≈ USD 8,50 por día), que se pausa el martes.</span></div>
+      <p class="note">La regla del sábado la propone El Chamán leyendo Cloudbeds. El presupuesto lo cambia una persona.</p>
+    </div>
+  </div>
+</div></section>
+
+<!-- 07 ESPERAMOS -->
+<section class="sec deep" id="esperamos"><div class="wrap">
+  <header class="sh"><span class="no num">07</span><div><h2>Qué esperamos</h2><p class="lede">De casi doce mil personas a una reserva. Es una estimación, apoyada en lo que la cuenta midió en sus tres campañas en EE.UU.</p></div><span class="chip wa">todo estimado</span></header>
+  <div class="card">
+    <h3>El embudo, escenario base, con USD 600 gastados</h3>
+    <div class="fun" role="img" aria-label="Embudo estimado: 11.800 personas alcanzadas, 340 clics, 260 visitas a la página, 10 abren el motor y 5 escriben por WhatsApp, aproximadamente una reserva.">
+      <div class="fs" style="--w:100%;--o:16%"><span class="num">11.800</span><span>personas ven el anuncio</span></div>
+      <div class="fr-rate">2,9% hace clic</div>
+      <div class="fs" style="--w:76%;--o:26%"><span class="num">340</span><span>clics</span></div>
+      <div class="fr-rate">3 de cada 4 esperan a que cargue</div>
+      <div class="fs" style="--w:60%;--o:38%"><span class="num">260</span><span>visitas a la página</span></div>
+      <div class="fr-rate">3,8% abre el motor · 1,9% escribe</div>
+      <div class="fsplit"><div class="fs" style="--o:52%"><span class="num">10</span><span>abren el motor</span></div><div class="fs" style="--o:52%"><span class="num">5</span><span>WhatsApp</span></div></div>
+      <div class="fr-rate">3 a 6% de los que abren el motor · 8 a 10% de las conversaciones</div>
+      <div class="fs end" style="--w:24%"><span class="num">≈ 1</span><span>reserva</span></div>
+    </div>
+    <p class="note">Los anchos son esquemáticos. A escala real, la reserva no se vería: es una de cada doce mil personas.</p>
+  </div>
+  <div class="g3">
+    <div class="sc"><p class="lbl">Pesimista</p><div class="num">0<small>reservas</small></div><div class="mb"><i style="width:19%"></i></div>
+      <div class="kv lr"><div><span class="k">Visitas a la página</span><b>105</b></div><div><span class="k">Personas alcanzadas</span><b>7.500</b></div><div><span class="k">Costo por mil impresiones</span><b>USD 40</b></div><div><span class="k">Abren el motor · WhatsApp</span><b>2 · 1</b></div><div><span class="k">Costo por reserva</span><b>no hay</b></div></div></div>
+    <div class="sc base"><p class="lbl">Base</p><div class="num">≈ 1<small>reserva</small></div><div class="mb"><i style="width:47%"></i></div>
+      <div class="kv lr"><div><span class="k">Visitas a la página</span><b>260</b></div><div><span class="k">Personas alcanzadas</span><b>11.800</b></div><div><span class="k">Costo por mil impresiones</span><b>USD 28</b></div><div><span class="k">Abren el motor · WhatsApp</span><b>10 · 5</b></div><div><span class="k">Costo por reserva</span><b>≈ USD 600–800</b></div></div></div>
+    <div class="sc"><p class="lbl">Optimista</p><div class="num">2–3<small>reservas</small></div><div class="mb"><i style="width:100%"></i></div>
+      <div class="kv lr"><div><span class="k">Visitas a la página</span><b>550</b></div><div><span class="k">Personas alcanzadas</span><b>18.800</b></div><div><span class="k">Costo por mil impresiones</span><b>USD 20</b></div><div><span class="k">Abren el motor · WhatsApp</span><b>33 · 17</b></div><div><span class="k">Costo por reserva</span><b>≈ USD 250</b></div></div></div>
+  </div>
+  <p class="note" style="margin-top:-14px">La barra de cada escenario compara las visitas a la página. Sumando DMs y email, el escenario base da 7 a 10 conversaciones.</p>
+  <div class="evi">
+    <div><div class="num">3</div><span>campañas en EE.UU., septiembre a noviembre</span></div>
+    <div><div class="num">932</div><span>USD gastados</span></div>
+    <div><div class="num">49</div><span>conversaciones por DM</span></div>
+    <div class="zero"><div class="num">0</div><span>reservas</span></div>
+    <div class="say">Conversar no es reservar. Por eso esta campaña lleva a una página con precio y calendario.</div>
+  </div>
+</div></section>
+
+<!-- 08 CASA -->
+<section class="sec" id="casa"><div class="wrap">
+  <header class="sh"><span class="no num">08</span><div><h2>Lo que le queda a la casa</h2><p class="lede">El peor caso que igual gana: una sola venta, cargándole toda la pauta de la semana.</p></div><span class="chip wa">interno · costos a negociar</span></header>
+  <div class="g-85">
+    <div class="card">
+      <h3>De 12.500 a lo que queda, en USD</h3>
+      <div class="wf" role="img" aria-label="Cascada: precio 12.500; menos costo operativo 6.020; ganancia operativa 6.480; menos impuestos 2.254; menos tarjeta 375; menos pauta 800; quedan aproximadamente 3.050.">
+        <div class="wr base"><span class="l">Precio de la estadía</span><div class="t"><i style="--w:100%"></i></div><span class="num v">12.500</span></div>
+        <div class="wr neg"><span class="l">Costo operativo<small>casa y experiencias</small></span><div class="t"><i style="--l:51.84%;--w:48.16%"></i></div><span class="num v">−6.020</span></div>
+        <div class="wr sep"><span class="l">Ganancia operativa<small>51,8% del precio</small></span><div class="t"><i style="--w:51.84%"></i></div><span class="num v">6.480</span></div>
+        <div class="wr neg"><span class="l">Impuestos<small>IVA 16% + hospedaje 6%</small></span><div class="t"><i style="--l:33.81%;--w:18.03%"></i></div><span class="num v">−2.254</span></div>
+        <div class="wr neg"><span class="l">Tarjeta<small>tasa típica, a confirmar</small></span><div class="t"><i style="--l:30.81%;--w:3%"></i></div><span class="num v">−375</span></div>
+        <div class="wr neg"><span class="l">Pauta<small>el tope completo</small></span><div class="t"><i style="--l:24.41%;--w:6.4%"></i></div><span class="num v">−800</span></div>
+        <div class="wr tot sep"><span class="l">Le queda a la casa</span><div class="t"><i style="--w:24.41%"></i></div><span class="num v">≈ 3.050</span></div>
+      </div>
+      <p class="note">Las barras rayadas son lo que sale.</p>
+      <div class="g2" style="gap:12px">
+        <div class="tile"><div class="num">≈ 3.050</div><span>deja la primera reserva, pagando ella sola toda la pauta.</span></div>
+        <div class="tile"><div class="num">≈ 3.850</div><span>deja cada reserva siguiente, que ya no carga pauta.</span></div>
+      </div>
+    </div>
+    <div class="stackcol">
+      <div class="card">
+        <h3>Por noche, contra el piso</h3>
+        <div class="nb" role="img" aria-label="Por noche después de pagar las experiencias: 3.160 sin impuestos y 2.409 con impuestos, contra un piso de 2.000.">
+          <div class="row"><span>Sin descontar impuestos<b class="num">3.160</b></span><div class="bar"><i style="width:90.3%"></i></div></div>
+          <div class="row"><span>Con los impuestos descontados<b class="num">2.409</b></span><div class="bar"><i style="width:68.8%"></i></div></div>
+          <div class="floor"><b>piso 2.000</b></div>
+        </div>
+        <p class="note">Lo que entra por noche después de pagar las experiencias. El piso es la banda más baja que cotiza Iru.</p>
+      </div>
+      <div class="card">
+        <h3>El costo, 6.020</h3>
+        <div class="costs" role="img" aria-label="Costo: casa 3.000, desayuno 1.200, cena 720, beach club 720, sound healing 380"><i style="width:49.8%" title="Casa · 3.000"></i><i style="width:19.9%" title="Desayuno · 1.200"></i><i style="width:12%" title="Cena · 720"></i><i style="width:12%" title="Beach club · 720"></i><i style="width:6.3%" title="Sound healing · 380"></i></div>
+        <div class="kv lr"><div><span>Casa, 3 noches</span><b>3.000</b></div><div><span>Desayuno, 16 × 3 × 25</span><b>1.200</b></div><div><span>Cena, 16 × 45</span><b>720</b></div><div><span>Beach club, 16 × 45</span><b>720</b></div><div><span>Sound healing</span><b>380</b></div></div>
+        <p class="note">Hoja de Iru. Desayuno y cena son presupuestos: con otro proveedor bajan.</p>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<!-- 09 SEMANA -->
+<section class="sec" id="semana"><div class="wrap">
+  <header class="sh"><span class="no num">09</span><div><h2>La semana</h2><p class="lede">Qué corre cada día y cuándo se mira. Todas las mañanas a las 10:00 hay una lectura en el grupo.</p></div><span></span></header>
+  <div class="card"><div class="scroll">
+    <div class="gantt">
+      <div class="dh"></div>
+      <div class="dh"><small>mar</small><span class="num">24</span><em>arranque</em></div><div class="dh"><small>mié</small><span class="num">25</span><em></em></div><div class="dh"><small>jue</small><span class="num">26</span><em>Thanksgiving</em></div><div class="dh hot"><small>vie</small><span class="num">27</span><em>Black Friday</em></div><div class="dh"><small>sáb</small><span class="num">28</span><em>la regla</em></div><div class="dh"><small>dom</small><span class="num">29</span><em></em></div><div class="dh hot"><small>lun</small><span class="num">30</span><em>Cyber Monday</em></div><div class="dh"><small>mar</small><span class="num">1</span><em>cierre</em></div><div class="dh"><small>mié</small><span class="num">2</span><em>balance</em></div>
+
+      <div class="rl">Hitos</div>
+      <div class="hito"><b>Se prende</b>con el OK del equipo</div><div class="hito"></div><div class="hito"><b>Llega C4</b>de Bianca</div><div class="hito"></div><div class="hito"><b>10:00</b>50 o 100</div><div class="hito"></div><div class="hito"></div><div class="hito"><b>23:59</b>Iru apaga la tarifa</div><div class="hito"><b>Aprendizaje</b>escrito ese día</div>
+
+      <div class="rl">Pauta en Meta<small>Bianca</small></div>
+      <div class="span" style="grid-column:span 4"><i>100 por día · C1, C2, C3</i></div><div class="span" style="grid-column:span 4"><i class="alt"><u>50 o 100 por día · entra C4</u></i></div><div></div>
+
+      <div class="rl">DMs<small>Bianca, a mano</small></div>
+      <div class="span" style="grid-column:span 8"><i class="dk">unos 10 por día</i></div><div></div>
+
+      <div class="rl">Email de lara@<small>go de Boris</small></div>
+      <div class="pt"><i></i>hasta 40</div><div></div><div></div><div class="pt"><i></i>hasta 40</div><div></div><div></div><div class="pt"><i></i>hasta 40</div><div></div><div></div>
+
+      <div class="rl">Lectura 10:00<small>El Chamán</small></div>
+      <div></div><div class="pt"><i class="o"></i></div><div class="pt"><i class="o"></i></div><div class="pt"><i class="o"></i></div><div class="pt"><i class="dk"></i>regla</div><div class="pt"><i class="o"></i></div><div class="pt"><i class="o"></i></div><div class="pt"><i class="o"></i></div><div class="pt"><i class="dk"></i>cierre</div>
+    </div>
+  </div>
+  <p class="note">Cada lectura trae lo mismo: gasto, clics, visitas, cuántos abrieron el motor, conversaciones y reservas. La campaña Meta D se pausa el martes 24, a mano.</p></div>
+</div></section>
+
+<!-- 10 PRENDER -->
+<section class="sec" id="prender"><div class="wrap">
+  <header class="sh"><span class="no num">10</span><div><h2>Para prender</h2><p class="lede">Diez cosas tienen que estar. Cuatro ya están. De las seis que faltan, tres frenan el arranque.</p></div><span class="chip cr">faltan 6</span></header>
+  <div class="meter">
+    <div class="num">4<small>de 10 listas</small></div>
+    <div style="display:grid;gap:10px">
+      <div class="segs" role="img" aria-label="4 de 10 listas, 3 frenan el arranque, 3 se resuelven en la semana"><i></i><i></i><i></i><i></i><i class="e"></i><i class="e"></i><i class="e"></i><i class="e2"></i><i class="e2"></i><i class="e2"></i></div>
+      <div class="capt"><span><i style="background:var(--good)"></i>listo</span><span><i style="background:transparent;box-shadow:inset 0 0 0 1.5px var(--crit)"></i>sin esto no se prende</span><span><i style="background:transparent;box-shadow:inset 0 0 0 1.5px var(--ink-3)"></i>se resuelve en la semana</span></div>
+    </div>
+  </div>
+  <p class="sub-l">Sin esto no se prende</p>
+  <div class="g3">
+    <div class="todo must"><span class="bx"></span><h3>La tarifa en Cloudbeds</h3><p>Tarifa Black Friday cargada, pública o con código. Sin ella, el botón «Reserve» lleva a la tarifa normal.</p><div class="who"><span>Iru</span></div></div>
+    <div class="todo must"><span class="bx"></span><h3>La página, publicada y probada</h3><p>Está armada. Se publica y se recorre hasta la pantalla de pago, sin pagar: que se vea 12.500, las fechas y el mínimo.</p><div class="who"><span>Boris</span><span>Iru</span></div></div>
+    <div class="todo must"><span class="bx"></span><h3>Los creativos y la carga</h3><p>C1, C2 y C3 finales, y la campaña cargada en Meta, en pausa, con el paquete que ya está escrito.</p><div class="who"><span>Bianca</span></div></div>
+  </div>
+  <p class="sub-l">Se resuelve en la semana</p>
+  <div class="g3">
+    <div class="todo"><span class="bx"></span><h3>El píxel</h3><p>La cuenta de anuncios no tiene píxel asignado. Si no llega, se sale igual optimizando a clics y la venta se cuenta en Cloudbeds.</p><div class="who"><span>Boris o Bianca</span></div></div>
+    <div class="todo"><span class="bx"></span><h3>El FAQ de la web</h3><p>Hoy dice que el desayuno y el beach club vienen incluidos. Las dos respuestas nuevas ya están escritas.</p><div class="who"><span>Bianca</span></div></div>
+    <div class="todo"><span class="bx"></span><h3>Los proveedores de enero</h3><p>Chef, desayunos, beach club y sound healing confirmados para 16. Es la promesa del paquete.</p><div class="who"><span>Iru</span><span>Operaciones</span></div></div>
+  </div>
+  <p class="sub-l">Ya está</p>
+  <div class="done">
+    <div><span><b>El precio final</b>12.500 con impuestos · Iru, 23-nov</span></div>
+    <div><span><b>El copy</b>anuncios, página, DMs y email · pasó la revisión de marca el 23-nov</span></div>
+    <div><span><b>El material</b>paquete de Meta, cola de DMs y lista de email</span></div>
+    <div><span><b>El OK de fondo</b>René, Gastón y Pato · 22-nov</span></div>
+  </div>
+  <div class="roles">
+    <div><b>Iru</b><span>Carga la tarifa, responde y cierra.</span></div>
+    <div><b>Bianca</b><span>Creativos, Meta y DMs.</span></div>
+    <div><b>Boris</b><span>Da el go, publica y prende.</span></div>
+    <div><b>El Chamán</b><span>Lee cada mañana y propone.</span></div>
+  </div>
+</div></section>
+
+<footer class="foot"><div><span>La Chamana · Black Friday 2026 · V2.0 · 23-nov-2026</span><span>El detalle completo: <a href="black-friday-2026-campana.html">la campaña</a> · <a href="black-friday-2026-lunes.html">el paso a paso</a></span></div></footer>
+</body></html>
